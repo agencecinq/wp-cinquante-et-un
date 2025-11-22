@@ -1,0 +1,7 @@
+@layer base {
+	/* Change cursor to pointer for all buttons and elements with role="button" */
+	button:not(:disabled),
+	[role="button"]:not(:disabled) {
+		cursor: pointer;
+	}
+}

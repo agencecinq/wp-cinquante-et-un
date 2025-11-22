@@ -1,0 +1,10 @@
+@layer base {
+  /* FT Kunst Grotesk Regular */
+  @font-face {
+    font-family: 'FT Kunst Grotesk';
+    src: url('../../fonts/ft-kunst-grotesk-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+		font-display: swap;
+  }
+}

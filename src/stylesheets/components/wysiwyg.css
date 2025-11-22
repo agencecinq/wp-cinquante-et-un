@@ -1,0 +1,15 @@
+@layer components {
+	.wysiwyg {}
+
+	.wysiwyg > *:first-child {
+		@apply mt-0;
+	}
+
+	.wysiwyg > *:last-child {
+		@apply mb-0;
+	}
+
+	.wysiwyg p:empty {
+		@apply hidden;
+	}
+}

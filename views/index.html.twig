@@ -1,0 +1,56 @@
+{#
+ # Index
+ #
+ # @package WPCinquanteEtUn
+ # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
+ #}
+<!DOCTYPE html>
+<html
+	itemscope
+	itemtype="http://schema.org/WebPage"
+	{{ html_class( 'no-js no-touch antialiased' ) }}
+	{{ site.language_attributes }}
+>
+	<head>
+		<meta charset="{{ site.charset }}" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{{ function('wp_head') }}
+	</head>
+
+	<body>
+		{{- function('wp_body_open') -}}
+
+		<div {{ body_class( '' ) }}>
+			{%- block header -%}
+				{{- include('header.html.twig') -}}
+			{%- endblock -%}
+
+			{%- block content -%}
+				<main id="content" role="main">
+					<h1>{{- post.title -}}</h1>
+					{{- post.content -}}
+					{{-
+						include(
+							'blocks/blocks.html.twig',
+							{
+								blocks: post.meta('blocks')
+							}
+						)
+					-}}
+				</main>
+			{%- endblock -%}
+
+			{%- block footer -%}
+				{{- include('footer.html.twig') -}}
+			{%- endblock -%}
+		</div>
+
+		{{- function('wp_footer') -}}
+
+		<div id="svg-sprite" style="display: none;">
+			{{- include('public/sprite.svg', ignore_missing: true) -}}
+		</div>
+	</body>
+</html>

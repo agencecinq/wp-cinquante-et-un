@@ -1,0 +1,15 @@
+{#
+ # Page: Thank You
+ #
+ # @package WordPress
+ # @subpackage WPCinquanteEtUn
+ #}
+
+{% extends 'index.html.twig' %}
+
+{%- block content -%}
+	<main id="content">
+		<h1>{{- post.title -}}</h1>
+		{{- post.content -}}
+	</main>
+{%- endblock -%}

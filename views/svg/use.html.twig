@@ -1,0 +1,19 @@
+{#
+ # Use
+ #
+ # @param array classes
+ # @param string id
+ # @param string icon
+ #
+ # @file views/svg/use.html.twig
+ # @package WPCinquanteEtUn
+ #
+ # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
+ #}
+<svg
+	class="{{ html_classes( icon, classes | default( [] ) | join( ' ' ), 'fill-current' ) }}"
+	{{ id is defined ? "id=\"#{ id }\"" }}
+	{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' )  | raw }}
+>
+	<use xlink:href="#{{ icon }}" href="#{{ icon }}"></use>
+</svg>

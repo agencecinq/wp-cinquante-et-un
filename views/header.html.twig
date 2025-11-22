@@ -1,0 +1,55 @@
+{#
+ # Header
+ #
+ # @package WPCinquanteEtUn
+ #}
+
+<header role="banner">
+	<a href="{{ site.link }}" aria-label="{{ site.name }}">
+		<img src="{{ asset( 'src/img/svg/logo.svg' ) }}" alt="{{ __( "CINQ's logo", 'wp-cinquante-et-un' ) }}" width="79" height="16" loading="lazy">
+		<span class="sr-only">{{- site.name -}}</span>
+	</a>
+
+	{%- if nav_menus.main.get_items -%}
+		<ul
+			itemscope
+			class="text-cta inline-flex gap-4 lg:gap-8"
+			itemtype="http://schema.org/SiteNavigationElement"
+		>
+			{%- for item in nav_menus.main.get_items() -%}
+				<li>
+					<a
+						href="{{ item.url }}"
+						itemprop="url"
+						class="flex items-center gap-2"
+						{{ item.is_target_blank or item.is_external ? 'target="' ~ item.target ~ '" rel="noopener noreferer"' }}
+					>
+						{{- item.title -}}
+					</a>
+				</li>
+			{%- endfor -%}
+		</ul>
+	{%- endif -%}
+
+	{%- if nav_menus.secondary.get_items -%}
+		<ul
+			itemscope
+			class="text-cta inline-flex gap-4 lg:gap-8"
+			itemtype="http://schema.org/SiteNavigationElement"
+		>
+			{%- for item in nav_menus.main.get_items() -%}
+				<li>
+					<a
+						href="{{ item.url }}"
+						itemprop="url"
+						class="flex items-center gap-2"
+						{{ item.is_target_blank or item.is_external ? 'target="' ~ item.target ~ '" rel="noopener noreferer"' }}
+					>
+						{{- item.title -}}
+					</a>
+				</li>
+			{%- endfor -%}
+		</ul>
+	{%- endif -%}
+</header>
+

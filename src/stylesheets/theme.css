@@ -1,0 +1,26 @@
+@theme {
+	--default-font-family: "FT Kunst Grotesk", sans-serif;
+
+	/* Colors */
+	/* This line resets all color variables */
+	--color-*: initial;
+
+	/* Colors primary */
+	--color-black: #000000;
+	--color-white: #ffffff;
+
+	/* Typographies */
+	/* This line resets all typography variables */
+	--text-*: initial;
+
+	/* In Twig the class will be available as `text-h1` */
+	/* Example of how to setup a typography variable */
+	/* Next in utilities typographies.css you can create a utility class */
+	--text-h1-desktop: 3.75rem;
+	--text-h1-desktop--font-weight: 400;
+	--text-h1-desktop--line-height: 1;
+
+	--text-h1-mobile: 2.5rem;
+	--text-h1-mobile--font-weight: 400;
+	--text-h1-mobile--line-height: 1.2;
+}

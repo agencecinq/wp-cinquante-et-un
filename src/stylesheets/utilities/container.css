@@ -1,0 +1,4 @@
+@utility container {
+  @apply px-5 md:px-8 lg:px-17 xl:px-22 2xl:px-27 mx-auto max-w-360;
+	/* @apply px-5 md:px-8 lg:px-22 xl:px-28 2xl:px-34 mx-auto max-w-none; */
+}

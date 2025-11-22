@@ -1,0 +1,16 @@
+{#
+ # 404
+ #
+ # @package WordPress
+ # @subpackage WPCinquanteEtUn
+ #}
+
+{% extends 'index.html.twig' %}
+
+{%- block content -%}
+	<main id="content">
+		<h1>{{- post.title -}}</h1>
+		<p>{{- post.content -}}</p>
+		<a href="{{ site.link }}">{{- __( 'Back to home page', 'wp-cinquante-et-un' ) -}}</a>
+	</main>
+{%- endblock -%}

@@ -1,0 +1,82 @@
+{#
+ # Footer
+ #
+ # @package WordPress
+ # @subpackage WPCinquanteEtUn/views
+ #
+ # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
+ #}
+
+<footer role="contentinfo">
+	<a href="{{ site.link }}" aria-label="{{ site.name }}">
+		<img src="{{ asset( 'src/img/svg/logo.svg' ) }}" alt="{{ __( "CINQ's logo", 'wp-cinquante-et-un' ) }}" width="79" height="16" loading="lazy">
+		<span class="sr-only">{{- site.name -}}</span>
+	</a>
+
+	{%- if socials -%}
+		<ul>
+			{%- for social in socials -%}
+				<li>
+					<a
+						href="{{ social.url }}"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="{{ social.title }}"
+					>
+						{{-
+							include(
+								'svg/use.html.twig',
+								{
+									icon: social.id
+								}
+							)
+						-}}
+						<span class="sr-only">{{- social.title -}}</span>
+					</a>
+				</li>
+			{%- endfor -%}
+		</ul>
+	{%- endif -%}
+
+	{%- if nav_menus.footer.get_items -%}
+		<ul
+			itemscope
+			class="text-cta inline-flex gap-4 lg:gap-8"
+			itemtype="http://schema.org/SiteNavigationElement"
+		>
+			{%- for item in nav_menus.main.get_items() -%}
+				<li>
+					<a
+						href="{{ item.url }}"
+						itemprop="url"
+						class="flex items-center gap-2"
+						{{ item.is_target_blank or item.is_external ? 'target="' ~ item.target ~ '" rel="noopener noreferer"' }}
+					>
+						{{- item.title -}}
+					</a>
+				</li>
+			{%- endfor -%}
+		</ul>
+	{%- endif -%}
+
+	{%- if nav_menus.legals.get_items -%}
+		<ul
+			itemscope
+			class="text-cta inline-flex gap-4 lg:gap-8"
+			itemtype="http://schema.org/SiteNavigationElement"
+		>
+			{%- for item in nav_menus.main.get_items() -%}
+				<li>
+					<a
+						href="{{ item.url }}"
+						itemprop="url"
+						class="flex items-center gap-2"
+						{{ item.is_target_blank or item.is_external ? 'target="' ~ item.target ~ '" rel="noopener noreferer"' }}
+					>
+						{{- item.title -}}
+					</a>
+				</li>
+			{%- endfor -%}
+		</ul>
+	{%- endif -%}
+</footer>
