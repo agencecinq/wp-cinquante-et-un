@@ -94,7 +94,7 @@ class AcfFieldHelpers {
 	/**
 	 * Returns the radius (border radius) field for a block.
 	 *
-	 * @param string $key The full field key prefix (e.g. 'blocks_presentation' or 'archive_products_grid').
+	 * @param string $key The full field key prefix (e.g. 'blocks_presentation' or 'archive_posts_grid').
 	 * @return array<string, mixed>
 	 */
 	public static function radius( string $key = '' ): array {
@@ -122,7 +122,7 @@ class AcfFieldHelpers {
 	 * Builds the layouts array for a flexible content from layout classes.
 	 * Each class must have a static get_layout( string $key ): array returning keys 'key', 'name', 'label', 'display', 'sub_fields'.
 	 *
-	 * @param string $key           The field key prefix (e.g. 'blocks' or 'archive_products').
+	 * @param string $key           The field key prefix (e.g. 'blocks' or 'archive_posts').
 	 * @param array  $layout_classes Array of layout class names (class-string).
 	 * @return array<string, array<string, mixed>>
 	 */

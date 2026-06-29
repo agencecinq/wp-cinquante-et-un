@@ -41,16 +41,6 @@ class Init implements Service {
 		acf_add_options_page(
 			array(
 				'page_title'  => __( 'Archive', 'nexiode' ),
-				'menu_slug'   => 'archive-product',
-				'parent_slug' => 'edit.php?post_type=product',
-				'position'    => '',
-				'redirect'    => false,
-			)
-		);
-
-		acf_add_options_page(
-			array(
-				'page_title'  => __( 'Archive', 'nexiode' ),
 				'menu_slug'   => 'archive-post',
 				'parent_slug' => 'edit.php',
 				'position'    => '',

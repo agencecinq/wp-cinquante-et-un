@@ -27,9 +27,7 @@ use Nexiode\Plugins\ACF\IncludeFields\Layouts\MultiColumn;
 use Nexiode\Plugins\ACF\IncludeFields\Layouts\PageIntroduction;
 use Nexiode\Plugins\ACF\IncludeFields\Layouts\Presentation;
 use Nexiode\Plugins\ACF\IncludeFields\Layouts\Process;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Products;
 use Nexiode\Plugins\ACF\IncludeFields\Layouts\Push;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\StoreLocator;
 use Nexiode\Plugins\ACF\IncludeFields\Layouts\Styleguide;
 use Nexiode\Plugins\ACF\IncludeFields\Layouts\Support;
 use Nexiode\Plugins\ACF\IncludeFields\Layouts\Team;
@@ -43,7 +41,7 @@ use Nexiode\Service;
 class BlocksFields implements Service {
 
 	/**
-	 * Layout classes used for the blocks field (pages, products). Order = display order.
+	 * Layout classes used for the blocks field (pages). Order = display order.
 	 *
 	 * @var array<int, class-string>
 	 */
@@ -65,9 +63,7 @@ class BlocksFields implements Service {
 		PageIntroduction::class,
 		Presentation::class,
 		Process::class,
-		Products::class,
 		Push::class,
-		StoreLocator::class,
 		Styleguide::class,
 		Support::class,
 		Team::class,
@@ -97,13 +93,6 @@ class BlocksFields implements Service {
 					'param'    => 'post_type',
 					'operator' => '==',
 					'value'    => 'page',
-				),
-			),
-			array(
-				array(
-					'param'    => 'post_type',
-					'operator' => '==',
-					'value'    => 'product',
 				),
 			),
 		);

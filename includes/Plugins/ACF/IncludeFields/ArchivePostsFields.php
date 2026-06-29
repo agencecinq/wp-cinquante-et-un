@@ -70,7 +70,7 @@ class ArchivePostsFields implements Service {
 								'aria-label'   => __( 'Title', 'nexiode' ),
 								'type'         => 'text',
 								'placeholder'  => __( 'Enter the title of the hero', 'nexiode' ),
-								'instructions' => __( 'Main heading for the products archive hero.', 'nexiode' ),
+								'instructions' => __( 'Main heading for the posts archive hero.', 'nexiode' ),
 							),
 						),
 					),

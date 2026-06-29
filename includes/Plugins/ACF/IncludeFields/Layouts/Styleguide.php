@@ -16,7 +16,7 @@ class Styleguide {
 	/**
 	 * Returns the layout array for the Styleguide block.
 	 *
-	 * @param string $key The field key prefix (e.g. 'blocks' or 'archive_products').
+	 * @param string $key The field key prefix (e.g. 'blocks' or 'archive_posts').
 	 * @return array<string, mixed>
 	 */
 	public static function get_layout( string $key ): array {

@@ -52,20 +52,15 @@ class Init {
 			Plugins\ACF\SavePost::class,
 			Plugins\ACF\FormatValue::class,
 			Plugins\ACF\IncludeFields\ArchivePostsFields::class,
-			Plugins\ACF\IncludeFields\ArchiveProductsFields::class,
 			Plugins\ACF\IncludeFields\BlocksFields::class,
 			Plugins\ACF\IncludeFields\ClonesFields::class,
 			Plugins\ACF\IncludeFields\PageParentOrChildFields::class,
 			Plugins\ACF\IncludeFields\ThemeFields::class,
 			Plugins\ACF\IncludeFields\PostFields::class,
-			Plugins\ACF\IncludeFields\ProductFields::class,
-			Plugins\ACF\IncludeFields\TaxonomyProductCatFields::class,
 			Plugins\ContactForm7\FormTag::class,
 			// Yoast.
 			Plugins\WordpressSeo\AdminInit::class,
 			Post\Page::class,
-			Post\Product::class,
-			Taxonomy\ProductCat::class,
 		);
 	}
 
