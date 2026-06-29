@@ -4,12 +4,12 @@
  *
  * Custom model for home archive page.
  *
- * @package Nexiode
- * @subpackage Nexiode/Models
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Models
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Models;
+namespace WPCinquanteEtUn\Models;
 
 use Timber\{ Post, Timber, PostCollectionInterface };
 
@@ -18,7 +18,7 @@ use Timber\{ Post, Timber, PostCollectionInterface };
  *
  * Represents a page with helpers such as siblings.
  *
- * @package Nexiode\Models
+ * @package WPCinquanteEtUn\Models
  */
 class Page extends Post {
 

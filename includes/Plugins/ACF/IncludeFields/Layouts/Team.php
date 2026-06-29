@@ -3,12 +3,12 @@
  * ACF layout: Team
  *
  * @package WordPress
- * @subpackage Nexiode/Plugins/ACF/IncludeFields/Layouts
+ * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields/Layouts
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields\Layouts;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use Nexiode\Plugins\ACF\IncludeFields\AcfFieldHelpers;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
 
 /**
  * Team block layout.
@@ -25,55 +25,55 @@ class Team {
 		return array(
 			'key'        => 'layout_' . $key . '_team',
 			'name'       => 'team',
-			'label'      => __( 'Team', 'nexiode' ),
+			'label'      => __( 'Team', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
 				...AcfFieldHelpers::settings( $key . '_team' ),
 				array(
 					'key'        => 'field_' . $key . '_team_content_tab',
-					'label'      => __( 'Content', 'nexiode' ),
+					'label'      => __( 'Content', 'wp-cinquante-et-un' ),
 					'name'       => 'content',
-					'aria-label' => __( 'Content', 'nexiode' ),
+					'aria-label' => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'       => 'tab',
 				),
 				array(
 					'key'        => 'field_' . $key . '_team_content',
 					'name'       => 'content',
-					'aria-label' => __( 'Content', 'nexiode' ),
+					'aria-label' => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'       => 'group',
 					'layout'     => 'block',
 					'sub_fields' => array(
 						array(
 							'key'        => 'field_' . $key . '_team_content_members',
-							'label'      => __( 'Members', 'nexiode' ),
+							'label'      => __( 'Members', 'wp-cinquante-et-un' ),
 							'name'       => 'members',
-							'aria-label' => __( 'Members', 'nexiode' ),
+							'aria-label' => __( 'Members', 'wp-cinquante-et-un' ),
 							'type'       => 'repeater',
 							'layout'     => 'block',
 							'sub_fields' => array(
 								array(
 									'key'             => 'field_' . $key . '_team_content_members_name',
-									'label'           => __( 'Name', 'nexiode' ),
+									'label'           => __( 'Name', 'wp-cinquante-et-un' ),
 									'name'            => 'name',
-									'aria-label'      => __( 'Name', 'nexiode' ),
+									'aria-label'      => __( 'Name', 'wp-cinquante-et-un' ),
 									'type'            => 'text',
-									'placeholder'     => __( 'Enter the name of the member', 'nexiode' ),
+									'placeholder'     => __( 'Enter the name of the member', 'wp-cinquante-et-un' ),
 									'parent_repeater' => 'field_' . $key . '_team_content_members',
 								),
 								array(
 									'key'             => 'field_' . $key . '_team_content_members_position',
-									'label'           => __( 'Position', 'nexiode' ),
+									'label'           => __( 'Position', 'wp-cinquante-et-un' ),
 									'name'            => 'position',
-									'aria-label'      => __( 'Position', 'nexiode' ),
+									'aria-label'      => __( 'Position', 'wp-cinquante-et-un' ),
 									'type'            => 'text',
-									'placeholder'     => __( 'Enter the position of the member', 'nexiode' ),
+									'placeholder'     => __( 'Enter the position of the member', 'wp-cinquante-et-un' ),
 									'parent_repeater' => 'field_' . $key . '_team_content_members',
 								),
 								array(
 									'key'               => 'field_' . $key . '_team_content_members_image',
-									'label'             => __( 'Image', 'nexiode' ),
+									'label'             => __( 'Image', 'wp-cinquante-et-un' ),
 									'name'              => 'image',
-									'aria-label'        => __( 'Image', 'nexiode' ),
+									'aria-label'        => __( 'Image', 'wp-cinquante-et-un' ),
 									'type'              => 'image',
 									'return_format'     => 'id',
 									'library'           => 'all',
@@ -83,11 +83,11 @@ class Team {
 								),
 								array(
 									'key'             => 'field_' . $key . '_team_content_members_linkedin',
-									'label'           => __( 'LinkedIn', 'nexiode' ),
+									'label'           => __( 'LinkedIn', 'wp-cinquante-et-un' ),
 									'name'            => 'linkedin',
-									'aria-label'      => __( 'LinkedIn', 'nexiode' ),
+									'aria-label'      => __( 'LinkedIn', 'wp-cinquante-et-un' ),
 									'type'            => 'url',
-									'placeholder'     => __( 'Enter the LinkedIn URL of the member', 'nexiode' ),
+									'placeholder'     => __( 'Enter the LinkedIn URL of the member', 'wp-cinquante-et-un' ),
 									'parent_repeater' => 'field_' . $key . '_team_content_members',
 								),
 							),

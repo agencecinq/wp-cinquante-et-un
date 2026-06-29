@@ -5,33 +5,33 @@
  * Registers ACF field group includes for blocks.
  *
  * @package WordPress
- * @subpackage Nexiode/Plugins/ACF/IncludeFields
+ * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields;
 
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\AccordionGroup;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\ChildPages;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\ChildPagesByParent;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Columns;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Contact;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Form;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Gallery;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Grid;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Hero;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\KeyFigures;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\LatestPosts;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Marquee;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\MediaText;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\MultiColumn;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\PageIntroduction;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Presentation;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Process;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Push;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Styleguide;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Support;
-use Nexiode\Plugins\ACF\IncludeFields\Layouts\Team;
-use Nexiode\Service;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\AccordionGroup;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\ChildPages;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\ChildPagesByParent;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Columns;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Contact;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Form;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Gallery;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Grid;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Hero;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\KeyFigures;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\LatestPosts;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Marquee;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\MediaText;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\MultiColumn;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\PageIntroduction;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Presentation;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Process;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Push;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Styleguide;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Support;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Team;
+use WPCinquanteEtUn\Service;
 
 /**
  * Blocks Fields
@@ -100,13 +100,13 @@ class BlocksFields implements Service {
 		$fields = array(
 			array(
 				'key'          => 'field_' . $key,
-				'label'        => __( 'Blocks', 'nexiode' ),
+				'label'        => __( 'Blocks', 'wp-cinquante-et-un' ),
 				'name'         => 'blocks',
-				'aria-label'   => __( 'Blocks', 'nexiode' ),
+				'aria-label'   => __( 'Blocks', 'wp-cinquante-et-un' ),
 				'type'         => 'flexible_content',
-				'instructions' => __( 'Add and arrange blocks to build the page content.', 'nexiode' ),
+				'instructions' => __( 'Add and arrange blocks to build the page content.', 'wp-cinquante-et-un' ),
 				'layouts'      => AcfFieldHelpers::get_layouts_from( $key, self::$layouts ),
-				'button_label' => __( 'Add Block', 'nexiode' ),
+				'button_label' => __( 'Add Block', 'wp-cinquante-et-un' ),
 			),
 		);
 
@@ -114,7 +114,7 @@ class BlocksFields implements Service {
 			acf_add_local_field_group(
 				array(
 					'key'        => 'group_' . $key,
-					'title'      => __( 'Blocks Fields', 'nexiode' ),
+					'title'      => __( 'Blocks Fields', 'wp-cinquante-et-un' ),
 					'fields'     => $fields,
 					'location'   => $location,
 					'menu_order' => 1,

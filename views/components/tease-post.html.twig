@@ -8,15 +8,15 @@
  #}
 <article itemscope itemtype="https://schema.org/BlogPosting">
 	<div class="space-y-3.75 lg:space-y-5">
-		<div class="bg-bleu-nexiode/30 rounded-15 relative aspect-square overflow-hidden">
+		<div class="bg-bleu/30 rounded-15 relative aspect-square overflow-hidden">
 			<a
 				href="{{- post.link -}}"
 				itemprop="url"
 				class="absolute inset-0 size-full z-2"
-				aria-label="{{ __('Discover: %s', 'nexiode')|format(post.title) }}"
+				aria-label="{{ __('Discover: %s', 'wp-cinquante-et-un')|format(post.title) }}"
 				tabindex="-1"
 			>
-				<span class="sr-only">{{- __('Discover', 'nexiode') -}}</span>
+				<span class="sr-only">{{- __('Discover', 'wp-cinquante-et-un') -}}</span>
 			</a>
 			{{-
 				include(
@@ -70,14 +70,14 @@
 				href="{{- post.link -}}"
 				itemprop="url"
 				class="text-button-s uppercase underline"
-				aria-label="{{ __('Discover: %s', 'nexiode')|format(post.title) }}"
+				aria-label="{{ __('Discover: %s', 'wp-cinquante-et-un')|format(post.title) }}"
 			>
-				{{- __('Discover', 'nexiode') -}}
+				{{- __('Discover', 'wp-cinquante-et-un') -}}
 			</a>
 		</div>
 	</div>
 
 	<meta itemprop="datePublished" content="{{ post.date('c') }}" />
 	<meta itemprop="dateModified" content="{{ post.modified('c') }}" />
-	<meta itemprop="author" content="{{ post.author.name|default('Nexiode')|e('html_attr') }}" />
+	<meta itemprop="author" content="{{ post.author.name|default('WPCinquanteEtUn')|e('html_attr') }}" />
 </article>

@@ -8,7 +8,7 @@
 	)
 -}}
 
-<div id="{{ block.id }}" class="text-beige-nexiode">
+<div id="{{ block.id }}" class="text-beige">
 	<div
 		class="relative py-20 after:absolute after:inset-0 after:z-2 after:size-full after:[background:linear-gradient(0deg,rgba(26,44,76,0.3),rgba(26,44,76,0.3))] lg:py-37.5"
 	>
@@ -41,7 +41,7 @@
 								class="{{
 								html_classes(
 									block.content.layout == 'column' ? 'h3' : 'h1',
-									'text-vert-nexiode'
+									'text-vert'
 								)
 								}}"
 							>
@@ -95,8 +95,8 @@
 						<div class="splide__arrows mx-2.5 mb-5 flex items-center justify-end gap-3 lg:hidden">
 							<button
 								type="button"
-								class="border-beige-nexiode splide__arrow splide__arrow--prev flex size-12.5 items-center justify-center rounded-full border transition-opacity duration-300 ease-in disabled:cursor-not-allowed disabled:opacity-50"
-								aria-label="{{ __('Previous', 'nexiode') }}"
+								class="border-beige splide__arrow splide__arrow--prev flex size-12.5 items-center justify-center rounded-full border transition-opacity duration-300 ease-in disabled:cursor-not-allowed disabled:opacity-50"
+								aria-label="{{ __('Previous', 'wp-cinquante-et-un') }}"
 							>
 								{{-
 									include(
@@ -111,8 +111,8 @@
 							</button>
 							<button
 								type="button"
-								class="border-beige-nexiode splide__arrow splide__arrow--next flex size-12.5 items-center justify-center rounded-full border transition-opacity duration-300 ease-in disabled:cursor-not-allowed disabled:opacity-50"
-								aria-label="{{ __('Next', 'nexiode') }}"
+								class="border-beige splide__arrow splide__arrow--next flex size-12.5 items-center justify-center rounded-full border transition-opacity duration-300 ease-in disabled:cursor-not-allowed disabled:opacity-50"
+								aria-label="{{ __('Next', 'wp-cinquante-et-un') }}"
 							>
 								{{-
 									include(
@@ -137,7 +137,7 @@
 											class="{{
 											html_classes(
 												'size-full max-w-full',
-												'bg-blanc-nexiode/14',
+												'bg-blanc/14',
 												'flex flex-col justify-end-safe',
 												'rounded-25 px-2.5 py-5 [backdrop-filter:blur(10px)]',
 												'gap-7.5',
@@ -166,7 +166,7 @@
 												<div
 													class="{{
 													html_classes(
-														'text-vert-nexiode',
+														'text-vert',
 														figure.content.overline ? '' : 'pt-7 lg:pt-9'
 													)
 													}}"
@@ -195,7 +195,7 @@
 
 												{%- if figure.text -%}
 													<footer
-														class="border-beige-nexiode/50 min-h-[4lh] border-t pt-5 lg:min-h-[3lh] lg:pt-7.5"
+														class="border-beige/50 min-h-[4lh] border-t pt-5 lg:min-h-[3lh] lg:pt-7.5"
 													>
 														<p class="text-l">
 															{{- figure.text -}}

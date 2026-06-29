@@ -2,11 +2,11 @@
 /**
  * WP Image Editor
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode;
+namespace WPCinquanteEtUn;
 
 /**
  * WP Image editor

@@ -3,12 +3,12 @@
  * ACF layout: Hero
  *
  * @package WordPress
- * @subpackage Nexiode/Plugins/ACF/IncludeFields/Layouts
+ * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields/Layouts
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields\Layouts;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use Nexiode\Plugins\ACF\IncludeFields\AcfFieldHelpers;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
 
 /**
  * Hero block layout.
@@ -25,39 +25,39 @@ class Hero {
 		return array(
 			'key'        => 'layout_' . $key . '_hero',
 			'name'       => 'hero',
-			'label'      => __( 'Hero', 'nexiode' ),
+			'label'      => __( 'Hero', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
 				...AcfFieldHelpers::settings( $key . '_hero' ),
 				...AcfFieldHelpers::media( $key . '_hero' ),
 				array(
 					'key'        => 'field_' . $key . '_hero_content_tab',
-					'label'      => __( 'Content', 'nexiode' ),
-					'aria-label' => __( 'Content', 'nexiode' ),
+					'label'      => __( 'Content', 'wp-cinquante-et-un' ),
+					'aria-label' => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'       => 'tab',
 				),
 				array(
 					'key'        => 'field_' . $key . '_hero_content',
-					'label'      => __( 'Content', 'nexiode' ),
+					'label'      => __( 'Content', 'wp-cinquante-et-un' ),
 					'name'       => 'content',
-					'aria-label' => __( 'Content', 'nexiode' ),
+					'aria-label' => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'       => 'group',
 					'layout'     => 'block',
 					'sub_fields' => array(
 						array(
 							'key'           => 'field_' . $key . '_hero_content_title',
-							'label'         => __( 'Title', 'nexiode' ),
+							'label'         => __( 'Title', 'wp-cinquante-et-un' ),
 							'name'          => 'title',
-							'aria-label'    => __( 'Title', 'nexiode' ),
+							'aria-label'    => __( 'Title', 'wp-cinquante-et-un' ),
 							'type'          => 'text',
-							'placeholder'   => __( 'Enter the title of the block', 'nexiode' ),
+							'placeholder'   => __( 'Enter the title of the block', 'wp-cinquante-et-un' ),
 							'default_value' => '',
 						),
 						array(
 							'key'        => 'field_' . $key . '_hero_content_heading',
-							'label'      => __( 'Heading', 'nexiode' ),
+							'label'      => __( 'Heading', 'wp-cinquante-et-un' ),
 							'name'       => 'heading',
-							'aria-label' => __( 'Heading', 'nexiode' ),
+							'aria-label' => __( 'Heading', 'wp-cinquante-et-un' ),
 							'type'       => 'clone',
 							'clone'      => array( 'field_clones_heading' ),
 							'display'    => 'seamless',
@@ -65,47 +65,47 @@ class Hero {
 						),
 						array(
 							'key'           => 'field_' . $key . '_hero_content_link',
-							'label'         => __( 'Link', 'nexiode' ),
+							'label'         => __( 'Link', 'wp-cinquante-et-un' ),
 							'name'          => 'link',
-							'aria-label'    => __( 'Link', 'nexiode' ),
+							'aria-label'    => __( 'Link', 'wp-cinquante-et-un' ),
 							'type'          => 'link',
-							'placeholder'   => __( 'Enter the URL of the link', 'nexiode' ),
+							'placeholder'   => __( 'Enter the URL of the link', 'wp-cinquante-et-un' ),
 							'default_value' => '',
 						),
 					),
 				),
 				array(
 					'key'        => 'field_' . $key . '_hero_footer_tab',
-					'label'      => __( 'Footer', 'nexiode' ),
-					'aria-label' => __( 'Footer', 'nexiode' ),
+					'label'      => __( 'Footer', 'wp-cinquante-et-un' ),
+					'aria-label' => __( 'Footer', 'wp-cinquante-et-un' ),
 					'type'       => 'tab',
 				),
 				array(
 					'key'        => 'field_' . $key . '_hero_footer',
-					'label'      => __( 'Footer', 'nexiode' ),
+					'label'      => __( 'Footer', 'wp-cinquante-et-un' ),
 					'name'       => 'footer',
-					'aria-label' => __( 'Footer', 'nexiode' ),
+					'aria-label' => __( 'Footer', 'wp-cinquante-et-un' ),
 					'type'       => 'group',
 					'layout'     => 'block',
 					'sub_fields' => array(
 						array(
 							'key'          => 'field_' . $key . '_hero_footer_items',
-							'label'        => __( 'Items', 'nexiode' ),
+							'label'        => __( 'Items', 'wp-cinquante-et-un' ),
 							'name'         => 'items',
-							'aria-label'   => __( 'Items', 'nexiode' ),
+							'aria-label'   => __( 'Items', 'wp-cinquante-et-un' ),
 							'type'         => 'repeater',
-							'instructions' => __( 'Add up to 3 items. Leave empty to hide the footer.', 'nexiode' ),
+							'instructions' => __( 'Add up to 3 items. Leave empty to hide the footer.', 'wp-cinquante-et-un' ),
 							'layout'       => 'block',
 							'max'          => 3,
-							'button_label' => __( 'Add Item', 'nexiode' ),
+							'button_label' => __( 'Add Item', 'wp-cinquante-et-un' ),
 							'sub_fields'   => array(
 								array(
 									'key'     => 'field_' . $key . '_hero_footer_items_image',
-									'label'   => __( 'Image', 'nexiode' ),
+									'label'   => __( 'Image', 'wp-cinquante-et-un' ),
 									'name'    => 'image',
-									'aria-label' => __( 'Image', 'nexiode' ),
+									'aria-label' => __( 'Image', 'wp-cinquante-et-un' ),
 									'type'    => 'image',
-									'instructions' => '<em>' . __( 'Optional', 'nexiode' ) . '</em>',
+									'instructions' => '<em>' . __( 'Optional', 'wp-cinquante-et-un' ) . '</em>',
 									'wrapper' => array(
 										'width' => 4 * 100 / 12,
 									),
@@ -115,14 +115,14 @@ class Hero {
 								),
 								array(
 									'key'     => 'field_' . $key . '_hero_footer_items_title',
-									'label'   => __( 'Title', 'nexiode' ),
+									'label'   => __( 'Title', 'wp-cinquante-et-un' ),
 									'name'    => 'title',
-									'aria-label' => __( 'Title', 'nexiode' ),
+									'aria-label' => __( 'Title', 'wp-cinquante-et-un' ),
 									'type'    => 'text',
 									'wrapper' => array(
 										'width' => 8 * 100 / 12,
 									),
-									'placeholder' => __( 'Enter the title of the item', 'nexiode' ),
+									'placeholder' => __( 'Enter the title of the item', 'wp-cinquante-et-un' ),
 									'parent_repeater' => 'field_' . $key . '_hero_footer_items',
 								),
 							),
@@ -131,23 +131,23 @@ class Hero {
 				),
 				array(
 					'key'        => 'field_' . $key . '_hero_featured_posts_tab',
-					'label'      => __( 'Featured Posts', 'nexiode' ),
-					'aria-label' => __( 'Featured Posts', 'nexiode' ),
+					'label'      => __( 'Featured Posts', 'wp-cinquante-et-un' ),
+					'aria-label' => __( 'Featured Posts', 'wp-cinquante-et-un' ),
 					'type'       => 'tab',
 				),
 				array(
 					'key'        => 'field_' . $key . '_hero_featured_posts',
-					'label'      => __( 'Featured Posts', 'nexiode' ),
+					'label'      => __( 'Featured Posts', 'wp-cinquante-et-un' ),
 					'name'       => 'featured_posts',
-					'aria-label' => __( 'Featured Posts', 'nexiode' ),
+					'aria-label' => __( 'Featured Posts', 'wp-cinquante-et-un' ),
 					'type'       => 'group',
 					'layout'     => 'block',
 					'sub_fields' => array(
 						array(
 							'key'           => 'field_' . $key . '_hero_featured_posts_posts',
-							'label'         => __( 'Posts', 'nexiode' ),
+							'label'         => __( 'Posts', 'wp-cinquante-et-un' ),
 							'name'          => 'posts',
-							'aria-label'    => __( 'Posts', 'nexiode' ),
+							'aria-label'    => __( 'Posts', 'wp-cinquante-et-un' ),
 							'type'          => 'relationship',
 							'post_type'     => 'post',
 							'multiple'      => true,

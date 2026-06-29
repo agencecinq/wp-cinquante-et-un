@@ -5,13 +5,13 @@
  * Custom model for category archive pages.
  *
  * @package WordPress
- * @subpackage Nexiode/Models
+ * @subpackage WPCinquanteEtUn/Models
  */
 
-namespace Nexiode\Models;
+namespace WPCinquanteEtUn\Models;
 
 use Timber\Term;
-use Nexiode\Traits\ArchivePost;
+use WPCinquanteEtUn\Traits\ArchivePost;
 
 /**
  * Class CategoryArchive

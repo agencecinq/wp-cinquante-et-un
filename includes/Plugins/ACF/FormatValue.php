@@ -2,13 +2,13 @@
 /**
  * ACF Format Value
  *
- * @package Nexiode
- * @subpackage Nexiode/Plugins/ACF
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Plugins/ACF
  */
 
-namespace Nexiode\Plugins\ACF;
+namespace WPCinquanteEtUn\Plugins\ACF;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 use Timber\Timber;
 
 /**

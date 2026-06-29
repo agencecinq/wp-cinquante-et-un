@@ -3,12 +3,12 @@
  * ACF layout: ChildPages
  *
  * @package WordPress
- * @subpackage Nexiode/Plugins/ACF/IncludeFields/Layouts
+ * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields/Layouts
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields\Layouts;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use Nexiode\Plugins\ACF\IncludeFields\AcfFieldHelpers;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
 
 /**
  * ChildPages block layout.
@@ -25,16 +25,16 @@ class ChildPages {
 		return array(
 			'key'        => 'layout_' . $key . '_child_pages',
 			'name'       => 'child_pages',
-			'label'      => __( 'Child Pages', 'nexiode' ),
+			'label'      => __( 'Child Pages', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
 				array(
 					'key'        => 'field_' . $key . '_child_pages_message',
-					'label'      => __( 'Message', 'nexiode' ),
+					'label'      => __( 'Message', 'wp-cinquante-et-un' ),
 					'name'       => 'message',
-					'aria-label' => __( 'Message', 'nexiode' ),
+					'aria-label' => __( 'Message', 'wp-cinquante-et-un' ),
 					'type'       => 'message',
-					'message'    => __( 'Displays the child pages of the current page. Hidden when there are no child pages.', 'nexiode' ),
+					'message'    => __( 'Displays the child pages of the current page. Hidden when there are no child pages.', 'wp-cinquante-et-un' ),
 				),
 				...AcfFieldHelpers::settings( $key . '_child_pages' ),
 			),

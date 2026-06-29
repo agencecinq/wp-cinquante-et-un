@@ -1,4 +1,4 @@
-type Nexiode = {
+type ThemeData = {
 	template_directory_uri: string;
 	base_url: string;
 	home_url: string;
@@ -12,11 +12,11 @@ type Nexiode = {
 	};
 };
 
-declare const nexiode: Nexiode;
+declare const cinq: ThemeData;
 
 declare global {
 	interface Window {
-		nexiode: Nexiode;
+		cinq: ThemeData;
 	}
 }
 

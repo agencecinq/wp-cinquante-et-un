@@ -2,15 +2,15 @@
 /**
  * Query Vars
  *
- * @package Nexiode
- * @subpackage Nexiode/Setup
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Setup
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Setup;
+namespace WPCinquanteEtUn\Setup;
 
-use Nexiode\Taxonomy\PageCat;
-use Nexiode\Service;
+use WPCinquanteEtUn\Taxonomy\PageCat;
+use WPCinquanteEtUn\Service;
 use WP_Post;
 
 /**
@@ -19,7 +19,7 @@ use WP_Post;
  * Add custom query vars and rewrite rules for page_cat in page URLs.
  *
  * @package WordPress
- * @subpackage Nexiode/Setup
+ * @subpackage WPCinquanteEtUn/Setup
  */
 class QueryVars implements Service {
 

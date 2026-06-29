@@ -2,8 +2,8 @@
 /**
  * Page template file
  *
- * @package Nexiode
- * @subpackage Nexiode/Page
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Page
  */
 
 use Timber\{ Timber };

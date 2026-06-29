@@ -18,7 +18,7 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"Nexiode\\": "./includes"
+			"WPCinquanteEtUn\\": "./includes"
 		},
 		"files": [
 			"./includes/helpers.php",

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<ruleset name="Nexiode-Standards">
+<ruleset name="CINQ-Standards">
     <description>Règles de l'agence pour WordPress.</description>
 
     <rule ref="WordPress" />
 
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="nexiode" />
+            <property name="text_domain" type="array" value="wp-cinquante-et-un" />
         </properties>
     </rule>
 

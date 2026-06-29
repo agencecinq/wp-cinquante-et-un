@@ -2,16 +2,16 @@
 /**
  * Context
  *
- * @package Nexiode
- * @subpackage Nexiode/Setup
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Setup
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Setup;
+namespace WPCinquanteEtUn\Setup;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 use Timber\{Timber, Site };
-use Nexiode\Models\{ CategoryArchive, Page, Home, SinglePost };
+use WPCinquanteEtUn\Models\{ CategoryArchive, Page, Home, SinglePost };
 use WP_Post;
 
 /**
@@ -19,7 +19,7 @@ use WP_Post;
  *
  * Adds custom data to the global context.
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  */
 class Context extends Site implements Service {
 

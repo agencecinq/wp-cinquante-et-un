@@ -2,13 +2,13 @@
 /**
  * Post
  *
- * @package Nexiode
- * @subpackage Nexiode/Post
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Post
  */
 
-namespace Nexiode;
+namespace WPCinquanteEtUn;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * Post class

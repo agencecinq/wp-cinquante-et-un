@@ -5,17 +5,17 @@
  * Single entry point for instantiating theme classes and calling their run() method.
  * Include early from functions.php so components are loaded before templates.
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  */
 
-namespace Nexiode;
+namespace WPCinquanteEtUn;
 
 /**
  * Init
  *
  * Registers and runs all theme services. Each service must implement the Service interface.
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 class Init {

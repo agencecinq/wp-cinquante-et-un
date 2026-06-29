@@ -3,12 +3,12 @@
  * Post Fields
  *
  * @package WordPress
- * @subpackage Nexiode
+ * @subpackage WPCinquanteEtUn
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * Post Fields
@@ -45,53 +45,53 @@ class PostFields implements Service {
 		$fields = array(
 			array(
 				'key'        => 'field_' . $key . '_general_tab',
-				'label'      => __( 'General', 'nexiode' ),
+				'label'      => __( 'General', 'wp-cinquante-et-un' ),
 				'name'       => 'general',
-				'aria-label' => __( 'General', 'nexiode' ),
+				'aria-label' => __( 'General', 'wp-cinquante-et-un' ),
 				'type'       => 'tab',
 			),
 			array(
 				'key'        => 'field_' . $key . '_general',
-				'label'      => __( 'General', 'nexiode' ),
+				'label'      => __( 'General', 'wp-cinquante-et-un' ),
 				'name'       => 'general',
-				'aria-label' => __( 'General', 'nexiode' ),
+				'aria-label' => __( 'General', 'wp-cinquante-et-un' ),
 				'type'       => 'group',
 				'layout'     => 'block',
 				'sub_fields' => array(
 					array(
 						'key'          => 'field_' . $key . '_general_subtitle',
-						'label'        => __( 'Subtitle', 'nexiode' ),
+						'label'        => __( 'Subtitle', 'wp-cinquante-et-un' ),
 						'name'         => 'subtitle',
-						'aria-label'   => __( 'Subtitle', 'nexiode' ),
+						'aria-label'   => __( 'Subtitle', 'wp-cinquante-et-un' ),
 						'type'         => 'text',
-						'placeholder'  => __( 'Enter the subtitle of the post', 'nexiode' ),
-						'instructions' => __( 'Short post subtitle.', 'nexiode' ) . ' <em>(' . __( 'Optional.', 'nexiode' ) . ')</em>',
+						'placeholder'  => __( 'Enter the subtitle of the post', 'wp-cinquante-et-un' ),
+						'instructions' => __( 'Short post subtitle.', 'wp-cinquante-et-un' ) . ' <em>(' . __( 'Optional.', 'wp-cinquante-et-un' ) . ')</em>',
 					),
 					array(
 						'key'        => 'field_' . $key . '_general_learn_more',
-						'label'      => __( 'Learn more', 'nexiode' ),
+						'label'      => __( 'Learn more', 'wp-cinquante-et-un' ),
 						'name'       => 'learn_more',
-						'aria-label' => __( 'Learn more', 'nexiode' ),
+						'aria-label' => __( 'Learn more', 'wp-cinquante-et-un' ),
 						'type'       => 'group',
 						'layout'     => 'block',
 						'sub_fields' => array(
 							array(
 								'key'          => 'field_' . $key . '_general_learn_more_title',
-								'label'        => __( 'Title', 'nexiode' ),
+								'label'        => __( 'Title', 'wp-cinquante-et-un' ),
 								'name'         => 'title',
-								'aria-label'   => __( 'Title', 'nexiode' ),
+								'aria-label'   => __( 'Title', 'wp-cinquante-et-un' ),
 								'type'         => 'text',
-								'placeholder'  => __( 'Enter the title of the learn more', 'nexiode' ),
-								'instructions' => __( 'The title of the learn more.', 'nexiode' ),
+								'placeholder'  => __( 'Enter the title of the learn more', 'wp-cinquante-et-un' ),
+								'instructions' => __( 'The title of the learn more.', 'wp-cinquante-et-un' ),
 							),
 							array(
 								'key'          => 'field_' . $key . '_general_learn_more_text',
-								'label'        => __( 'Text', 'nexiode' ),
+								'label'        => __( 'Text', 'wp-cinquante-et-un' ),
 								'name'         => 'text',
-								'aria-label'   => __( 'Text', 'nexiode' ),
+								'aria-label'   => __( 'Text', 'wp-cinquante-et-un' ),
 								'type'         => 'text',
-								'placeholder'  => __( 'Enter the text of the learn more', 'nexiode' ),
-								'instructions' => __( 'The text of the learn more.', 'nexiode' ),
+								'placeholder'  => __( 'Enter the text of the learn more', 'wp-cinquante-et-un' ),
+								'instructions' => __( 'The text of the learn more.', 'wp-cinquante-et-un' ),
 							),
 						),
 					),
@@ -104,7 +104,7 @@ class PostFields implements Service {
 			acf_add_local_field_group(
 				array(
 					'key'      => 'group_' . $key,
-					'title'    => __( 'Post Fields', 'nexiode' ),
+					'title'    => __( 'Post Fields', 'wp-cinquante-et-un' ),
 					'fields'   => $fields,
 					'location' => $location,
 				)

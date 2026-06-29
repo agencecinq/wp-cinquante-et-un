@@ -2,10 +2,10 @@
 /**
  * Service contract for theme bootstrap.
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  */
 
-namespace Nexiode;
+namespace WPCinquanteEtUn;
 
 /**
  * Service

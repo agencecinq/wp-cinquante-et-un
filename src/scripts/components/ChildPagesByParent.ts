@@ -1,6 +1,6 @@
 import { load, Piece } from "piecesjs";
 
-const { nexiode: { ajax_url, nonce } } = window;
+const { cinq: { ajax_url, nonce } } = window;
 
 const LOCKED_CLASSES = ["pointer-events-none", "opacity-50", "cursor-not-allowed"];
 
@@ -138,7 +138,7 @@ class ChildPagesByParent extends Piece {
 	}
 
 	showError(message: string): void {
-		this.$slideshow.innerHTML = `<p class="h-on-title uppercase text-rouge-nexiode" role="alert">${message}</p>`;
+		this.$slideshow.innerHTML = `<p class="h-on-title uppercase text-rouge" role="alert">${message}</p>`;
 	}
 
 	locked(): void {

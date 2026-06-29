@@ -5,7 +5,7 @@
  #
  # @param block array The block data. Must contain parent, children and current (the current child page, or first if current page is not in children).
  #
- # @package Nexiode
+ # @package WPCinquanteEtUn
  #}
 
 {%- if block.parent and block.current | length > 0 -%}
@@ -29,7 +29,7 @@
 					<ul
 						class="scrollbar-hidden justify-start-safe -mx-2.5 flex gap-3 overflow-x-auto px-2.5 lg:mx-0 lg:flex-wrap lg:px-0"
 						role="tablist"
-						aria-label="{{ __('Content sections: %s', 'nexiode')|format(block.parent.title) }}"
+						aria-label="{{ __('Content sections: %s', 'wp-cinquante-et-un')|format(block.parent.title) }}"
 					>
 						{%- for child in block.children -%}
 							<li class="whitespace-nowrap" role="presentation">
@@ -67,7 +67,7 @@
 					include(
 						'components/button.html.twig',
 						{
-							title: __('All sectors', 'nexiode'),
+							title: __('All sectors', 'wp-cinquante-et-un'),
 							icon: 'bullet',
 							url: block.parent.link
 						},
@@ -78,7 +78,7 @@
 
 			<div
 				id="{{ block.id }}-panel"
-				class="lg:before:bg-beige-nexiode relative col-span-full -mx-2.5 transition-opacity duration-300 ease-in lg:col-span-6 lg:col-start-7 lg:mx-0 lg:before:absolute lg:before:inset-y-0 lg:before:right-full lg:before:z-1 lg:before:w-screen"
+				class="lg:before:bg-beige relative col-span-full -mx-2.5 transition-opacity duration-300 ease-in lg:col-span-6 lg:col-start-7 lg:mx-0 lg:before:absolute lg:before:inset-y-0 lg:before:right-full lg:before:z-1 lg:before:w-screen"
 				role="tabpanel"
 				aria-labelledby="{{ block.current.id ~ '-tab-' ~ block.parent.id }}"
 				aria-live="polite"

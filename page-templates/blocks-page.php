@@ -2,7 +2,7 @@
 /**
  * Template Name: Blocks
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  */
 
 use Timber\Timber;

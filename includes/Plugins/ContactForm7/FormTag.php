@@ -2,20 +2,20 @@
 /**
  * Contact Form 7 Form Tag
  *
- * @package Nexiode
- * @subpackage Nexiode/Plugins/ContactForm7
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Plugins/ContactForm7
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Plugins\ContactForm7;
+namespace WPCinquanteEtUn\Plugins\ContactForm7;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * Contact Form 7 Form Tag
  *
- * @package Nexiode
- * @subpackage Nexiode/Plugins/ContactForm7
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Plugins/ContactForm7
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 class FormTag implements Service {
@@ -69,7 +69,7 @@ class FormTag implements Service {
 			return $tag;
 		}
 
-		$placeholder = __( 'Choose a domain', 'nexiode' );
+		$placeholder = __( 'Choose a domain', 'wp-cinquante-et-un' );
 
 		array_unshift( $labels, $placeholder );
 		array_unshift( $values, '' );

@@ -1,7 +1,7 @@
 {#
  # Index
  #
- # @package Nexiode
+ # @package WPCinquanteEtUn
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  #}
 <!DOCTYPE html>
@@ -15,14 +15,14 @@
 		{{ function( 'wp_head' ) }}
 	</head>
 
-	<body {{ body_class( 'text-bleu-nexiode bg-beige-nexiode antialiased' ) }}>
+	<body {{ body_class( 'text-bleu bg-beige antialiased' ) }}>
 		{{- function( 'wp_body_open ') -}}
 
 
 		{%- block content -%}
 		<main id="content" role="main">
 
-			<div class="bg-[linear-gradient(225deg,#102345_0%,#08152C_100%)] text-blanc-nexiode rounded-b-25 lg:rounded-b-50 -mb-6.25 lg:-mb-12.5 relative z-3">
+			<div class="bg-[linear-gradient(225deg,#102345_0%,#08152C_100%)] text-blanc rounded-b-25 lg:rounded-b-50 -mb-6.25 lg:-mb-12.5 relative z-3">
 				{%- block header -%}
 				<div class="relative">
 					{{- include( 'header.html.twig', { classes: [ 'relative z-10' ] } ) -}}
@@ -31,7 +31,7 @@
 
 			<div class="container space-y-5 lg:space-y-20 pb-20 pt-5 lg:pt-12.5">
 				{{ yoast_breadcrumb() }}
-				<h1 class="h2 text-vert-nexiode">{{- post.title -}}</h1>
+				<h1 class="h2 text-vert">{{- post.title -}}</h1>
 			</div>
 		</div>
 

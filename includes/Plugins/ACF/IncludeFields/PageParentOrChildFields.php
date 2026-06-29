@@ -4,13 +4,13 @@
  *
  * Registers ACF field group for pages that have a parent and/or at least one child.
  *
- * @package Nexiode
- * @subpackage Nexiode/Plugins/ACF/IncludeFields
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * Page Parent Or Child Fields
@@ -67,36 +67,36 @@ class PageParentOrChildFields implements Service {
 		$fields = array(
 			array(
 				'key'        => 'field_' . $key . '_general_tab',
-				'label'      => __( 'General', 'nexiode' ),
-				'aria-label' => __( 'General', 'nexiode' ),
+				'label'      => __( 'General', 'wp-cinquante-et-un' ),
+				'aria-label' => __( 'General', 'wp-cinquante-et-un' ),
 				'type'       => 'tab',
 			),
 			array(
 				'key'          => 'field_' . $key . '_general',
-				'label'        => __( 'General', 'nexiode' ),
+				'label'        => __( 'General', 'wp-cinquante-et-un' ),
 				'name'         => 'general',
-				'aria-label'   => __( 'General', 'nexiode' ),
+				'aria-label'   => __( 'General', 'wp-cinquante-et-un' ),
 				'type'         => 'group',
-				'instructions' => __( 'General settings for the page.', 'nexiode' ),
+				'instructions' => __( 'General settings for the page.', 'wp-cinquante-et-un' ),
 				'layout'       => 'block',
 				'sub_fields'   => array(
 					array(
 						'key'          => 'field_' . $key . '_general_title',
-						'label'        => __( 'Title', 'nexiode' ),
+						'label'        => __( 'Title', 'wp-cinquante-et-un' ),
 						'name'         => 'title',
-						'aria-label'   => __( 'Title', 'nexiode' ),
+						'aria-label'   => __( 'Title', 'wp-cinquante-et-un' ),
 						'type'         => 'text',
-						'placeholder'  => __( 'Page title', 'nexiode' ),
-						'instructions' => __( 'Enter the title of the page. Will be used as the page title.', 'nexiode' ),
+						'placeholder'  => __( 'Page title', 'wp-cinquante-et-un' ),
+						'instructions' => __( 'Enter the title of the page. Will be used as the page title.', 'wp-cinquante-et-un' ),
 					),
 					array(
 						'key'          => 'field_' . $key . '_general_headline',
-						'label'        => __( 'Headline', 'nexiode' ),
+						'label'        => __( 'Headline', 'wp-cinquante-et-un' ),
 						'name'         => 'headline',
-						'aria-label'   => __( 'Headline', 'nexiode' ),
+						'aria-label'   => __( 'Headline', 'wp-cinquante-et-un' ),
 						'type'         => 'text',
-						'placeholder'  => __( 'Page headline', 'nexiode' ),
-						'instructions' => __( 'Enter the headline of the page. Will be used as the page headline in the tease page block for instance. If empty, the page title will be used.', 'nexiode' ),
+						'placeholder'  => __( 'Page headline', 'wp-cinquante-et-un' ),
+						'instructions' => __( 'Enter the headline of the page. Will be used as the page headline in the tease page block for instance. If empty, the page title will be used.', 'wp-cinquante-et-un' ),
 					),
 				),
 			),
@@ -107,7 +107,7 @@ class PageParentOrChildFields implements Service {
 			acf_add_local_field_group(
 				array(
 					'key'        => 'group_' . $key,
-					'title'      => __( 'Page Parent Or Child Fields', 'nexiode' ),
+					'title'      => __( 'Page Parent Or Child Fields', 'wp-cinquante-et-un' ),
 					'fields'     => $fields,
 					'location'   => $location,
 					'menu_order' => 1,

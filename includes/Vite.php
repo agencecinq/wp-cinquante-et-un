@@ -2,18 +2,18 @@
 /**
  * Vite
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode;
+namespace WPCinquanteEtUn;
 
 use Exception;
 
 /**
  * Vite
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  */
 class Vite implements Service {
 
@@ -100,7 +100,7 @@ class Vite implements Service {
 		$manifest_path = static::build_path() . '/.vite/manifest.json';
 
 		if ( ! file_exists( $manifest_path ) ) {
-			throw new Exception( esc_html( __( 'No Vite Manifest exists. Should hot server be running?', 'nexiode' ) ) );
+			throw new Exception( esc_html( __( 'No Vite Manifest exists. Should hot server be running?', 'wp-cinquante-et-un' ) ) );
 		}
 
 		// Store our manifest contents.
@@ -145,7 +145,7 @@ class Vite implements Service {
 
 		if ( ! array_key_exists( $asset, static::$manifest ) ) {
 			/* translators: %s: asset path */
-			throw new Exception( esc_html( sprintf( __( 'Unknown Vite build asset: %s', 'nexiode' ), $asset ) ) );
+			throw new Exception( esc_html( sprintf( __( 'Unknown Vite build asset: %s', 'wp-cinquante-et-un' ), $asset ) ) );
 		}
 
 		return implode( '/', array( get_stylesheet_directory_uri(), static::$build_path, static::$manifest[ $asset ]['file'] ) );

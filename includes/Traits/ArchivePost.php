@@ -5,10 +5,10 @@
  * Provides methods to retrieve featured and recent posts for archive pages.
  *
  * @package WordPress
- * @subpackage Nexiode/Traits
+ * @subpackage WPCinquanteEtUn/Traits
  */
 
-namespace Nexiode\Traits;
+namespace WPCinquanteEtUn\Traits;
 
 use Timber\{Timber, PostQuery};
 
@@ -17,7 +17,7 @@ use Timber\{Timber, PostQuery};
  *
  * This trait provides methods to retrieve featured and recent posts for archive pages.
  *
- * @package Nexiode\Traits
+ * @package WPCinquanteEtUn\Traits
  */
 trait ArchivePost {
 	/**

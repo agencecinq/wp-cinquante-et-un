@@ -1,7 +1,7 @@
-# Nexiode – WordPress Theme
+# WP CINQ – WordPress Theme
 
-The **Nexiode** theme is a custom WordPress theme built on top of Timber/Twig and the internal **WP CINQ** starter.  
-It is tailored for the Nexiode website and provides a modern, performant and maintainable foundation for integrating the project’s design and custom features.
+The **WP CINQ** theme is a custom WordPress theme built on top of Timber/Twig and the internal **WP CINQ** starter.  
+It is tailored for the WP CINQ website and provides a modern, performant and maintainable foundation for integrating the project’s design and custom features.
 
 ## Key features
 
@@ -122,7 +122,7 @@ wp-cinquante-et-un/
 
 The `phpcs.xml` file configures **PHP CodeSniffer** (PHPCS) for the theme. It defines the coding style and quality rules applied to the PHP code.
 
-In this theme, the configuration is based on the **WordPress Coding Standards**: indentation, naming, internationalization (text domain `nexiode`), and more. The `node_modules/`, `vendor/`, and `dist/` directories are excluded from the analysis.
+In this theme, the configuration is based on the **WordPress Coding Standards**: indentation, naming, internationalization (text domain `wp-cinquante-et-un`), and more. The `node_modules/`, `vendor/`, and `dist/` directories are excluded from the analysis.
 
 To run the code analysis (after installing PHPCS, e.g. via Composer or globally):
 

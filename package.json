@@ -1,15 +1,15 @@
 {
-	"name": "@agencecinq/nexiode",
+	"name": "@agencecinq/wp-cinquante-et-un",
 	"version": "1.0.0",
-	"description": "Nexiode WordPress theme",
+	"description": "WP CINQ starter WordPress theme",
 	"type": "module",
-	"homepage": "https://github.com/agencecinq/nexiode/blob/master/README.md",
+	"homepage": "https://github.com/agencecinq/wp-cinquante-et-un/blob/master/README.md",
 	"bugs": {
-		"url": "https://github.com/agencecinq/nexiode/issues"
+		"url": "https://github.com/agencecinq/wp-cinquante-et-un/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/agencecinq/nexiode.git"
+		"url": "git+https://github.com/agencecinq/wp-cinquante-et-un.git"
 	},
 	"license": "ISC",
 	"author": "CINQ <contact@agencecinq.com> (https://agencecinq.com)",

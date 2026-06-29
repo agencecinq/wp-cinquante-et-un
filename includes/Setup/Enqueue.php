@@ -2,22 +2,22 @@
 /**
  * Enqueue
  *
- * @package Nexiode
- * @subpackage Nexiode/Setup
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Setup
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Setup;
+namespace WPCinquanteEtUn\Setup;
 
-use Nexiode\{ Service, Vite };
+use WPCinquanteEtUn\{ Service, Vite };
 
 /**
  * Theme asset enqueue setup.
  *
  * Registers and enqueues stylesheets and scripts used by the theme.
  *
- * @package Nexiode
- * @subpackage Nexiode\Setup
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn\Setup
  */
 class Enqueue implements Service {
 
@@ -119,7 +119,7 @@ class Enqueue implements Service {
 		// @TODO doesn't work with wp_enqueue_script_module so we use wp_add_inline_script attached to the feature script.
 		wp_add_inline_script(
 			get_theme_text_domain() . '-feature',
-			'var ' . get_theme_text_domain() . ' = ' . wp_json_encode(
+			'var cinq = ' . wp_json_encode(
 				$data
 			),
 			'before'

@@ -4,23 +4,23 @@
  *
  * Addd custom body classes to the current post or page.
  *
- * @package Nexiode
- * @subpackage Nexiode/PostTemplate
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/PostTemplate
  * @see https://developer.wordpress.org/reference/hooks/body_class/
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\PostTemplate;
+namespace WPCinquanteEtUn\PostTemplate;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * BodyClass
  *
  * @see https://developer.wordpress.org/reference/hooks/body_class/
  *
- * @package Nexiode
- * @subpackage Nexiode/PostTemplate
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/PostTemplate
  */
 class BodyClass implements Service {
 

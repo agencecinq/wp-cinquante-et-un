@@ -5,12 +5,12 @@
  * Registers ACF field group for the posts archive (options: theme and archive-post).
  *
  * @package WordPress
- * @subpackage Nexiode/Plugins/ACF/IncludeFields
+ * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * Archive Posts Fields
@@ -49,28 +49,28 @@ class ArchivePostsFields implements Service {
 		$fields = array(
 			array(
 				'key'        => 'field_' . $key,
-				'label'      => __( 'Archive Posts', 'nexiode' ),
+				'label'      => __( 'Archive Posts', 'wp-cinquante-et-un' ),
 				'name'       => 'archive_posts',
-				'aria-label' => __( 'Archive Posts', 'nexiode' ),
+				'aria-label' => __( 'Archive Posts', 'wp-cinquante-et-un' ),
 				'type'       => 'group',
 				'layout'     => 'block',
 				'sub_fields' => array(
 					array(
 						'key'        => 'field_' . $key . '_hero',
-						'label'      => __( 'Hero', 'nexiode' ),
+						'label'      => __( 'Hero', 'wp-cinquante-et-un' ),
 						'name'       => 'hero',
-						'aria-label' => __( 'Hero', 'nexiode' ),
+						'aria-label' => __( 'Hero', 'wp-cinquante-et-un' ),
 						'type'       => 'group',
 						'layout'     => 'block',
 						'sub_fields' => array(
 							array(
 								'key'          => 'field_' . $key . '_hero_title',
-								'label'        => __( 'Title', 'nexiode' ),
+								'label'        => __( 'Title', 'wp-cinquante-et-un' ),
 								'name'         => 'title',
-								'aria-label'   => __( 'Title', 'nexiode' ),
+								'aria-label'   => __( 'Title', 'wp-cinquante-et-un' ),
 								'type'         => 'text',
-								'placeholder'  => __( 'Enter the title of the hero', 'nexiode' ),
-								'instructions' => __( 'Main heading for the posts archive hero.', 'nexiode' ),
+								'placeholder'  => __( 'Enter the title of the hero', 'wp-cinquante-et-un' ),
+								'instructions' => __( 'Main heading for the posts archive hero.', 'wp-cinquante-et-un' ),
 							),
 						),
 					),
@@ -83,7 +83,7 @@ class ArchivePostsFields implements Service {
 			acf_add_local_field_group(
 				array(
 					'key'      => 'group_' . $key,
-					'title'    => __( 'Archive Posts', 'nexiode' ),
+					'title'    => __( 'Archive Posts', 'wp-cinquante-et-un' ),
 					'fields'   => $fields,
 					'location' => $location,
 				)

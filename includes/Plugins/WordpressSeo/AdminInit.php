@@ -2,13 +2,13 @@
 /**
  * Admin Init
  *
- * @package Nexiode
- * @subpackage Nexiode/Plugins/Yoast
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Plugins/Yoast
  */
 
-namespace Nexiode\Plugins\WordpressSeo;
+namespace WPCinquanteEtUn\Plugins\WordpressSeo;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 use WP_Post;
 
 /**

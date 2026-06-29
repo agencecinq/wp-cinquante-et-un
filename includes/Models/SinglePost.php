@@ -3,10 +3,10 @@
  * Single Post
  *
  * @package WordPress
- * @subpackage Nexiode/Models
+ * @subpackage WPCinquanteEtUn/Models
  */
 
-namespace Nexiode\Models;
+namespace WPCinquanteEtUn\Models;
 
 use Timber\{ Timber, Post, PostCollectionInterface };
 
@@ -16,7 +16,7 @@ use Timber\{ Timber, Post, PostCollectionInterface };
  * Custom model for single post pages.
  *
  * @package WordPress
- * @subpackage Nexiode/Models
+ * @subpackage WPCinquanteEtUn/Models
  */
 class SinglePost extends Post {
 

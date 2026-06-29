@@ -2,17 +2,17 @@
 /**
  * Twig
  *
- * @package Nexiode
- * @subpackage Nexiode/Setup
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Setup
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Setup;
+namespace WPCinquanteEtUn\Setup;
 
 use Twig\Extra\Html\{ HtmlExtension };
 use Twig\Extra\Intl\{ IntlExtension };
 use Twig\{ TwigFunction };
-use Nexiode\{ Service, Vite };
+use WPCinquanteEtUn\{ Service, Vite };
 
 /**
  * Twig
@@ -181,8 +181,8 @@ class Twig implements Service {
 			new TwigFunction(
 				'get_language_selector',
 				function () {
-					if ( function_exists( 'nexiode_custom_language_selector' ) ) {
-						return nexiode_custom_language_selector();
+					if ( function_exists( 'cinq_custom_language_selector' ) ) {
+						return cinq_custom_language_selector();
 					}
 				}
 			)

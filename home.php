@@ -1,6 +1,6 @@
 <?php
 /**
- * Home template file for the Nexiode WordPress theme.
+ * Home template file for the WPCinquanteEtUn WordPress theme.
  *
  * This template is used to display the homepage. home.php in WordPress is the page that
  * is set to display the latest posts.
@@ -10,7 +10,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 

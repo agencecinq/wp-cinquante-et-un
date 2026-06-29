@@ -3,12 +3,12 @@
  * ACF layout: Form
  *
  * @package WordPress
- * @subpackage Nexiode/Plugins/ACF/IncludeFields/Layouts
+ * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields/Layouts
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields\Layouts;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use Nexiode\Plugins\ACF\IncludeFields\AcfFieldHelpers;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
 
 /**
  * Form block layout.
@@ -25,30 +25,30 @@ class Form {
 		return array(
 			'key'        => 'layout_' . $key . '_form',
 			'name'       => 'form',
-			'label'      => __( 'Form', 'nexiode' ),
+			'label'      => __( 'Form', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'max'        => 1,
 			'sub_fields' => array(
 				...AcfFieldHelpers::settings( $key . '_form' ),
 				array(
 					'key'        => 'field_' . $key . '_form_tab_content',
-					'label'      => __( 'Content', 'nexiode' ),
-					'aria-label' => __( 'Content', 'nexiode' ),
+					'label'      => __( 'Content', 'wp-cinquante-et-un' ),
+					'aria-label' => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'       => 'tab',
 				),
 				array(
 					'key'        => 'field_' . $key . '_form_content',
-					'label'      => __( 'Content', 'nexiode' ),
+					'label'      => __( 'Content', 'wp-cinquante-et-un' ),
 					'name'       => 'content',
-					'aria-label' => __( 'Content', 'nexiode' ),
+					'aria-label' => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'       => 'group',
 					'layout'     => 'block',
 					'sub_fields' => array(
 						array(
 							'key'           => 'field_' . $key . '_form_content_form',
-							'label'         => __( 'Form', 'nexiode' ),
+							'label'         => __( 'Form', 'wp-cinquante-et-un' ),
 							'name'          => 'form',
-							'aria-label'    => __( 'Form', 'nexiode' ),
+							'aria-label'    => __( 'Form', 'wp-cinquante-et-un' ),
 							'type'          => 'post_object',
 							'post_type'     => 'wpcf7_contact_form',
 							'return_format' => 'id',

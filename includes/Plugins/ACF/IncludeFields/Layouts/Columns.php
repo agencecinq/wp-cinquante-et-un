@@ -3,12 +3,12 @@
  * ACF layout: Columns
  *
  * @package WordPress
- * @subpackage Nexiode/Plugins/ACF/IncludeFields/Layouts
+ * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields/Layouts
  */
 
-namespace Nexiode\Plugins\ACF\IncludeFields\Layouts;
+namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use Nexiode\Plugins\ACF\IncludeFields\AcfFieldHelpers;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
 
 /**
  * Columns block layout (two-column text).
@@ -25,46 +25,46 @@ class Columns {
 		return array(
 			'key'        => 'layout_' . $key . '_columns',
 			'name'       => 'columns',
-			'label'      => __( 'Columns', 'nexiode' ),
+			'label'      => __( 'Columns', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
 				...AcfFieldHelpers::settings( $key . '_columns' ),
 				array(
 					'key'        => 'field_' . $key . '_columns_content_tab',
-					'label'      => __( 'Content', 'nexiode' ),
+					'label'      => __( 'Content', 'wp-cinquante-et-un' ),
 					'name'       => 'content',
-					'aria-label' => __( 'Content', 'nexiode' ),
+					'aria-label' => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'       => 'tab',
 				),
 				array(
 					'key'        => 'field_' . $key . '_columns_content',
 					'name'       => 'content',
-					'aria-label' => __( 'Content', 'nexiode' ),
+					'aria-label' => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'       => 'group',
 					'layout'     => 'block',
 					'sub_fields' => array(
 						array(
 							'key'         => 'field_' . $key . '_columns_content_column_left',
-							'label'       => __( 'Left column', 'nexiode' ),
+							'label'       => __( 'Left column', 'wp-cinquante-et-un' ),
 							'name'        => 'column_left',
-							'aria-label'  => __( 'Left column', 'nexiode' ),
+							'aria-label'  => __( 'Left column', 'wp-cinquante-et-un' ),
 							'type'        => 'textarea',
 							'rows'        => 6,
 							'new_lines'   => 'br',
-							'placeholder' => __( 'Enter the text for the left column', 'nexiode' ),
+							'placeholder' => __( 'Enter the text for the left column', 'wp-cinquante-et-un' ),
 							'wrapper'     => array(
 								'width' => 50,
 							),
 						),
 						array(
 							'key'         => 'field_' . $key . '_columns_content_column_right',
-							'label'       => __( 'Right column', 'nexiode' ),
+							'label'       => __( 'Right column', 'wp-cinquante-et-un' ),
 							'name'        => 'column_right',
-							'aria-label'  => __( 'Right column', 'nexiode' ),
+							'aria-label'  => __( 'Right column', 'wp-cinquante-et-un' ),
 							'type'        => 'textarea',
 							'rows'        => 6,
 							'new_lines'   => 'br',
-							'placeholder' => __( 'Enter the text for the right column', 'nexiode' ),
+							'placeholder' => __( 'Enter the text for the right column', 'wp-cinquante-et-un' ),
 							'wrapper'     => array(
 								'width' => 50,
 							),

@@ -1,14 +1,14 @@
 {#
  # Header
  #
- # @package Nexiode
+ # @package WPCinquanteEtUn
  #}
 
 <header
 	role="banner"
 	class="{{
 	html_classes(
-		'text-beige-nexiode container flex items-center gap-2.5 pt-5.25 pb-5 md:gap-5 lg:pt-8.5 lg:pb-4.5',
+		'text-beige container flex items-center gap-2.5 pt-5.25 pb-5 md:gap-5 lg:pt-8.5 lg:pb-4.5',
 		'[reading-flow:flex-visual]',
 		classes|default([])|join(' ')
 	)
@@ -44,10 +44,10 @@
 						attributes: {
 							'aria-controls': 'menu-drawer'
 						},
-						title: __('Menu', 'nexiode'),
+						title: __('Menu', 'wp-cinquante-et-un'),
 						classes: ['group/drawer-button'],
 						mode: 'dark',
-						fill: 'text-blanc-nexiode',
+						fill: 'text-blanc',
 						animate: false
 					},
 					with_context: false
@@ -56,10 +56,10 @@
 		</cinq-drawer-button>
 
 		{%- if nav_menus.main.get_items -%}
-			<nav aria-label="{{ __('Main navigation', 'nexiode') }}" class="hidden lg:block">
+			<nav aria-label="{{ __('Main navigation', 'wp-cinquante-et-un') }}" class="hidden lg:block">
 				<ul
 					itemscope
-					class="text-button-m border-beige-nexiode/40 -mx-5 flex rounded-full border px-7.5"
+					class="text-button-m border-beige/40 -mx-5 flex rounded-full border px-7.5"
 					itemtype="http://schema.org/SiteNavigationElement"
 				>
 					{% for item in nav_menus.main.get_items() %}
@@ -70,10 +70,10 @@
 								class="{{
 								html_classes(
 									item.current or ( 'current-menu-parent' in item.classes ) or ( 'current-page-ancestor' in item.classes )
-										? 'text-vert-nexiode'
+										? 'text-vert'
 										: '',
 									item.classes|default([])|join(' '),
-									'hover:text-vert-nexiode group-focus-within:text-vert-nexiode group-hover:text-vert-nexiode block px-5 py-5.75'
+									'hover:text-vert group-focus-within:text-vert group-hover:text-vert block px-5 py-5.75'
 								)
 								}}"
 								{{ item.children|length ? 'aria-haspopup="true"' }}
@@ -111,7 +111,7 @@
 		<img
 			class="block h-6 w-auto lg:h-13"
 			src="{{ asset('src/img/svg/logo.svg') }}"
-			alt="{{ __("Nexiode's logo", 'nexiode') }}"
+			alt="{{ __("WPCinquanteEtUn's logo", 'wp-cinquante-et-un') }}"
 			width="177"
 			height="52"
 			loading="lazy"
@@ -146,11 +146,11 @@
 	with {
 		id: 'menu-drawer',
 		classes: [],
-		aria_label: __('Menu', 'nexiode')
+		aria_label: __('Menu', 'wp-cinquante-et-un')
 	}
 %}
 	{% block content %}
-		<cinq-mobile-menu class="text-bleu-nexiode max-w-182 mx-auto relative block h-full p-5">
+		<cinq-mobile-menu class="text-bleu max-w-182 mx-auto relative block h-full p-5">
 			{{-
 				include(
 					'components/mobile-menu.html.twig',

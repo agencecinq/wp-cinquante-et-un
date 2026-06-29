@@ -1,14 +1,14 @@
 {#
  # Child page
  #
- # @package Nexiode
+ # @package WPCinquanteEtUn
  #}
 
 {% extends 'index.html.twig' %}
 
 {%- block content -%}
 	<main id="content" role="main">
-		<div class="bg-[linear-gradient(225deg,#102345_0%,#08152C_100%)] text-blanc-nexiode rounded-b-25 lg:rounded-b-50 -mb-6.25 lg:-mb-12.5 relative z-3">
+		<div class="bg-[linear-gradient(225deg,#102345_0%,#08152C_100%)] text-blanc rounded-b-25 lg:rounded-b-50 -mb-6.25 lg:-mb-12.5 relative z-3">
             {%- block header -%}
                 {{- include( 'header.html.twig', { classes: [ 'relative z-10' ] } ) -}}
             {%- endblock -%}
@@ -17,7 +17,7 @@
                 <div class="col-start-2 col-span-10 text-center space-y-15">
                     <div class="space-y-5">
                         {{- yoast_breadcrumb() -}}
-                        <h1 class="h2 text-vert-nexiode">{{- post.meta( 'general' ).title | default( post.title ) -}}</h1>
+                        <h1 class="h2 text-vert">{{- post.meta( 'general' ).title | default( post.title ) -}}</h1>
                     </div>
 
                     <ul class="flex flex-wrap gap-3 justify-center-safe">

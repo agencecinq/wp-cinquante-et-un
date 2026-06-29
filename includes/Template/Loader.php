@@ -4,21 +4,21 @@
  *
  * Handles loading and redirecting template-related functionality.
  *
- * @package Nexiode
- * @subpackage Nexiode/Template
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Template
  * @see https://developer.wordpress.org/reference/hooks/template_redirect/
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Template;
+namespace WPCinquanteEtUn\Template;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * Handles loading and redirecting template-related functionality.
  *
  * @package WordPress
- * @subpackage Nexiode
+ * @subpackage WPCinquanteEtUn
  */
 class Loader implements Service {
 

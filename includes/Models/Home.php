@@ -5,13 +5,13 @@
  * Custom model for home archive page.
  *
  * @package WordPress
- * @subpackage Nexiode/Models
+ * @subpackage WPCinquanteEtUn/Models
  */
 
-namespace Nexiode\Models;
+namespace WPCinquanteEtUn\Models;
 
 use Timber\{ Post, Timber };
-use Nexiode\Traits\ArchivePost;
+use WPCinquanteEtUn\Traits\ArchivePost;
 
 /**
  * Class Home
@@ -21,7 +21,7 @@ use Nexiode\Traits\ArchivePost;
  *
  * In order to use the post/classmap and because Timber is waiting for a Timber\Post, we extract logic for featured posts and recent posts in a trait.
  *
- * @package Nexiode\Models
+ * @package WPCinquanteEtUn\Models
  */
 class Home extends Post {
 	use ArchivePost;

@@ -4,7 +4,7 @@
  *
  * Helpers are auto-loaded via composer.json "files" directive.
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
@@ -64,7 +64,7 @@ function html_class( string $c = '' ): string {
  *   - include_original: bool
  * @return array
  */
-function nexiode_custom_language_selector( array $args = array() ): array {
+function cinq_custom_language_selector( array $args = array() ): array {
 
 	if ( ! function_exists( 'weglot_get_current_language' ) ) {
 		return array();

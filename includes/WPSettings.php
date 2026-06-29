@@ -2,11 +2,11 @@
 /**
  * WPSettings
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode;
+namespace WPCinquanteEtUn;
 
 /**
  * WP Settings
@@ -32,7 +32,7 @@ class WPSettings implements Service {
 	 * @return void
 	 */
 	public function load_textdomain(): void {
-		load_theme_textdomain( 'nexiode', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'wp-cinquante-et-un', get_template_directory() . '/languages' );
 	}
 
 	/**
@@ -45,10 +45,10 @@ class WPSettings implements Service {
 	public function register_menus(): void {
 		register_nav_menus(
 			array(
-				'main'      => __( 'Main Menu', 'nexiode' ),
-				'secondary' => __( 'Secondary Menu', 'nexiode' ),
-				'footer'    => __( 'Footer Menu', 'nexiode' ),
-				'legals'    => __( 'Legals Menu', 'nexiode' ),
+				'main'      => __( 'Main Menu', 'wp-cinquante-et-un' ),
+				'secondary' => __( 'Secondary Menu', 'wp-cinquante-et-un' ),
+				'footer'    => __( 'Footer Menu', 'wp-cinquante-et-un' ),
+				'legals'    => __( 'Legals Menu', 'wp-cinquante-et-un' ),
 			)
 		);
 	}

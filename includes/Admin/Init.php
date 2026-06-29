@@ -4,20 +4,20 @@
  *
  * Initializes and manages admin-specific functionality for the WP_CINQ theme.
  *
- * @package Nexiode
- * @subpackage Nexiode/Admin
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/Admin
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Admin;
+namespace WPCinquanteEtUn\Admin;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * Init
  *
  * @package WordPress
- * @subpackage Nexiode/Admin
+ * @subpackage WPCinquanteEtUn/Admin
  */
 class Init implements Service {
 

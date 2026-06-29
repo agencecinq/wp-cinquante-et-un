@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Production deployment script for the Nexiode WordPress theme.
+# Production deployment script for the WP CINQ WordPress theme.
 # Installs dependencies, builds assets, and removes files not needed in production.
 
 set -e  # Exit on error

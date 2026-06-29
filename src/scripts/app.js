@@ -11,7 +11,7 @@ load('cinq-slideshow', () => import('./components/Slideshow.ts'));
 load('cinq-mobile-menu', () => import('./components/MobileMenu.ts'));
 load('cinq-select-redirect', () => import('./components/SelectRedirect.ts'));
 
-// The object nexiode is defined in includes/Setup/Enqueue.php and localized to app.js
+// The object cinq is defined in includes/Setup/Enqueue.php and localized to app.js
 // It provideds useful information such as the text domain, template_directory_uri, base_url, etc.
 // It's usefull when you have to pass PHP variables to JavaScript.
-console.log(`Hello ${nexiode.text_domain}!`);
+console.log(`Hello ${cinq.text_domain}!`);

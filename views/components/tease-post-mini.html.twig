@@ -6,9 +6,9 @@
  #
  # @todo This is a static component, it should be dynamic and receive data as props
  #}
-<article itemscope itemtype="https://schema.org/BlogPosting" class="{{ html_classes( 'bg-beige-nexiode min-h-50 text-bleu-nexiode flex overflow-hidden rounded-10', classes|default([]) | join(' ') ) }}">
+<article itemscope itemtype="https://schema.org/BlogPosting" class="{{ html_classes( 'bg-beige min-h-50 text-bleu flex overflow-hidden rounded-10', classes|default([]) | join(' ') ) }}">
 
-	<div class="bg-bleu-nexiode/30 self-stretch w-29.75 max-w-full">
+	<div class="bg-bleu/30 self-stretch w-29.75 max-w-full">
 		{{- include( 'components/image.html.twig', { image: post.thumbnail, classes: [ 'size-full object-cover object-center' ], attributes: { itemprop: 'image' } } ) -}}
 	</div>
 
@@ -34,13 +34,13 @@
 				</p>
 			{%- endif -%}
 
-			<a href="{{ post.link }}" itemprop="url" class="text-button-xs mt-auto uppercase underline" aria-label="{{ __( 'Discover: %s', 'nexiode' ) | format( post.title ) }}">
-				{{- __( 'Discover', 'nexiode' ) -}}
+			<a href="{{ post.link }}" itemprop="url" class="text-button-xs mt-auto uppercase underline" aria-label="{{ __( 'Discover: %s', 'wp-cinquante-et-un' ) | format( post.title ) }}">
+				{{- __( 'Discover', 'wp-cinquante-et-un' ) -}}
 			</a>
 		</div>
 	</div>
 
 	<meta itemprop="datePublished" content="{{ post.date( 'c' ) }}">
 	<meta itemprop="dateModified" content="{{ post.modified( 'c' ) }}">
-	<meta itemprop="author" content="{{ post.author.name | default( 'Nexiode' ) | e( 'html_attr' ) }}">
+	<meta itemprop="author" content="{{ post.author.name | default( 'WPCinquanteEtUn' ) | e( 'html_attr' ) }}">
 </article>

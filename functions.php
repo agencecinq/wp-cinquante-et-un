@@ -2,7 +2,7 @@
 /**
  * WP CINQ functions and definitions
  *
- * @package Nexiode
+ * @package WPCinquanteEtUn
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
@@ -16,4 +16,4 @@ Timber::init();
 Timber::$locations = array( 'views', 'public' );
 
 // Run the setup.
-Nexiode\Init::run_services();
+WPCinquanteEtUn\Init::run_services();

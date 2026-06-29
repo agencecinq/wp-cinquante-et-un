@@ -4,23 +4,23 @@
  *
  * Add custom post classes to the current post.
  *
- * @package Nexiode
- * @subpackage Nexiode/PostTemplate
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/PostTemplate
  * @see https://developer.wordpress.org/reference/hooks/post_class/
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\PostTemplate;
+namespace WPCinquanteEtUn\PostTemplate;
 
-use Nexiode\Service;
+use WPCinquanteEtUn\Service;
 
 /**
  * PostClass
  *
  * @see https://developer.wordpress.org/reference/hooks/post_class/
  *
- * @package Nexiode
- * @subpackage Nexiode/PostTemplate
+ * @package WPCinquanteEtUn
+ * @subpackage WPCinquanteEtUn/PostTemplate
  */
 class PostClass implements Service {
 

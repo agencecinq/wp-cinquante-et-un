@@ -4,17 +4,17 @@
  * Register Strings
  *
  * @package WordPress
- * @subpackage Nexiode\Plugins\Polylang
+ * @subpackage WPCinquanteEtUn\Plugins\Polylang
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace Nexiode\Plugins\Polylang;
+namespace WPCinquanteEtUn\Plugins\Polylang;
 
 /**
  * Front Page Fields class
  *
  * @package WordPress
- * @subpackage Nexiode\Plugins\Polylang\RegisterStrings
+ * @subpackage WPCinquanteEtUn\Plugins\Polylang\RegisterStrings
  */
 class RegisterStrings {
 
