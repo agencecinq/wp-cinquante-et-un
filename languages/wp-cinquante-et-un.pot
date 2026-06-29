@@ -1,7 +1,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Nexiode\n"
+"Project-Id-Version: WP CINQ\n"
 "POT-Creation-Date: 2026-04-09 14:39+0200\n"
 "PO-Revision-Date: YYYY-MM-DD HH:MM+ZZZZ\n"
 "Last-Translator: \n"
@@ -2217,7 +2217,7 @@ msgid "Submit"
 msgstr ""
 
 #: views/components/form-download.html.twig:44 views/components/form-newsletter.html.twig:57
-msgid "I agree to receive the Nexiode newsletter and offers"
+msgid "I agree to receive the WP CINQ newsletter and offers"
 msgstr ""
 
 #: views/components/form-newsletter.html.twig:18
@@ -2261,19 +2261,14 @@ msgid "Discover"
 msgstr ""
 
 #: views/footer.html.twig:22 views/header.html.twig:114
-msgid "Nexiode's logo"
+msgid "WP CINQ's logo"
 msgstr ""
 
 #: views/footer.html.twig:46
 msgid "Contact Us"
 msgstr ""
-
-#: views/footer.html.twig:155 views/footer.html.twig:157
-msgid "Agora Makers logo"
-msgstr ""
-
 #: views/footer.html.twig:156
-msgid "Nexiode is part of"
+msgid "WP CINQ is part of"
 msgstr ""
 
 #: views/header.html.twig:59
@@ -2322,11 +2317,11 @@ msgid "Download the brochure"
 msgstr ""
 
 #. Theme Name of the plugin/theme
-msgid "Nexiode"
+msgid "WP CINQ"
 msgstr ""
 
 #. Theme URI of the plugin/theme
-msgid "https://github.com/agencecinq/nexiode/"
+msgid "https://github.com/agencecinq/wp-cinquante-et-un/"
 msgstr ""
 
 #. Description of the plugin/theme
