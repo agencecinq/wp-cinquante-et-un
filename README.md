@@ -1,15 +1,40 @@
-# WP CINQ – WordPress Theme
+# WP CINQ – WordPress Starter Theme
 
-The **WP CINQ** theme is a custom WordPress theme built on top of Timber/Twig and the internal **WP CINQ** starter.  
-It is tailored for the WP CINQ website and provides a modern, performant and maintainable foundation for integrating the project’s design and custom features.
+**WP CINQ** is the agency's WordPress starter theme, built on Timber/Twig, Vite, Tailwind CSS v4 and TypeScript. It is the single source of truth for new client projects: every new project starts from this starter, never from a copy of the previous project.
+
+It ships a generic, reusable foundation (block library, components, helpers, tooling) free of any client-specific content, so each project begins clean.
 
 ## Key features
 
 - **Timber & Twig**: clean, reusable template components.
-- **Modern tooling**: Composer, pnpm and Vite for bundling and hot‑reload.
+- **Modern tooling**: Composer, pnpm, Vite, TypeScript, PHP CodeSniffer (WPCS) and a GitHub release workflow.
+- **Tailwind CSS v4**: design tokens declared in `@theme` (`src/stylesheets/theme.css`), no `tailwind.config.js`.
 - **Accessibility**: semantic HTML, clear structure, ARIA best practices where relevant.
 - **Performance**: optimized images (WebP, lazy‑loading), SVG sprite, minified assets in production.
 - **Extensibility**: class‑based PHP in `includes/`, Twig components in `views/`, front‑end sources in `src/`.
+
+## Workflows (AI-assisted)
+
+This repository carries Cursor rules in `.cursor/rules/` that document conventions and automate the two key flows. They are the operational reference for the team:
+
+- **`starter-cinq`** (always on): stack, conventions, coding standards (WPCS), language rules, and the living DO/DONT list. This is the base of truth and is meant to evolve over time.
+- **`init-nouveau-projet`**: step-by-step procedure to turn this starter into a new client project (detect and replace identifiers, reset tokens, fonts, icons and assets). Use it when starting a new project.
+- **`remontee-vers-starter`**: the reverse flow. When something built on a project is reusable, this procedure brings it back into the starter (re-neutralize identifiers, strip client content, version bump).
+
+To add a new DO/DONT or a task-specific rule, follow the "Faire évoluer ces règles" section of `starter-cinq`.
+
+## Getting started from the starter
+
+When creating a new project from this starter, follow the `init-nouveau-projet` rule, then:
+
+```bash
+composer install
+pnpm install
+pnpm build      # also generates public/sprite.svg from src/icons/
+pnpm dev        # local dev server
+```
+
+Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`) and the example palette in `src/stylesheets/theme.css` with the project's own.
 
 ### SVG sprite support
 
@@ -102,19 +127,23 @@ The project structure is organized as follows:
 
 ```
 wp-cinquante-et-un/
-├── includes/            # PHP classes and functions
+├── .cursor/rules/       # Cursor rules (conventions + init/back-port workflows)
+├── .github/workflows/   # CI: release on tag v*
+├── includes/            # PHP classes (PSR-4, namespace WPCinquanteEtUn)
+├── languages/           # i18n (.pot template; translations generated per project)
 ├── src/                 # Source files for assets
-│   ├── stylesheets/     # CSS files
-│   ├── scripts/         # JavaScript files
-│   ├── icons/           # SVG icons for sprite
+│   ├── stylesheets/     # CSS (theme.css = @theme tokens, styles.css = imports)
+│   ├── scripts/         # TypeScript components (mounted via piecesjs)
+│   ├── icons/           # SVG icons compiled into public/sprite.svg
 │   ├── img/             # Static images
 |   └── fonts/           # Font files
-├── views/               # Twig templates
-├── public/              # Compiled assets and theme files
+├── views/               # Twig templates (pages/, blocks/, components/, svg/)
+├── public/              # Compiled assets (sprite.svg, etc.)
+├── deploy.sh            # Production build + dev-files purge (used by CI)
 ├── .env.sample          # Sample environment variables file
 ├── composer.json        # PHP dependencies
 ├── package.json         # JavaScript dependencies
-├── phpcs.xml            # PHP CodeSniffer configuration
+├── phpcs.xml            # PHP CodeSniffer configuration (WPCS)
 └── vite.config.js       # Vite configuration
 ```
 
