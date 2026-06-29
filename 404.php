@@ -5,7 +5,7 @@
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package WordPress
- * @subpackage WPCinquanteEtUn
+ * @subpackage Nexiode
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
@@ -14,8 +14,8 @@ use Timber\{ Timber };
 $templates    = array( 'pages/404.html.twig' );
 $data         = Timber::context();
 $data['post'] = array(
-	'title'   => __( '404 Error', 'wp-cinquante-et-un' ),
-	'content' => __( 'That page can&rsquo;t be found.', 'wp-cinquante-et-un' ),
+	'title'   => __( 'Oups', 'nexiode' ),
+	'content' => __( 'Page does not exist', 'nexiode' ),
 );
 
 Timber::render( $templates, $data );

@@ -1,0 +1,42 @@
+{#  
+ # Components: Tease Product
+ #
+ # @param {object} post The post object containing product details. Required.
+ # @param {array} [classes] Additional classes to add to the article element. Optional.
+ #
+ # @example {% render 'tease-product', post: post, classes: [ 'h-full' ] %}
+ #}
+
+<article class="{{ html_classes( 'flex flex-col bg-vert-nexiode rounded-15 overflow-hidden', classes|default([]) | join(' ') ) }}">
+
+    <div class="aspect-square bg-bleu-nexiode/30">
+        {{- include( 'components/image.html.twig', { image: post.thumbnail, classes: [ 'size-full object-cover object-center' ] } ) -}}
+    </div>
+
+    <div class="flex flex-1 flex-col gap-5.25 lg:gap-5 pt-3.75 lg:pt-5 px-2.5 lg:px-[0.96875rem] pb-6 lg:pb-7.75">
+
+        <div class="space-y-1.5">
+
+        <h3 class="text-m">{{- post.title -}}</h3>
+            {%- set excerpt = post.excerpt( { read_more: '' } ) -%}
+            {%- if excerpt|trim -%}
+                <p class="text-mention">{{- excerpt -}}</p>
+            {%- endif -%}
+        </div>
+    
+    
+        <div class="mt-auto pt-2">
+            {{-
+                include(
+                    'components/button.html.twig',
+                    {
+                        title: __('Discover', 'nexiode'),
+                        url: post.link,
+                        variant: 'secondary',
+                    },
+                    with_context = false
+                )
+            -}}
+        </div>
+    </div>
+</article>

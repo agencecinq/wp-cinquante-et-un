@@ -1,0 +1,118 @@
+{#
+ # Blocks page
+ #
+ # @package Nexiode
+ #}
+
+{% extends 'index.html.twig' %}
+
+{%- block content -%}
+	<main id="content" role="main">
+		<div
+			class="text-blanc-nexiode rounded-b-25 lg:rounded-b-50 relative z-3 -mb-6.25 bg-[linear-gradient(225deg,#102345_0%,#08152C_100%)] lg:-mb-12.5"
+		>
+			{%- block header -%}
+				{{-
+					include(
+						'header.html.twig',
+						{
+							classes: ['relative z-10']
+						}
+					)
+				-}}
+			{%- endblock -%}
+
+			<div
+				class="container grid grid-cols-4 gap-2.5 gap-y-5 pt-5 pb-20 lg:grid-cols-12 lg:gap-5 lg:pt-12.5"
+			>
+				<div class="col-span-full">
+					{{ yoast_breadcrumb() }}
+				</div>
+
+				{%- if post.hero.title or post.hero.text or post.hero.links -%}
+					<div class="col-span-4 space-y-7.5 lg:col-span-6">
+						{%- if post.hero.title -%}
+							<h1 class="h2 text-vert-nexiode">{{- post.hero.title -}}</h1>
+						{%- endif -%}
+						{%- if post.hero.text -%}
+							<p class="h5">
+								{{- post.hero.text -}}
+							</p>
+						{%- endif -%}
+
+						{%- if post.hero.links -%}
+							<ul class="flex flex-wrap gap-x-5 gap-y-2.5">
+								{%- for item in post.hero.links -%}
+									<li>
+										{{
+											include(
+												'components/button.html.twig',
+												{
+													title: item.link.title,
+													url: item.link.url,
+													mode: 'dark',
+													icon: 'bullet'
+												},
+												with_context: false
+											)
+										}}
+									</li>
+								{%- endfor -%}
+							</ul>
+						{%- endif -%}
+					</div>
+				{%- endif -%}
+
+				<div
+					class="{{
+					html_classes(
+						post.hero.title or post.hero.text ? '' : 'lg:col-start-7',
+						'col-span-full mt-10 lg:col-span-6 lg:mx-18.75 lg:mt-0'
+					)
+					}}"
+				>
+					<div
+						class="after:bg-bleu-nexiode/20 rounded-25 relative aspect-square overflow-hidden after:absolute after:inset-0 after:z-2 after:size-full"
+					>
+						{{-
+							include(
+								'components/image.html.twig',
+								{
+									image: post.hero.image,
+									classes: ['size-full object-center z-1 object-cover']
+								}
+							)
+						-}}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="container grid grid-cols-4 gap-x-2.5 gap-y-5 py-42.5 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-12.5"
+		>
+			{%- for product in posts -%}
+				<div class="{{ html_classes(loop.first ? 'lg:col-start-1', 'col-span-2 lg:col-span-3') }}">
+					{{-
+						include(
+							'components/tease-product.html.twig',
+							{
+								post: product,
+								classes: ['h-full']
+							}
+						)
+					-}}
+				</div>
+			{%- endfor -%}
+		</div>
+
+		{{-
+			include(
+				'blocks/blocks.html.twig',
+				{
+					blocks: post.blocks
+				}
+			)
+		-}}
+	</main>
+{%- endblock -%}

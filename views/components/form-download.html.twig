@@ -1,0 +1,56 @@
+{% set form_id = form_id|default(theme.footer.newsletter.form) %}
+{% set instance = instance | default(1) %}
+{% set unit_tag = 'wpcf7-f' ~ form_id ~ '-o' ~ instance %}
+
+<cinq-form-download data-download-url="{{ file_url|default('')|e('html_attr') }}">
+	<div class="wpcf7 no-js" id="{{ unit_tag }}" lang="{{ site.language }}" dir="ltr" data-wpcf7-id="{{ form_id }}">
+		<div class="screen-reader-response">
+			<p role="status" aria-live="polite" aria-atomic="true"></p>
+			<ul></ul>
+		</div>
+		<form action="/products/wiconnect-nema-2/#{{ unit_tag }}" method="post" class="wpcf7-form init flex flex-col gap-5" aria-label="{{ __( 'Download form', 'nexiode' ) }}" novalidate="novalidate" data-status="init" data-download-url="{{ download_url|default('')|e('html_attr') }}">
+			<fieldset class="hidden-fields-container">
+				<input type="hidden" name="_wpcf7" value="{{ form_id }}"/>
+				<input type="hidden" name="_wpcf7_version" value="6.1.5"/>
+				<input type="hidden" name="_wpcf7_locale" value="fr_FR"/>
+				<input type="hidden" name="_wpcf7_unit_tag" value="{{ unit_tag }}"/>
+				<input type="hidden" name="_wpcf7_container_post" value="0"/>
+				<input type="hidden" name="_wpcf7_posted_data_hash" value=""/>
+			</fieldset>
+
+			<p>
+				<label>
+					<span class="sr-only">{{- __ ('Your email', 'nexiode') -}}</span>
+					<span class="wpcf7-form-control-wrap" data-name="your-email">
+						<input size="40" placeholder="{{ __( 'Enter your email', 'nexiode' ) }}" maxlength="400" class="wpcf7-form-control px-5.25 py-3.5 border w-full rounded-full placeholder:text-bleu-nexiode/50 bg-beige-nexiode wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" autocomplete="email" aria-required="true" aria-invalid="false" value="" type="email" name="your-email"/>
+					</span>
+				</label>
+			</p>
+
+			<p>
+				{# <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Envoyer"/> #}
+
+				{{- include( 'components/button.html.twig', { type: 'submit', attributes: { value: __( 'Submit', 'nexiode' ) }, title: __( 'Submit', 'nexiode' ), variant: 'primary', mode: 'dark', icon: 'bullet', classes: [ 'w-full bg-bleu-nexiode text-beige-nexiode wpcf7-form-control wpcf7-submit' ] }, with_context = false ) -}}
+			</p>
+
+			<p>
+				<span class="wpcf7-form-control-wrap" data-name="acceptance">
+					<span class="wpcf7-form-control wpcf7-acceptance">
+						<span class="wpcf7-list-item m-0!">
+							<label class="block">
+								<input type="checkbox" name="acceptance" value="1" aria-invalid="false"/>
+								<span class="wpcf7-list-item-label text-mention-large gap-2 flex">
+									<span class="opacity-80">
+										{{- __( 'I agree to receive the Nexiode newsletter and offers', 'nexiode' ) -}}
+									</span>
+								</span>
+							</label>
+						</span>
+					</span>
+				</span>
+			</p>
+
+			<div class="wpcf7-response-output" aria-hidden="true"></div>
+		</form>
+	</div>
+</cinq-form-download>

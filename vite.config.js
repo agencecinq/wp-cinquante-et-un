@@ -12,12 +12,19 @@ export default defineConfig({
 		assetsDir: "src",
 	},
 	plugins: [
+		tailwindcss(),
 		laravel({
 			publicDirectory: "dist",
-			input: ["src/stylesheets/styles.css", "src/scripts/app.js"],
+			input: [
+				"src/stylesheets/styles.css",
+				"src/scripts/app.js",
+				"src/img/svg/logo-small.svg",
+				"src/img/svg/logo.svg",
+				"src/img/svg/pin.svg",
+				"src/img/png/logo-agora-makers.png",
+			],
 			refresh: ["**/*.php", "**/*.twig"],
 		}),
-		tailwindcss(),
 		viteSvgSpriteWrapper({
 			icons: "src/icons/*.svg",
 			outputDir: "public",

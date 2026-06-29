@@ -2,12 +2,14 @@
 /**
  * Class Menu
  *
- * @package WPCinquanteEtUn
- * @subpackage WPCinquanteEtUn/Menu
+ * @package Nexiode
+ * @subpackage Nexiode/Menu
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace WPCinquanteEtUn\Admin;
+namespace Nexiode\Admin;
+
+use Nexiode\Service;
 
 /**
  * Menu
@@ -15,9 +17,9 @@ namespace WPCinquanteEtUn\Admin;
  * Adds custom menu pages to the admin area.
  *
  * @package WordPress
- * @subpackage WPCinquanteEtUn/Admin
+ * @subpackage Nexiode/Admin
  */
-class Menu {
+class Menu implements Service {
 
 	/**
 	 * Runs initialization tasks.
@@ -37,8 +39,8 @@ class Menu {
 	 */
 	public function add_options_page( string $context = '' ) {
 		add_options_page(
-			__( 'Socials', 'wp-cinquante-et-un' ),
-			__( 'Socials', 'wp-cinquante-et-un' ),
+			__( 'Socials', 'nexiode' ),
+			__( 'Socials', 'nexiode' ),
 			'manage_options',
 			'socials',
 			array( $this, 'add_socials_option_page' )
@@ -52,12 +54,12 @@ class Menu {
 	public function add_socials_option_page() {
 		?>
 		<div class="wrap">
-			<h1><?php _e( 'Socials', 'wp-cinquante-et-un' ); ?></h1>
+			<h1><?php esc_html_e( 'Socials', 'nexiode' ); ?></h1>
 			<form method="post" action="options.php">
 			<?php
 				settings_fields( 'socials' );
 				do_settings_sections( 'socials' );
-				submit_button( __( 'Save Changes', 'wp-cinquante-et-un' ) );
+				submit_button( __( 'Save Changes', 'nexiode' ) );
 			?>
 			</form>
 		</div>

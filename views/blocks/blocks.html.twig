@@ -8,7 +8,7 @@
  #     {% block append %}...{% endblock %}
  # {% endembed %}
  #
- # @package WPCinquanteEtUn
+ # @package Nexiode
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  #}
 
@@ -22,7 +22,7 @@
 					include(
 						"blocks/#{ block.acf_fc_layout | lower | replace( { '_' : '-' } ) }.html.twig",
 						{
-							props: block,
+							block: block,
 							loop: loop.index0,
 							classes: [ 'block-index-' ~ loop.index0 ]
 						},

@@ -1,0 +1,142 @@
+{#
+ # Block: Store Locator
+ # Data is serialized as JSON for the generic search and map component.
+ #}
+
+{% set items = block.stores.items|default([]) %}
+
+{{-
+	include(
+		'blocks/_layout.html.twig',
+		{
+			paddings: block.layout.paddings,
+			id: block.id
+		}
+	)
+-}}
+
+<cinq-store-locator id="{{ block.id }}" data-lang="{{ site.language }}" class="relative z-1 block">
+	<div class="container grid grid-cols-1 gap-x-5 gap-y-20 lg:grid-cols-12">
+		<div
+			class="rounded-25 lg:sticky lg:top-15 bg-bleu-nexiode/10 aspect-381/497 overflow-hidden lg:order-2 lg:col-span-6 lg:mx-14 lg:aspect-537/700"
+			data-dom="map-container"
+		>
+			<div class="size-full" data-dom="map" aria-hidden="true"></div>
+		</div>
+
+		<div class="space-y-20 lg:order-1 lg:col-span-6">
+			<div class="space-y-10">
+				{%- if block.content.title or block.content.text -%}
+					<div class="mb-10 space-y-5">
+						{%- if block.content.title -%}
+							<h2 class="h3">{{- block.content.title -}}</h2>
+						{%- endif -%}
+						{%- if block.content.text -%}
+							<div class="text-l">
+								{{- block.content.text|nl2br -}}
+							</div>
+						{%- endif -%}
+					</div>
+				{%- endif -%}
+
+				<cinq-search-input
+					class="relative block w-full"
+					role="search"
+					aria-label="{{ __('Store locator search', 'nexiode') }}"
+				>
+					<label for="{{ block.id }}-search" class="sr-only">
+						{{- __('City, department, region…', 'nexiode') -}}
+					</label>
+					<input
+						type="search"
+						id="{{ block.id }}-search"
+						class="text-s bg-blanc-nexiode border-bleu-nexiode/25 text-bleu-nexiode placeholder:text-bleu-nexiode/50 w-full rounded-full border py-3.5 pr-13.5 pl-5.25"
+						placeholder="{{ __('City, department, region…', 'nexiode') }}"
+						autocomplete="off"
+						data-dom="input"
+					/>
+					<button
+						type="button"
+						class="bg-vert-nexiode absolute inset-y-0 right-0 my-auto mr-1.75 flex size-10 items-center justify-center rounded-full"
+						aria-label="{{ __('Search', 'nexiode') }}"
+						data-dom="submit"
+					>
+						{{-
+							include(
+								'svg/use.html.twig',
+								{
+									icon: 'search',
+									classes: ['size-8']
+								},
+								with_context: false
+							)
+						-}}
+					</button>
+				</cinq-search-input>
+			</div>
+
+			<div class="space-y-7.5">
+				<p class="h-on-title uppercase">
+					{{ __('Our agencies', 'nexiode') }}
+				</p>
+
+				<div
+					class="border-bleu-nexiode/50 divide-bleu-nexiode/50 divide-y overflow-y-auto scrollbar-hidden max-h-175.5 border-t *:pt-5 [&>*:not(:last-child)]:pb-5"
+					data-dom="list"
+					role="list"
+					aria-live="polite"
+					aria-label="{{ __('Store locator results', 'nexiode') }}"
+				>
+					{% for item in items %}
+						<article
+							class="text-l space-y-5 transition-opacity duration-300 ease-in"
+							data-dom="list-item"
+							data-item-index="{{ loop.index0 }}"
+							role="listitem"
+						>
+							{%- if item.name -%}
+								<h3 class="h4">{{- item.name -}}</h3>
+							{%- endif -%}
+							{%- if item.address -%}
+								<p class="h-on-title">
+									{{- item.address -}}
+								</p>
+							{%- endif -%}
+
+							{%- if item.phone or item.email -%}
+								<div class="space-y-2.5">
+									{%- if item.phone -%}
+										<p class="h-on-title">
+											<a href="tel:{{ item.phone }}" class="hover:underline">
+												{{- __('P. %s', 'nexiode')|format(item.phone) -}}
+											</a>
+										</p>
+									{%- endif -%}
+									{%- if item.email -%}
+										<p class="h-on-title">
+											<a href="mailto:{{ item.email }}" class="hover:underline">
+												{{- __('M. %s', 'nexiode')|format(item.email) -}}
+											</a>
+										</p>
+									{%- endif -%}
+								</div>
+							{%- endif -%}
+						</article>
+					{% endfor %}
+
+					<p
+						class="text-l"
+						data-dom="empty"
+						{% if items|length > 0 %}hidden aria-hidden="true"{% endif %}
+					>
+						{{- __('No results found', 'nexiode') -}}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="application/json" data-dom="data" id="{{ block.id }}-data">
+		{{- items|json_encode|raw -}}
+	</script>
+</cinq-store-locator>

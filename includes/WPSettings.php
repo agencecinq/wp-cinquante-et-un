@@ -2,16 +2,16 @@
 /**
  * WPSettings
  *
- * @package WPCinquanteEtUn
+ * @package Nexiode
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
-namespace WPCinquanteEtUn;
+namespace Nexiode;
 
 /**
  * WP Settings
  */
-class WPSettings {
+class WPSettings implements Service {
 
 	/**
 	 * Runs initialization tasks.
@@ -21,6 +21,18 @@ class WPSettings {
 	public function run(): void {
 		add_action( 'after_setup_theme', array( $this, 'register_menus' ) );
 		add_action( 'after_setup_theme', array( $this, 'add_theme_supports' ) );
+		add_action( 'after_setup_theme', array( $this, 'load_textdomain' ), 0 );
+	}
+
+	/**
+	 * Load theme text domain for translations.
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/load_theme_textdomain/
+	 *
+	 * @return void
+	 */
+	public function load_textdomain(): void {
+		load_theme_textdomain( 'nexiode', get_template_directory() . '/languages' );
 	}
 
 	/**
@@ -33,10 +45,10 @@ class WPSettings {
 	public function register_menus(): void {
 		register_nav_menus(
 			array(
-				'main'      => __( 'Main Menu', 'wp-cinquante-et-un' ),
-				'secondary' => __( 'Secondary Menu', 'wp-cinquante-et-un' ),
-				'footer'    => __( 'Footer Menu', 'wp-cinquante-et-un' ),
-				'legals'    => __( 'Legals Menu', 'wp-cinquante-et-un' ),
+				'main'      => __( 'Main Menu', 'nexiode' ),
+				'secondary' => __( 'Secondary Menu', 'nexiode' ),
+				'footer'    => __( 'Footer Menu', 'nexiode' ),
+				'legals'    => __( 'Legals Menu', 'nexiode' ),
 			)
 		);
 	}

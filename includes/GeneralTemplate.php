@@ -2,19 +2,19 @@
 /**
  * GeneralTemplate
  *
- * @package WPCinquanteEtUn
+ * @package Nexiode
  */
 
-namespace WPCinquanteEtUn;
+namespace Nexiode;
 
 use Timber\Timber;
 
 /**
  * GeneralTemplate
  *
- * @package WPCinquanteEtUn
+ * @package Nexiode
  */
-class GeneralTemplate {
+class GeneralTemplate implements Service {
 
 	/**
 	 * Runs initialization tasks.

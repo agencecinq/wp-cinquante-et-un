@@ -1,0 +1,225 @@
+{#
+ # Blocks page
+ #
+ # @package Nexiode
+ #}
+
+{% extends 'index.html.twig' %}
+
+{%- block content -%}
+<main id="content" role="main">
+	<div class="text-blanc-nexiode rounded-b-25 lg:rounded-b-50 relative z-3 -mb-6.25 bg-[linear-gradient(225deg,#102345_0%,#08152C_100%)] pb-25 lg:-mb-12.5">
+		{%- block header -%}
+		{{-
+					include(
+						'header.html.twig',
+						{
+							classes: ['relative z-10']
+						}
+					)
+				-}}
+	{%- endblock -%}
+
+	<div class="text-bleu-nexiode bg-beige-nexiode rounded-b-25 lg:rounded-50 grid grid-cols-4 gap-x-2.5 gap-y-10 pb-22.5 lg:mt-5 lg:grid-cols-12 lg:gap-y-5 lg:py-15">
+		{%- if (post.meta('gallery').images|length) > 1 -%}
+			<div class="col-span-full lg:col-span-6 lg:mr-6.5 lg:ml-9">
+				<cinq-slideshow class="relative lg:sticky lg:top-15 lg:flex lg:flex-row lg:gap-5">
+					<div class="bg-bleu-nexiode/30 absolute inset-x-0 bottom-0 z-2 mx-auto mb-5 flex w-fit gap-1.5 rounded-full px-3.25 py-1.5 lg:static lg:m-0 lg:flex-col lg:gap-3.75 lg:bg-transparent lg:p-0" data-dom="controls">
+						{%- for image in post.meta('gallery').images -%}
+							<button type="button" class="bg-beige-nexiode aria-current:bg-vert-nexiode lg:rounded-5 lg:border-bleu-nexiode/30 lg:aria-current:border-bleu-nexiode size-1.5 shrink-0 rounded-full transition-[border-color,width,background-color] duration-300 ease-in-out aria-current:w-4.5 lg:size-16.25 lg:overflow-hidden lg:border lg:aria-current:w-16.25" aria-label="{{ __('View image', 'nexiode') }} {{ loop.index }}">
+								{{-
+												include(
+													'components/image.html.twig',
+													{
+														image: image,
+														classes: ['hidden size-full object-cover lg:block'],
+														loading: 'lazy'
+													}
+												)
+											-}}
+							</button>
+						{%- endfor -%}
+					</div>
+
+					<div class="splide lg:rounded-25 relative z-1 min-w-0 flex-1 overflow-hidden" data-dom="slider" data-gap='["0rem","0rem"]'>
+						<div class="splide__track" data-dom="track">
+							<div class="splide__list" style="height: auto!important;">
+								{%- for image in post.meta('gallery').images -%}
+									<div class="splide__slide w-full" data-dom="slide">
+										{{-
+														include(
+															'components/image.html.twig',
+															{
+																image: image,
+																classes: ['size-full object-cover object-center'],
+																loading: loop.first ? 'eager' : 'lazy'
+															}
+														)
+													-}}
+									</div>
+								{%- endfor -%}
+							</div>
+						</div>
+					</div>
+				</cinq-slideshow>
+			</div>
+		{%- elseif (post.meta('gallery').images|length) == 1 -%}
+			<div class="col-span-full lg:col-span-6 lg:mr-6.5 lg:ml-9">
+				<div class="lg:rounded-25 lg:sticky lg:top-15 overflow-hidden">
+					{{- include('components/image.html.twig', { image: post.meta('gallery').images[0], classes: ['size-full object-cover object-center'] }) -}}
+				</div>
+			</div>
+		{%- endif -%}
+
+		<div class="{{ html_classes( 'col-span-4 mx-2.5 flex flex-col gap-y-10 lg:col-start-8 lg:mx-0 lg:gap-y-5', (post.meta('gallery').images|length) == 0 ? 'lg:col-start-7 mt-10 lg:mt-0' : '' ) }}">
+			<div class="space-y-2.5 lg:space-y-5">
+				{{- yoast_breadcrumb() -}}
+				<h1 class="h3">{{- post.title -}}</h1>
+				{%- if post.meta('general').description or post.content -%}
+					<div class="space-y-3.75 lg:space-y-2.5">
+						{%- if post.meta('general').description -%}
+							<p class="text-m">
+								{{- post.meta('general').description -}}
+							</p>
+						{%- endif -%}
+
+						{%- if post.content -%}
+							<div class="text-s">
+								{{- post.content -}}
+							</div>
+						{%- endif -%}
+					</div>
+				{%- endif -%}
+			</div>
+
+			<div class="space-y-2.5 lg:space-y-5">
+				{{-
+						include(
+							'components/button.html.twig',
+							theme.contact.link
+								|default({})
+								|merge({
+									classes: ['w-full bg-bleu-nexiode text-beige-nexiode'],
+									variant: 'primary',
+									icon: 'bullet'
+								})
+						)
+					-}}
+				{%- if post.meta('general').file.url and theme.product.modal.form -%}
+					<cinq-modal-button class="block">
+						{{-
+										include(
+											'components/button.html.twig',
+											{
+												classes: ['w-full'],
+												attributes: {
+													'aria-controls': 'modal-download-brochure'
+												},
+												variant: 'primary',
+												icon: 'bullet',
+												title: __('Download the brochure', 'nexiode')
+											}
+										)
+									-}}
+					</cinq-modal-button>
+				{%- endif -%}
+			</div>
+
+			{{-
+							include(
+								'components/accordion-group.html.twig',
+								{
+									classes: ['mt-7.5 border-y border-bleu-nexiode/25 py-6.25'],
+									accordions: post.meta('accordion_group').accordions
+								}
+							)
+						-}}
+		</div>
+	</div>
+
+	{%- if post.meta('reassurance').items|length -%}
+		<div class="mt-21.25 overflow-hidden lg:mt-25">
+			<div class="flex gap-x-7.5 [animation-play-state:running]" aria-label="{{ block.content.title|trim|e }}" role="status">
+				{%- for i in 0..3 -%}
+					{%- for item in post.meta('reassurance').items -%}
+						<div class="text-m animate-marquee flex min-w-66 items-center gap-2.5">
+							<div class="bg-vert-nexiode flex size-13 shrink-0 items-center justify-center rounded-full">
+								{{-
+											include(
+												'components/image.html.twig',
+												{
+													classes: ['size-40.5 object-contain object-center'],
+													image: item.image
+												}
+											)
+										-}}
+							</div>
+							<p>
+								{{- item.text -}}
+							</p>
+						</div>
+					{%- endfor -%}
+				{%- endfor -%}
+			</div>
+		</div>
+	{%- endif -%}
+</div>
+{# 
+{{-
+	include(
+		'components/technical-specs.html.twig',
+		{
+			classes: []
+		}
+	)
+-}} 
+#}
+
+{{-
+	include(
+		'blocks/blocks.html.twig',
+		{
+			blocks: post.blocks
+		}
+	)
+-}}
+
+{%- if post.meta('general').file.url and theme.product.modal.form -%}
+	{% embed 'components/modal.html.twig'
+				with {
+					id: 'modal-download-brochure',
+					classes: ['block-form-download']
+				}
+			%}
+		{% block content %}
+			<div class="space-y-5 lg:space-y-10">
+				{%- if theme.product.modal.title or theme.product.modal.text -%}
+					<div class="space-y-2.5">
+						{%- if theme.product.modal.title -%}
+							<p class="text-m text-center">
+								{{- theme.product.modal.title -}}
+							</p>
+						{%- endif -%}
+						{%- if theme.product.modal.text -%}
+							<p class="text-s text-center">
+								{{- theme.product.modal.text -}}
+							</p>
+						{%- endif -%}
+					</div>
+				{%- endif -%}
+
+				{# {{ ( '[contact-form-7 id="' ~ theme.product.modal.form ~ '" title="Formule de téléchargement de brochure"]' ) | shortcodes }} #}
+
+				{{-
+							include(
+								'components/form-download.html.twig',
+								{
+									form_id: theme.product.modal.form,
+									file_url: post.meta('general').file.url
+								}
+							)
+						-}}
+			</div>
+		{% endblock %}
+	{% endembed %}
+{%- endif -%}</main>{%- endblock -%}
