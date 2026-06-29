@@ -11,13 +11,13 @@ Quand l'utilisateur démarre un nouveau projet, applique la règle `init-nouveau
 
 ## Stack
 
-- **Templating** : Timber 2 + Twig. Les `*.php` à la racine (`front-page.php`, `single-product.php`, `archive-product.php`, `taxonomy-*.php`, etc.) sont des routeurs WordPress qui chargent un contexte Timber et rendent un template de `views/pages/`. La présentation vit dans les `.twig`, pas dans le PHP.
+- **Templating** : Timber 2 + Twig. Les `*.php` à la racine (`front-page.php`, `home.php`, `page.php`, `single-post.php`, `category.php`, etc.) sont des routeurs WordPress qui chargent un contexte Timber et rendent un template de `views/pages/`. La présentation vit dans les `.twig`, pas dans le PHP.
 - **Build** : Vite (`pnpm dev` / `pnpm build`), plugin `laravel-vite-plugin`. Entrées : `src/stylesheets/styles.css` et `src/scripts/app.js`. Sortie dans `dist/` (gitignored).
 - **CSS** : Tailwind CSS v4, configuré en CSS pur (pas de `tailwind.config.js`). Tous les tokens sont déclarés dans le bloc `@theme` de `src/stylesheets/theme.css`.
-- **JS** : TypeScript. Composants dans `src/scripts/components/*.ts`, montés via `piecesjs`. Libs courantes : GSAP, Splide, Leaflet, et les packages internes `@agencecinq/drawer`, `@agencecinq/modal`, `@agencecinq/utils`, `@19h47/accordion`.
+- **JS** : TypeScript. Composants dans `src/scripts/components/*.ts`, montés via `piecesjs`. L'objet global `cinq` (données du thème : `text_domain`, `ajax_url`, `nonce`, etc.) est injecté côté PHP dans `includes/Setup/Enqueue.php` et typé dans `src/scripts/.d.ts`. Libs courantes : GSAP, Splide, et les packages internes `@agencecinq/drawer`, `@agencecinq/modal`, `@agencecinq/utils`, `@19h47/accordion`.
 - **PHP** : POO, PSR-4, standards WordPress (phpcs + wpcs, voir `phpcs.xml`). Le namespace racine est mappé sur `includes/`. Les classes sont rangées comme les fichiers du core WordPress (le hook `after_setup_theme` vit dans `includes/Setup/`, etc.).
 - **Champs** : ACF. Les groupes sont définis en PHP dans `includes/Plugins/ACF/IncludeFields/` (et leurs `Layouts/` pour les blocs flexibles), pas seulement en JSON.
-- **CPT / taxonomies** : déclarés dans `includes/Post/` et `includes/Taxonomy/`.
+- **CPT / taxonomies** : à créer dans `includes/Post/` et `includes/Taxonomy/` (le starter livre `Post/Page.php` ; les CPT et taxonomies spécifiques sont ajoutés par projet).
 - **i18n** : text domain unique, fichiers dans `languages/` (`.pot` source, `.po`/`.mo` par langue).
 - **Déploiement** : `deploy.sh` (build prod + purge des fichiers de dev), déclenché par le workflow `.github/workflows/release.yml` sur tag `v*`.
 - **Prérequis** : PHP 8.4, Composer, pnpm, Node 22.
@@ -90,3 +90,4 @@ Ce fichier est la base de vérité du thème et doit évoluer au fil des projets
 Règles dédiées existantes :
 
 - `init-nouveau-projet` : procédure d'initialisation d'un nouveau projet à partir du thème.
+- `remontee-vers-starter` : procédure pour faire remonter une brique d'un projet vers le starter (flux inverse de l'init).
