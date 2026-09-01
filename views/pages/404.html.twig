@@ -10,18 +10,18 @@
 {%- block content -%}
 	<main id="content" role="main">
 		<div
-			class="bg-page/30 after:bg-page/30 relative after:absolute after:inset-0 after:z-2 after:size-full"
+			class="bg-white/30 after:bg-white/30 relative after:absolute after:inset-0 after:z-2 after:size-full"
 		>
 			<div class="relative z-3 container space-y-10 pt-5 pb-20 lg:pt-31.5 lg:pb-46.25">
 				<div class="space-y-2.5">
 					<p>
 						{{- __('404 Error', 'wp-cinquante-et-un') -}}
 					</p>
-					<h1 class="title-xl space-y-2.5">
+					<h1 class="text-4xl font-medium tracking-tight lg:text-6xl space-y-2.5">
 						<p class="">
 							{{- post.title -}}
 						</p>
-						<p class="title-lg">
+						<p class="text-2xl font-medium tracking-tight lg:text-3xl">
 							{{- post.content -}}
 						</p>
 					</h1>

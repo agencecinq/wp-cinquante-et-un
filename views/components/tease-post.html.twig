@@ -2,13 +2,13 @@
  # Components: Tease Post
  #
  # Schema.org: BlogPosting (headline, image, description, url, datePublished, dateModified, author).
- # A11y: Single main link per card (Discover) with aria-label; heading title-lg; categories region with aria-label; image alt from thumbnail.
+ # A11y: Single main link per card (Discover) with aria-label; heading; categories region with aria-label; image alt from thumbnail.
  #
  # @todo This is a static component, it should be dynamic and receive data as props
  #}
 <article itemscope itemtype="https://schema.org/BlogPosting">
 	<div class="space-y-3.75 lg:space-y-5">
-		<div class="bg-page/30 rounded-15 relative aspect-square overflow-hidden">
+		<div class="bg-white/30 rounded-2xl relative aspect-square overflow-hidden">
 			<a
 				href="{{- post.link -}}"
 				itemprop="url"
@@ -69,7 +69,7 @@
 			<a
 				href="{{- post.link -}}"
 				itemprop="url"
-				class="cta uppercase underline"
+				class="font-mono text-sm font-medium tracking-wide uppercase underline"
 				aria-label="{{ __('Discover: %s', 'wp-cinquante-et-un')|format(post.title) }}"
 			>
 				{{- __('Discover', 'wp-cinquante-et-un') -}}

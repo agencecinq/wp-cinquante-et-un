@@ -6,20 +6,20 @@ class Slideshow extends Piece {
 	$controls: HTMLElement | null = null;
 	buttons: HTMLButtonElement[] | null = null;
 
-	private splide: Splide | null = null;
+	#splide: Splide | null = null;
 
-	private handlePageClick = (event: Event) => {
+	#handlePageClick = (event: Event) => {
 		event.preventDefault();
-		if (!this.splide || !this.buttons) return;
+		if (!this.#splide || !this.buttons) return;
 		const target = event.currentTarget as HTMLButtonElement | null;
 		if (!target) return;
 		const i = this.buttons.indexOf(target);
-		if (i >= 0) this.splide.go(i);
+		if (i >= 0) this.#splide.go(i);
 	};
 
-	private updateControls = () => {
-		if (!this.splide || !this.$slider) return;
-		const index = this.splide.index;
+	#updateControls = () => {
+		if (!this.#splide || !this.$slider) return;
+		const index = this.#splide.index;
 
 		if (this.buttons?.length) {
 			this.buttons.forEach(($button) => $button.removeAttribute("aria-current"));
@@ -66,24 +66,24 @@ class Slideshow extends Piece {
 			arrows: !!this.$slider.querySelector(".splide__arrows"),
 		};
 
-		this.splide = new Splide(this.$slider, options);
+		this.#splide = new Splide(this.$slider, options);
 
 		if (this.buttons?.length) {
-			this.buttons.forEach(($b) => this.on("click", $b, this.handlePageClick));
+			this.buttons.forEach(($b) => this.on("click", $b, this.#handlePageClick));
 		}
-		this.splide.on("mounted move updated", this.updateControls);
+		this.#splide.on("mounted move updated", this.#updateControls);
 
-		this.splide.mount();
+		this.#splide.mount();
 	}
 
 	unmount() {
 		if (this.buttons?.length) {
-			this.buttons.forEach(($b) => this.off("click", $b, this.handlePageClick));
+			this.buttons.forEach(($b) => this.off("click", $b, this.#handlePageClick));
 		}
-		this.splide?.off("mounted move updated");
-		if (this.splide) {
-			this.splide.destroy(true);
-			this.splide = null;
+		this.#splide?.off("mounted move updated");
+		if (this.#splide) {
+			this.#splide.destroy(true);
+			this.#splide = null;
 		}
 	}
 }

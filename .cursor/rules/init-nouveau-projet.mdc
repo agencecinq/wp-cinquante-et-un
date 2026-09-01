@@ -48,11 +48,12 @@ Points de vigilance :
 
 ## Étape 3 : réinitialiser les tokens Tailwind
 
-Dans `src/stylesheets/theme.css`, le bloc `@theme` contient des lignes de reset (`--color-*: initial;`, `--text-*: initial;`, `--radius-*: initial;`) : garde-les, elles servent à repartir propre.
+`src/stylesheets/theme.css` ne reset aucune échelle Tailwind. Les Twig utilisent les classes par défaut (`bg-white`, `text-zinc-950`, `text-4xl`, `rounded-2xl`). C’est ici qu’on déclare les tokens custom si la maquette ne mappe pas.
 
-- **Couleurs** : garde les tokens de surface (`page`, `elevated`, `card`, `primary`, `accent`, `border`, …) et réassigne leurs hex au client. Ne réintroduis pas de noms français (`--color-bleu-*`). Garde `--color-black` / `--color-white`.
-- **Typographies et radius** : conserve l'échelle générique si elle convient, ajuste les valeurs selon la maquette. Ne laisse pas de token qui référence une identité de l'ancien projet.
-- Tout token utilisé dans les `.twig`/`.ts` doit exister dans `@theme`.
+- **Couleurs** : overridde l’échelle (`--color-zinc-950: #08090a`) ou ajoute un token anglais si la palette ne mappe pas (`--color-accent`). Ne réintroduis pas de noms français (`--color-bleu-*`) ni `--color-*: initial` sauf si tu veux abandonner l’échelle Tailwind. Adapte les classes dans les `.twig` si tu changes d’échelle (zinc → autre).
+- **Typographies** : overridde `--text-xl` (etc.) ou change les classes dans les `.twig`. Ne réintroduis pas de composites (`title-xl`, `eyebrow`) ni `--text-*: initial` sauf si tu veux abandonner l’échelle Tailwind.
+- **Radius** : overridde `--radius-xl` (etc.) ou change les classes (`rounded-md`, `rounded-2xl`). Ne réintroduis pas `--radius-*: initial` ni une échelle numérique custom (`rounded-25`) sauf besoin projet.
+- Tout token custom utilisé dans les `.twig`/`.ts` doit exister dans `@theme`.
 
 ## Étape 4 : polices
 
@@ -79,7 +80,7 @@ Vérifie que la famille déclarée, le fichier réellement présent, et `--defau
 
 Le PHP se nettoie au fur et à mesure, mais retire d'emblée ce qui est clairement spécifique au projet précédent et inutile au nouveau :
 
-- Blocs ACF : le starter ne livre que le noyau (Accordion, Columns, Form, Gallery, Hero, LatestPosts, MediaText). N'ajoute une composition que si le projet en a besoin (trio layout + Twig + composant TS, puis `BlocksFields::$layouts`).
+- Blocs ACF : le starter ne livre que le noyau (Accordion, Columns, Gallery, Hero, LatestPosts, MediaText). N'ajoute une composition que si le projet en a besoin (trio layout + Twig + composant TS, puis `BlocksFields::$layouts`).
 - CPT / taxonomies non pertinents : `includes/Post/`, `includes/Taxonomy/`, et les routeurs racine associés (`single-<cpt>.php`, `archive-<cpt>.php`, `taxonomy-<tax>.php`).
 - `acf-json/` : repars d'une base propre si le projet précédent y a laissé ses groupes.
 - Champs ThemeFields, etc. : adapte au nouveau projet.

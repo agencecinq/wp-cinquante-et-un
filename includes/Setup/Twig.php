@@ -126,16 +126,6 @@ class Twig implements Service {
 			)
 		);
 
-		// Add Yoast Breadcrumbs function.
-		$twig->addFunction(
-			new TwigFunction(
-				'yoast_breadcrumb',
-				function ( $before = '<div class="text-xs">', $after = '</div>', $display = false ) {
-					return function_exists( 'yoast_breadcrumb' ) ? yoast_breadcrumb( $before, $after, $display ) : '';
-				}
-			)
-		);
-
 		// @see https://developer.wordpress.org/reference/functions/get_search_form/
 		$twig->addFunction(
 			new TwigFunction(

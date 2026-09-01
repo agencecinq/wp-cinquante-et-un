@@ -13,7 +13,5 @@
 
 /* Components */
 @import "./components/button.css";
-@import "./components/typographies.css";
-@import "./components/wpcf7.css";
 @import "./components/wysiwyg.css";
 

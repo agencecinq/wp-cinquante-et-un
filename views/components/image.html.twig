@@ -1,7 +1,7 @@
 {#
  # Image
  #
- # @param {array} image Image object or ID.
+ # @param {array} image Image object, attachment ID, or placeholder array ({ src, alt, width, height, placeholder: true }).
  # @param {array} [classes] Additional classes to add to the img tag. Optional.
  # @param {string} [loading] Loading attribute for the img tag. Defaults to 'lazy'. Optional.
  # @param {object} [attributes] Additional attributes to add to the img tag. Optional.
@@ -13,7 +13,17 @@
  # @package WPCinquanteEtUn
  #}
 
-{%- if image -%}
+{%- if image is mapping and image.placeholder -%}
+	<img
+		class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}"
+		loading="{{ loading | default( 'lazy' ) }}"
+		src="{{ image.src | e }}"
+		alt="{{ alt | default( image.alt ) | e }}"
+		width="{{ image.width | e }}"
+		height="{{ image.height | e }}"
+		{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
+	>
+{%- elseif image -%}
 	{% set image = get_image( image ) %}
 	{% set size = 'image/gif' == image.post_mime_type ? 'full' : ( size | default( 'large' ) ) %}
 	{% set width = 'image/svg+xml' == image.post_mime_type ? image.width : ( image.sizes[size].width ? image.sizes[size].width : image.width ) -%}

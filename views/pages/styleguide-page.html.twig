@@ -13,23 +13,79 @@
 	<main id="content" role="main">
 		<div class="container space-y-20 py-10 lg:space-y-30 lg:py-20">
 			<header class="space-y-3">
-				<p class="eyebrow">
+				<p class="font-mono text-xs uppercase tracking-widest">
 					{{- __('Foundations', 'wp-cinquante-et-un') -}}
 				</p>
-				<h1 class="title-xl">
+				<h1 class="text-4xl font-medium tracking-tight lg:text-6xl">
 					{{- post.title | default(__('Styleguide', 'wp-cinquante-et-un')) -}}
 				</h1>
-				<p class="text-muted max-w-prose text-lg">
+				<p class="text-zinc-500 max-w-prose text-lg">
 					{{-
 						__(
-							'Tokens and components shipped with the starter. Assign this page template; the catalog is rendered from Twig, not from ACF.',
+							'Tokens, UI components, and kernel blocks shipped with the starter. Assign this page template; the catalog is rendered from Twig, not from ACF.',
 							'wp-cinquante-et-un'
 						)
 					-}}
 				</p>
 			</header>
 
+			<nav aria-label="{{ __('Styleguide', 'wp-cinquante-et-un') }}" class="space-y-6">
+				{%- for group in post.toc -%}
+					<div class="space-y-3">
+						<p class="font-mono text-xs uppercase tracking-widest">
+							{{ group.title }}
+						</p>
+						<ul class="flex flex-wrap gap-x-5 gap-y-2">
+							{%- for item in group.items -%}
+								<li itemscope itemtype="https://schema.org/SiteNavigationElement">
+									<a
+										href="{{ item.href }}"
+										itemprop="url"
+										class="font-mono text-xs tracking-widest underline underline-offset-2"
+									>
+										<span itemprop="name">{{ item.title }}</span>
+									</a>
+								</li>
+							{%- endfor -%}
+						</ul>
+					</div>
+				{%- endfor -%}
+			</nav>
+
 			{{- include('components/styleguide.html.twig') -}}
 		</div>
+
+		<section class="space-y-20 py-10 lg:space-y-30 lg:py-20" aria-labelledby="styleguide-blocks">
+			<header class="container space-y-3">
+				<p class="font-mono text-xs uppercase tracking-widest">
+					{{- __('Blocks', 'wp-cinquante-et-un') -}}
+				</p>
+				<h2 id="styleguide-blocks" class="text-4xl font-medium tracking-tight lg:text-6xl">
+					{{- __('Kernel layouts', 'wp-cinquante-et-un') -}}
+				</h2>
+				<p class="text-zinc-500 max-w-prose text-lg">
+					{{-
+						__(
+							'The ACF layouts shipped with the starter, rendered from the same Twig as production. Copy and media are dummy data from the page model.',
+							'wp-cinquante-et-un'
+						)
+					-}}
+				</p>
+			</header>
+
+			{%- for item in post.blocks -%}
+				<article id="{{ item.id }}" class="space-y-6">
+					<header class="container space-y-1">
+						<p class="font-mono text-xs tracking-widest">
+							{{ item.name }}
+						</p>
+						<p class="font-mono text-xs text-zinc-400">
+							{{ item.file }}
+						</p>
+					</header>
+					{{- include(item.file, { block: item.block, posts_url: posts_url }, with_context = false) -}}
+				</article>
+			{%- endfor -%}
+		</section>
 	</main>
 {%- endblock -%}

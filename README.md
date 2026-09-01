@@ -34,9 +34,9 @@ pnpm build      # also generates public/sprite.svg from src/icons/
 pnpm dev        # local dev server
 ```
 
-Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`) and remap the surface tokens in `src/stylesheets/theme.css` (`page`, `elevated`, `card`, `primary`, `accent`, …) to the project's palette.
+Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`). Colors use Tailwind utilities (`bg-white`, `text-zinc-950`); override `--color-zinc-*` in `src/stylesheets/theme.css` if the project palette differs.
 
-The default page router (`page.php`, `front-page.php`) renders ACF blocks. The starter ships seven kernel layouts: accordion, columns, form, gallery, hero, latest posts, media + text. Project-specific compositions are added per site, not copied from a previous client.
+The default page router (`page.php`, `front-page.php`) renders ACF blocks. The starter ships six kernel layouts: accordion, columns, gallery, hero, latest posts, media + text. Project-specific compositions are added per site, not copied from a previous client.
 
 ### SVG sprite support
 

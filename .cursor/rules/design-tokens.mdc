@@ -6,21 +6,24 @@ alwaysApply: false
 
 # Design tokens (`theme.css`)
 
-## Declare in `@theme`, never in Twig utilities
+## Declare in `@theme` only when needed
 
-- Colors, radii, typography scales, and background images belong in `src/stylesheets/theme.css` inside `@theme`.
-- Do not use arbitrary Tailwind values in Twig or CSS utilities for design tokens: no `bg-[#102345]`, no `bg-[linear-gradient(...)]`, no `[background:...]`.
-- Use the generated utilities instead (`bg-page`, `text-accent`, `rounded-25`, etc.).
+- The starter uses Tailwind defaults in Twig: `bg-white`, `text-zinc-950`, `text-4xl`, `rounded-2xl`. Do not invent semantic aliases (`page`, `title-xl`, `rounded-25`).
+- Custom colors, type, radius, or background images belong in `src/stylesheets/theme.css` inside `@theme` when the project does not map to the Tailwind scale.
+- Do not use arbitrary Tailwind values in Twig or CSS for design tokens: no `bg-[#102345]`, no `bg-[linear-gradient(...)]`, no `[background:...]`.
+- Use the generated utilities (`bg-zinc-50`, `rounded-xl`, etc.).
 
 ## Token names in English
 
 All custom property **suffixes** in `@theme` must be in **English**, kebab-case:
 
 ```css
-/* GOOD */
---color-page: #08090a;
+/* GOOD — project overrides the Tailwind scale */
+--color-zinc-950: #08090a;
+
+/* GOOD — project token when the palette / scale does not map */
 --color-accent: #b3fca4;
---radius-25: --spacing(6.25);
+--radius-4xl: 2.5rem;
 
 /* BAD */
 --color-fond-page: #08090a;
@@ -30,9 +33,9 @@ All custom property **suffixes** in `@theme` must be in **English**, kebab-case:
 ```
 
 - The Tailwind class mirrors the token suffix: `--color-accent` → `text-accent`, `bg-accent`, `border-accent`.
-- Starter palette (CINQ Design System, dark): `page` / `elevated` / `card` / `card-hover` (backgrounds), `primary` / `muted` / `subtle` / `on-accent` (texts), `accent` / `accent-hover` / `accent-soft` / `border` / `border-subtle`. Pistachio accent is for CTAs, nodes, active links and focus only. `text-subtle` is not used on `bg-card` (contrast drops below AA).
+- Do not add `--color-*: initial`, `--text-*: initial`, or `--radius-*: initial` unless you intentionally drop the Tailwind scale.
 - Legacy French token names may still exist in old client databases (ACF class values); **never add new French token names**.
-- When initializing a new project, declare the client palette with English names from the start.
+- When initializing a new project, override `--color-zinc-*` (or add English tokens) to match the client palette.
 
 ## No preset section backgrounds in the starter
 
@@ -67,13 +70,13 @@ Conversion reference: `em = px / font-size-px` on the same element (e.g. `0.5px`
 
 If a value is reused, add a token in `@theme` rather than repeating em arbitrary values in Twig.
 
-## Typography scale (CINQ Design System)
+## Typography (Tailwind scale)
 
-Tokens and composite classes in `theme.css` / `typographies.css` follow the Figma scale. Prefer the composite class in Twig (`.title-xl`, `.text-sm`, `.eyebrow`) over raw `text-*-mobile` / `text-*-desktop` utilities.
+Use Tailwind type utilities in Twig: `text-xs` … `text-9xl`, plus `font-medium`, `font-mono`, `tracking-tight` / `tracking-widest`. Do not invent composite classes (`title-xl`, `eyebrow`) in the starter.
 
-- **Titles** (weight 500): `.title-3xl`, `.title-xxl`, `.title-xl`, `.title-lg`, `.title-md`
-- **Text** (weight 400): `.text-xl`, `.text-lg`, `.text-base`, `.text-sm`, `.text-xs`
-- **Meta** (Tailwind `font-mono`, same on mobile and desktop): `.eyebrow` (caps), `.label`, `.cta` (weight 500), `.badge` (caps)
+- **Titles**: size + `font-medium tracking-tight` (e.g. `text-4xl font-medium tracking-tight lg:text-6xl`).
+- **Text**: `text-xs` … `text-xl` (or larger as needed).
+- **Meta**: `font-mono text-xs tracking-widest`, add `uppercase` when the design is caps.
 
 The starter uses Tailwind / browser font stacks. Do not add a webfont unless the project specifies one (then align `@font-face` or the Google Fonts example in `Enqueue::enqueue_styles()`, and `--default-font-family`).
 

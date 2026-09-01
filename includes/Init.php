@@ -56,8 +56,6 @@ class Init {
 			Plugins\ACF\IncludeFields\ClonesFields::class,
 			Plugins\ACF\IncludeFields\ThemeFields::class,
 			Plugins\ACF\IncludeFields\PostFields::class,
-			// Yoast.
-			Plugins\WordpressSeo\AdminInit::class,
 		);
 	}
 

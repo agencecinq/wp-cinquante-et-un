@@ -17,7 +17,7 @@
 			aria-label="{{ __('Mobile navigation', 'wp-cinquante-et-un') }}"
 			class="w-full flex-1 overflow-y-auto"
 		>
-			<ul class="label divide-border divide-y">
+			<ul class="font-mono text-xs tracking-widest divide-zinc-200 divide-y">
 				{%- for item in main_items -%}
 					<li itemscope itemtype="https://schema.org/SiteNavigationElement">
 						{%- if item.children | length -%}
@@ -25,7 +25,7 @@
 								type="button"
 								data-dom="open-sub"
 								data-open-sub="{{ item.id }}"
-								class="text-muted flex w-full items-center justify-between py-5 text-left"
+								class="text-zinc-500 flex w-full items-center justify-between py-5 text-left"
 								aria-expanded="false"
 								aria-controls="mobile-sub-{{ item.id }}"
 							>
@@ -43,7 +43,7 @@
 							</button>
 						{%- else -%}
 							<a
-								class="text-muted hover:text-primary block py-5"
+								class="text-zinc-500 hover:text-zinc-950 block py-5"
 								href="{{ item.url }}"
 								itemprop="url"
 								{{
@@ -72,11 +72,11 @@
 			aria-hidden="true"
 			style="display: none;"
 		>
-			<div class="border-border relative space-y-2.5 border-b pt-5.5 pb-6.25">
+			<div class="border-zinc-200 relative space-y-2.5 border-b pt-5.5 pb-6.25">
 				<button
 					type="button"
 					data-dom="back-to-main"
-					class="label text-muted hover:text-primary inline-flex items-center gap-1"
+					class="font-mono text-xs tracking-widest text-zinc-500 hover:text-zinc-950 inline-flex items-center gap-1"
 					aria-label="{{ __('Back to menu', 'wp-cinquante-et-un') }}"
 				>
 					{{-
@@ -92,7 +92,7 @@
 					{{- __('Back', 'wp-cinquante-et-un') -}}
 				</button>
 
-				<h2 class="title-md">{{- item.title -}}</h2>
+				<h2 class="text-xl font-medium tracking-tight">{{- item.title -}}</h2>
 			</div>
 
 			<nav class="flex-1 overflow-y-auto" aria-label="{{ item.title }}">
@@ -102,7 +102,7 @@
 							<a
 								href="{{ child.url }}"
 								itemprop="url"
-								class="text-muted hover:text-primary block text-sm"
+								class="text-zinc-500 hover:text-zinc-950 block text-sm"
 								{{
 								child.is_target_blank or child.is_external
 									? 'target="' ~ child.target ~ '" rel="noopener noreferrer"'

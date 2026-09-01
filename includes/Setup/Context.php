@@ -11,7 +11,7 @@ namespace WPCinquanteEtUn\Setup;
 
 use WPCinquanteEtUn\Service;
 use Timber\{Timber, Site };
-use WPCinquanteEtUn\Models\{ CategoryArchive, Home, SinglePost };
+use WPCinquanteEtUn\Models\{ CategoryArchive, Home, SinglePost, StyleguidePage };
 
 /**
  * Context
@@ -104,8 +104,16 @@ class Context extends Site implements Service {
 	 */
 	public function add_post_classmap( array $classmap ): array {
 		$custom_classmap = array(
-			'page' => function () {
-				return is_home() ? Home::class : null;
+			'page' => function ( \WP_Post $post ) {
+				if ( is_home() ) {
+					return Home::class;
+				}
+
+				if ( 'page-templates/styleguide-page.php' === get_page_template_slug( $post ) ) {
+					return StyleguidePage::class;
+				}
+
+				return null;
 			},
 			'post' => SinglePost::class,
 		);

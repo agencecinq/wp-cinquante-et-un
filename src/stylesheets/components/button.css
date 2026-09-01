@@ -10,7 +10,7 @@
 
 	/* Variants */
 	.button--primary {
-		@apply font-mono text-cta;
+		@apply font-mono text-sm font-medium tracking-wide;
 		
 		padding-inline: calc(var(--spacing) * 3.5); /* 14px */
 		padding-block: calc(var(--spacing) * 2.5); /* 10px */
@@ -30,7 +30,7 @@
 	}
 
 	.button--secondary {
-		@apply font-mono text-cta uppercase transition-colors duration-500 ease-in;
+		@apply font-mono text-sm font-medium tracking-wide uppercase transition-colors duration-500 ease-in;
 
 		padding-inline: calc(var(--spacing) * 3); /* 12px */
 		padding-block: calc(var(--spacing) * 1.5); /* 6px */
@@ -53,7 +53,7 @@
 	}
 
 	.button--tertiary {
-		@apply bg-card text-primary font-mono text-cta;
+		@apply bg-white text-zinc-950 font-mono text-sm font-medium tracking-wide;
 
 		padding: calc(var(--spacing) * 1.25); /* 5px */
 	}
@@ -66,11 +66,11 @@
 	}
 
 	.button--tertiary[disabled] {
-		@apply bg-card! text-primary! border-border!;
+		@apply bg-white! text-zinc-950! border-zinc-200!;
 	}
 
 	.button--quaternary {
-		@apply font-mono text-badge uppercase bg-accent text-on-accent;
+		@apply font-mono text-xs uppercase tracking-widest bg-zinc-950 text-white;
 
 		text-transform: uppercase;
 
@@ -85,55 +85,55 @@
 
 	/* Color Modes */
 	.button--light.button--primary {
-		@apply text-primary border-primary;
+		@apply text-zinc-950 border-zinc-950;
 	}
 
 	.button--light.button--secondary {
-		@apply bg-elevated text-primary;
+		@apply bg-zinc-50 text-zinc-950;
 	}
 
 	.button--light.button--secondary:not([disabled]):hover,
 	.button--light.button--secondary:not([disabled]):focus {
-		@apply bg-card text-primary;
+		@apply bg-white text-zinc-950;
 	}
 
 	.button--light.button--secondary:not([disabled]):hover.button--icon svg,
 	.button--light.button--secondary:not([disabled]):focus.button--icon svg {
-		@apply text-primary;
+		@apply text-zinc-950;
 	}
 
 	.button--light.button--secondary.button--icon svg {
-		@apply text-primary;
+		@apply text-zinc-950;
 	}
 
 	.button--light[disabled] {
-		@apply bg-primary/14! text-primary! border-primary/14!;
+		@apply bg-zinc-950/14! text-zinc-950! border-zinc-950/14!;
 		backdrop-filter: blur(10px);
 	}
 
 	.button--dark.button--primary {
-		@apply text-primary border-primary;
+		@apply text-zinc-950 border-zinc-950;
 	}
 
 	.button--dark.button--secondary {
-		@apply bg-card text-primary;
+		@apply bg-white text-zinc-950;
 	}
 
 	.button--dark.button--secondary:not([disabled]):hover,
 	.button--dark.button--secondary:not([disabled]):focus {
-		@apply bg-elevated text-primary;
+		@apply bg-zinc-50 text-zinc-950;
 	}
 
 	.button--dark.button--secondary:not([disabled]):hover.button--icon svg,
 	.button--dark.button--secondary:not([disabled]):focus.button--icon svg {
-		@apply text-primary;
+		@apply text-zinc-950;
 	}
 
 	.button--dark.button--secondary.button--icon svg {
-		@apply text-primary;
+		@apply text-zinc-950;
 	}
 
 	.button--dark[disabled] {
-		@apply bg-card! text-primary! border-border!;
+		@apply bg-white! text-zinc-950! border-zinc-200!;
 	}
 }

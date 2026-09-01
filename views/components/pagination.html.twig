@@ -2,14 +2,19 @@
  # Components: Pagination
  #
  # @param {object} pagination
+ # @param {string} [label] Accessible name for the nav. Defaults to Pagination.
  #}
 
-{%- if (pagination.pages|length) > 0 -%}
-	<nav role="navigation" class="{{ html_classes( 'text-xl inline-flex items-center gap-7.5', classes|default([]) | join(' ') ) }}">
+{%- if (pagination.pages | length) > 0 -%}
+	<nav
+		role="navigation"
+		aria-label="{{ label | default(__('Pagination', 'wp-cinquante-et-un')) }}"
+		class="{{ html_classes('font-mono text-xs tracking-widest inline-flex items-center gap-2', classes | default([]) | join(' ')) }}"
+	>
 		{% if pagination.prev %}
 			<a
-				href="{{ pagination.prev.link }}{{ anchor|default('') }}"
-				class="hover:border-accent hover:bg-accent-hover hover:text-on-accent flex size-12.5 lg:size-17 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ease-out"
+				href="{{ pagination.prev.link }}{{ anchor | default('') }}"
+				class="hover:border-zinc-950 hover:bg-zinc-950 hover:text-white border-zinc-200 flex size-10 shrink-0 items-center justify-center rounded-full border transition-colors"
 				aria-label="{{ __('Previous', 'wp-cinquante-et-un') }}"
 			>
 				{{-
@@ -17,21 +22,21 @@
 						'svg/use.html.twig',
 						{
 							icon: 'arrow-left',
-							classes: ['size-12.5 lg:size-17']
+							classes: ['size-4']
 						}
 					)
 				-}}
 			</a>
 		{% else %}
 			<span
-				class="flex size-12.5 lg:size-17 shrink-0 cursor-not-allowed items-center justify-center rounded-full border opacity-50"
+				class="border-zinc-200 flex size-10 shrink-0 cursor-not-allowed items-center justify-center rounded-full border opacity-50"
 			>
 				{{-
 					include(
 						'svg/use.html.twig',
 						{
 							icon: 'arrow-left',
-							classes: ['size-12.5 lg:size-17']
+							classes: ['size-4']
 						}
 					)
 				-}}
@@ -43,8 +48,8 @@
 				<li>
 					{% if page.link %}
 						<a
-							href="{{ page.link }}{{ anchor|default('') }}"
-							class="{{ page.class }} hover:bg-accent-hover hover:text-on-accent flex size-10 lg:size-12.5 items-center justify-center rounded-full transition-colors duration-300 ease-out"
+							href="{{ page.link }}{{ anchor | default('') }}"
+							class="{{ page.class }} hover:bg-zinc-950 hover:text-white flex size-10 items-center justify-center rounded-full transition-colors"
 						>
 							{{- page.title -}}
 						</a>
@@ -52,12 +57,12 @@
 						<span
 							class="{{
 							html_classes(
-								'flex size-10 lg:size-12.5 items-center justify-center rounded-full',
+								'flex size-10 items-center justify-center rounded-full',
 								page.class,
-								'current' in ( page.class|split(' ') ) ? 'bg-accent text-on-accent' : ''
+								'current' in (page.class | split(' ')) ? 'bg-zinc-950 text-white' : ''
 							)
 							}}"
-							{{ 'current' in ( page.class|split(' ') ) ? 'aria-current="page"' : '' }}
+							{{ 'current' in (page.class | split(' ')) ? 'aria-current="page"' : '' }}
 						>
 							{{- page.title -}}
 						</span>
@@ -68,30 +73,30 @@
 
 		{% if pagination.next %}
 			<a
-				href="{{ pagination.next.link }}{{ anchor|default('') }}"
-				class="hover:bg-accent-hover hover:border-accent hover:text-on-accent flex size-12.5 lg:size-17 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ease-out"
-				aria-label="{{ __('Next', 'wp-cinquante-et-un' ) }}"
+				href="{{ pagination.next.link }}{{ anchor | default('') }}"
+				class="hover:border-zinc-950 hover:bg-zinc-950 hover:text-white border-zinc-200 flex size-10 shrink-0 items-center justify-center rounded-full border transition-colors"
+				aria-label="{{ __('Next', 'wp-cinquante-et-un') }}"
 			>
 				{{-
 					include(
 						'svg/use.html.twig',
 						{
 							icon: 'arrow-right',
-							classes: ['size-12.5 lg:size-17']
+							classes: ['size-4']
 						}
 					)
 				-}}
 			</a>
 		{% else %}
 			<span
-				class="flex size-12.5 lg:size-17 shrink-0 cursor-not-allowed items-center justify-center rounded-full border opacity-50"
+				class="border-zinc-200 flex size-10 shrink-0 cursor-not-allowed items-center justify-center rounded-full border opacity-50"
 			>
 				{{-
 					include(
 						'svg/use.html.twig',
 						{
 							icon: 'arrow-right',
-							classes: ['size-12.5 lg:size-17']
+							classes: ['size-4']
 						}
 					)
 				-}}

@@ -14,7 +14,7 @@
 		{ 
 			attributes: { id: block.id }, 
 			content: block.content | default({}) | merge({ link: { url: posts_url } }),
-			posts: get_posts( { post_type: 'post', cat: block.content.category, posts_per_page: 3 } ),
+			posts: block.posts | default( get_posts( { post_type: 'post', cat: block.content.category, posts_per_page: 3 } ) ),
 		} 
 	) 
 -}}

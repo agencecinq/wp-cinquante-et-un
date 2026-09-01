@@ -24,14 +24,14 @@
 				{% if use_reveal %}
 
 					<div class="container absolute z-1 inset-0 flex flex-col items-center justify-center" aria-hidden="true">
-						<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('title-xxl'), 'text-center' ) }}">{{- block.content.title -}}</{{block.content.heading|default('h2')}}>
+						<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('text-4xl font-medium tracking-tight lg:text-6xl'), 'text-center' ) }}">{{- block.content.title -}}</{{block.content.heading|default('h2')}}>
 					</div>
 					<div data-dom="mask" class="absolute inset-0 z-2 overflow-hidden size-full">
-						<div class="size-full relative after:absolute after:inset-0 after:z-2 after:size-full after:bg-page/30">
+						<div class="size-full relative after:absolute after:inset-0 after:z-2 after:size-full after:bg-white/30">
 							{{- include('components/media.html.twig', { media: block.media, classes: [ 'block relative z-1 size-full object-cover object-center' ] }) -}}
 						</div>
 						<div class="container absolute inset-0 z-3 flex items-center justify-center">
-							<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('title-xxl'), 'text-center' ) }}">
+							<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('text-4xl font-medium tracking-tight lg:text-6xl'), 'text-center' ) }}">
 								{{- block.content.title -}}
 							</{{block.content.heading|default('p')}}>
 						</div>
@@ -39,7 +39,7 @@
 				{% else %}
 					{{- include('components/media.html.twig', { media: block.media, classes: [ 'block relative z-1 size-full object-cover object-center' ] }) -}}
 					<div class="container absolute z-2 inset-0 flex items-center justify-center">
-						<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('title-xxl'), 'text-center' ) }}">
+						<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('text-4xl font-medium tracking-tight lg:text-6xl'), 'text-center' ) }}">
 							{{- block.content.title -}}
 						</{{block.content.heading|default('p')}}>
 					</div>

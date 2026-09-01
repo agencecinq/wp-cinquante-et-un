@@ -7,20 +7,13 @@
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  #}
 
-{%- set theme_opts = theme | default({}) -%}
-{%- set contact_link = theme_opts.contact.link | default({}) -%}
-{%- set main_items = nav_menus.main is defined and nav_menus.main
-	? nav_menus.main.get_items() | default([])
-	: []
--%}
-
 <header
 	role="banner"
 	itemscope
 	itemtype="https://schema.org/WPHeader"
 	class="{{
 	html_classes(
-		'border-border sticky top-0 z-10 h-16 border-b bg-page/85 backdrop-blur-[0.875rem]',
+		'sticky top-0 z-10 h-16 border-b border-zinc-200 bg-white/85 backdrop-blur-[0.875rem]',
 		classes | default([]) | join(' ')
 	)
 	}}"
@@ -36,10 +29,10 @@
 			/>
 		</a>
 
-		{%- if main_items | length -%}
+		{%- if nav_menus.main -%}
 			<nav aria-label="{{ __('Main navigation', 'wp-cinquante-et-un') }}" class="hidden lg:block">
-				<ul class="label flex gap-8">
-					{%- for item in main_items -%}
+				<ul class="flex gap-8 font-mono text-xs tracking-widest">
+					{%- for item in nav_menus.main.get_items() -%}
 						<li itemscope itemtype="https://schema.org/SiteNavigationElement">
 							<a
 								href="{{ item.url }}"
@@ -50,7 +43,7 @@
 										or 'current-menu-parent' in item.classes
 										or 'current-page-ancestor' in item.classes
 										? ''
-										: 'text-muted hover:text-primary',
+										: 'text-zinc-500 hover:text-zinc-950',
 									item.classes | default([]) | join(' ')
 								)
 								}}"
@@ -68,29 +61,29 @@
 			</nav>
 		{%- endif -%}
 
-		{%- if contact_link.url or main_items | length -%}
+		{%- if theme.contact.link.url or nav_menus.main -%}
 			<div class="flex items-center gap-4">
-				{%- if contact_link.url -%}
+				{%- if theme.contact.link.url -%}
 					<a
-						href="{{ contact_link.url }}"
-						class="label bg-accent hover:bg-accent-hover rounded-full px-4.5 py-2.5 text-on-accent"
-						{{ contact_link.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}
+						href="{{ theme.contact.link.url }}"
+						class="rounded-full bg-zinc-950 px-4.5 py-2.5 font-mono text-xs tracking-widest text-white hover:bg-zinc-800"
+						{{ theme.contact.link.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}
 					>
-						{{- contact_link.title -}}
+						{{- theme.contact.link.title -}}
 					</a>
 				{%- endif -%}
 
-				{%- if main_items | length -%}
+				{%- if nav_menus.main -%}
 					<cinq-drawer-button class="lg:hidden">
 						<button
 							type="button"
-							class="group/drawer-button border-border flex size-10 items-center justify-center rounded-full border"
+							class="group/drawer-button flex size-10 items-center justify-center rounded-full border border-zinc-200"
 							aria-controls="menu-drawer"
 							aria-label="{{ __('Menu', 'wp-cinquante-et-un') }}"
 						>
 							<span class="flex flex-col gap-1.25 group-aria-expanded/drawer-button:hidden">
-								<span class="bg-primary h-0.5 w-4.5"></span>
-								<span class="bg-primary h-0.5 w-4.5"></span>
+								<span class="h-0.5 w-4.5 bg-zinc-950"></span>
+								<span class="h-0.5 w-4.5 bg-zinc-950"></span>
 							</span>
 							{{-
 								include(
@@ -109,12 +102,12 @@
 	</div>
 </header>
 
-{%- if main_items | length -%}
+{%- if nav_menus.main -%}
 	{% embed 'components/drawer.html.twig'
 		with {
 			id: 'menu-drawer',
 			margin_top: '4rem',
-			panel_classes: 'bg-page inset-0',
+			panel_classes: 'bg-white inset-0',
 			aria_label: __('Menu', 'wp-cinquante-et-un')
 		}
 	%}
@@ -124,7 +117,7 @@
 					include(
 						'components/mobile-menu.html.twig',
 						{
-							items: main_items
+							items: nav_menus.main.get_items()
 						}
 					)
 				-}}

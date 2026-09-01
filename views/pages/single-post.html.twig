@@ -8,13 +8,10 @@
 
 {%- block content -%}
 	<main id="content" role="main">
-		<div class="rounded-b-25 lg:rounded-b-50 relative z-3 -mb-6.25 lg:-mb-12.5">
+		<div class="rounded-b-3xl lg:rounded-b-4xl relative z-3 -mb-6.25 lg:-mb-12.5">
 			<div class="container grid grid-cols-12 gap-x-2.5 gap-y-15 pt-5 pb-20 lg:gap-5 lg:pt-12.5">
-				<div class="col-span-full lg:order-1">
-					{{- yoast_breadcrumb() -}}
-				</div>
-				<div class="col-span-full space-y-7.5 lg:order-2 lg:col-span-6">
-					<h1 class="title-xl text-accent" itemprop="headline">{{- post.title -}}</h1>
+				<div class="col-span-full space-y-7.5 lg:order-1 lg:col-span-6">
+					<h1 class="text-4xl font-medium tracking-tight lg:text-6xl text-zinc-950" itemprop="headline">{{- post.title -}}</h1>
 
 					{% if post.meta('general').subtitle %}
 						<p class="text-xl">
@@ -27,10 +24,10 @@
 							class="space-y-2.5"
 							aria-label="{{ __('Table of contents', 'wp-cinquante-et-un') }}"
 						>
-							<h2 class="text-accent eyebrow">
+							<h2 class="text-zinc-950 font-mono text-xs uppercase tracking-widest">
 								{{- __('Table of contents', 'wp-cinquante-et-un') -}}
 							</h2>
-							<ol class="badge space-y-2" role="list">
+							<ol class="font-mono text-xs uppercase tracking-widest space-y-2" role="list">
 								{% for item in post.table_of_contents %}
 									<li class="space-y-2">
 										<a class="inline-block uppercase underline" href="#{{ item.anchor }}">
@@ -54,7 +51,7 @@
 					{%- endif -%}
 				</div>
 
-				<footer class="col-span-full flex flex-col gap-x-22.5 gap-y-2.5 lg:order-4 lg:flex-row">
+				<footer class="col-span-full flex flex-col gap-x-22.5 gap-y-2.5 lg:order-3 lg:flex-row">
 					<nav class="flex gap-2.5" aria-label="{{ __('Share this post', 'wp-cinquante-et-un') }}">
 						<p>
 							{{- __('Share this post', 'wp-cinquante-et-un') -}}
@@ -94,11 +91,11 @@
 				<div
 					class="{{
 					html_classes(
-						'col-span-full lg:relative lg:order-3 lg:col-span-6 lg:mx-18.75'
+						'col-span-full lg:relative lg:order-2 lg:col-span-6 lg:mx-18.75'
 					)
 					}}"
 				>
-					<div class="rounded-25 aspect-square overflow-hidden">
+					<div class="rounded-3xl aspect-square overflow-hidden">
 						{{-
 							include(
 								'components/image.html.twig',
@@ -123,7 +120,7 @@
 				</div>
 
 				{%- if post.meta('general').learn_more.title or post.meta('general').learn_more.text -%}
-					<div class="bg-card rounded-15 space-y-5 px-6.25 py-7.5">
+					<div class="bg-white rounded-2xl space-y-5 px-6.25 py-7.5">
 						<h3 class="text-lg">{{- post.meta('general').learn_more.title -}}</h3>
 						<p class="text-xl">
 							{{- post.meta('general').learn_more.text -}}
@@ -137,7 +134,7 @@
 			include(
 				'components/collection-posts.html.twig',
 				{
-					classes: ['bg-elevated', 'py-20', 'lg:py-37.5'],
+					classes: ['bg-zinc-50', 'py-20', 'lg:py-37.5'],
 					posts: post.related_posts(),
 					content: {
 						title: __('Our latest news', 'wp-cinquante-et-un'),

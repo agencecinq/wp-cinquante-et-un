@@ -12,7 +12,6 @@ namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields;
 
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\AccordionGroup;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Columns;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Form;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Gallery;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Hero;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\LatestPosts;
@@ -34,7 +33,6 @@ class BlocksFields implements Service {
 	private static $layouts = array(
 		AccordionGroup::class,
 		Columns::class,
-		Form::class,
 		Gallery::class,
 		Hero::class,
 		LatestPosts::class,

@@ -2,7 +2,7 @@
 /**
  * Template Name: Styleguide
  *
- * Living catalog of the starter design tokens and UI components.
+ * Living catalog of the starter design tokens, UI components, and kernel blocks.
  *
  * @package WPCinquanteEtUn
  * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)

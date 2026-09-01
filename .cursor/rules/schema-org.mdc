@@ -46,4 +46,4 @@ Enrichir le HTML sémantique avec du **microdata schema.org** (`itemscope`, `ite
 
 ## JSON-LD vs microdata
 
-Le thème utilise le **microdata** dans les Twig. Réserver le JSON-LD (`<script type="application/ld+json">`) aux cas où le microdata ne peut pas être placé sur le markup visible (ex : données agrégées injectées côté PHP pour Yoast ou un plugin SEO).
+Le thème utilise le **microdata** dans les Twig. Réserver le JSON-LD (`<script type="application/ld+json">`) aux cas où le microdata ne peut pas être placé sur le markup visible (ex : données agrégées injectées côté PHP pour un plugin SEO).

@@ -7,31 +7,15 @@
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  #}
 
-{%- set theme_opts = theme | default({}) -%}
-{%- set footer_fields = theme_opts.footer | default({}) -%}
-{%- set contact_fields = theme_opts.contact | default({}) -%}
-{%- set tagline = footer_fields.tagline | default('') -%}
-{%- set locations = footer_fields.locations | default('') -%}
-{%- set email = contact_fields.email | default('') -%}
-{%- set phone = contact_fields.phone | default('') -%}
-{%- set footer_items = nav_menus.footer is defined and nav_menus.footer
-	? nav_menus.footer.get_items() | default([])
-	: []
--%}
-{%- set legal_items = nav_menus.legals is defined and nav_menus.legals
-	? nav_menus.legals.get_items() | default([])
-	: []
--%}
-
 <footer
 	role="contentinfo"
 	itemscope
 	itemtype="https://schema.org/WPFooter"
-	class="border-border border-t bg-elevated pt-18 pb-8 lg:pt-26"
+	class="border-zinc-200 border-t bg-zinc-50 pt-18 pb-8 lg:pt-26"
 >
 	<div class="container">
 		<div
-			class="border-border flex flex-col gap-10 border-b pb-12 lg:flex-row lg:items-start lg:gap-8 lg:pb-20"
+			class="border-zinc-200 flex flex-col gap-10 border-b pb-12 lg:flex-row lg:items-start lg:gap-8 lg:pb-20"
 		>
 			<div class="flex w-full flex-col gap-4 lg:w-90 lg:shrink-0">
 				<a href="{{ site.link }}" class="w-fit" aria-label="{{ site.name }}">
@@ -45,51 +29,51 @@
 					/>
 				</a>
 
-				{%- if tagline -%}
-					<p class="text-muted max-w-60 text-sm">
-						{{- tagline -}}
+				{%- if theme.footer.tagline -%}
+					<p class="text-zinc-500 max-w-60 text-sm">
+						{{- theme.footer.tagline -}}
 					</p>
 				{%- endif -%}
 
-				{%- if locations or email or phone -%}
-					<div class="label flex flex-col gap-1">
-						{%- if locations -%}
-							<p class="text-muted">
-								{{- locations -}}
+				{%- if theme.footer.locations or theme.contact.email or theme.contact.phone -%}
+					<div class="font-mono text-xs tracking-widest flex flex-col gap-1">
+						{%- if theme.footer.locations -%}
+							<p class="text-zinc-500">
+								{{- theme.footer.locations -}}
 							</p>
 						{%- endif -%}
-						{%- if email -%}
-							<a href="mailto:{{ email | e('html_attr') }}" class="text-accent hover:underline">
-								{{- email -}}
+						{%- if theme.contact.email -%}
+							<a href="mailto:{{ theme.contact.email | e('html_attr') }}" class="text-zinc-950 hover:underline">
+								{{- theme.contact.email -}}
 							</a>
 						{%- endif -%}
-						{%- if phone -%}
+						{%- if theme.contact.phone -%}
 							<a
-								href="tel:{{ phone
+								href="tel:{{ theme.contact.phone
 									| replace({
 										' ': '',
 										'.': '',
 										'-': ''
 									})
 									| e('html_attr') }}"
-								class="text-accent hover:underline"
+								class="text-zinc-950 hover:underline"
 							>
-								{{- phone -}}
+								{{- theme.contact.phone -}}
 							</a>
 						{%- endif -%}
 					</div>
 				{%- endif -%}
 			</div>
 
-			{%- if footer_items | length -%}
+			{%- if nav_menus.footer -%}
 				<nav
 					aria-label="{{ __('Footer navigation', 'wp-cinquante-et-un') }}"
 					class="grid grid-cols-2 gap-x-4 gap-y-10 lg:flex lg:min-w-0 lg:flex-1 lg:gap-8"
 				>
-					{%- for item in footer_items -%}
+					{%- for item in nav_menus.footer.get_items() -%}
 						<div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1">
 							{%- if item.children | length -%}
-								<p class="eyebrow text-subtle">
+								<p class="font-mono text-xs uppercase tracking-widest text-zinc-400">
 									{{- item.title -}}
 								</p>
 								<ul class="flex flex-col gap-3">
@@ -98,7 +82,7 @@
 											<a
 												href="{{ child.url }}"
 												itemprop="url"
-												class="text-muted hover:text-primary text-sm"
+												class="text-zinc-500 hover:text-zinc-950 text-sm"
 												{{
 												child.is_target_blank or child.is_external
 													? 'target="' ~ child.target ~ '" rel="noopener noreferrer"'
@@ -113,7 +97,7 @@
 								<a
 									href="{{ item.url }}"
 									itemprop="url"
-									class="text-muted hover:text-primary text-sm"
+									class="text-zinc-500 hover:text-zinc-950 text-sm"
 									{{
 									item.is_target_blank or item.is_external
 										? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
@@ -129,7 +113,7 @@
 		</div>
 
 		<div class="flex flex-col gap-y-3 pt-6 lg:flex-row lg:items-center lg:justify-between">
-			<p class="label text-subtle flex items-center gap-2">
+			<p class="font-mono text-xs tracking-widest text-zinc-400 flex items-center gap-2">
 				{{-
 					include(
 						'svg/use.html.twig',
@@ -144,14 +128,14 @@
 				</span>
 			</p>
 
-			{%- if legal_items | length -%}
-				<ul class="label text-subtle flex flex-wrap gap-5">
-					{%- for item in legal_items -%}
+			{%- if nav_menus.legals -%}
+				<ul class="font-mono text-xs tracking-widest text-zinc-400 flex flex-wrap gap-5">
+					{%- for item in nav_menus.legals.get_items() -%}
 						<li itemscope itemtype="https://schema.org/SiteNavigationElement">
 							<a
 								href="{{ item.url }}"
 								itemprop="url"
-								class="hover:text-primary"
+								class="hover:text-zinc-950"
 								{{
 								item.is_target_blank or item.is_external
 									? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'

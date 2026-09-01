@@ -1,2 +1,6 @@
 @import "./utilities/combobox.css";
 @import "./utilities/spinbutton.css";
+
+[id^="styleguide-"] {
+	scroll-margin-top: 5rem;
+}

@@ -9,16 +9,16 @@
 
 {%- set classes = ( [ 
     active ? 'is-active', 
-    'border [&.is-active]:bg-accent [&.is-active]:border-accent [&.is-active]:text-on-accent',
-    mode == 'dark' ? 'bg-primary/14 border-transparent' : 'border-primary', 
+    'border [&.is-active]:bg-zinc-950 [&.is-active]:border-zinc-950 [&.is-active]:text-white',
+    mode == 'dark' ? 'bg-zinc-950/14 border-transparent' : 'border-zinc-950', 
     '[backdrop-filter:blur(10px)]',
     'inline-flex items-center [text-box:trim-both cap alphabetic]',
     'px-2.5', 
     'py-2.25', 
     'lg:px-2.75', 
     'lg:py-[0.609375rem]',
-    'rounded-6', 
-    'cta', 
+    'rounded-md', 
+    'font-mono text-sm font-medium tracking-wide', 
     'border',
 ] | merge( classes | default( [] ) ) ) | join( ' ' ) -%}
 

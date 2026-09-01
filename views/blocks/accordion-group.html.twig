@@ -12,28 +12,28 @@
 	id="{{ block.id }}"
 	class="{{
 	html_classes(
-		'bg-elevated py-15 lg:py-20',
+		'bg-zinc-50 py-15 lg:py-20',
 		block.radius != 'none' ? 'relative z-5',
-		block.radius == 'top' ? 'rounded-t-25 lg:rounded-t-50 -mt-6.25 lg:-mt-12.5',
-		block.radius == 'bottom' ? 'rounded-b-25 lg:rounded-b-50 -mb-6.25 lg:-mb-12.5',
+		block.radius == 'top' ? 'rounded-t-3xl lg:rounded-t-4xl -mt-6.25 lg:-mt-12.5',
+		block.radius == 'bottom' ? 'rounded-b-3xl lg:rounded-b-4xl -mb-6.25 lg:-mb-12.5',
 		block.radius == 'y'
-			? 'rounded-t-25 rounded-b-25 lg:rounded-t-50 lg:rounded-b-50 -my-6.25 lg:-my-12.5'
+			? 'rounded-t-3xl rounded-b-3xl lg:rounded-t-4xl lg:rounded-b-4xl -my-6.25 lg:-my-12.5'
 	)
 	}}"
 >
 	<div class="container grid grid-cols-12 gap-x-5 gap-y-15">
 		<div class="col-span-full space-y-2.5 lg:col-span-5 lg:space-y-5">
-			<p class="eyebrow">
+			<p class="font-mono text-xs uppercase tracking-widest">
 				{{- block.content.overline -}}
 			</p>
-			<h2 class="title-md">{{- block.content.title -}}</h2>
+			<h2 class="text-xl font-medium tracking-tight">{{- block.content.title -}}</h2>
 			<p class="text-lg">
 				{{- block.content.contact.title -}}
 			</p>
 			<div class="flex items-center gap-5">
 				{%- if block.content.contact.image -%}
 					<div
-						class="border-primary size-22 shrink-0 overflow-hidden rounded-full border-[0.375rem]"
+						class="border-zinc-950 size-22 shrink-0 overflow-hidden rounded-full border-[0.375rem]"
 					>
 						{{-
 							include(
@@ -69,7 +69,7 @@
 				include(
 					'components/accordion-group.html.twig',
 					{
-						classes: ['bg-card rounded-20 px-3.5 py-7.5 lg:px-12.75 lg:py-9.25'],
+						classes: ['bg-white rounded-3xl px-3.5 py-7.5 lg:px-12.75 lg:py-9.25'],
 						accordions: block.accordions
 					}
 				)
