@@ -29,19 +29,19 @@
 
 		{%- block content -%}
 			<main id="content" role="main">
-				<div class="container space-y-5 pt-5 pb-20 lg:space-y-20 lg:pt-12.5">
-					<h1 class="text-4xl font-medium tracking-tight text-zinc-950 lg:text-6xl">
-						{{- post.title -}}
-					</h1>
-				</div>
+				<div class="container space-y-10 py-10 lg:py-20">
+					{%- if post.title -%}
+						<header class="space-y-3">
+							<h1 class="text-4xl font-medium tracking-tight lg:text-6xl">{{- post.title -}}</h1>
+						</header>
+					{%- endif -%}
 
-				{%- if post.content -%}
-					<div class="container grid grid-cols-12 gap-5 pt-26.25 pb-20 lg:pt-32.5">
-						<div class="wysiwyg col-span-full lg:col-span-6 lg:col-start-4">
+					{%- if post.post_content -%}
+						<div class="wysiwyg max-w-prose">
 							{{- post.content -}}
 						</div>
-					</div>
-				{%- endif -%}
+					{%- endif -%}
+				</div>
 
 				{{-
 					include(

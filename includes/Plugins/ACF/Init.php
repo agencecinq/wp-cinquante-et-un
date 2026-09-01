@@ -44,16 +44,6 @@ class Init implements Service {
 
 		acf_add_options_page(
 			array(
-				'page_title'  => __( 'Archive', 'wp-cinquante-et-un' ),
-				'menu_slug'   => 'archive-post',
-				'parent_slug' => 'edit.php',
-				'position'    => '',
-				'redirect'    => false,
-			)
-		);
-
-		acf_add_options_page(
-			array(
 				'page_title'  => __( 'Theme', 'wp-cinquante-et-un' ),
 				'menu_slug'   => 'options-theme',
 				'parent_slug' => 'options-general.php',

@@ -51,11 +51,9 @@ class Init {
 			Plugins\ACF\Init::class,
 			Plugins\ACF\SavePost::class,
 			Plugins\ACF\FormatValue::class,
-			Plugins\ACF\IncludeFields\ArchivePostsFields::class,
 			Plugins\ACF\IncludeFields\BlocksFields::class,
 			Plugins\ACF\IncludeFields\ClonesFields::class,
 			Plugins\ACF\IncludeFields\ThemeFields::class,
-			Plugins\ACF\IncludeFields\PostFields::class,
 		);
 	}
 

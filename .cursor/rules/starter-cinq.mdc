@@ -11,7 +11,7 @@ Quand l'utilisateur démarre un nouveau projet, applique la règle `init-nouveau
 
 ## Stack
 
-- **Templating** : Timber 2 + Twig. Les `*.php` à la racine (`front-page.php`, `home.php`, `page.php`, `single-post.php`, `category.php`, etc.) sont des routeurs WordPress qui chargent un contexte Timber et rendent un template de `views/pages/`. La présentation vit dans les `.twig`, pas dans le PHP.
+- **Templating** : Timber 2 + Twig. Routeurs racine : `index.php` (tout ce qui n’a pas de template plus spécifique) et `404.php`. Pas de `page.php`, `front-page.php`, `home.php`, `single-post.php` ni `category.php`. Le seul template de page WP du starter est **Styleguide**. La présentation vit dans les `.twig`. Un journal ou un single dédié s’ajoute sur le projet.
 - **Build** : Vite (`pnpm dev` / `pnpm build`), plugin `laravel-vite-plugin`. Entrées site : `src/stylesheets/styles.css` et `src/scripts/app.js`. Entrées catalogue (template Styleguide seulement) : `src/stylesheets/styleguide.css` et `src/scripts/styleguide.ts`. Sortie dans `dist/` (gitignored).
 - **CSS** : Tailwind CSS v4, configuré en CSS pur (pas de `tailwind.config.js`). Couleurs, typo et radius : classes Tailwind (`bg-white`, `text-4xl`, `rounded-2xl`). Tokens custom uniquement si besoin, dans `@theme` de `src/stylesheets/theme.css`. Pas de police custom : stacks Tailwind / navigateur. Pour une Google Font, voir l'exemple dans `Enqueue::enqueue_styles()`.
 - **JS** : TypeScript. Composants dans `src/scripts/components/*.ts`, montés via `piecesjs`. L'objet global `cinq` (données du thème : `text_domain`, `ajax_url`, `nonce`, etc.) est injecté côté PHP dans `includes/Setup/Enqueue.php` et typé dans `src/scripts/.d.ts`. Libs courantes : GSAP, Splide, `@agencecinq/utils`, et les Web Components [agencecinq/ui](https://agencecinq.github.io/ui/) (drawer, modal, tabs, accordion, switch, …). Le catalogue les démontre sur le template **Styleguide**. Toujours suivre le markup de [la doc officielle](https://agencecinq.github.io/ui/), pas seulement le README npm.
@@ -29,8 +29,8 @@ includes/
   Setup/            Bootstrap (Context, Enqueue, Twig, hooks core WP)
   Post/  Taxonomy/  CPT et taxonomies
   Plugins/ACF/      Définition des champs et des blocs (IncludeFields/Layouts)
-  Models/           Modèles Timber par contexte (Home, Page, SinglePost...)
-  Traits/ Template/ Helpers transverses
+  Models/           Modèles Timber (StyleguidePage)
+  Template/         Helpers transverses
 src/stylesheets/    CSS source (theme.css = tokens @theme, styles.css = imports)
 src/scripts/        TypeScript (components/*.ts montés via piecesjs)
 src/icons/          SVG source -> compilés dans public/sprite.svg
@@ -38,13 +38,13 @@ src/img/  src/fonts/ Images statiques et polices
 views/              Twig (pages/, blocks/, components/, svg/)
 languages/          Traductions liées au text domain
 acf-json/           Sync JSON ACF (si présent)
-page-templates/     Templates de page WP (Blocks optionnel, Styleguide)
-*.php (racine)      Routeurs WordPress -> Timber::render(...)
+page-templates/     Templates de page WP (Styleguide)
+*.php (racine)      index.php, 404.php
 ```
 
 ## Noyau de blocs ACF
 
-Le starter n'est pas une bibliothèque de pages marketing. `page.php` et `front-page.php` rendent `views/pages/blocks-page.html.twig`. Le template de page **Blocks** reste un alias pour les pages déjà assignées.
+Le starter n'est pas une bibliothèque de pages marketing. `index.php` rend toujours `index.html.twig` (layouts ACF). Pas de template de page **Blocks** : le défaut, c'est déjà les blocs.
 
 Le starter ne livre que des **primitives**. Une composition de page (équipe, process, push, etc.) s'ajoute sur le projet, et ne rejoint le starter que si elle a été généralisée (voir `remontee-vers-starter`).
 
@@ -65,7 +65,7 @@ Nouveau bloc : trio layout (`IncludeFields/Layouts/`) + Twig (`views/blocks/`) +
 - Nouvelle classe PHP : respecter PSR-4 et le rangement par fichier de core WP, et reprendre le docblock d'en-tête existant (`@package`, `@author CINQ <contact@agencecinq.com> (https://agencecinq.com)`). Faire passer phpcs.
 - Nouveau bloc ACF : créer le layout dans `includes/Plugins/ACF/IncludeFields/Layouts/`, le template Twig correspondant dans `views/blocks/`, et le cas échéant le composant TS dans `src/scripts/components/`. L’ajouter au catalogue `views/pages/styleguide-page.html.twig` (données dans `Models/StyleguidePage.php`).
 - Nouveau token de design (couleur, typo, radius) : seulement si l’échelle Tailwind ne suffit pas. Le déclarer dans `@theme` de `src/stylesheets/theme.css`, jamais en dur dans les classes utilitaires. Suffixe du token **en anglais** (voir `design-tokens`). L'ajouter au catalogue `views/components/styleguide.html.twig` (page template `styleguide-page`).
-- Nouveau template de page : le suffixer `-page` (`page-templates/<nom>-page.php` + `views/pages/<nom>-page.html.twig`). Le styleguide est `styleguide-page`. Les pages de contenu passent par `page.php` (blocs), pas par un template dédié.
+- Nouveau template de page : le suffixer `-page` (`page-templates/<nom>-page.php` + `views/pages/<nom>-page.html.twig`). Le styleguide est `styleguide-page`. Les pages de contenu passent par `index.php` (blocs), pas par un template dédié. Ne pas ajouter de routeur racine (`page.php`, `single-post.php`, …) tant que `index.php` suffit.
 - Nouvelle icône : ajouter le SVG dans `src/icons/`, puis `pnpm build` pour régénérer `public/sprite.svg`. L'utiliser via `views/svg/use.html.twig`. L'ajouter à la liste du catalogue styleguide.
 - Images responsive : composant `views/components/image.html.twig` (srcset, WebP, lazy). Images statiques : `assets('src/img/...')`.
 - Cache Twig : activé dès que `WP_DEBUG` est à false (défaut d'une install WordPress / Local fraîche). En `local` / `development`, une notice admin le rappelle. En prod, vider `vendor/timber/timber/cache/*` après une modif de `.twig`.
@@ -101,6 +101,8 @@ DO :
 DONT :
 
 - Pas de logique métier dans les `*.php` racine.
+- Pas de `page.php` / `front-page.php` / `home.php` / `single-post.php` / `category.php` dans le starter : `index.php` rend `index.html.twig`.
+- Pas de template de page Blocks : les pages de contenu passent par `index.php`.
 - Pas de valeurs de design en dur dans les classes utilitaires.
 - Pas de `{%- if items -%}` autour d'un `{% include %}` quand le composant peut tester ses props lui-même (voir `twig-components`).
 - Pas de backgrounds décoratifs preset (dégradés, fills de section) dans les templates du starter.

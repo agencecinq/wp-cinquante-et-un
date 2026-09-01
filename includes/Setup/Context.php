@@ -11,7 +11,7 @@ namespace WPCinquanteEtUn\Setup;
 
 use WPCinquanteEtUn\Service;
 use Timber\{Timber, Site };
-use WPCinquanteEtUn\Models\{ CategoryArchive, Home, SinglePost, StyleguidePage };
+use WPCinquanteEtUn\Models\StyleguidePage;
 
 /**
  * Context
@@ -32,7 +32,6 @@ class Context extends Site implements Service {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_filter( 'timber/context', array( $this, 'add_menus_to_context' ) );
 		add_filter( 'timber/post/classmap', array( $this, 'add_post_classmap' ) );
-		add_filter( 'timber/term/classmap', array( $this, 'add_term_classmap' ) );
 	}
 
 
@@ -105,37 +104,12 @@ class Context extends Site implements Service {
 	public function add_post_classmap( array $classmap ): array {
 		$custom_classmap = array(
 			'page' => function ( \WP_Post $post ) {
-				if ( is_home() ) {
-					return Home::class;
-				}
-
 				if ( 'page-templates/styleguide-page.php' === get_page_template_slug( $post ) ) {
 					return StyleguidePage::class;
 				}
 
 				return null;
 			},
-			'post' => SinglePost::class,
-		);
-
-		return array_merge( $classmap, $custom_classmap );
-	}
-
-
-	/**
-	 * Add term classmap
-	 *
-	 * Add custom term classmap.
-	 *
-	 * @param array $classmap Classmap.
-	 *
-	 * @see https://timber.github.io/docs/v2/guides/class-maps/#the-term-class-map
-	 *
-	 * @return array
-	 */
-	public function add_term_classmap( array $classmap ): array {
-		$custom_classmap = array(
-			'category' => CategoryArchive::class,
 		);
 
 		return array_merge( $classmap, $custom_classmap );

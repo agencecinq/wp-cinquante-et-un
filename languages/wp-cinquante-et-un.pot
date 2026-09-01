@@ -1696,12 +1696,8 @@ msgstr ""
 msgid "Enter the YouTube URL here."
 msgstr ""
 
-#: includes/Template/PostStates.php:48
-msgid "Blocks Page"
-msgstr ""
-
 #. Template Name of the theme
-#: includes/Template/PostStates.php:52
+#: includes/Template/PostStates.php:48
 msgid "Styleguide"
 msgstr ""
 

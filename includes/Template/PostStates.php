@@ -44,10 +44,6 @@ class PostStates implements Service {
 
 		$template = get_post_meta( $post->ID, '_wp_page_template', true );
 
-		if ( 'page-templates/blocks-page.php' === $template ) {
-			$post_states[] = __( 'Blocks Page', 'wp-cinquante-et-un' );
-		}
-
 		if ( 'page-templates/styleguide-page.php' === $template ) {
 			$post_states[] = __( 'Styleguide', 'wp-cinquante-et-un' );
 		}
