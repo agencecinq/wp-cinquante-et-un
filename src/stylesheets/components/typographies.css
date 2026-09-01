@@ -1,59 +1,53 @@
 @layer components {
-	.h0 {
-		@apply font-heading text-h0-mobile lg:text-h0-desktop;
+	.title-3xl {
+		@apply text-title-3xl-mobile lg:text-title-3xl-desktop;
 	}
 
-	.h1 {
-		@apply font-heading text-h1-mobile lg:text-h1-desktop;
+	.title-xxl {
+		@apply text-title-xxl-mobile lg:text-title-xxl-desktop;
 	}
 
-	.h2 {
-		@apply font-heading text-h2-mobile lg:text-h2-desktop;
+	.title-xl {
+		@apply text-title-xl-mobile lg:text-title-xl-desktop;
 	}
 
-	.h3 {
-		@apply font-heading text-h3-mobile lg:text-h3-desktop;
+	.title-lg {
+		@apply text-title-lg-mobile lg:text-title-lg-desktop;
 	}
 
-	.h4 {
-		@apply font-heading text-h4-mobile lg:text-h4-desktop;
+	.title-md {
+		@apply text-title-md;
 	}
 
-	.h5 {
-		@apply font-heading text-h5-mobile lg:text-h5-desktop;
+	.text-xl {
+		@apply text-xl-mobile lg:text-xl-desktop;
 	}
 
-	.h-on-title {
-		@apply text-on-title-mobile lg:text-on-title-desktop;
+	.text-lg {
+		@apply text-lg-mobile lg:text-lg-desktop;
 	}
 
-	.text-l {
-		@apply text-body-large-mobile lg:text-body-large-desktop;
-
-		letter-spacing: -0.01em;/* Body/Large */
+	.text-sm {
+		@apply text-sm-mobile lg:text-sm-desktop;
 	}
 
-	.text-m {
-		@apply text-body-medium-mobile lg:text-body-medium-desktop;
+	.text-xs {
+		@apply text-xs-mobile lg:text-xs-desktop;
 	}
 
-	.text-s {
-		@apply text-body-small-mobile lg:text-body-small-desktop;
+	.eyebrow {
+		@apply font-mono text-eyebrow uppercase;
 	}
 
-	.text-mention {
-		@apply text-mention-large;
+	.label {
+		@apply font-mono text-label;
 	}
 
-	.text-button-m {
-		@apply text-button-medium-mobile lg:text-button-medium-desktop;
+	.cta {
+		@apply font-mono text-cta;
 	}
 
-	.text-button-s {
-		@apply text-button-small-desktop;
-	}
-
-	.text-button-xs {
-		@apply text-button-very-small-desktop;
+	.badge {
+		@apply font-mono text-badge uppercase;
 	}
 }

@@ -1,67 +1,57 @@
-{#  
+{#
  # Components: Accordion Group
  #
- # @param classes (array) - The classes to apply to the accordion group.
+ # FAQ-style accordion (CINQ Design System). First item open by default.
+ #
+ # @param classes (array) - The classes to apply to the accordion.
  # @param accordions (array) - The accordions to display.
  #
  # @example
- # {{- include('components/accordion-group.html.twig', { classes: [ 'bg-off-white rounded-20 px-3.5 py-7.5 lg:px-12.75 lg:py-9.25' ], accordions: block.content.accordions }) -}}
+ # {{- include('components/accordion-group.html.twig', { classes: [ 'bg-card rounded-20 px-3.5 py-7.5 lg:px-12.75 lg:py-9.25' ], accordions: block.content.accordions }) -}}
  #}
 
-{% if (accordions|length) > 1 %}
-	<cinq-accordion-group
+{%- if accordions | length > 1 -%}
+	<cinq-accordion
 		class="{{
 		html_classes(
-			classes|default([])|join(' '),
-			'divide-blue/25 block space-y-3.75 divide-y lg:space-y-6.25'
+			classes | default([]) | join(' '),
+			'divide-border-subtle block divide-y'
 		)
 		}}"
+		data-hash="false"
 	>
 		{%- for accordion in accordions -%}
-			{% set id = (accordion.header|sanitize) ~ '-' ~ loop.index0 %}
+			{%- set id = (accordion.header | sanitize) ~ '-' ~ loop.index0 -%}
+			{%- set is_open = loop.first -%}
 			<div
-				data-accordion-open="false"
-				data-accordion-deselect="true"
-				class="js-accordion-panel pb-3.75 last:pb-0 lg:pb-6.25"
+				class="py-6 data-[open=true]:flex data-[open=true]:flex-col data-[open=true]:gap-4"
+				data-panel
+				data-open="{{ is_open ? 'true' : 'false' }}"
+				data-deselect="true"
 			>
 				<button
 					type="button"
-					class="js-accordion-header group text-m flex w-full items-center justify-between gap-2.5 text-left"
-					aria-expanded="false"
+					class="title-md flex w-full items-center justify-between gap-6 text-left in-data-[open=true]:text-accent"
+					data-header
+					id="{{ id }}-header"
+					aria-expanded="{{ is_open ? 'true' : 'false' }}"
 					aria-controls="{{ id }}-body"
-					id="{{ id }}-{{ loop.index }}-header"
 				>
-					{{- accordion.header -}}
-
-					<span
-						class="text-blue bg-green flex size-6.25 shrink-0 items-center justify-center rounded-full"
-					>
-						{{-
-							include(
-								'svg/use.html.twig',
-								{
-									classes: [
-										'size-6.25 block group-aria-expanded:rotate-180 transition-transform duration-300 ease-out'
-									],
-									icon: 'chevron-down'
-								},
-								with_context: false
-							)
-						-}}
-					</span>
+					<span class="min-w-0 flex-1">{{- accordion.header -}}</span>
+					<span class="title-md shrink-0 text-subtle in-data-[open=true]:hidden" aria-hidden="true">+</span>
+					<span class="title-md hidden shrink-0 in-data-[open=true]:inline" aria-hidden="true">−</span>
 				</button>
-
 				<div
-					class="text-button-m transition-[max-height] duration-300 ease-out"
 					id="{{ id }}-body"
 					role="region"
 					aria-labelledby="{{ id }}-header"
+					{{ is_open ? '' : 'hidden' }}
 				>
-					<div class="js-accordion-inner text-s space-y-3 pt-2.5">
+					<div class="text-sm text-muted" data-inner>
 						{{ accordion.content }}
 					</div>
 				</div>
 			</div>
 		{%- endfor -%}
-	</cinq-accordion-group>
-{% endif %}
+	</cinq-accordion>
+{%- endif -%}

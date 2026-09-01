@@ -17,7 +17,9 @@ export default defineConfig({
 			publicDirectory: "dist",
 			input: [
 				"src/stylesheets/styles.css",
+				"src/stylesheets/styleguide.css",
 				"src/scripts/app.js",
+				"src/scripts/styleguide.ts",
 				"src/img/svg/logo.svg",
 			],
 			refresh: ["**/*.php", "**/*.twig"],

@@ -1,0 +1,35 @@
+{#
+ # Styleguide page
+ #
+ # Assign the "Styleguide" page template in WordPress. No ACF blocks required.
+ #
+ # @package WPCinquanteEtUn
+ # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
+ #}
+
+{% extends 'index.html.twig' %}
+
+{%- block content -%}
+	<main id="content" role="main">
+		<div class="container space-y-20 py-10 lg:space-y-30 lg:py-20">
+			<header class="space-y-3">
+				<p class="eyebrow">
+					{{- __('Foundations', 'wp-cinquante-et-un') -}}
+				</p>
+				<h1 class="title-xl">
+					{{- post.title | default(__('Styleguide', 'wp-cinquante-et-un')) -}}
+				</h1>
+				<p class="text-muted max-w-prose text-lg">
+					{{-
+						__(
+							'Tokens and components shipped with the starter. Assign this page template; the catalog is rendered from Twig, not from ACF.',
+							'wp-cinquante-et-un'
+						)
+					-}}
+				</p>
+			</header>
+
+			{{- include('components/styleguide.html.twig') -}}
+		</div>
+	</main>
+{%- endblock -%}

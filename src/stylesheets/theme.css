@@ -1,130 +1,139 @@
 @theme {
-	--default-font-family: "Atkinson Hyperlegible", sans-serif;
-	--font-heading: "Shantell Sans", sans-serif;
-
 	/* Colors */
 	/* This line resets all color variables */
 	--color-*: initial;
 
-	/* Colors primary */
 	--color-black: #000000;
 	--color-white: #ffffff;
 
-	--color-blue: #1A2C4C;
-	--color-green: #98FFA5;
-	--color-off-white: #F7F7F6;
-	--color-red: #FF0000;
+	/* Backgrounds — CINQ Design System (dark, four blacks) */
+	--color-page: #08090a;
+	--color-elevated: #0d0f0e;
+	--color-card: #141614;
+	--color-card-hover: #1c201c;
 
-	/* Typographies */
+	/* Texts */
+	--color-primary: #f1f0ea;
+	--color-muted: #9a988d;
+	--color-subtle: #7e7c71;
+	--color-on-accent: #0a0c0a;
+
+	/* Accent & borders */
+	--color-accent: #b3fca4;
+	--color-accent-hover: #c7ffbb;
+	--color-accent-soft: rgb(179 252 164 / 14%);
+	--color-border: rgb(241 240 234 / 11%);
+	--color-border-subtle: rgb(241 240 234 / 6%);
+
+	/* Typographies — CINQ Design System (desktop ≥ 1024px / mobile) */
 	/* This line resets all typography variables */
 	--text-*: initial;
 
-	/* In Twig the class will be available as `text-h1` */
-	/* Example of how to setup a typography variable */
-	/* Next in utilities typographies.css you can create a utility class to combine mobile and desktop variables */
-	--text-h0-desktop: 7.5rem;
-	--text-h0-desktop--font-weight: 600;
-	--text-h0-desktop--line-height: 1;
+	/* Composite classes live in components/typographies.css */
 
-	--text-h0-mobile: 3.4375rem;
-	--text-h0-mobile--font-weight: 600;
-	--text-h0-mobile--line-height: calc(60 / 55);
+	/* Titles · Medium */
+	--text-title-3xl-desktop: 6rem;
+	--text-title-3xl-desktop--font-weight: 500;
+	--text-title-3xl-desktop--line-height: 0.96;
+	--text-title-3xl-desktop--letter-spacing: -0.04em;
 
-	--text-h1-desktop: 4.6875rem;
-	--text-h1-desktop--font-weight: 600;
-	--text-h1-desktop--line-height: calc(85 / 75);
+	--text-title-3xl-mobile: 3rem;
+	--text-title-3xl-mobile--font-weight: 500;
+	--text-title-3xl-mobile--line-height: 0.98;
+	--text-title-3xl-mobile--letter-spacing: -0.04em;
 
-	--text-h1-mobile: 2.5rem;
-	--text-h1-mobile--font-weight: 600;
-	--text-h1-mobile--line-height: 1.25;
+	--text-title-xxl-desktop: 4.75rem;
+	--text-title-xxl-desktop--font-weight: 500;
+	--text-title-xxl-desktop--line-height: 1;
+	--text-title-xxl-desktop--letter-spacing: -0.035em;
 
-	/*  */
-	--text-h2-desktop: 3.75rem;
-	--text-h2-desktop--font-weight: 500;
-	--text-h2-desktop--line-height: calc(70 / 60);
+	--text-title-xxl-mobile: 2.375rem;
+	--text-title-xxl-mobile--font-weight: 500;
+	--text-title-xxl-mobile--line-height: 1;
+	--text-title-xxl-mobile--letter-spacing: -0.035em;
 
-	--text-h2-mobile: 2.125rem;
-	--text-h2-mobile--font-weight: 500;
-	--text-h2-mobile--line-height: calc(44 / 34);
+	--text-title-xl-desktop: 3.5rem;
+	--text-title-xl-desktop--font-weight: 500;
+	--text-title-xl-desktop--line-height: 1.05;
+	--text-title-xl-desktop--letter-spacing: -0.02em;
 
-	--text-h3-desktop: 2.8125rem;
-	--text-h3-desktop--font-weight: 600;
-	--text-h3-desktop--line-height: calc(55 / 45);
+	--text-title-xl-mobile: 2.125rem;
+	--text-title-xl-mobile--font-weight: 500;
+	--text-title-xl-mobile--line-height: 1.05;
+	--text-title-xl-mobile--letter-spacing: -0.02em;
 
-	--text-h3-mobile: 1.625rem;
-	--text-h3-mobile--font-weight: 600;
-	--text-h3-mobile--line-height: calc(36 / 26);
+	--text-title-lg-desktop: 2rem;
+	--text-title-lg-desktop--font-weight: 500;
+	--text-title-lg-desktop--line-height: 1.15;
+	--text-title-lg-desktop--letter-spacing: -0.015em;
 
-	--text-h4-desktop: 1.75rem;
-	--text-h4-desktop--font-weight: 600;
-	--text-h4-desktop--line-height: calc(38 / 28);
+	--text-title-lg-mobile: 1.625rem;
+	--text-title-lg-mobile--font-weight: 500;
+	--text-title-lg-mobile--line-height: 1.15;
+	--text-title-lg-mobile--letter-spacing: -0.015em;
 
-	--text-h4-mobile: 1.375rem;
-	--text-h4-mobile--font-weight: 600;
-	--text-h4-mobile--line-height: calc(32 / 22);
+	--text-title-md: 1.25rem;
+	--text-title-md--font-weight: 500;
+	--text-title-md--line-height: 1.15;
+	--text-title-md--letter-spacing: -0.01em;
 
-	--text-h5-desktop: 1.625rem;
-	--text-h5-desktop--font-weight: 400;
-	--text-h5-desktop--line-height: calc(38 / 26);
+	/* Text · Regular */
+	--text-xl-desktop: 1.375rem;
+	--text-xl-desktop--font-weight: 400;
+	--text-xl-desktop--line-height: 1.55;
 
-	--text-h5-mobile: 1.25rem;
-	--text-h5-mobile--font-weight: 400;
-	--text-h5-mobile--line-height: calc(28 / 20);
+	--text-xl-mobile: 1.125rem;
+	--text-xl-mobile--font-weight: 400;
+	--text-xl-mobile--line-height: 1.55;
 
-	--text-on-title-desktop: 1rem;
-	--text-on-title-desktop--font-weight: 500;
-	--text-on-title-desktop--line-height: 1.625;
+	--text-lg-desktop: 1.1875rem;
+	--text-lg-desktop--font-weight: 400;
+	--text-lg-desktop--line-height: 1.6;
 
-	--text-on-title-mobile: 0.875rem;
-	--text-on-title-mobile--font-weight: 500;
-	--text-on-title-mobile--line-height: calc(24 / 14);
+	--text-lg-mobile: 1.0625rem;
+	--text-lg-mobile--font-weight: 400;
+	--text-lg-mobile--line-height: 1.6;
 
-	/*  */
-	--text-body-large-desktop: 1.25rem;
-	--text-body-large-desktop--font-weight: 500;
-	--text-body-large-desktop--line-height: 1.5;
+	--text-base: 1rem;
+	--text-base--font-weight: 400;
+	--text-base--line-height: 1.6;
 
-	--text-body-large-mobile: 1rem;
-	--text-body-large-mobile--font-weight: 500;
-	--text-body-large-mobile--line-height: 1.5;
+	--text-sm-desktop: 0.9375rem;
+	--text-sm-desktop--font-weight: 400;
+	--text-sm-desktop--line-height: 1.55;
 
-	--text-body-medium-desktop: 1rem;
-	--text-body-medium-desktop--font-weight: 700;
-	--text-body-medium-desktop--line-height: 1.5;
+	--text-sm-mobile: 0.875rem;
+	--text-sm-mobile--font-weight: 400;
+	--text-sm-mobile--line-height: 1.55;
 
-	--text-body-medium-mobile: 0.875rem;
-	--text-body-medium-mobile--font-weight: 700;
-	--text-body-medium-mobile--line-height: calc(22 / 14);
+	--text-xs-desktop: 0.875rem;
+	--text-xs-desktop--font-weight: 400;
+	--text-xs-desktop--line-height: 1.5;
 
-	--text-body-small-desktop: 1rem;
-	--text-body-small-desktop--font-weight: 500;
-	--text-body-small-desktop--line-height: 1.5;
+	--text-xs-mobile: 0.8125rem;
+	--text-xs-mobile--font-weight: 400;
+	--text-xs-mobile--line-height: 1.5;
 
-	--text-body-small-mobile: 0.875rem;
-	--text-body-small-mobile--font-weight: 500;
-	--text-body-small-mobile--line-height: calc(22 / 14);
+	/* Meta · monospace (same on mobile and desktop) */
+	--text-eyebrow: 0.6875rem;
+	--text-eyebrow--font-weight: 400;
+	--text-eyebrow--line-height: 1.6;
+	--text-eyebrow--letter-spacing: 0.18em;
 
-	--text-button-medium-desktop: 0.9375rem;
-	--text-button-medium-desktop--font-weight: 600;
-	--text-button-medium-desktop--line-height: calc(20/15);
+	--text-label: 0.75rem;
+	--text-label--font-weight: 400;
+	--text-label--line-height: 1.6;
+	--text-label--letter-spacing: 0.1em;
 
-	--text-button-medium-mobile: 0.875rem;
-	--text-button-medium-mobile--font-weight: 600;
-	--text-button-medium-mobile--line-height: calc(20 / 14);
+	--text-cta: 0.8125rem;
+	--text-cta--font-weight: 500;
+	--text-cta--line-height: 1.6;
+	--text-cta--letter-spacing: 0.02em;
 
-	--text-button-small-desktop: 0.8125rem;
-	--text-button-small-desktop--font-weight: 600;
-	--text-button-small-desktop--line-height: calc(18 / 13);
-
-	--text-button-very-small-desktop: 0.75rem;
-	--text-button-very-small-desktop--font-weight: 600;
-	--text-button-very-small-desktop--line-height: calc(18 / 12);
-
-	--text-mention-large: 0.75rem;
-	--text-mention-large--font-weight: 500;
-	--text-mention-large--line-height: 1.5;
-
-	--animate-marquee: marquee 20s linear infinite;
+	--text-badge: 0.625rem;
+	--text-badge--font-weight: 400;
+	--text-badge--line-height: 1.6;
+	--text-badge--letter-spacing: 0.1em;
 
 	--radius-*: initial;
 
@@ -136,13 +145,4 @@
 	--radius-25: --spacing(6.25);
 	--radius-35: --spacing(8.75);
 	--radius-50: --spacing(12.5);
-
-	@keyframes marquee {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
-	}
 }

@@ -1,0 +1,22 @@
+---
+description: Styler les composants en Tailwind dans les Twig. Feuilles CSS de composants limitées à typo, boutons, WYSIWYG et CF7.
+globs: views/**/*.twig,src/stylesheets/**/*.css
+alwaysApply: false
+---
+
+# Tailwind dans les Twig
+
+Header, footer, blocs et composants UI se stylent avec des classes Tailwind dans le `.twig`, pas avec une feuille BEM + `@apply` dédiée.
+
+## Exception figée (`src/stylesheets/components/`)
+
+Ces quatre fichiers sont autorisés. Ne pas en ajouter d'autres.
+
+| Fichier | Pourquoi |
+|---|---|
+| `typographies.css` | Classes composites du Design System (`.title-*`, `.text-*`, `.eyebrow` / `.label` / `.cta` / `.badge`) |
+| `button.css` | Matrice de variants × modes (primary/secondary/… × light/dark × icon × disabled) trop dense pour le Twig |
+| `wysiwyg.css` | Markup de contenu éditorial, pas un composant que l'on contrôle |
+| `wpcf7.css` | Markup Contact Form 7, pas un composant que l'on contrôle |
+
+Pour un nouveau composant (tease, drawer, chip, bloc) : classes Tailwind dans le Twig. Si un style n'est pas exprimable en utilitaires (ex. CSS Anchor Positioning), le mettre dans `src/stylesheets/utilities/`.

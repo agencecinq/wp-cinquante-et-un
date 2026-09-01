@@ -39,7 +39,17 @@ class Enqueue implements Service {
 	/**
 	 * Enqueue styles.
 	 *
-	 * Enqueue stylesheets.
+	 * The starter uses Tailwind / browser font stacks. To add a Google Font on a
+	 * project, register it and pass the handle in $deps, then set
+	 * --default-font-family in theme.css to the same family:
+	 *
+	 *     wp_register_style(
+	 *         'google-fonts',
+	 *         'https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,400&display=swap',
+	 *         array(),
+	 *         null
+	 *     );
+	 *     $deps[] = 'google-fonts';
 	 *
 	 * @access public
 	 * @return void
@@ -47,21 +57,19 @@ class Enqueue implements Service {
 	public function enqueue_styles(): void {
 		$deps = array();
 
-		// Google Fonts: body (Atkinson Hyperlegible) + headings (Shantell Sans).
-		wp_register_style(
-			'google-fonts',
-			'//fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap',
-			array(),
-			null
-		);
-		$deps[] = 'google-fonts';
-
-		// register theme-style-css.
 		$filename = Vite::asset( 'src/stylesheets/styles.css' );
 
-		// enqueue theme-style-css into our head.
 		wp_enqueue_style( get_theme_text_domain() . '-main', $filename, $deps, null );
 		wp_enqueue_style( get_theme_text_domain() . '-style', get_stylesheet_uri(), array( get_theme_text_domain() . '-main' ), null );
+
+		if ( is_page_template( 'page-templates/styleguide-page.php' ) ) {
+			wp_enqueue_style(
+				get_theme_text_domain() . '-styleguide',
+				Vite::asset( 'src/stylesheets/styleguide.css' ),
+				array( get_theme_text_domain() . '-main' ),
+				null
+			);
+		}
 	}
 
 
@@ -132,6 +140,16 @@ class Enqueue implements Service {
 
 		wp_enqueue_script( get_theme_text_domain() . '-feature' );
 		wp_enqueue_script_module( get_theme_text_domain() . '-main' );
+
+		if ( is_page_template( 'page-templates/styleguide-page.php' ) ) {
+			wp_register_script_module(
+				get_theme_text_domain() . '-styleguide',
+				Vite::asset( 'src/scripts/styleguide.ts' ),
+				array(),
+				null
+			);
+			wp_enqueue_script_module( get_theme_text_domain() . '-styleguide' );
+		}
 	}
 
 

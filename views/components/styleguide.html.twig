@@ -1,0 +1,1046 @@
+{#
+ # Styleguide catalog: colors, type, radius, buttons, chips, icons, CINQ UI.
+ #}
+
+{%- set color_groups = [
+	{
+		title: __('Backgrounds', 'wp-cinquante-et-un'),
+		colors: [
+			{ name: 'page', class: 'bg-page', token: '--color-page' },
+			{ name: 'elevated', class: 'bg-elevated', token: '--color-elevated' },
+			{ name: 'card', class: 'bg-card', token: '--color-card' },
+			{ name: 'card-hover', class: 'bg-card-hover', token: '--color-card-hover' }
+		]
+	},
+	{
+		title: __('Texts', 'wp-cinquante-et-un'),
+		colors: [
+			{ name: 'primary', class: 'bg-primary', token: '--color-primary' },
+			{ name: 'muted', class: 'bg-muted', token: '--color-muted' },
+			{ name: 'subtle', class: 'bg-subtle', token: '--color-subtle' },
+			{ name: 'on-accent', class: 'bg-on-accent', token: '--color-on-accent' }
+		]
+	},
+	{
+		title: __('Accent & borders', 'wp-cinquante-et-un'),
+		colors: [
+			{ name: 'accent', class: 'bg-accent', token: '--color-accent' },
+			{ name: 'accent-hover', class: 'bg-accent-hover', token: '--color-accent-hover' },
+			{ name: 'accent-soft', class: 'bg-accent-soft', token: '--color-accent-soft' },
+			{ name: 'border', class: 'bg-border', token: '--color-border' },
+			{ name: 'border-subtle', class: 'bg-border-subtle', token: '--color-border-subtle' }
+		]
+	}
+] -%}
+
+{%- set titles = [
+	{
+		class: 'title-3xl',
+		sample: __('A site that grows with you.', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'title-xxl',
+		sample: __('Five commitments. None negotiable.', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'title-xl',
+		sample: __('Three ways to grow your site.', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'title-lg',
+		sample: __('Maintenance and evolutions', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'title-md',
+		sample: __('Shopify storefront', 'wp-cinquante-et-un')
+	}
+] -%}
+
+{%- set texts = [
+	{
+		class: 'text-xl',
+		sample: __('Your site is not an expense to write off every three years.', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'text-lg',
+		sample: __(
+			'It is an asset you build to last, and you evolve it with the company.',
+			'wp-cinquante-et-un'
+		)
+	},
+	{
+		class: 'text-base',
+		sample: __('Dedicated theme, D2C and B2B, CRM connected from day one.', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'text-sm',
+		sample: __('Fast, maintainable WordPress brochure and editorial sites.', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'text-xs',
+		sample: __('Paris, Tours, Marseille', 'wp-cinquante-et-un')
+	}
+] -%}
+
+{%- set metas = [
+	{
+		class: 'eyebrow',
+		sample: __('What we do', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'label',
+		sample: __('01/03 - Work', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'cta',
+		sample: __('Talk about your project', 'wp-cinquante-et-un')
+	},
+	{
+		class: 'badge',
+		sample: __('Tier 2', 'wp-cinquante-et-un')
+	}
+] -%}
+
+{%- set radii = [
+	{
+		name: '5',
+		class: 'rounded-5'
+	},
+	{
+		name: '6',
+		class: 'rounded-6'
+	},
+	{
+		name: '10',
+		class: 'rounded-10'
+	},
+	{
+		name: '15',
+		class: 'rounded-15'
+	},
+	{
+		name: '20',
+		class: 'rounded-20'
+	},
+	{
+		name: '25',
+		class: 'rounded-25'
+	},
+	{
+		name: '35',
+		class: 'rounded-35'
+	},
+	{
+		name: '50',
+		class: 'rounded-50'
+	}
+] -%}
+
+{%- set icons = [
+	'arrow-left',
+	'arrow-right',
+	'bars',
+	'bullet',
+	'chevron-down',
+	'chevron-left',
+	'chevron-right',
+	'envelope',
+	'facebook',
+	'globe',
+	'instagram',
+	'linkedin',
+	'mark',
+	'minus',
+	'plus',
+	'search',
+	'times',
+	'vimeo',
+	'x',
+	'youtube'
+] -%}
+
+<section class="space-y-8" aria-labelledby="styleguide-colors">
+	<header class="space-y-2">
+		<p class="eyebrow">
+			{{- __('Color', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-colors" class="title-lg">{{- __('Palette', 'wp-cinquante-et-un') -}}</h2>
+		<p class="text-muted max-w-prose text-sm">
+			{{-
+				__(
+					'Dark mono theme. Depth comes from four blacks; pistachio is the only accent (CTAs, nodes, active links, focus). Do not use text-subtle on bg-card (contrast drops below AA).',
+					'wp-cinquante-et-un'
+				)
+			-}}
+		</p>
+	</header>
+	<div class="space-y-10">
+		{%- for group in color_groups -%}
+			<div class="space-y-4">
+				<p class="eyebrow">
+					{{ group.title }}
+				</p>
+				<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+					{%- for color in group.colors -%}
+						<li class="space-y-2">
+							<div class="{{ color.class }} border-border aspect-square rounded-10 border"></div>
+							<p class="label">
+								{{ color.name }}
+							</p>
+							<p class="font-mono text-xs text-muted">
+								.{{ color.class }}
+							</p>
+							<p class="font-mono text-xs text-subtle">
+								{{ color.token }}
+							</p>
+						</li>
+					{%- endfor -%}
+				</ul>
+			</div>
+		{%- endfor -%}
+	</div>
+</section>
+
+<section class="space-y-8" aria-labelledby="styleguide-type">
+	<header class="space-y-2">
+		<p class="eyebrow">
+			{{- __('Typography', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-type" class="title-lg">{{- __('Type scale', 'wp-cinquante-et-un') -}}</h2>
+	</header>
+
+	<div class="space-y-10">
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Titles', 'wp-cinquante-et-un') -}}
+			</p>
+			<ul class="divide-border-subtle divide-y">
+				{%- for item in titles -%}
+					<li class="space-y-2 py-5">
+						<p class="label">
+							.{{ item.class }}
+						</p>
+						<p class="{{ item.class }}">
+							{{ item.sample }}
+						</p>
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
+
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Text', 'wp-cinquante-et-un') -}}
+			</p>
+			<ul class="divide-border-subtle divide-y">
+				{%- for item in texts -%}
+					<li class="space-y-2 py-5">
+						<p class="label">
+							.{{ item.class }}
+						</p>
+						<p class="{{ item.class }}">
+							{{ item.sample }}
+						</p>
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
+
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Meta', 'wp-cinquante-et-un') -}}
+			</p>
+			<ul class="divide-border-subtle divide-y">
+				{%- for item in metas -%}
+					<li class="space-y-2 py-5">
+						<p class="label">
+							.{{ item.class }}
+						</p>
+						<p class="{{ item.class }}">
+							{{ item.sample }}
+						</p>
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="space-y-8" aria-labelledby="styleguide-radius">
+	<header class="space-y-2">
+		<p class="eyebrow">
+			{{- __('Radius', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-radius" class="title-lg">{{- __('Corners', 'wp-cinquante-et-un') -}}</h2>
+	</header>
+	<ul class="flex flex-wrap items-end gap-5">
+		{%- for radius in radii -%}
+			<li class="space-y-2 text-center">
+				<div class="bg-accent size-20 {{ radius.class }}"></div>
+				<p class="label">
+					.{{ radius.class }}
+				</p>
+			</li>
+		{%- endfor -%}
+	</ul>
+</section>
+
+<section class="space-y-8" aria-labelledby="styleguide-buttons">
+	<header class="space-y-2">
+		<p class="eyebrow">
+			{{- __('Components', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-buttons" class="title-lg">{{- __('Buttons', 'wp-cinquante-et-un') -}}</h2>
+	</header>
+
+	<div class="space-y-8">
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Primary', 'wp-cinquante-et-un') -}}
+			</p>
+			<div class="flex flex-wrap items-center gap-4">
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un')
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							icon: 'bullet'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							disabled: true
+						}
+					)
+				-}}
+			</div>
+		</div>
+
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Primary dark', 'wp-cinquante-et-un') -}}
+			</p>
+			<div class="bg-card rounded-15 flex flex-wrap items-center gap-4 p-5">
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							mode: 'dark'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							icon: 'bullet',
+							mode: 'dark'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							mode: 'dark',
+							disabled: true
+						}
+					)
+				-}}
+			</div>
+		</div>
+
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Secondary', 'wp-cinquante-et-un') -}}
+			</p>
+			<div class="flex flex-wrap items-center gap-4">
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'secondary'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'secondary',
+							icon: 'bullet'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'secondary',
+							disabled: true
+						}
+					)
+				-}}
+			</div>
+		</div>
+
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Secondary dark', 'wp-cinquante-et-un') -}}
+			</p>
+			<div class="bg-card rounded-15 flex flex-wrap items-center gap-4 p-5">
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'secondary',
+							mode: 'dark'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'secondary',
+							icon: 'bullet',
+							mode: 'dark'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'secondary',
+							mode: 'dark',
+							disabled: true
+						}
+					)
+				-}}
+			</div>
+		</div>
+
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Tertiary', 'wp-cinquante-et-un') -}}
+			</p>
+			<div class="flex flex-wrap items-center gap-4">
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'tertiary'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'tertiary',
+							icon: 'arrow-right'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'tertiary',
+							disabled: true
+						}
+					)
+				-}}
+			</div>
+		</div>
+
+		<div class="space-y-4">
+			<p class="label">
+				{{- __('Quaternary', 'wp-cinquante-et-un') -}}
+			</p>
+			<div class="flex flex-wrap items-center gap-4">
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'quaternary'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'quaternary',
+							icon: 'chevron-left'
+						}
+					)
+				-}}
+				{{-
+					include(
+						'components/button.html.twig',
+						{
+							title: __('Button', 'wp-cinquante-et-un'),
+							variant: 'quaternary',
+							disabled: true
+						}
+					)
+				-}}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="space-y-8" aria-labelledby="styleguide-chips">
+	<header class="space-y-2">
+		<p class="eyebrow">
+			{{- __('Components', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-chips" class="title-lg">{{- __('Chip and tag', 'wp-cinquante-et-un') -}}</h2>
+	</header>
+	<div class="flex flex-wrap items-center gap-4">
+		{{-
+			include(
+				'components/chip.html.twig',
+				{
+					title: __('Chip', 'wp-cinquante-et-un')
+				}
+			)
+		-}}
+		{{-
+			include(
+				'components/chip.html.twig',
+				{
+					title: __('Chip active', 'wp-cinquante-et-un'),
+					active: true
+				}
+			)
+		-}}
+		{{-
+			include(
+				'components/tag.html.twig',
+				{
+					title: __('Tag', 'wp-cinquante-et-un')
+				}
+			)
+		-}}
+		{{-
+			include(
+				'components/tag.html.twig',
+				{
+					title: __('Tag', 'wp-cinquante-et-un'),
+					icon: 'plus'
+				}
+			)
+		-}}
+	</div>
+	<div class="bg-card rounded-15 flex flex-wrap items-center gap-4 p-5">
+		{{-
+			include(
+				'components/chip.html.twig',
+				{
+					title: __('Chip dark', 'wp-cinquante-et-un'),
+					mode: 'dark'
+				}
+			)
+		-}}
+		{{-
+			include(
+				'components/chip.html.twig',
+				{
+					title: __('Chip dark active', 'wp-cinquante-et-un'),
+					mode: 'dark',
+					active: true
+				}
+			)
+		-}}
+	</div>
+</section>
+
+<section class="space-y-8" aria-labelledby="styleguide-icons">
+	<header class="space-y-2">
+		<p class="eyebrow">
+			{{- __('Assets', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-icons" class="title-lg">{{- __('Icons', 'wp-cinquante-et-un') -}}</h2>
+	</header>
+	<ul class="grid grid-cols-4 gap-5 sm:grid-cols-6 lg:grid-cols-8">
+		{%- for icon in icons -%}
+			<li class="flex flex-col items-center gap-2">
+				{{-
+					include(
+						'svg/use.html.twig',
+						{
+							icon: icon,
+							classes: ['size-6']
+						},
+						with_context = false
+					)
+				-}}
+				<p class="label text-center">
+					{{ icon }}
+				</p>
+			</li>
+		{%- endfor -%}
+	</ul>
+</section>
+
+<div class="block space-y-20">
+	<section class="space-y-8" aria-labelledby="styleguide-ui">
+		<header class="space-y-2">
+			<p class="eyebrow">
+				{{- __('CINQ UI', 'wp-cinquante-et-un') -}}
+			</p>
+			<h2 id="styleguide-ui" class="title-lg">
+				{{- __('Web Components', 'wp-cinquante-et-un') -}}
+			</h2>
+			<p class="max-w-prose text-sm">
+				{{-
+					__(
+						'Packages from agencecinq/ui. Import the package in app.js, then use the custom element with the required ARIA markup.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+				<a class="cta underline" href="https://agencecinq.github.io/ui/">
+					{{- __('CINQ UI documentation', 'wp-cinquante-et-un') -}}
+				</a>
+			</p>
+		</header>
+
+		<div class="space-y-12">
+			<div class="space-y-4">
+				<p class="label">
+					@agencecinq/drawer
+				</p>
+				<cinq-drawer-button class="inline-block">
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __('Open drawer', 'wp-cinquante-et-un'),
+								attributes: {
+									'aria-controls': 'styleguide-drawer'
+								}
+							},
+							with_context = false
+						)
+					-}}
+				</cinq-drawer-button>
+				{% embed 'components/drawer.html.twig'
+					with {
+						id: 'styleguide-drawer',
+						direction: 'from-right',
+						aria_label: __('Styleguide drawer', 'wp-cinquante-et-un')
+					}
+				%}
+					{% block content %}
+						<div class="space-y-3 p-5">
+							<p class="title-md">
+								{{- __('Drawer', 'wp-cinquante-et-un') -}}
+							</p>
+							<p class="text-sm">
+								{{-
+									__(
+										'Off-canvas panel. Pair cinq-drawer with cinq-drawer-button.',
+										'wp-cinquante-et-un'
+									)
+								-}}
+							</p>
+						</div>
+					{% endblock %}
+				{% endembed %}
+			</div>
+
+			<div class="space-y-4">
+				<p class="label">
+					@agencecinq/modal
+				</p>
+				<cinq-modal-button class="inline-block">
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __('Open modal', 'wp-cinquante-et-un'),
+								attributes: {
+									'aria-controls': 'styleguide-modal',
+									'aria-pressed': 'false'
+								}
+							},
+							with_context = false
+						)
+					-}}
+				</cinq-modal-button>
+				{% embed 'components/modal.html.twig'
+					with {
+						id: 'styleguide-modal'
+					}
+				%}
+					{% block content %}
+						<div class="space-y-3">
+							<p class="title-md">
+								{{- __('Modal', 'wp-cinquante-et-un') -}}
+							</p>
+							<p class="text-sm">
+								{{-
+									__('Native dialog. Pair cinq-modal with cinq-modal-button.', 'wp-cinquante-et-un')
+								-}}
+							</p>
+						</div>
+					{% endblock %}
+				{% endembed %}
+			</div>
+
+			<div class="space-y-4">
+				<p class="label">
+					@agencecinq/tabs
+				</p>
+				<cinq-tabs class="block space-y-4" data-hash="false">
+					<div
+						class="flex gap-2"
+						role="tablist"
+						aria-label="{{ __('Styleguide tabs', 'wp-cinquante-et-un') }}"
+					>
+						<button
+							type="button"
+							class="cta is-active rounded-6 border-border [&.is-active]:border-accent [&.is-active]:bg-accent [&.is-active]:text-on-accent border px-3 py-2"
+							role="tab"
+							aria-selected="true"
+							aria-controls="styleguide-tab-one"
+							id="styleguide-tab-btn-one"
+						>
+							{{- __('One', 'wp-cinquante-et-un') -}}
+						</button>
+						<button
+							type="button"
+							class="cta rounded-6 border-border [&.is-active]:border-accent [&.is-active]:bg-accent [&.is-active]:text-on-accent border px-3 py-2"
+							role="tab"
+							aria-selected="false"
+							aria-controls="styleguide-tab-two"
+							id="styleguide-tab-btn-two"
+							tabindex="-1"
+						>
+							{{- __('Two', 'wp-cinquante-et-un') -}}
+						</button>
+						<button
+							type="button"
+							class="cta rounded-6 border-border [&.is-active]:border-accent [&.is-active]:bg-accent [&.is-active]:text-on-accent border px-3 py-2"
+							role="tab"
+							aria-selected="false"
+							aria-controls="styleguide-tab-three"
+							id="styleguide-tab-btn-three"
+							tabindex="-1"
+						>
+							{{- __('Three', 'wp-cinquante-et-un') -}}
+						</button>
+					</div>
+					<section
+						class="is-active text-sm"
+						tabindex="0"
+						role="tabpanel"
+						aria-labelledby="styleguide-tab-btn-one"
+						id="styleguide-tab-one"
+					>
+						{{- __('First panel. Arrow keys move between tabs.', 'wp-cinquante-et-un') -}}
+					</section>
+					<section
+						class="text-sm"
+						tabindex="0"
+						role="tabpanel"
+						aria-labelledby="styleguide-tab-btn-two"
+						id="styleguide-tab-two"
+						hidden
+					>
+						{{- __('Second panel.', 'wp-cinquante-et-un') -}}
+					</section>
+					<section
+						class="text-sm"
+						tabindex="0"
+						role="tabpanel"
+						aria-labelledby="styleguide-tab-btn-three"
+						id="styleguide-tab-three"
+						hidden
+					>
+						{{- __('Third panel.', 'wp-cinquante-et-un') -}}
+					</section>
+				</cinq-tabs>
+			</div>
+
+			<div class="space-y-4">
+				<p class="label">
+					@agencecinq/accordion
+				</p>
+				<cinq-accordion
+					class="divide-border-subtle bg-elevated block divide-y rounded-15 px-5"
+					data-hash="false"
+				>
+					<div
+						class="py-6 data-[open=true]:flex data-[open=true]:flex-col data-[open=true]:gap-4"
+						data-panel
+						data-open="true"
+						data-deselect="true"
+					>
+						<button
+							type="button"
+							class="title-md flex w-full items-center justify-between gap-6 text-left in-data-[open=true]:text-accent"
+							data-header
+							id="styleguide-acc-1-header"
+							aria-expanded="true"
+							aria-controls="styleguide-acc-1-body"
+						>
+							<span class="min-w-0 flex-1">{{- __('Why do you publish your prices?', 'wp-cinquante-et-un') -}}</span>
+							<span class="title-md shrink-0 text-muted in-data-[open=true]:hidden" aria-hidden="true">+</span>
+							<span class="title-md hidden shrink-0 in-data-[open=true]:inline" aria-hidden="true">−</span>
+						</button>
+						<div id="styleguide-acc-1-body" role="region" aria-labelledby="styleguide-acc-1-header">
+							<div class="text-sm text-muted" data-inner>
+								{{-
+									__(
+										'A web build has a scope and a cost. Hiding them until the third meeting only buys time to get attached. Our bases run from 12 900 to 36 900 euros. The full grid is public.',
+										'wp-cinquante-et-un'
+									)
+								-}}
+							</div>
+						</div>
+					</div>
+					<div
+						class="py-6 data-[open=true]:flex data-[open=true]:flex-col data-[open=true]:gap-4"
+						data-panel
+						data-open="false"
+						data-deselect="true"
+					>
+						<button
+							type="button"
+							class="title-md flex w-full items-center justify-between gap-6 text-left in-data-[open=true]:text-accent"
+							data-header
+							id="styleguide-acc-2-header"
+							aria-expanded="false"
+							aria-controls="styleguide-acc-2-body"
+						>
+							<span class="min-w-0 flex-1">{{- __('What happens if the scope moves mid-build?', 'wp-cinquante-et-un') -}}</span>
+							<span class="title-md shrink-0 text-muted in-data-[open=true]:hidden" aria-hidden="true">+</span>
+							<span class="title-md hidden shrink-0 in-data-[open=true]:inline" aria-hidden="true">−</span>
+						</button>
+						<div
+							id="styleguide-acc-2-body"
+							role="region"
+							aria-labelledby="styleguide-acc-2-header"
+							hidden
+						>
+							<div class="text-sm text-muted" data-inner>
+								{{- __('We reopen the estimate, agree on the extra, then we build.', 'wp-cinquante-et-un') -}}
+							</div>
+						</div>
+					</div>
+				</cinq-accordion>
+			</div>
+
+			<div class="space-y-4">
+				<p class="label">
+					@agencecinq/disclosure-button
+				</p>
+				<cinq-disclosure-button class="block">
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __('Show more', 'wp-cinquante-et-un'),
+								attributes: {
+									'aria-expanded': 'false',
+									'aria-controls': 'styleguide-disclosure'
+								}
+							},
+							with_context = false
+						)
+					-}}
+				</cinq-disclosure-button>
+				<div class="mt-3 text-sm" id="styleguide-disclosure" hidden>
+					{{- __('Hidden until the disclosure button opens it.', 'wp-cinquante-et-un') -}}
+				</div>
+			</div>
+
+			<div class="space-y-4">
+				<p class="label">
+					@agencecinq/switch
+				</p>
+				<div
+					class="flex flex-wrap items-center gap-6"
+					role="group"
+					aria-label="{{ __('Switches', 'wp-cinquante-et-un') }}"
+				>
+					<cinq-switch
+						class="cta [&[aria-checked=true]_.track]:bg-accent inline-flex cursor-pointer items-center gap-3 focus-visible:outline focus-visible:outline-offset-2 [&[aria-checked=true]_.thumb]:translate-x-4"
+						role="switch"
+						aria-checked="false"
+						tabindex="0"
+					>
+						<span>{{- __('Notifications', 'wp-cinquante-et-un') -}}</span>
+						<span class="track bg-card relative block h-6 w-10 rounded-full" aria-hidden="true">
+							<span
+								class="thumb absolute top-0.5 left-0.5 block size-5 rounded-full bg-white transition-transform"
+							>
+
+							</span>
+						</span>
+						<div hidden>
+							<input type="checkbox" tabindex="-1" aria-hidden="true" />
+						</div>
+					</cinq-switch>
+					<cinq-switch
+						class="cta [&[aria-checked=true]_.track]:bg-accent inline-flex cursor-pointer items-center gap-3 opacity-50 [&[aria-checked=true]_.thumb]:translate-x-4"
+						role="switch"
+						aria-checked="false"
+						disabled
+						aria-disabled="true"
+						tabindex="-1"
+					>
+						<span>{{- __('Disabled', 'wp-cinquante-et-un') -}}</span>
+						<span class="track bg-card relative block h-6 w-10 rounded-full" aria-hidden="true">
+							<span
+								class="thumb absolute top-0.5 left-0.5 block size-5 rounded-full bg-white transition-transform"
+							>
+
+							</span>
+						</span>
+						<div hidden>
+							<input type="checkbox" tabindex="-1" aria-hidden="true" disabled />
+						</div>
+					</cinq-switch>
+				</div>
+			</div>
+
+			<div class="space-y-4">
+				<p class="label">
+					@agencecinq/spinbutton
+				</p>
+				<cinq-spinbutton
+					class="focus-within:ring-accent border-border bg-elevated inline-flex w-fit items-center gap-2 rounded-6 border p-1 focus-within:ring-2"
+				>
+					<button
+						class="hover:bg-card-hover grid size-8 place-items-center rounded-5 bg-card disabled:cursor-not-allowed disabled:opacity-40"
+						name="decrease"
+						type="button"
+						aria-label="{{ __('Decrease', 'wp-cinquante-et-un') }}"
+						tabindex="-1"
+					>
+						{{-
+							include(
+								'svg/use.html.twig',
+								{
+									icon: 'minus',
+									classes: ['size-4']
+								},
+								with_context = false
+							)
+						-}}
+					</button>
+					<input
+						class="cta w-14 bg-transparent text-center focus:outline-none"
+						type="number"
+						aria-label="{{ __('Quantity', 'wp-cinquante-et-un') }}"
+						aria-valuemin="0"
+						aria-valuemax="10"
+						aria-valuenow="1"
+						value="1"
+					/>
+					<button
+						class="hover:bg-card-hover grid size-8 place-items-center rounded-5 bg-card disabled:cursor-not-allowed disabled:opacity-40"
+						name="increase"
+						type="button"
+						aria-label="{{ __('Increase', 'wp-cinquante-et-un') }}"
+						tabindex="-1"
+					>
+						{{-
+							include(
+								'svg/use.html.twig',
+								{
+									icon: 'plus',
+									classes: ['size-4']
+								},
+								with_context = false
+							)
+						-}}
+					</button>
+				</cinq-spinbutton>
+			</div>
+
+			<div class="space-y-4">
+				<p class="label">
+					@agencecinq/combobox
+				</p>
+				<label class="label block" for="styleguide-city">
+					{{- __('City', 'wp-cinquante-et-un') -}}
+				</label>
+				<cinq-combobox
+					id="styleguide-city-combobox"
+					class="relative mt-2 flex max-w-xs"
+					data-open-on-empty="true"
+					data-autoselect="true"
+				>
+					<input
+						class="cta rounded-l-6 border-primary min-w-0 flex-1 border px-3 py-2"
+						id="styleguide-city"
+						type="text"
+						role="combobox"
+						aria-autocomplete="list"
+						aria-expanded="false"
+						aria-controls="styleguide-city-listbox"
+						autocomplete="off"
+					/>
+					<button
+						class="border-primary rounded-r-6 -ml-px flex size-10 shrink-0 items-center justify-center border"
+						type="button"
+						tabindex="-1"
+						aria-label="{{ __('Cities', 'wp-cinquante-et-un') }}"
+						aria-controls="styleguide-city-listbox"
+						aria-expanded="false"
+					>
+						{{-
+							include(
+								'svg/use.html.twig',
+								{
+									icon: 'chevron-down',
+									classes: ['size-4']
+								},
+								with_context = false
+							)
+						-}}
+					</button>
+					<ul
+						class="bg-card rounded-6 border-border z-2 border [&_[role=option]]:cursor-pointer [&_[role=option]]:px-3 [&_[role=option]]:py-2 [&_[role=option][aria-selected=true]]:bg-accent [&_[role=option][aria-selected=true]]:text-on-accent"
+						id="styleguide-city-listbox"
+						role="listbox"
+						aria-label="{{ __('Cities', 'wp-cinquante-et-un') }}"
+						hidden
+					></ul>
+				</cinq-combobox>
+			</div>
+		</div>
+	</section>
+</div>

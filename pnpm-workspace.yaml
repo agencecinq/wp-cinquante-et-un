@@ -3,3 +3,8 @@ packages:
 
 allowBuilds:
   esbuild: true
+
+minimumReleaseAgeExclude:
+  - '@agencecinq/accordion@3.0.0'
+  - '@agencecinq/combobox@2.0.0'
+  - '@agencecinq/tabs@11.0.0'

@@ -10,7 +10,7 @@ alwaysApply: false
 
 - Colors, radii, typography scales, and background images belong in `src/stylesheets/theme.css` inside `@theme`.
 - Do not use arbitrary Tailwind values in Twig or CSS utilities for design tokens: no `bg-[#102345]`, no `bg-[linear-gradient(...)]`, no `[background:...]`.
-- Use the generated utilities instead (`bg-blue`, `text-green`, `rounded-25`, etc.).
+- Use the generated utilities instead (`bg-page`, `text-accent`, `rounded-25`, etc.).
 
 ## Token names in English
 
@@ -18,18 +18,19 @@ All custom property **suffixes** in `@theme` must be in **English**, kebab-case:
 
 ```css
 /* GOOD */
---color-blue: #1a2c4c;
---color-green: #98ffa5;
+--color-page: #08090a;
+--color-accent: #b3fca4;
 --radius-25: --spacing(6.25);
 
 /* BAD */
---color-bleu: #1a2c4c;
---color-vert: #98ffa5;
+--color-fond-page: #08090a;
+--color-vert: #b3fca4;
 --color-bleu-profond: #102345;
 --background-image-gradient-bleu: linear-gradient(...);
 ```
 
-- The Tailwind class mirrors the token suffix: `--color-blue` → `text-blue`, `bg-blue`, `border-blue`.
+- The Tailwind class mirrors the token suffix: `--color-accent` → `text-accent`, `bg-accent`, `border-accent`.
+- Starter palette (CINQ Design System, dark): `page` / `elevated` / `card` / `card-hover` (backgrounds), `primary` / `muted` / `subtle` / `on-accent` (texts), `accent` / `accent-hover` / `accent-soft` / `border` / `border-subtle`. Pistachio accent is for CTAs, nodes, active links and focus only. `text-subtle` is not used on `bg-card` (contrast drops below AA).
 - Legacy French token names may still exist in old client databases (ACF class values); **never add new French token names**.
 - When initializing a new project, declare the client palette with English names from the start.
 
@@ -65,6 +66,16 @@ All `letter-spacing` values must be expressed in **em**, never in **px**.
 Conversion reference: `em = px / font-size-px` on the same element (e.g. `0.5px` at `22px` / `1.375rem` → `0.0227em`).
 
 If a value is reused, add a token in `@theme` rather than repeating em arbitrary values in Twig.
+
+## Typography scale (CINQ Design System)
+
+Tokens and composite classes in `theme.css` / `typographies.css` follow the Figma scale. Prefer the composite class in Twig (`.title-xl`, `.text-sm`, `.eyebrow`) over raw `text-*-mobile` / `text-*-desktop` utilities.
+
+- **Titles** (weight 500): `.title-3xl`, `.title-xxl`, `.title-xl`, `.title-lg`, `.title-md`
+- **Text** (weight 400): `.text-xl`, `.text-lg`, `.text-base`, `.text-sm`, `.text-xs`
+- **Meta** (Tailwind `font-mono`, same on mobile and desktop): `.eyebrow` (caps), `.label`, `.cta` (weight 500), `.badge` (caps)
+
+The starter uses Tailwind / browser font stacks. Do not add a webfont unless the project specifies one (then align `@font-face` or the Google Fonts example in `Enqueue::enqueue_styles()`, and `--default-font-family`).
 
 ## Checklist when adding a token
 

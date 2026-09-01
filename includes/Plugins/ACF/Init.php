@@ -38,6 +38,10 @@ class Init implements Service {
 	 * @return void
 	 */
 	public function add_options_pages(): void {
+		if ( ! function_exists( 'acf_add_options_page' ) ) {
+			return;
+		}
+
 		acf_add_options_page(
 			array(
 				'page_title'  => __( 'Archive', 'wp-cinquante-et-un' ),

@@ -10,7 +10,6 @@
 namespace WPCinquanteEtUn\Template;
 
 use WPCinquanteEtUn\Service;
-use WPCinquanteEtUn\Taxonomy\PageCat;
 use WP_Post;
 
 /**
@@ -43,8 +42,14 @@ class PostStates implements Service {
 	 */
 	public function filter_post_states( array $post_states, WP_Post $post ) {
 
-		if ( 'page-templates/blocks-page.php' === get_post_meta( $post->ID, '_wp_page_template', true ) ) {
+		$template = get_post_meta( $post->ID, '_wp_page_template', true );
+
+		if ( 'page-templates/blocks-page.php' === $template ) {
 			$post_states[] = __( 'Blocks Page', 'wp-cinquante-et-un' );
+		}
+
+		if ( 'page-templates/styleguide-page.php' === $template ) {
+			$post_states[] = __( 'Styleguide', 'wp-cinquante-et-un' );
 		}
 
 		return $post_states;

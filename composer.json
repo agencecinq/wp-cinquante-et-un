@@ -3,8 +3,8 @@
 		"timber/timber": "^2.3",
 		"twig/html-extra": "^3.8",
 		"twig/intl-extra": "^3.8",
-		"19h47/wp-get-theme": "dev-master",
-		"19h47/wp-form-controls": "dev-master"
+		"19h47/wp-form-controls": "dev-master",
+		"19h47/wp-get-theme": "dev-master"
 	},
 	"name": "agencecinq/wp-cinquante-et-un",
 	"version": "1.0.0",
@@ -22,8 +22,8 @@
 		},
 		"files": [
 			"./includes/helpers.php",
-			"./vendor/19h47/wp-get-theme/wp-get-theme.php",
-			"./vendor/19h47/wp-form-controls/wp-form-controls.php"
+			"./vendor/19h47/wp-form-controls/wp-form-controls.php",
+			"./vendor/19h47/wp-get-theme/wp-get-theme.php"
 		]
 	},
 	"repositories": [

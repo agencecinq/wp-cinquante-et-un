@@ -30,11 +30,11 @@ class Init {
 			// Admin.
 			Admin\Init::class,
 			Admin\Menu::class,
+			Admin\Notices::class,
 			// Setup.
 			Setup\Enqueue::class,
 			Setup\Context::class,
 			Setup\Twig::class,
-			Setup\QueryVars::class,
 			// WordPress integration.
 			WPImageEditor::class,
 			WPSettings::class,
@@ -54,13 +54,10 @@ class Init {
 			Plugins\ACF\IncludeFields\ArchivePostsFields::class,
 			Plugins\ACF\IncludeFields\BlocksFields::class,
 			Plugins\ACF\IncludeFields\ClonesFields::class,
-			Plugins\ACF\IncludeFields\PageParentOrChildFields::class,
 			Plugins\ACF\IncludeFields\ThemeFields::class,
 			Plugins\ACF\IncludeFields\PostFields::class,
-			Plugins\ContactForm7\FormTag::class,
 			// Yoast.
 			Plugins\WordpressSeo\AdminInit::class,
-			Post\Page::class,
 		);
 	}
 

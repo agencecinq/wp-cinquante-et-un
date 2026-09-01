@@ -1,3 +1,4 @@
 @layer base {
-	/* Project fonts are loaded via Google Fonts in includes/Setup/Enqueue.php. */
+	/* Starter uses Tailwind / browser stacks. Add @font-face here when a
+	   project ships files in src/fonts/. Match --default-font-family. */
 }

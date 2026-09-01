@@ -11,8 +11,7 @@ namespace WPCinquanteEtUn\Setup;
 
 use WPCinquanteEtUn\Service;
 use Timber\{Timber, Site };
-use WPCinquanteEtUn\Models\{ CategoryArchive, Page, Home, SinglePost };
-use WP_Post;
+use WPCinquanteEtUn\Models\{ CategoryArchive, Home, SinglePost };
 
 /**
  * Context
@@ -105,12 +104,8 @@ class Context extends Site implements Service {
 	 */
 	public function add_post_classmap( array $classmap ): array {
 		$custom_classmap = array(
-			'page' => function ( WP_Post $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Reserved for future use.
-				if ( is_home() ) {
-					return Home::class;
-				}
-
-				return Page::class;
+			'page' => function () {
+				return is_home() ? Home::class : null;
 			},
 			'post' => SinglePost::class,
 		);

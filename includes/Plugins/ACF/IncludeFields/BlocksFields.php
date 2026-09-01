@@ -11,26 +11,12 @@
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields;
 
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\AccordionGroup;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\ChildPages;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\ChildPagesByParent;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Columns;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Contact;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Form;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Gallery;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Grid;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Hero;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\KeyFigures;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\LatestPosts;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Marquee;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\MediaText;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\MultiColumn;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\PageIntroduction;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Presentation;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Process;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Push;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Styleguide;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Support;
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Team;
 use WPCinquanteEtUn\Service;
 
 /**
@@ -41,32 +27,18 @@ use WPCinquanteEtUn\Service;
 class BlocksFields implements Service {
 
 	/**
-	 * Layout classes used for the blocks field (pages). Order = display order.
+	 * Kernel layout classes for the blocks field. Order = display order.
 	 *
 	 * @var array<int, class-string>
 	 */
 	private static $layouts = array(
 		AccordionGroup::class,
-		ChildPages::class,
-		ChildPagesByParent::class,
 		Columns::class,
-		Contact::class,
 		Form::class,
 		Gallery::class,
-		Grid::class,
 		Hero::class,
-		KeyFigures::class,
 		LatestPosts::class,
-		Marquee::class,
 		MediaText::class,
-		MultiColumn::class,
-		PageIntroduction::class,
-		Presentation::class,
-		Process::class,
-		Push::class,
-		Styleguide::class,
-		Support::class,
-		Team::class,
 	);
 
 	/**
@@ -93,6 +65,11 @@ class BlocksFields implements Service {
 					'param'    => 'post_type',
 					'operator' => '==',
 					'value'    => 'page',
+				),
+				array(
+					'param'    => 'page_template',
+					'operator' => '!=',
+					'value'    => 'page-templates/styleguide-page.php',
 				),
 			),
 		);

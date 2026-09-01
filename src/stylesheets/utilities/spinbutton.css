@@ -1,0 +1,14 @@
+/*
+ * Hide native number spinners so the + / − buttons are the only stepper UI.
+ * @see https://agencecinq.github.io/ui/components/spinbutton/
+ */
+
+cinq-spinbutton input[type="number"] {
+	appearance: textfield;
+}
+
+cinq-spinbutton input[type="number"]::-webkit-inner-spin-button,
+cinq-spinbutton input[type="number"]::-webkit-outer-spin-button {
+	appearance: none;
+	margin: 0;
+}

@@ -34,7 +34,9 @@ pnpm build      # also generates public/sprite.svg from src/icons/
 pnpm dev        # local dev server
 ```
 
-Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`) and the example palette in `src/stylesheets/theme.css` with the project's own.
+Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`) and remap the surface tokens in `src/stylesheets/theme.css` (`page`, `elevated`, `card`, `primary`, `accent`, …) to the project's palette.
+
+The default page router (`page.php`, `front-page.php`) renders ACF blocks. The starter ships seven kernel layouts: accordion, columns, form, gallery, hero, latest posts, media + text. Project-specific compositions are added per site, not copied from a previous client.
 
 ### SVG sprite support
 
@@ -219,9 +221,15 @@ pnpm build
 
 ### Twig Cache
 
-When the WP_DEBUG constant is set to false (which is the default in production environments), Twig files are cached for performance. If you modify any Twig files, you need to clear the cache to see the changes. The cache folder is located at `vendor/timber/timber/cache`.
+A fresh WordPress install (including Local) leaves `WP_DEBUG` at `false`. The theme then caches Twig for performance, so template edits will not show until you turn debug on or clear the cache. On `local` and `development` environments, an admin notice reminds you of this.
 
-To clear the cache, simply delete the contents of the `cache` folder or run the following command:
+While developing, set this in `wp-config.php`:
+
+```php
+define( 'WP_DEBUG', true );
+```
+
+If `WP_DEBUG` stays false, clear the cache after editing a Twig file (`vendor/timber/timber/cache`):
 
 ```bash
 rm -rf vendor/timber/timber/cache/*
@@ -248,4 +256,4 @@ Contributions are welcome! If you find a bug or have a feature request, please o
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This theme is licensed under the GNU General Public License v2 or later, like WordPress. See the [LICENSE](LICENSE) file for details.

@@ -2,6 +2,9 @@
 /**
  * Template Name: Blocks
  *
+ * Alias of the default page router. Kept so existing pages assigned this
+ * template keep working. New pages use page.php (same Twig).
+ *
  * @package WPCinquanteEtUn
  */
 

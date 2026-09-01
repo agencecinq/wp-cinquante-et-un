@@ -2,33 +2,17 @@
 /**
  * Page template file
  *
+ * Default pages render ACF blocks. The named "Blocks" page template is an alias
+ * for pages that already have it assigned.
+ *
  * @package WPCinquanteEtUn
  * @subpackage WPCinquanteEtUn/Page
+ * @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  */
 
 use Timber\{ Timber };
 
+$templates = array( 'pages/blocks-page.html.twig' );
 $data      = Timber::context();
-$templates = array( 'index.html.twig' );
-
-$has_parent   = (int) $post->post_parent > 0;
-$has_children = get_children(
-	array(
-		'post_parent' => $post->ID,
-		'post_type'   => 'page',
-		'post_status' => 'publish',
-		'numberposts' => 1,
-		'fields'      => 'ids',
-	)
-);
-
-if ( $has_parent ) {
-	$templates = array( 'pages/child-page.html.twig' );
-}
-
-if ( ! empty( $has_children ) && ! $has_parent ) {
-	$templates = array( 'pages/parent-page.html.twig' );
-}
-
 
 Timber::render( $templates, $data );

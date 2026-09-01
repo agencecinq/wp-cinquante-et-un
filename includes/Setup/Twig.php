@@ -130,32 +130,11 @@ class Twig implements Service {
 		$twig->addFunction(
 			new TwigFunction(
 				'yoast_breadcrumb',
-				function ( $before = '<div class="text-mention-large">', $after = '</div>', $display = false ) {
+				function ( $before = '<div class="text-xs">', $after = '</div>', $display = false ) {
 					return function_exists( 'yoast_breadcrumb' ) ? yoast_breadcrumb( $before, $after, $display ) : '';
 				}
 			)
 		);
-
-		// Add Polylang function if it exists.
-		if ( function_exists( 'pll__' ) ) {
-			$twig->addFunction(
-				new TwigFunction(
-					'pll__',
-					fn( $text ) => pll__( $text )
-				)
-			);
-		}
-
-		if ( function_exists( 'pll_the_languages' ) ) {
-			$twig->addFunction(
-				new TwigFunction(
-					'pll_the_languages',
-					function ( $args = array( 'raw' => true ) ) {
-						return pll_the_languages( $args );
-					}
-				)
-			);
-		}
 
 		// @see https://developer.wordpress.org/reference/functions/get_search_form/
 		$twig->addFunction(

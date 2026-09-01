@@ -12,9 +12,9 @@ Quand l'utilisateur démarre un nouveau projet, applique la règle `init-nouveau
 ## Stack
 
 - **Templating** : Timber 2 + Twig. Les `*.php` à la racine (`front-page.php`, `home.php`, `page.php`, `single-post.php`, `category.php`, etc.) sont des routeurs WordPress qui chargent un contexte Timber et rendent un template de `views/pages/`. La présentation vit dans les `.twig`, pas dans le PHP.
-- **Build** : Vite (`pnpm dev` / `pnpm build`), plugin `laravel-vite-plugin`. Entrées : `src/stylesheets/styles.css` et `src/scripts/app.js`. Sortie dans `dist/` (gitignored).
-- **CSS** : Tailwind CSS v4, configuré en CSS pur (pas de `tailwind.config.js`). Tous les tokens sont déclarés dans le bloc `@theme` de `src/stylesheets/theme.css`.
-- **JS** : TypeScript. Composants dans `src/scripts/components/*.ts`, montés via `piecesjs`. L'objet global `cinq` (données du thème : `text_domain`, `ajax_url`, `nonce`, etc.) est injecté côté PHP dans `includes/Setup/Enqueue.php` et typé dans `src/scripts/.d.ts`. Libs courantes : GSAP, Splide, et les packages internes `@agencecinq/drawer`, `@agencecinq/modal`, `@agencecinq/utils`, `@19h47/accordion`.
+- **Build** : Vite (`pnpm dev` / `pnpm build`), plugin `laravel-vite-plugin`. Entrées site : `src/stylesheets/styles.css` et `src/scripts/app.js`. Entrées catalogue (template Styleguide seulement) : `src/stylesheets/styleguide.css` et `src/scripts/styleguide.ts`. Sortie dans `dist/` (gitignored).
+- **CSS** : Tailwind CSS v4, configuré en CSS pur (pas de `tailwind.config.js`). Tous les tokens sont déclarés dans le bloc `@theme` de `src/stylesheets/theme.css`. Pas de police custom : stacks Tailwind / navigateur. L'échelle typo suit le Design System CINQ (`.title-*`, `.text-*`, `.eyebrow` / `.label` / `.cta` / `.badge`). Pour une Google Font, voir l'exemple dans `Enqueue::enqueue_styles()`.
+- **JS** : TypeScript. Composants dans `src/scripts/components/*.ts`, montés via `piecesjs`. L'objet global `cinq` (données du thème : `text_domain`, `ajax_url`, `nonce`, etc.) est injecté côté PHP dans `includes/Setup/Enqueue.php` et typé dans `src/scripts/.d.ts`. Libs courantes : GSAP, Splide, `@agencecinq/utils`, et les Web Components [agencecinq/ui](https://agencecinq.github.io/ui/) (drawer, modal, tabs, accordion, switch, …). Le catalogue les démontre sur le template **Styleguide**. Toujours suivre le markup de [la doc officielle](https://agencecinq.github.io/ui/), pas seulement le README npm.
 - **PHP** : POO, PSR-4, standards WordPress (phpcs + wpcs, voir `phpcs.xml`). Le namespace racine est mappé sur `includes/`. Les classes sont rangées comme les fichiers du core WordPress (le hook `after_setup_theme` vit dans `includes/Setup/`, etc.).
 - **Champs** : ACF. Les groupes sont définis en PHP dans `includes/Plugins/ACF/IncludeFields/` (et leurs `Layouts/` pour les blocs flexibles), pas seulement en JSON.
 - **CPT / taxonomies** : à créer dans `includes/Post/` et `includes/Taxonomy/` (le starter livre `Post/Page.php` ; les CPT et taxonomies spécifiques sont ajoutés par projet).
@@ -38,18 +38,38 @@ src/img/  src/fonts/ Images statiques et polices
 views/              Twig (pages/, blocks/, components/, svg/)
 languages/          Traductions liées au text domain
 acf-json/           Sync JSON ACF (si présent)
+page-templates/     Templates de page WP (Blocks optionnel, Styleguide)
 *.php (racine)      Routeurs WordPress -> Timber::render(...)
 ```
+
+## Noyau de blocs ACF
+
+Le starter n'est pas une bibliothèque de pages marketing. `page.php` et `front-page.php` rendent `views/pages/blocks-page.html.twig`. Le template de page **Blocks** reste un alias pour les pages déjà assignées.
+
+Le starter ne livre que des **primitives**. Une composition de page (équipe, process, push, etc.) s'ajoute sur le projet, et ne rejoint le starter que si elle a été généralisée (voir `remontee-vers-starter`).
+
+| Layout | Usage |
+|---|---|
+| `AccordionGroup` | FAQ / contenu repliable |
+| `Columns` | Deux colonnes de texte |
+| `Form` | Formulaire (CF7) |
+| `Gallery` | Galerie média |
+| `Hero` | En-tête de page |
+| `LatestPosts` | Boucle d'articles |
+| `MediaText` | Média + texte |
+
+Nouveau bloc : trio layout (`IncludeFields/Layouts/`) + Twig (`views/blocks/`) + composant TS si besoin, puis l'entrée dans `BlocksFields::$layouts`.
 
 ## Conventions à respecter
 
 - Pas de logique métier dans les `*.php` racine : ils chargent le contexte et rendent un Twig.
 - Nouvelle classe PHP : respecter PSR-4 et le rangement par fichier de core WP, et reprendre le docblock d'en-tête existant (`@package`, `@author CINQ <contact@agencecinq.com> (https://agencecinq.com)`). Faire passer phpcs.
 - Nouveau bloc ACF : créer le layout dans `includes/Plugins/ACF/IncludeFields/Layouts/`, le template Twig correspondant dans `views/blocks/`, et le cas échéant le composant TS dans `src/scripts/components/`.
-- Nouveau token de design (couleur, typo, radius) : le déclarer dans `@theme` de `src/stylesheets/theme.css`, jamais en dur dans les classes utilitaires. Suffixe du token **en anglais** (voir `design-tokens`).
-- Nouvelle icône : ajouter le SVG dans `src/icons/`, puis `pnpm build` pour régénérer `public/sprite.svg`. L'utiliser via `views/svg/use.html.twig`.
+- Nouveau token de design (couleur, typo, radius) : le déclarer dans `@theme` de `src/stylesheets/theme.css`, jamais en dur dans les classes utilitaires. Suffixe du token **en anglais** (voir `design-tokens`). L'ajouter au catalogue `views/components/styleguide.html.twig` (page template `styleguide-page`).
+- Nouveau template de page : le suffixer `-page` (`page-templates/<nom>-page.php` + `views/pages/<nom>-page.html.twig`). Le styleguide est `styleguide-page`. Les pages de contenu passent par `page.php` (blocs), pas par un template dédié.
+- Nouvelle icône : ajouter le SVG dans `src/icons/`, puis `pnpm build` pour régénérer `public/sprite.svg`. L'utiliser via `views/svg/use.html.twig`. L'ajouter à la liste du catalogue styleguide.
 - Images responsive : composant `views/components/image.html.twig` (srcset, WebP, lazy). Images statiques : `assets('src/img/...')`.
-- Cache Twig en prod : vider `vendor/timber/timber/cache/*` après modif d'un `.twig` si `WP_DEBUG` est à false.
+- Cache Twig : activé dès que `WP_DEBUG` est à false (défaut d'une install WordPress / Local fraîche). En `local` / `development`, une notice admin le rappelle. En prod, vider `vendor/timber/timber/cache/*` après une modif de `.twig`.
 
 ## Standards de code et langue
 
@@ -70,6 +90,7 @@ DO :
 - Suivre les WordPress Coding Standards et faire passer phpcs.
 - Coder et commenter en anglais.
 - Déclarer les tokens de design dans `@theme` de `theme.css` (noms en anglais, sizes en rem, letter-spacing en em, voir `design-tokens`).
+- Utiliser les classes typo du Design System (`.title-3xl` … `.title-md`, `.text-xl` … `.text-xs`, `.eyebrow` / `.label` / `.cta` / `.badge`) plutôt que des tailles en dur.
 - Passer les chaînes utilisateur par les fonctions i18n.
 - Commits en anglais avec gitmoji (voir la règle `git-commits`).
 - Encapsuler les gardes d'affichage dans les composants Twig inclus (voir `twig-components`).
@@ -86,7 +107,7 @@ DONT :
 - Pas de valeurs dimensionnelles en px dans les classes Tailwind (`w-[46px]`, `gap-[26px]`, `text-[22px]`) ; utiliser l'échelle spacing ou rem (voir `design-tokens`).
 - Pas de letter-spacing en px (`tracking-[0.5px]`) ; utiliser em (voir `design-tokens`).
 - Pas de liens de navigation sans `<ul>`/`<li>` ni microdata `SiteNavigationElement` quand c'est un menu (voir `schema-org`).
-- Pas de feuille `src/stylesheets/components/<nom>.css` pour styler un composant UI (BEM + `@apply`) ; utiliser Tailwind dans le Twig.
+- Pas de nouvelle feuille `src/stylesheets/components/<nom>.css` pour un composant UI (BEM + `@apply`) ; utiliser Tailwind dans le Twig (voir `tailwind-twig`). Exception figée : `typographies.css`, `button.css`, `wysiwyg.css`, `wpcf7.css`.
 - Ne pas modifier l'identité agence lors d'un renommage.
 - Pas d'emoji ni de tiret cadratin dans les contenus rédigés.
 
@@ -103,9 +124,8 @@ Règles dédiées existantes :
 - `init-nouveau-projet` : procédure d'initialisation d'un nouveau projet à partir du thème.
 - `remontee-vers-starter` : procédure pour faire remonter une brique d'un projet vers le starter (flux inverse de l'init).
 - `git-commits` : messages de commit en anglais avec gitmoji.
-- `design-tokens` : tokens `@theme` en anglais, pas de valeurs en dur ni de backgrounds preset dans le starter.
+- `design-tokens` : tokens `@theme` en anglais, sizes en rem, letter-spacing en em, surfaces `page` / `accent` / `primary`, pas de valeurs en dur ni de backgrounds preset dans le starter.
 - `twig-components` : gardes et nommage des params dans les composants Twig réutilisables.
 - `twig-wpcs` : espacement des filtres Twig compatible Prettier.
-- `design-tokens` : tokens `@theme` en anglais, sizes en rem, letter-spacing en em, pas de valeurs en dur ni de backgrounds preset dans le starter.
-- `tailwind-twig` : styling des composants en Tailwind dans les `.twig`, pas de feuilles CSS dédiées.
+- `tailwind-twig` : styling en Tailwind dans les `.twig` ; feuilles `components/` autorisées uniquement pour typo, boutons, WYSIWYG et CF7.
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
