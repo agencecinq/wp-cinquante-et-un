@@ -1,0 +1,43 @@
+{#
+ # Blocks: Key Figures
+ #}
+
+{%- set layout = block.layout | default({}) -%}
+{%- set content = block.content | default({}) -%}
+{%- set figures = block.figures | default([]) -%}
+
+{%- if figures | length -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+class="{{ html_classes( layout.classes | default('') ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container'), 'space-y-10' ) }}">
+			{{-
+				include(
+					'components/section-header.html.twig',
+					{
+						overline: content.overline,
+						title: content.title
+					}
+				)
+			-}}
+
+			<div class="flex flex-col gap-8 lg:flex-row">
+				{%- for figure in figures -%}
+					<div class="min-w-0 flex-1 space-y-2 border-l border-black pl-6">
+						<p class="flex items-baseline gap-1 font-semibold">
+							<span class="text-4xl">{{- figure.value -}}</span>
+							{%- if figure.suffix -%}
+								<span class="text-2xl text-gray-500">{{- figure.suffix -}}</span>
+							{%- endif -%}
+						</p>
+						{%- if figure.label -%}
+							<p class="text-sm text-gray-600">{{- figure.label -}}</p>
+						{%- endif -%}
+					</div>
+				{%- endfor -%}
+			</div>
+		</div>
+	</section>
+{%- endif -%}

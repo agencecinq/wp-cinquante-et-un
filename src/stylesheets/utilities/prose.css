@@ -1,0 +1,13 @@
+@source inline("prose-lg prose-base");
+
+@utility prose-lg {
+	@apply text-lg;
+
+	line-height: 1.7;
+}
+
+@utility prose-base {
+	@apply text-base;
+
+	line-height: 1.7;
+}

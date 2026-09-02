@@ -48,6 +48,10 @@ class PostStates implements Service {
 			$post_states[] = __( 'Styleguide', 'wp-cinquante-et-un' );
 		}
 
+		if ( 'page-templates/search-page.php' === $template ) {
+			$post_states[] = __( 'Search Page', 'wp-cinquante-et-un' );
+		}
+
 		return $post_states;
 	}
 }

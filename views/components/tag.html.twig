@@ -1,10 +1,52 @@
 {#
- # Components: Tag
+ # Tag: outlined label (category, status). One visual style; content varies.
+ #
+ # @param string title The tag label.
+ # @param string url Optional. Renders an <a> when set.
+ # @param string target '_self' or '_blank'. Links only.
+ # @param attributes Extra HTML attributes.
+ # @param array classes Extra CSS classes.
  #}
 
-<button type="button" class="text-xs items-center flex gap-0.75 bg-zinc-950 text-white rounded-sm py-0.5 px-1.5" {{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}>
-	{% if icon %}
-		{{- include( 'svg/use.html.twig', { classes: [ 'size-2.5 shrink-0' ], icon: icon }, with_context = false ) -}}
-	{% endif %}
-	{{- title -}}
-</button>
+{%- if title -%}
+	{%- set classes =
+		[
+			'inline-flex items-center whitespace-nowrap',
+			'border border-black px-2 py-1',
+			'text-xs leading-none text-black no-underline'
+		]
+			| merge(classes | default([]))
+			| join(' ')
+	-%}
+
+	{%- if url -%}
+		<a
+			href="{{ url }}"
+			class="{{ html_classes(classes) }}"
+			{{ target ? 'target="' ~ target ~ '"' : '' }}
+			{{ target == '_blank' ? 'rel="noopener noreferrer"' : '' }}
+			{{
+			attributes
+				? attributes
+					| map((value, key) => value == '' ? key : key ~ '="' ~ value ~ '"')
+					| join(' ')
+					| raw
+			}}
+		>
+			{{- title -}}
+		</a>
+	{%- else -%}
+		<span
+			class="{{ html_classes(classes) }}"
+			{{
+			attributes
+				? attributes
+					| map((value, key) => value == '' ? key : key ~ '="' ~ value ~ '"')
+					| join(' ')
+					| raw
+			}}
+		>
+			{{- title -}}
+		</span>
+	{%- endif -%}
+{%- endif -%}

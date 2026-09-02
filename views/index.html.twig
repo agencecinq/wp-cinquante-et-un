@@ -20,7 +20,7 @@
 		{{ function('wp_head') }}
 	</head>
 
-	<body {{ body_class('text-zinc-950 bg-white antialiased') }}>
+	<body {{ body_class('bg-white pt-22 text-black antialiased') }}>
 		{{- function('wp_body_open ') -}}
 
 		{%- block header -%}
@@ -29,25 +29,25 @@
 
 		{%- block content -%}
 			<main id="content" role="main">
-				<div class="container space-y-10 py-10 lg:py-20">
-					{%- if post.title -%}
-						<header class="space-y-3">
-							<h1 class="text-4xl font-medium tracking-tight lg:text-6xl">{{- post.title -}}</h1>
-						</header>
-					{%- endif -%}
+				{%- set blocks = post.meta('blocks') -%}
+				{%- set show_page_header = post.title and (blocks | length == 0 or blocks[0].acf_fc_layout != 'hero') -%}
 
-					{%- if post.post_content -%}
-						<div class="wysiwyg max-w-prose">
-							{{- post.content -}}
-						</div>
-					{%- endif -%}
-				</div>
+				{%- if show_page_header -%}
+					{{-
+						include(
+							'components/page-header.html.twig',
+							{
+								post: post
+							}
+						)
+					-}}
+				{%- endif -%}
 
 				{{-
 					include(
 						'blocks/blocks.html.twig',
 						{
-							blocks: post.meta('blocks')
+							blocks: blocks
 						}
 					)
 				-}}

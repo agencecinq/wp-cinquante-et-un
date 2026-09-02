@@ -1,0 +1,19 @@
+{#
+ # Subtitle: uppercase overline above a section title.
+ #
+ # @param string title The overline label.
+ # @param array classes Extra CSS classes.
+ #}
+
+{%- if title -%}
+	<p
+		class="{{
+		html_classes(
+			'subtitle text-gray-500',
+			classes | default([]) | join(' ')
+		)
+		}}"
+	>
+		{{- title -}}
+	</p>
+{%- endif -%}

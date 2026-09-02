@@ -1,0 +1,71 @@
+{#
+ # Blocks: Cards Grid
+ #}
+
+{%- set layout = block.layout | default({}) -%}
+{%- set content = block.content | default({}) -%}
+{%- set cards = block.cards | default([]) -%}
+{%- set columns = block.columns | default(3) ~ '' -%}
+{%- set col_class = {
+	'2': 'md:grid-cols-2',
+	'3': 'md:grid-cols-3',
+	'4': 'md:grid-cols-4'
+}[columns] | default('md:grid-cols-3') -%}
+
+{%- if cards | length -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+class="{{ html_classes( layout.classes | default('') ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container'), 'space-y-10' ) }}">
+			{{-
+				include(
+					'components/section-header.html.twig',
+					{
+						overline: content.overline,
+						title: content.title
+					}
+				)
+			-}}
+
+			<div class="grid grid-cols-1 gap-8 {{ col_class }}">
+				{%- for card in cards -%}
+					<article class="flex flex-col gap-4 border border-black p-6">
+						{%- if card.icon -%}
+							<div class="size-8 overflow-hidden bg-gray-100">
+								{{-
+									include(
+										'components/image.html.twig',
+										{
+											image: card.icon,
+											classes: ['size-full object-contain']
+										}
+									)
+								-}}
+							</div>
+						{%- else -%}
+							<div class="size-8 bg-gray-100" aria-hidden="true"></div>
+						{%- endif -%}
+
+						{%- if card.title -%}
+							<h3 class="text-xl font-semibold">{{- card.title -}}</h3>
+						{%- endif -%}
+
+						{%- if card.text -%}
+							<p class="text-sm text-gray-600">{{- card.text | raw -}}</p>
+						{%- endif -%}
+
+						{{-
+							include(
+								'components/text-link.html.twig',
+								card.link | default({}),
+								with_context = false
+							)
+						-}}
+					</article>
+				{%- endfor -%}
+			</div>
+		</div>
+	</section>
+{%- endif -%}

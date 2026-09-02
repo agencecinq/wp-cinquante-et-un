@@ -23,6 +23,8 @@ Enrichir le HTML sémantique avec du **microdata schema.org** (`itemscope`, `ite
 ```
 
 - **Articles / posts** : `BlogPosting` (voir `views/components/tease-post.html.twig`).
+- **Fil d'Ariane** : délégué à **Yoast SEO** (JSON-LD `BreadcrumbList`). Wrapper visuel : `views/components/breadcrumb.html.twig` via `yoast_breadcrumb()` Twig.
+- **Archive journal** : `Blog` sur `<main>` (voir `views/pages/archive-post.html.twig`).
 - **Page racine** : `WebPage` sur `<html>` (voir `views/index.html.twig`).
 - Réutiliser les patterns existants du thème avant d'en inventer un nouveau.
 - Conserver `aria-label` sur `<nav>` et la structure liste pour l'accessibilité.
@@ -30,7 +32,8 @@ Enrichir le HTML sémantique avec du **microdata schema.org** (`itemscope`, `ite
 ## DONT
 
 - Pas de liens de menu en rafale dans `<nav>` sans `<ul>`/`<li>`.
-- Pas de JSON-LD dupliqué si le microdata couvre déjà la même entité sur la page.
+- Pas de JSON-LD dupliqué si le microdata ou Yoast couvre déjà la même entité sur la page.
+- Pas de fil d'Ariane custom en PHP (helpers, tableaux de crumbs, contexte Timber) : Yoast gère la structure et le schéma.
 - Pas de `itemprop` sans `itemscope`/`itemtype` parent cohérent.
 
 ## Types courants
@@ -42,8 +45,8 @@ Enrichir le HTML sémantique avec du **microdata schema.org** (`itemscope`, `ite
 | Page web | `WebPage` |
 | En-tête de site | `WPHeader` |
 | Pied de page | `WPFooter` |
-| Fil d'Ariane | `BreadcrumbList` |
+| Fil d'Ariane | `BreadcrumbList` (Yoast SEO, JSON-LD) |
 
 ## JSON-LD vs microdata
 
-Le thème utilise le **microdata** dans les Twig. Réserver le JSON-LD (`<script type="application/ld+json">`) aux cas où le microdata ne peut pas être placé sur le markup visible (ex : données agrégées injectées côté PHP pour un plugin SEO).
+Le thème utilise le **microdata** dans les Twig pour le markup qu'il contrôle (nav, articles, pages). Réserver le JSON-LD (`<script type="application/ld+json">`) aux plugins (Yoast pour le fil d'Ariane) ou aux cas où le microdata ne peut pas être placé sur le markup visible (ex : FAQ agrégée via `cinq_faq_schema_json`).

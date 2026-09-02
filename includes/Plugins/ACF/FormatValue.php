@@ -42,7 +42,7 @@ class FormatValue implements Service {
 				continue;
 			}
 
-			$layout['id'] = 'block-' . str_replace( '_', '-', $layout['acf_fc_layout'] ) . '-' . uniqid();
+			cinq_enrich_block( $layout );
 		}
 
 		return $value;

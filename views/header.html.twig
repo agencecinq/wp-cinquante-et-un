@@ -1,7 +1,7 @@
 {#
  # Header
  #
- # Sticky 64px bar: logo, main nav (desktop), contact CTA, mobile drawer.
+ # Fixed floating bar: logo, main nav, search, contact CTA, mobile drawer.
  #
  # @package WPCinquanteEtUn
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
@@ -13,77 +13,151 @@
 	itemtype="https://schema.org/WPHeader"
 	class="{{
 	html_classes(
-		'sticky top-0 z-10 h-16 border-b border-zinc-200 bg-white/85 backdrop-blur-[0.875rem]',
+		'fixed top-0 z-40 w-full pt-4',
 		classes | default([]) | join(' ')
 	)
 	}}"
 >
-	<div class="container flex h-full items-center justify-between gap-4">
-		<a href="{{ site.link }}" class="shrink-0" aria-label="{{ site.name }}">
-			<img
-				class="block h-4.75 w-16"
-				src="{{ asset('src/img/svg/logo.svg') }}"
-				alt="{{ site.name }}"
-				width="64"
-				height="19"
-			/>
-		</a>
+	<div class="container">
+		<div class="flex items-center gap-8 border border-black bg-white px-10 py-4">
+			<a href="{{ site.link }}" class="shrink-0" aria-label="{{ site.name }}">
+				{%- if theme.header.logo | default(null) -%}
+					{{-
+						include(
+							'components/image.html.twig',
+							{
+								image: theme.header.logo,
+								classes: ['block h-5 w-auto'],
+								loading: 'eager'
+							}
+						)
+					-}}
+				{%- else -%}
+					<span class="text-sm font-semibold tracking-widest text-black">
+						{{- site.name -}}
+					</span>
+				{%- endif -%}
+			</a>
 
-		{%- if nav_menus.main -%}
-			<nav aria-label="{{ __('Main navigation', 'wp-cinquante-et-un') }}" class="hidden lg:block">
-				<ul class="flex gap-8 font-mono text-xs tracking-widest">
-					{%- for item in nav_menus.main.get_items() -%}
-						<li itemscope itemtype="https://schema.org/SiteNavigationElement">
-							<a
-								href="{{ item.url }}"
-								itemprop="url"
-								class="{{
-								html_classes(
-									item.current
-										or 'current-menu-parent' in item.classes
-										or 'current-page-ancestor' in item.classes
-										? ''
-										: 'text-zinc-500 hover:text-zinc-950',
-									item.classes | default([]) | join(' ')
-								)
-								}}"
-								{{ item.children | length ? 'aria-haspopup="true"' }}
-								{{
-								item.is_target_blank or item.is_external
-									? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
-								}}
+			{%- if nav_menus.main -%}
+				<nav
+					aria-label="{{ __('Main navigation', 'wp-cinquante-et-un') }}"
+					class="relative hidden min-w-0 flex-1 lg:block"
+				>
+					<ul class="flex items-center justify-end gap-9">
+						{%- for item in nav_menus.main.get_items() -%}
+							<li
+								itemscope
+								itemtype="https://schema.org/SiteNavigationElement"
+								class="{{ item.children | length ? 'group relative' : '' }}"
 							>
-								<span itemprop="name">{{- item.title -}}</span>
-							</a>
-						</li>
-					{%- endfor -%}
-				</ul>
-			</nav>
-		{%- endif -%}
+								<a
+									href="{{ item.url }}"
+									itemprop="url"
+									class="{{
+									html_classes(
+										'inline-flex items-center gap-2 text-xs font-medium text-black hover:text-gray-500',
+										item.current
+											or 'current-menu-parent' in item.classes
+											or 'current-page-ancestor' in item.classes
+											? 'text-black'
+											: '',
+										item.classes | default([]) | join(' ')
+									)
+									}}"
+									{{ item.children | length ? 'aria-haspopup="true"' }}
+									{{
+									item.is_target_blank or item.is_external
+										? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
+									}}
+								>
+									<span itemprop="name">{{- item.title -}}</span>
+									{%- if item.children | length -%}
+										{{-
+											include(
+												'svg/use.html.twig',
+												{
+													icon: 'chevron-down',
+													classes: ['size-2 shrink-0']
+												},
+												with_context = false
+											)
+										-}}
+									{%- endif -%}
+								</a>
 
-		{%- if theme.contact.link.url or nav_menus.main -%}
-			<div class="flex items-center gap-4">
+								{%- if item.children | length -%}
+									{{-
+										include(
+											'components/nav-menu-items.html.twig',
+											{
+												items: item.children,
+												title: item.title,
+												url: item.url,
+												id: item.id
+											},
+											with_context = false
+										)
+									-}}
+								{%- endif -%}
+							</li>
+						{%- endfor -%}
+					</ul>
+				</nav>
+			{%- endif -%}
+
+			<div class="flex shrink-0 items-center gap-4">
+				{%- if search_url -%}
+				<a
+					href="{{ search_url }}"
+					class="flex size-5 items-center justify-center text-black hover:text-gray-500"
+					aria-label="{{ __('Search', 'wp-cinquante-et-un') }}"
+				>
+					{{-
+						include(
+							'svg/use.html.twig',
+							{
+								icon: 'search',
+								classes: ['size-5']
+							},
+							with_context = false
+						)
+					-}}
+				</a>
+				{%- endif -%}
+
 				{%- if theme.contact.link.url -%}
-					<a
-						href="{{ theme.contact.link.url }}"
-						class="rounded-full bg-zinc-950 px-4.5 py-2.5 font-mono text-xs tracking-widest text-white hover:bg-zinc-800"
-						{{ theme.contact.link.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}
-					>
-						{{- theme.contact.link.title -}}
-					</a>
+					<div class="hidden lg:block">
+						{{-
+							include(
+								'components/button.html.twig',
+								theme.contact.link | merge({
+									variant: 'primary'
+								})
+							)
+						-}}
+					</div>
 				{%- endif -%}
 
 				{%- if nav_menus.main -%}
 					<cinq-drawer-button class="lg:hidden">
 						<button
 							type="button"
-							class="group/drawer-button flex size-10 items-center justify-center rounded-full border border-zinc-200"
+							class="group/drawer-button flex size-10 items-center justify-center border border-black text-black"
 							aria-controls="menu-drawer"
 							aria-label="{{ __('Menu', 'wp-cinquante-et-un') }}"
 						>
-							<span class="flex flex-col gap-1.25 group-aria-expanded/drawer-button:hidden">
-								<span class="h-0.5 w-4.5 bg-zinc-950"></span>
-								<span class="h-0.5 w-4.5 bg-zinc-950"></span>
+							<span class="group-aria-expanded/drawer-button:hidden">
+								{{-
+									include(
+										'svg/use.html.twig',
+										{
+											icon: 'bars',
+											classes: ['size-5']
+										},
+										with_context = false
+									)
+								-}}
 							</span>
 							{{-
 								include(
@@ -91,14 +165,15 @@
 									{
 										classes: ['size-5 hidden group-aria-expanded/drawer-button:block'],
 										icon: 'times'
-									}
+									},
+									with_context = false
 								)
 							-}}
 						</button>
 					</cinq-drawer-button>
 				{%- endif -%}
 			</div>
-		{%- endif -%}
+		</div>
 	</div>
 </header>
 
@@ -106,8 +181,8 @@
 	{% embed 'components/drawer.html.twig'
 		with {
 			id: 'menu-drawer',
-			margin_top: '4rem',
-			panel_classes: 'bg-white inset-0',
+			margin_top: '5.5rem',
+			panel_classes: 'bg-white inset-x-0 top-0 border border-black mx-5',
 			aria_label: __('Menu', 'wp-cinquante-et-un')
 		}
 	%}

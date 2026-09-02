@@ -1,0 +1,92 @@
+@layer components {
+	/* CF7 plugin stylesheet is dequeued; keep required a11y and layout hooks here. */
+	.wpcf7 .screen-reader-response {
+		@apply sr-only;
+	}
+
+	.wpcf7 .hidden-fields-container {
+		@apply hidden;
+	}
+
+	.wpcf7-form-control-wrap {
+		@apply block w-full;
+	}
+
+	.wpcf7-form-control.cinq-field {
+		@apply w-full border border-black p-3 text-sm placeholder:text-black/40;
+	}
+
+	.wpcf7 form textarea.cinq-field {
+		@apply min-h-36;
+	}
+
+	.wpcf7 form select.cinq-field {
+		@apply appearance-none bg-no-repeat pr-10;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M20 8.8L12 16.8L4 8.8L5.6 7.2L12 13.6L18.4 7.2L20 8.8Z' fill='%23000'/%3E%3C/svg%3E");
+		background-position: right 0.75rem center;
+		background-size: 0.75rem;
+	}
+
+	.wpcf7 form > p {
+		@apply m-0;
+	}
+
+	.wpcf7 form .wpcf7-response-output {
+		@apply m-0 border p-3 text-sm;
+	}
+
+	.wpcf7 form.init .wpcf7-response-output,
+	.wpcf7 form.resetting .wpcf7-response-output,
+	.wpcf7 form.submitting .wpcf7-response-output {
+		@apply hidden;
+	}
+
+	.wpcf7 form.sent .wpcf7-response-output {
+		@apply border-black text-black;
+	}
+
+	.wpcf7 form.failed .wpcf7-response-output,
+	.wpcf7 form.aborted .wpcf7-response-output,
+	.wpcf7 form.spam .wpcf7-response-output,
+	.wpcf7 form.invalid .wpcf7-response-output,
+	.wpcf7 form.unaccepted .wpcf7-response-output,
+	.wpcf7 form.payment-required .wpcf7-response-output {
+		@apply border-red-700 text-red-700;
+	}
+
+	.wpcf7-not-valid-tip {
+		@apply mt-2 block text-xs text-red-700;
+	}
+
+	.wpcf7-form-control.wpcf7-not-valid {
+		@apply border-red-700;
+	}
+
+	.wpcf7-acceptance .wpcf7-list-item {
+		@apply m-0;
+	}
+
+	.wpcf7-acceptance label {
+		@apply flex items-center gap-2;
+	}
+
+	.wpcf7-acceptance input[type='checkbox'] {
+		@apply size-4.5 shrink-0 appearance-none border border-black bg-white;
+	}
+
+	.wpcf7-acceptance input[type='checkbox']:checked {
+		background-color: var(--color-black);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M9.5 16.2L5.3 12L4 13.3L9.5 18.8L20 8.3L18.7 7L9.5 16.2Z' fill='%23fff'/%3E%3C/svg%3E");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 0.75rem;
+	}
+
+	.wpcf7-spinner {
+		@apply hidden;
+	}
+
+	.wpcf7 form.submitting .wpcf7-spinner {
+		@apply ml-2 inline-block size-4 animate-spin rounded-full border-2 border-black/20 border-t-black;
+	}
+}

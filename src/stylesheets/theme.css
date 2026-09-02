@@ -1,9 +1,38 @@
 @theme {
+	--font-sans: ui-sans-serif, system-ui, sans-serif;
+	--default-font-family: var(--font-sans);
+
+	--color-ink: #2a343a;
+
+	--color-background: var(--color-white);
+	--color-foreground: var(--color-ink);
+	--color-button: var(--color-ink);
+	--color-button-text: var(--color-white);
+	--color-secondary-button: var(--color-white);
+	--color-secondary-button-text: var(--color-ink);
+	--color-link: var(--color-ink);
+	--color-badge-background: var(--color-white);
+	--color-badge-foreground: var(--color-ink);
+	--color-badge-border: var(--color-ink);
+
 	/*
-	 * The starter uses Tailwind defaults (colors, type, radius).
-	 * Declare project tokens here when the design does not map:
-	 *   --color-zinc-950: #08090a;
-	 *   --text-xl: 1.375rem;
-	 *   --radius-4xl: 2.5rem;
+	 * Default 90rem (1440px). Set 110rem for the 1760px mode.
 	 */
+	--container-max-width: 90rem;
+
+	/* Editorial measure: 720px ≈ 65 characters. */
+	--max-width-prose: 45rem;
+}
+
+[data-color-scheme="inverse"] {
+	--color-background: var(--color-ink);
+	--color-foreground: var(--color-white);
+	--color-button: var(--color-white);
+	--color-button-text: var(--color-ink);
+	--color-secondary-button: var(--color-ink);
+	--color-secondary-button-text: var(--color-white);
+	--color-link: var(--color-white);
+	--color-badge-background: var(--color-ink);
+	--color-badge-foreground: var(--color-white);
+	--color-badge-border: var(--color-white);
 }

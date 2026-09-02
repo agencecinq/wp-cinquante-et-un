@@ -1,54 +1,61 @@
-{{-
-	include(
-		'blocks/_layout.html.twig',
-		{
-			paddings: block.layout.paddings,
-			id: block.id
-		}
-	)
--}}
+{#
+ # Blocks: Media Text
+ #
+ # Media on 6 cols, gutter, text on 5. Stacks media-first on small screens.
+ #}
 
-{%- set use_reveal = block.reveal_on_scroll | default( false ) -%}
+{%- set layout = block.layout | default({}) -%}
+{%- set content = block.content | default({}) -%}
+{%- set media_first = block.media_position | default('left') != 'right' -%}
 
-
-<div id="{{ block.id }}">
-	{%- if use_reveal -%}
-		<cinq-media-text-reveal class="block">
-		{%- endif -%}
-
-		{# max-h-158.75 lg:max-h-200 #}
-		<div class="relative w-full overflow-hidden">
-			<div class="aspect-402/635 lg:aspect-1440/800 w-full relative">
-
-
-				{% if use_reveal %}
-
-					<div class="container absolute z-1 inset-0 flex flex-col items-center justify-center" aria-hidden="true">
-						<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('text-4xl font-medium tracking-tight lg:text-6xl'), 'text-center' ) }}">{{- block.content.title -}}</{{block.content.heading|default('h2')}}>
-					</div>
-					<div data-dom="mask" class="absolute inset-0 z-2 overflow-hidden size-full">
-						<div class="size-full relative after:absolute after:inset-0 after:z-2 after:size-full after:bg-white/30">
-							{{- include('components/media.html.twig', { media: block.media, classes: [ 'block relative z-1 size-full object-cover object-center' ] }) -}}
-						</div>
-						<div class="container absolute inset-0 z-3 flex items-center justify-center">
-							<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('text-4xl font-medium tracking-tight lg:text-6xl'), 'text-center' ) }}">
-								{{- block.content.title -}}
-							</{{block.content.heading|default('p')}}>
-						</div>
-					</div>
-				{% else %}
-					{{- include('components/media.html.twig', { media: block.media, classes: [ 'block relative z-1 size-full object-cover object-center' ] }) -}}
-					<div class="container absolute z-2 inset-0 flex items-center justify-center">
-						<{{block.content.heading|default('p')}} class="{{ html_classes( block.content.title_style | default('text-4xl font-medium tracking-tight lg:text-6xl'), 'text-center' ) }}">
-							{{- block.content.title -}}
-						</{{block.content.heading|default('p')}}>
-					</div>
-				{% endif %}
-
-			</div>
+<section
+	{% if block.id %}id="{{ block.id }}"{% endif %}
+	class="{{ html_classes( layout.classes | default('') ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+>
+	<div
+		class="{{
+		html_classes(
+			layout.container_classes | default('container'),
+			'grid grid-cols-12 items-center gap-x-8 gap-y-8',
+			not media_first ? 'lg:[&>*:first-child]:col-start-8 lg:[&>*:last-child]:col-start-1 lg:[&>*:last-child]:row-start-1'
+		)
+		}}"
+	>
+		<div class="col-span-full overflow-hidden border border-black bg-gray-100 aspect-4/3 lg:col-span-6">
+			{{-
+				include(
+					'components/media.html.twig',
+					{
+						media: block.media,
+						classes: ['block size-full object-cover object-center']
+					}
+				)
+			-}}
 		</div>
 
-		{%- if use_reveal -%}
-		</cinq-media-text-reveal>
-	{%- endif -%}
-</div>
+		<div class="col-span-full space-y-5 lg:col-span-5 lg:col-start-8">
+			{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+
+			{%- if content.title -%}
+				<{{ content.heading | default('h2') }} class="text-2xl font-semibold">
+					{{- content.title | raw -}}
+				</{{ content.heading | default('h2') }}>
+			{%- endif -%}
+
+			{%- if content.text -%}
+				<div class="wysiwyg text-gray-600">
+					{{- content.text | raw -}}
+				</div>
+			{%- endif -%}
+
+			{{-
+				include(
+					'components/button.html.twig',
+					content.link | default({}) | merge({ variant: 'secondary' }),
+					with_context = false
+				)
+			-}}
+		</div>
+	</div>
+</section>

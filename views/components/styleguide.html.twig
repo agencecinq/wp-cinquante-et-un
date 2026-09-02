@@ -1,299 +1,463 @@
 {#
- # Styleguide catalog: colors, type, radius, buttons, chips, icons, image, teasers, pagination, WYSIWYG, CINQ UI.
+ # Styleguide catalog: colors, type, space, layout, radius, buttons, chips, icons, image, teasers, pagination, WYSIWYG, CINQ UI.
  #}
 
-{%- set color_groups = [
-	{
-		title: __('White & black', 'wp-cinquante-et-un'),
-		colors: [
-			{ name: 'white', class: 'bg-white', token: '--color-white' },
-			{ name: 'black', class: 'bg-black', token: '--color-black' }
-		]
-	},
-	{
-		title: __('Zinc', 'wp-cinquante-et-un'),
-		colors: [
-			{ name: 'zinc-50', class: 'bg-zinc-50', token: '--color-zinc-50' },
-			{ name: 'zinc-100', class: 'bg-zinc-100', token: '--color-zinc-100' },
-			{ name: 'zinc-200', class: 'bg-zinc-200', token: '--color-zinc-200' },
-			{ name: 'zinc-400', class: 'bg-zinc-400', token: '--color-zinc-400' },
-			{ name: 'zinc-500', class: 'bg-zinc-500', token: '--color-zinc-500' },
-			{ name: 'zinc-800', class: 'bg-zinc-800', token: '--color-zinc-800' },
-			{ name: 'zinc-950', class: 'bg-zinc-950', token: '--color-zinc-950' }
-		]
-	}
+{%- set primitives = [
+	{ name: 'white', class: 'bg-white', token: '--color-white' },
+	{ name: 'black', class: 'bg-black', token: '--color-black' },
+	{ name: 'ink', class: 'bg-ink', token: '--color-ink' },
+	{ name: 'gray-50', class: 'bg-gray-50', token: '--color-gray-50' },
+	{ name: 'gray-100', class: 'bg-gray-100', token: '--color-gray-100' },
+	{ name: 'gray-200', class: 'bg-gray-200', token: '--color-gray-200' },
+	{ name: 'gray-300', class: 'bg-gray-300', token: '--color-gray-300' },
+	{ name: 'gray-400', class: 'bg-gray-400', token: '--color-gray-400' },
+	{ name: 'gray-500', class: 'bg-gray-500', token: '--color-gray-500' },
+	{ name: 'gray-600', class: 'bg-gray-600', token: '--color-gray-600' },
+	{ name: 'gray-700', class: 'bg-gray-700', token: '--color-gray-700' },
+	{ name: 'gray-800', class: 'bg-gray-800', token: '--color-gray-800' },
+	{ name: 'gray-900', class: 'bg-gray-900', token: '--color-gray-900' },
+	{ name: 'red-700', class: 'bg-red-700', token: '--color-red-700' }
 ] -%}
 
-{%- set titles = [
-	{
-		class: 'text-5xl font-medium tracking-tight lg:text-8xl',
-		sample: __('A site that grows with you.', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'text-4xl font-medium tracking-tight lg:text-7xl',
-		sample: __('Five commitments. None negotiable.', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'text-4xl font-medium tracking-tight lg:text-6xl',
-		sample: __('Three ways to grow your site.', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'text-2xl font-medium tracking-tight lg:text-3xl',
-		sample: __('Maintenance and evolutions', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'text-xl font-medium tracking-tight',
-		sample: __('Shopify storefront', 'wp-cinquante-et-un')
-	}
+{%- set scheme_roles = [
+	{ name: 'background', class: 'bg-background', hint: __('Section background', 'wp-cinquante-et-un') },
+	{ name: 'foreground', class: 'bg-foreground', hint: __('Text', 'wp-cinquante-et-un') },
+	{ name: 'button', class: 'bg-button', hint: __('Primary button', 'wp-cinquante-et-un') },
+	{ name: 'button-text', class: 'bg-button-text', hint: __('Button label', 'wp-cinquante-et-un') },
+	{ name: 'secondary-button', class: 'bg-secondary-button', hint: __('Secondary button', 'wp-cinquante-et-un') },
+	{ name: 'secondary-button-text', class: 'bg-secondary-button-text', hint: __('Secondary label', 'wp-cinquante-et-un') },
+	{ name: 'link', class: 'bg-link', hint: __('Editorial links', 'wp-cinquante-et-un') },
+	{ name: 'badge-background', class: 'bg-badge-background', hint: __('Tag background', 'wp-cinquante-et-un') },
+	{ name: 'badge-foreground', class: 'bg-badge-foreground', hint: __('Tag text', 'wp-cinquante-et-un') },
+	{ name: 'badge-border', class: 'bg-badge-border', hint: __('Tag border', 'wp-cinquante-et-un') }
 ] -%}
 
-{%- set texts = [
-	{
-		class: 'text-xl',
-		sample: __('Your site is not an expense to write off every three years.', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'text-lg',
-		sample: __(
-			'It is an asset you build to last, and you evolve it with the company.',
-			'wp-cinquante-et-un'
-		)
-	},
-	{
-		class: 'text-base',
-		sample: __('Dedicated theme, D2C and B2B, CRM connected from day one.', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'text-sm',
-		sample: __('Fast, maintainable WordPress brochure and editorial sites.', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'text-xs',
-		sample: __('Paris, Tours, Marseille', 'wp-cinquante-et-un')
-	}
+{%- set ui_tokens = [
+	{ name: 'surface', class: 'bg-white', token: '--color-white' },
+	{ name: 'surface-muted', class: 'bg-gray-100', token: '--color-gray-100' },
+	{ name: 'border-default', class: 'border-black', token: '--color-black' },
+	{ name: 'border-muted', class: 'border-gray-200', token: '--color-gray-200' },
+	{ name: 'text-default', class: 'text-black', token: '--color-black' },
+	{ name: 'text-muted', class: 'text-gray-500', token: '--color-gray-500' },
+	{ name: 'text-subtle', class: 'text-gray-600', token: '--color-gray-600' },
+	{ name: 'text-inverse', class: 'text-white bg-black', token: '--color-white' },
+	{ name: 'text-error', class: 'text-red-700', token: '--color-red-700' }
 ] -%}
 
-{%- set metas = [
-	{
-		class: 'font-mono text-xs uppercase tracking-widest',
-		sample: __('What we do', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'font-mono text-xs tracking-widest',
-		sample: __('01/03 - Work', 'wp-cinquante-et-un')
-	},
-	{
-		class: 'font-mono text-sm font-medium tracking-wide',
-		sample: __('Talk about your project', 'wp-cinquante-et-un')
-	}
+{%- set type_scale = [
+	{ name: 'Display/6xl', class: 'text-6xl font-semibold', sample: __('Hero title', 'wp-cinquante-et-un'), note: __('Editorial', 'wp-cinquante-et-un') },
+	{ name: 'Display/5xl', class: 'text-5xl font-semibold', sample: __('Hero title', 'wp-cinquante-et-un'), note: __('Editorial', 'wp-cinquante-et-un') },
+	{ name: 'Display/4xl', class: 'text-4xl font-semibold', sample: __('Page title', 'wp-cinquante-et-un') },
+	{ name: 'Display/3xl', class: 'text-3xl font-semibold', sample: __('Page title', 'wp-cinquante-et-un') },
+	{ name: 'Heading/2xl', class: 'text-2xl font-semibold', sample: __('Block title', 'wp-cinquante-et-un') },
+	{ name: 'Heading/xl', class: 'text-xl font-semibold', sample: __('Subtitle', 'wp-cinquante-et-un') },
+	{ name: 'Heading/xl', class: 'text-xl font-medium', sample: __('Subtitle', 'wp-cinquante-et-un') },
+	{ name: 'Body/lg', class: 'text-lg', sample: __('Block lead', 'wp-cinquante-et-un') },
+	{ name: 'Body/base', class: 'text-base', sample: __('Interface text', 'wp-cinquante-et-un') },
+	{ name: 'Body/base', class: 'text-base font-medium', sample: __('Interface text', 'wp-cinquante-et-un') },
+	{ name: 'Body/sm', class: 'text-sm', sample: __('Secondary text', 'wp-cinquante-et-un') },
+	{ name: 'Body/sm', class: 'text-sm font-medium', sample: __('Secondary text', 'wp-cinquante-et-un') },
+	{ name: 'Body/sm', class: 'text-sm font-semibold', sample: __('Secondary text', 'wp-cinquante-et-un') },
+	{ name: 'Label/xs', class: 'text-xs', sample: __('Label', 'wp-cinquante-et-un') },
+	{ name: 'Label/xs', class: 'text-xs font-medium', sample: __('Label', 'wp-cinquante-et-un') },
+	{ name: 'Label/xs', class: 'text-xs font-semibold', sample: __('Label', 'wp-cinquante-et-un') },
+	{ name: 'Eyebrow', class: 'subtitle', sample: __('Block overline', 'wp-cinquante-et-un') },
+	{ name: 'Prose/lg', class: 'prose-lg', sample: __('Article lead', 'wp-cinquante-et-un'), note: __('Editorial, line-height 1.7', 'wp-cinquante-et-un') },
+	{ name: 'Prose/base', class: 'prose-base', sample: __('Article body', 'wp-cinquante-et-un'), note: __('Editorial, line-height 1.7', 'wp-cinquante-et-un') },
+	{ name: 'Prose/base', class: 'prose-base font-bold', sample: __('Highlighted passage', 'wp-cinquante-et-un'), note: __('Editorial, weight 700', 'wp-cinquante-et-un') }
 ] -%}
 
-{%- set radii = [
-	{
-		name: 'sm',
-		class: 'rounded-sm'
-	},
-	{
-		name: 'md',
-		class: 'rounded-md'
-	},
-	{
-		name: 'lg',
-		class: 'rounded-lg'
-	},
-	{
-		name: 'xl',
-		class: 'rounded-xl'
-	},
-	{
-		name: '2xl',
-		class: 'rounded-2xl'
-	},
-	{
-		name: '3xl',
-		class: 'rounded-3xl'
-	},
-	{
-		name: '4xl',
-		class: 'rounded-4xl'
-	},
-	{
-		name: 'full',
-		class: 'rounded-full'
-	}
+{%- set spacings = [
+	{ step: 1, class: 'w-1', px: 4 },
+	{ step: 2, class: 'w-2', px: 8 },
+	{ step: 3, class: 'w-3', px: 12 },
+	{ step: 4, class: 'w-4', px: 16 },
+	{ step: 5, class: 'w-5', px: 20 },
+	{ step: 6, class: 'w-6', px: 24 },
+	{ step: 8, class: 'w-8', px: 32 },
+	{ step: 10, class: 'w-10', px: 40 },
+	{ step: 12, class: 'w-12', px: 48 },
+	{ step: 16, class: 'w-16', px: 64 },
+	{ step: 20, class: 'w-20', px: 80 },
+	{ step: 24, class: 'w-24', px: 96, note: __('Editorial', 'wp-cinquante-et-un') },
+	{ step: 28, class: 'w-28', px: 112, note: __('Editorial', 'wp-cinquante-et-un') },
+	{ step: 32, class: 'w-32', px: 128, note: __('Editorial', 'wp-cinquante-et-un') }
+] -%}
+
+{%- set section_spacings = [
+	{ name: 'none', desktop: 0, mobile: 0, desktop_class: 'w-px', mobile_class: 'w-px' },
+	{ name: 'sm', desktop: 32, mobile: 24, desktop_class: 'w-8', mobile_class: 'w-6' },
+	{ name: 'md', desktop: 64, mobile: 40, desktop_class: 'w-16', mobile_class: 'w-10' },
+	{ name: 'lg', desktop: 96, mobile: 56, desktop_class: 'w-24', mobile_class: 'w-14' },
+	{ name: 'xl', desktop: 128, mobile: 72, desktop_class: 'w-32', mobile_class: 'w-18' }
 ] -%}
 
 {%- set icons = [
 	'arrow-left',
 	'arrow-right',
 	'bars',
-	'bullet',
+	'calendar',
+	'check',
 	'chevron-down',
 	'chevron-left',
 	'chevron-right',
-	'envelope',
 	'facebook',
-	'globe',
 	'instagram',
-	'linkedin',
-	'mark',
 	'minus',
 	'plus',
 	'search',
 	'times',
-	'vimeo',
-	'x',
+	'quote',
+	'mail',
+	'phone',
+	'map-pin',
+	'linkedin',
+	'twitter',
 	'youtube'
+] -%}
+{%- set extra_icons = [
+	'mark',
+	'vimeo',
+	'x'
 ] -%}
 
 <section class="space-y-8" aria-labelledby="styleguide-colors">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
-			{{- __('Color', 'wp-cinquante-et-un') -}}
+		<p class="subtitle">
+			{{- __('Foundations', 'wp-cinquante-et-un') -}}
 		</p>
-		<h2 id="styleguide-colors" class="text-2xl font-medium tracking-tight lg:text-3xl">{{- __('Palette', 'wp-cinquante-et-un') -}}</h2>
-		<p class="text-zinc-500 max-w-prose text-sm">
+		<h2 id="styleguide-colors" class="text-2xl font-semibold">
+			{{- __('Colour', 'wp-cinquante-et-un') -}}
+		</h2>
+		<p class="text-gray-500 max-w-prose text-sm">
 			{{-
 				__(
-					'The starter uses Tailwind color utilities (bg-white, text-zinc-950, border-zinc-200). Override --color-zinc-* in theme.css for a project, or add a token if the palette does not map to the scale.',
+					'Tailwind v4 primitives (plus ink). Never pick primitives in the editor. Blocks switch Light or Inverse via ACF color_scheme. UI components read the Tailwind layer below, not the schemes.',
 					'wp-cinquante-et-un'
 				)
 			-}}
 		</p>
 	</header>
 	<div class="space-y-10">
-		{%- for group in color_groups -%}
-			<div class="space-y-4">
-				<p class="font-mono text-xs uppercase tracking-widest">
-					{{ group.title }}
-				</p>
-				<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
-					{%- for color in group.colors -%}
-						<li class="space-y-2">
-							<div class="{{ color.class }} border-zinc-200 aspect-square rounded-xl border"></div>
-							<p class="font-mono text-xs tracking-widest">
-								{{ color.name }}
-							</p>
-							<p class="font-mono text-xs text-zinc-500">
-								.{{ color.class }}
-							</p>
-							<p class="font-mono text-xs text-zinc-400">
-								{{ color.token }}
-							</p>
-						</li>
-					{%- endfor -%}
-				</ul>
+		<div class="space-y-4">
+			<p class="subtitle">
+				{{- __('Primitives', 'wp-cinquante-et-un') -}}
+			</p>
+			<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-7">
+				{%- for color in primitives -%}
+					<li class="space-y-2">
+						<div class="{{ color.class }} aspect-square border border-gray-200"></div>
+						<p class="text-xs font-medium">
+							{{ color.name }}
+						</p>
+						<p class="text-gray-500 text-xs">
+							.{{ color.class }}
+						</p>
+						<p class="text-gray-500 text-xs">
+							{{ color.token }}
+						</p>
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
+		<div class="space-y-4">
+			<p class="subtitle">
+				{{- __('Color schemes', 'wp-cinquante-et-un') -}}
+			</p>
+			<p class="text-gray-500 max-w-prose text-sm">
+				{{-
+					__(
+						'Exposed in theme.json for Gutenberg. Each block sets color_scheme to default or inverse.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+			<div class="grid gap-6 lg:grid-cols-2">
+				<div class="space-y-5 border border-black p-7" data-color-scheme="default">
+					<p class="text-sm font-semibold">
+						{{- __('Scheme 1 · Light', 'wp-cinquante-et-un') -}}
+					</p>
+					<ul class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+						{%- for color in scheme_roles -%}
+							<li class="space-y-2">
+								<div class="{{ color.class }} aspect-square border border-gray-200"></div>
+								<p class="text-xs font-medium">
+									{{ color.name }}
+								</p>
+								<p class="text-gray-500 text-xs">
+									{{ color.hint }}
+								</p>
+							</li>
+						{%- endfor -%}
+					</ul>
+				</div>
+				<div class="bg-background text-foreground space-y-5 border border-black p-7" data-color-scheme="inverse">
+					<p class="text-sm font-semibold">
+						{{- __('Scheme 2 · Inverse', 'wp-cinquante-et-un') -}}
+					</p>
+					<ul class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+						{%- for color in scheme_roles -%}
+							<li class="space-y-2">
+								<div class="{{ color.class }} border-gray-200 aspect-square border"></div>
+								<p class="text-xs font-medium">
+									{{ color.name }}
+								</p>
+								<p class="text-xs opacity-70">
+									{{ color.hint }}
+								</p>
+							</li>
+						{%- endfor -%}
+					</ul>
+				</div>
 			</div>
-		{%- endfor -%}
+		</div>
+		<div class="space-y-4">
+			<p class="subtitle">
+				{{- __('UI', 'wp-cinquante-et-un') -}}
+			</p>
+			<p class="text-gray-500 max-w-prose text-sm">
+				{{-
+					__(
+						'Roles consumed by buttons and surfaces. They are Tailwind utilities, not extra tokens, and they do not follow a color scheme.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+			<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+				{%- for color in ui_tokens -%}
+					<li class="space-y-2">
+						<div class="{{ color.class }} aspect-square border border-gray-200"></div>
+						<p class="text-xs font-medium">
+							{{ color.name }}
+						</p>
+						<p class="text-gray-500 text-xs">
+							.{{ color.class }}
+						</p>
+						<p class="text-gray-500 text-xs">
+							{{ color.token }}
+						</p>
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
 	</div>
 </section>
 
 <section class="space-y-8" aria-labelledby="styleguide-type">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
-			{{- __('Typography', 'wp-cinquante-et-un') -}}
+		<p class="subtitle">
+			{{- __('Foundations', 'wp-cinquante-et-un') -}}
 		</p>
-		<h2 id="styleguide-type" class="text-2xl font-medium tracking-tight lg:text-3xl">{{- __('Type scale', 'wp-cinquante-et-un') -}}</h2>
-		<p class="text-zinc-500 max-w-prose text-sm">
+		<h2 id="styleguide-type" class="text-2xl font-semibold">
+			{{- __('Type', 'wp-cinquante-et-un') -}}
+		</h2>
+		<p class="text-gray-500 max-w-prose text-sm">
 			{{-
 				__(
-					'The starter uses Tailwind type utilities (text-xl, text-4xl lg:text-6xl, font-medium, font-mono). Override --text-* in theme.css for a project, or add a token if the ramp does not map to the scale.',
+					'System sans-serif stack (ui-sans-serif, system-ui). Fifteen interface styles plus five editorial styles (5xl, 6xl, and Prose at line-height 1.7). Never use Prose in UI, nor Body in an article. .subtitle is uppercase with 0.1em tracking.',
 					'wp-cinquante-et-un'
 				)
 			-}}
 		</p>
 	</header>
-
-	<div class="space-y-10">
-		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Titles', 'wp-cinquante-et-un') -}}
-			</p>
-			<ul class="divide-zinc-100 divide-y">
-				{%- for item in titles -%}
-					<li class="space-y-2 py-5">
-						<p class="font-mono text-xs tracking-widest">
-							.{{ item.class }}
-						</p>
-						<p class="{{ item.class }}">
-							{{ item.sample }}
-						</p>
-					</li>
-				{%- endfor -%}
-			</ul>
-		</div>
-
-		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Text', 'wp-cinquante-et-un') -}}
-			</p>
-			<ul class="divide-zinc-100 divide-y">
-				{%- for item in texts -%}
-					<li class="space-y-2 py-5">
-						<p class="font-mono text-xs tracking-widest">
-							.{{ item.class }}
-						</p>
-						<p class="{{ item.class }}">
-							{{ item.sample }}
-						</p>
-					</li>
-				{%- endfor -%}
-			</ul>
-		</div>
-
-		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Meta', 'wp-cinquante-et-un') -}}
-			</p>
-			<ul class="divide-zinc-100 divide-y">
-				{%- for item in metas -%}
-					<li class="space-y-2 py-5">
-						<p class="font-mono text-xs tracking-widest">
-							.{{ item.class }}
-						</p>
-						<p class="{{ item.class }}">
-							{{ item.sample }}
-						</p>
-					</li>
-				{%- endfor -%}
-			</ul>
-		</div>
-	</div>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-radius">
-	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
-			{{- __('Radius', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-radius" class="text-2xl font-medium tracking-tight lg:text-3xl">{{- __('Corners', 'wp-cinquante-et-un') -}}</h2>
-		<p class="text-zinc-500 max-w-prose text-sm">
-			{{-
-				__(
-					'The starter uses Tailwind radius utilities (rounded-md, rounded-2xl). Override --radius-* in theme.css for a project, or add a token if the scale does not map.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-	<ul class="flex flex-wrap items-end gap-5">
-		{%- for radius in radii -%}
-			<li class="space-y-2 text-center">
-				<div class="bg-zinc-950 size-20 {{ radius.class }}"></div>
-				<p class="font-mono text-xs tracking-widest">
-					.{{ radius.class }}
+	<ul class="divide-gray-100 divide-y">
+		{%- for item in type_scale -%}
+			<li class="grid grid-cols-12 items-center gap-5 py-5">
+				<div class="col-span-full space-y-1 sm:col-span-4">
+					<p class="text-xs font-medium">
+						{{ item.name }}
+					</p>
+					<p class="text-gray-500 text-xs">
+						.{{ item.class }}
+						{%- if item.note -%}
+							{{ ' · ' }}{{ item.note }}
+						{%- endif -%}
+					</p>
+				</div>
+				<p class="{{ item.class }} col-span-full sm:col-span-8">
+					{{ item.sample }}
 				</p>
 			</li>
 		{%- endfor -%}
 	</ul>
 </section>
 
+<section class="space-y-8" aria-labelledby="styleguide-space">
+	<header class="space-y-2">
+		<p class="subtitle">
+			{{- __('Foundations', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-space" class="text-2xl font-semibold">
+			{{- __('Space', 'wp-cinquante-et-un') -}}
+		</h2>
+		<p class="text-gray-500 max-w-prose text-sm">
+			{{-
+				__(
+					'Tailwind spacing scale (0.25rem) for gutters and component padding, never between sections. Section spacing is a separate ACF scale of five values.',
+					'wp-cinquante-et-un'
+				)
+			-}}
+		</p>
+	</header>
+	<ul class="space-y-2">
+		{%- for item in spacings -%}
+			<li class="flex items-center gap-4 text-xs">
+				<p class="w-24 font-medium">
+					spacing/{{ item.step }}
+				</p>
+				<p class="text-gray-500 w-16">
+					{{ item.px }}
+				</p>
+				<div class="bg-black h-4 {{ item.class }}"></div>
+				<p class="text-gray-500">
+					gap-{{ item.step }} · p-{{ item.step }}
+					{%- if item.note -%}
+						{{ ' · ' }}{{ item.note }}
+					{%- endif -%}
+				</p>
+			</li>
+		{%- endfor -%}
+	</ul>
+	<div class="space-y-4">
+		<p class="subtitle">
+			{{- __('Section spacing', 'wp-cinquante-et-un') -}}
+		</p>
+		<p class="text-gray-500 max-w-prose text-sm">
+			{{-
+				__(
+					'The only values for ACF spacing_top and spacing_bottom. Desktop then mobile.',
+					'wp-cinquante-et-un'
+				)
+			-}}
+		</p>
+		<ul class="space-y-2.5">
+			{%- for item in section_spacings -%}
+				<li class="flex items-center gap-5 text-xs">
+					<p class="w-30 font-medium">
+						section/{{ item.name }}
+					</p>
+					<p class="text-gray-500 w-24">
+						{{ item.desktop }} / {{ item.mobile }}
+					</p>
+					<div class="bg-black h-4 {{ item.desktop_class }}"></div>
+					<div class="bg-gray-200 h-4 {{ item.mobile_class }}"></div>
+					<p class="text-gray-500">
+						{{- __('desktop · mobile', 'wp-cinquante-et-un') -}}
+					</p>
+				</li>
+			{%- endfor -%}
+		</ul>
+	</div>
+</section>
+
+<section class="space-y-8" aria-labelledby="styleguide-layout">
+	<header class="space-y-2">
+		<p class="subtitle">
+			{{- __('Foundations', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-layout" class="text-2xl font-semibold">
+			{{- __('Layout', 'wp-cinquante-et-un') -}}
+		</h2>
+		<p class="text-gray-500 max-w-prose text-sm">
+			{{-
+				__(
+					'12-column grid. Container max-width is 1440px by default (set --container-max-width to 110rem for 1760px). Article body never exceeds 720px.',
+					'wp-cinquante-et-un'
+				)
+			-}}
+		</p>
+	</header>
+	<div class="bg-gray-100 grid grid-cols-12 gap-4 p-5">
+		{%- for i in 1..12 -%}
+			<div class="bg-gray-200 col-span-1 py-12"></div>
+		{%- endfor -%}
+	</div>
+	<div class="flex h-14 w-full max-w-prose items-center justify-center border border-black">
+		<p class="text-gray-600 text-xs">
+			{{- __('layout/prose-max-width — 720px, about 65 characters. The measure for long copy.', 'wp-cinquante-et-un') -}}
+		</p>
+	</div>
+	<ul class="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-4">
+		<li class="space-y-2 border border-black p-5">
+			<p class="text-gray-500 text-xs font-medium">
+				{{- __('Breakpoints', 'wp-cinquante-et-un') -}}
+			</p>
+			<p class="text-base font-semibold">
+				sm 640 · md 768 · lg 1024
+			</p>
+			<p class="text-gray-600 text-xs">
+				{{- __('md is used here: editorial grids often go to two columns before lg.', 'wp-cinquante-et-un') -}}
+			</p>
+		</li>
+		<li class="-ml-px space-y-2 border border-black p-5">
+			<p class="text-gray-500 text-xs font-medium">
+				{{- __('Container', 'wp-cinquante-et-un') -}}
+			</p>
+			<p class="text-base font-semibold">
+				1440 / 1760 px
+			</p>
+			<p class="text-gray-600 text-xs">
+				{{- __('Two modes. Override --container-max-width (90rem or 110rem) from the start.', 'wp-cinquante-et-un') -}}
+			</p>
+		</li>
+		<li class="-ml-px space-y-2 border border-black p-5">
+			<p class="text-gray-500 text-xs font-medium">
+				{{- __('Editorial measure', 'wp-cinquante-et-un') -}}
+			</p>
+			<p class="text-base font-semibold">
+				720 px
+			</p>
+			<p class="text-gray-600 text-xs">
+				{{- __('Article body never exceeds this width, whatever the container.', 'wp-cinquante-et-un') -}}
+			</p>
+		</li>
+		<li class="-ml-px space-y-2 border border-black p-5">
+			<p class="text-gray-500 text-xs font-medium">
+				{{- __('Radius', 'wp-cinquante-et-un') -}}
+			</p>
+			<p class="text-base font-semibold">
+				0
+			</p>
+			<p class="text-gray-600 text-xs">
+				{{- __('Sharp corners, 1px borders.', 'wp-cinquante-et-un') -}}
+			</p>
+		</li>
+	</ul>
+</section>
+
+<section class="space-y-8" aria-labelledby="styleguide-radius">
+	<header class="space-y-2">
+		<p class="subtitle">
+			{{- __('Foundations', 'wp-cinquante-et-un') -}}
+		</p>
+		<h2 id="styleguide-radius" class="text-2xl font-semibold">
+			{{- __('Radius', 'wp-cinquante-et-un') -}}
+		</h2>
+		<p class="text-gray-500 max-w-prose text-sm">
+			{{-
+				__(
+					'Radius is 0. Do not add rounded-* utilities in the starter.',
+					'wp-cinquante-et-un'
+				)
+			-}}
+		</p>
+	</header>
+	<div class="space-y-2">
+		<div class="bg-black size-20"></div>
+		<p class="text-xs font-medium">
+			.rounded-none
+		</p>
+	</div>
+</section>
+
 <section class="space-y-8" aria-labelledby="styleguide-buttons">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
+		<p class="font-mono text-xs tracking-widest uppercase">
 			{{- __('Components', 'wp-cinquante-et-un') -}}
 		</p>
-		<h2 id="styleguide-buttons" class="text-2xl font-medium tracking-tight lg:text-3xl">{{- __('Buttons', 'wp-cinquante-et-un') -}}</h2>
+		<h2 id="styleguide-buttons" class="text-2xl font-medium tracking-tight lg:text-3xl">
+			{{- __('Buttons', 'wp-cinquante-et-un') -}}
+		</h2>
 	</header>
 
 	<div class="space-y-8">
@@ -315,7 +479,7 @@
 						'components/button.html.twig',
 						{
 							title: __('Button', 'wp-cinquante-et-un'),
-							icon: 'bullet'
+							icon: 'plus'
 						}
 					)
 				-}}
@@ -324,43 +488,6 @@
 						'components/button.html.twig',
 						{
 							title: __('Button', 'wp-cinquante-et-un'),
-							disabled: true
-						}
-					)
-				-}}
-			</div>
-		</div>
-
-		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Primary dark', 'wp-cinquante-et-un') -}}
-			</p>
-			<div class="bg-white rounded-2xl flex flex-wrap items-center gap-4 p-5">
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							mode: 'dark'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							icon: 'bullet',
-							mode: 'dark'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							mode: 'dark',
 							disabled: true
 						}
 					)
@@ -388,7 +515,7 @@
 						{
 							title: __('Button', 'wp-cinquante-et-un'),
 							variant: 'secondary',
-							icon: 'bullet'
+							icon: 'plus'
 						}
 					)
 				-}}
@@ -398,46 +525,6 @@
 						{
 							title: __('Button', 'wp-cinquante-et-un'),
 							variant: 'secondary',
-							disabled: true
-						}
-					)
-				-}}
-			</div>
-		</div>
-
-		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Secondary dark', 'wp-cinquante-et-un') -}}
-			</p>
-			<div class="bg-white rounded-2xl flex flex-wrap items-center gap-4 p-5">
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'secondary',
-							mode: 'dark'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'secondary',
-							icon: 'bullet',
-							mode: 'dark'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'secondary',
-							mode: 'dark',
 							disabled: true
 						}
 					)
@@ -465,7 +552,7 @@
 						{
 							title: __('Button', 'wp-cinquante-et-un'),
 							variant: 'tertiary',
-							icon: 'arrow-right'
+							icon: 'plus'
 						}
 					)
 				-}}
@@ -481,52 +568,17 @@
 				-}}
 			</div>
 		</div>
-
-		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Quaternary', 'wp-cinquante-et-un') -}}
-			</p>
-			<div class="flex flex-wrap items-center gap-4">
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'quaternary'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'quaternary',
-							icon: 'chevron-left'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'quaternary',
-							disabled: true
-						}
-					)
-				-}}
-			</div>
-		</div>
 	</div>
 </section>
 
 <section class="space-y-8" aria-labelledby="styleguide-chips">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
+		<p class="font-mono text-xs tracking-widest uppercase">
 			{{- __('Components', 'wp-cinquante-et-un') -}}
 		</p>
-		<h2 id="styleguide-chips" class="text-2xl font-medium tracking-tight lg:text-3xl">{{- __('Chip and tag', 'wp-cinquante-et-un') -}}</h2>
+		<h2 id="styleguide-chips" class="text-2xl font-medium tracking-tight lg:text-3xl">
+			{{- __('Chip and tag', 'wp-cinquante-et-un') -}}
+		</h2>
 	</header>
 	<div class="flex flex-wrap items-center gap-4">
 		{{-
@@ -546,11 +598,13 @@
 				}
 			)
 		-}}
+	</div>
+	<div class="flex flex-wrap items-center gap-1">
 		{{-
 			include(
 				'components/tag.html.twig',
 				{
-					title: __('Tag', 'wp-cinquante-et-un')
+					title: __('New', 'wp-cinquante-et-un')
 				}
 			)
 		-}}
@@ -558,13 +612,12 @@
 			include(
 				'components/tag.html.twig',
 				{
-					title: __('Tag', 'wp-cinquante-et-un'),
-					icon: 'plus'
+					title: __('Editorial', 'wp-cinquante-et-un')
 				}
 			)
 		-}}
 	</div>
-	<div class="bg-white rounded-2xl flex flex-wrap items-center gap-4 p-5">
+	<div class="flex flex-wrap items-center gap-4 rounded-2xl bg-zinc-950 p-5">
 		{{-
 			include(
 				'components/chip.html.twig',
@@ -589,10 +642,20 @@
 
 <section class="space-y-8" aria-labelledby="styleguide-icons">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
+		<p class="subtitle">
 			{{- __('Assets', 'wp-cinquante-et-un') -}}
 		</p>
-		<h2 id="styleguide-icons" class="text-2xl font-medium tracking-tight lg:text-3xl">{{- __('Icons', 'wp-cinquante-et-un') -}}</h2>
+		<h2 id="styleguide-icons" class="text-2xl font-semibold">
+			{{- __('Icons', 'wp-cinquante-et-un') -}}
+		</h2>
+		<p class="max-w-prose text-sm text-gray-500">
+			{{-
+				__(
+					'Twenty-one icons on a 24 by 24 grid, recolorable with currentColor. Add a file to src/icons/, run pnpm build, then include svg/use.html.twig.',
+					'wp-cinquante-et-un'
+				)
+			-}}
+		</p>
 	</header>
 	<ul class="grid grid-cols-4 gap-5 sm:grid-cols-6 lg:grid-cols-8">
 		{%- for icon in icons -%}
@@ -607,7 +670,29 @@
 						with_context = false
 					)
 				-}}
-				<p class="font-mono text-xs tracking-widest text-center">
+				<p class="text-center font-mono text-xs tracking-widest">
+					{{ icon }}
+				</p>
+			</li>
+		{%- endfor -%}
+	</ul>
+	<p class="subtitle">
+		{{- __('Extras', 'wp-cinquante-et-un') -}}
+	</p>
+	<ul class="grid grid-cols-4 gap-5 sm:grid-cols-6 lg:grid-cols-8">
+		{%- for icon in extra_icons -%}
+			<li class="flex flex-col items-center gap-2">
+				{{-
+					include(
+						'svg/use.html.twig',
+						{
+							icon: icon,
+							classes: ['size-6']
+						},
+						with_context = false
+					)
+				-}}
+				<p class="text-center font-mono text-xs tracking-widest">
 					{{ icon }}
 				</p>
 			</li>
@@ -617,13 +702,13 @@
 
 <section class="space-y-8" aria-labelledby="styleguide-image">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
+		<p class="font-mono text-xs tracking-widest uppercase">
 			{{- __('Assets', 'wp-cinquante-et-un') -}}
 		</p>
 		<h2 id="styleguide-image" class="text-2xl font-medium tracking-tight lg:text-3xl">
 			{{- __('Image', 'wp-cinquante-et-un') -}}
 		</h2>
-		<p class="text-zinc-500 max-w-prose text-sm">
+		<p class="max-w-prose text-sm text-zinc-500">
 			{{-
 				__(
 					'image.html.twig accepts a WordPress attachment or a placeholder array: src, alt, width, height, and placeholder true. The starter ships src/img/svg/placeholder.svg so catalog blocks do not need a media library file.',
@@ -663,16 +748,16 @@
 
 <section class="space-y-8" aria-labelledby="styleguide-teasers">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
+		<p class="font-mono text-xs tracking-widest uppercase">
 			{{- __('Components', 'wp-cinquante-et-un') -}}
 		</p>
 		<h2 id="styleguide-teasers" class="text-2xl font-medium tracking-tight lg:text-3xl">
 			{{- __('Teasers', 'wp-cinquante-et-un') -}}
 		</h2>
-		<p class="text-zinc-500 max-w-prose text-sm">
+		<p class="max-w-prose text-sm text-zinc-500">
 			{{-
 				__(
-					'Post cards used on the archive, latest posts, and hero. Dummy posts come from the page model.',
+					'Post cards used on the archive and latest posts. Landscape 3:2 image, first category, date, title, excerpt, read-more link.',
 					'wp-cinquante-et-un'
 				)
 			-}}
@@ -683,51 +768,70 @@
 			<p class="font-mono text-xs tracking-widest">
 				components/tease-post.html.twig
 			</p>
-			{{- include('components/tease-post.html.twig', { post: post.posts[0] }, with_context = false) -}}
+			{{-
+				include(
+					'components/tease-post.html.twig',
+					{
+						post: post.posts[0]
+					},
+					with_context = false
+				)
+			-}}
 		</div>
 		<div class="space-y-4">
 			<p class="font-mono text-xs tracking-widest">
 				components/tease-post-mini.html.twig
 			</p>
-			{{- include('components/tease-post-mini.html.twig', { post: post.posts[1] }, with_context = false) -}}
+			{{-
+				include(
+					'components/tease-post-mini.html.twig',
+					{
+						post: post.posts[1]
+					},
+					with_context = false
+				)
+			-}}
 		</div>
 	</div>
 </section>
 
 <section class="space-y-8" aria-labelledby="styleguide-pagination">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
+		<p class="font-mono text-xs tracking-widest uppercase">
 			{{- __('Components', 'wp-cinquante-et-un') -}}
 		</p>
 		<h2 id="styleguide-pagination" class="text-2xl font-medium tracking-tight lg:text-3xl">
 			{{- __('Pagination', 'wp-cinquante-et-un') -}}
 		</h2>
-		<p class="text-zinc-500 max-w-prose text-sm">
-			{{-
-				__(
-					'Archive pagination. Dummy pages come from the page model.',
-					'wp-cinquante-et-un'
-				)
-			-}}
+		<p class="max-w-prose text-sm text-zinc-500">
+			{{- __('Archive pagination. Dummy pages come from the page model.', 'wp-cinquante-et-un') -}}
 		</p>
 	</header>
 	<div class="space-y-4">
 		<p class="font-mono text-xs tracking-widest">
 			components/pagination.html.twig
 		</p>
-		{{- include('components/pagination.html.twig', { pagination: post.pagination }, with_context = false) -}}
+		{{-
+			include(
+				'components/pagination.html.twig',
+				{
+					pagination: post.pagination
+				},
+				with_context = false
+			)
+		-}}
 	</div>
 </section>
 
 <section class="space-y-8" aria-labelledby="styleguide-wysiwyg">
 	<header class="space-y-2">
-		<p class="font-mono text-xs uppercase tracking-widest">
+		<p class="font-mono text-xs tracking-widest uppercase">
 			{{- __('Content', 'wp-cinquante-et-un') -}}
 		</p>
 		<h2 id="styleguide-wysiwyg" class="text-2xl font-medium tracking-tight lg:text-3xl">
 			{{- __('WYSIWYG', 'wp-cinquante-et-un') -}}
 		</h2>
-		<p class="text-zinc-500 max-w-prose text-sm">
+		<p class="max-w-prose text-sm text-zinc-500">
 			{{-
 				__(
 					'Editorial markup styled by wysiwyg.css. Used on posts and generic pages.',
@@ -739,7 +843,9 @@
 	<div class="wysiwyg max-w-prose">
 		<h2>{{- __('A site that grows with you.', 'wp-cinquante-et-un') -}}</h2>
 		<p>
-			{{- __('Your site is not an expense to write off every three years.', 'wp-cinquante-et-un') -}}
+			{{-
+				__('Your site is not an expense to write off every three years.', 'wp-cinquante-et-un')
+			-}}
 			{{ ' ' }}
 			<a href="#">{{- __('It is an asset you build to last', 'wp-cinquante-et-un') -}}</a>{{ ', ' }}
 			<strong>{{- __('dedicated theme', 'wp-cinquante-et-un') -}}</strong>{{ ', ' }}
@@ -762,14 +868,16 @@
 			<li>{{- __('Evolve with the company', 'wp-cinquante-et-un') -}}</li>
 		</ol>
 		<blockquote>
-			<p>{{- __('Five commitments. None negotiable.', 'wp-cinquante-et-un') -}}</p>
+			<p>
+				{{- __('Five commitments. None negotiable.', 'wp-cinquante-et-un') -}}
+			</p>
 			<cite>CINQ</cite>
 		</blockquote>
 		<hr />
 		<h4>{{- __('Code sample', 'wp-cinquante-et-un') -}}</h4>
-		<pre><code>@theme {
-  --color-zinc-950: #08090a;
-}</code></pre>
+		<pre>
+			<code>@theme { --color-zinc-950: #08090a; }</code>
+		</pre>
 		<table>
 			<thead>
 				<tr>
@@ -798,7 +906,7 @@
 <div class="block space-y-20">
 	<section class="space-y-8" aria-labelledby="styleguide-ui">
 		<header class="space-y-2">
-			<p class="font-mono text-xs uppercase tracking-widest">
+			<p class="font-mono text-xs tracking-widest uppercase">
 				{{- __('CINQ UI', 'wp-cinquante-et-un') -}}
 			</p>
 			<h2 id="styleguide-ui" class="text-2xl font-medium tracking-tight lg:text-3xl">
@@ -811,7 +919,10 @@
 						'wp-cinquante-et-un'
 					)
 				-}}
-				<a class="font-mono text-sm font-medium tracking-wide underline" href="https://agencecinq.github.io/ui/">
+				<a
+					class="font-mono text-sm font-medium tracking-wide underline"
+					href="https://agencecinq.github.io/ui/"
+				>
 					{{- __('CINQ UI documentation', 'wp-cinquante-et-un') -}}
 				</a>
 			</p>
@@ -912,7 +1023,7 @@
 					>
 						<button
 							type="button"
-							class="font-mono text-sm font-medium tracking-wide is-active rounded-md border-zinc-200 [&.is-active]:border-zinc-950 [&.is-active]:bg-zinc-950 [&.is-active]:text-white border px-3 py-2"
+							class="is-active rounded-md border border-zinc-200 px-3 py-2 font-mono text-sm font-medium tracking-wide [&.is-active]:border-zinc-950 [&.is-active]:bg-zinc-950 [&.is-active]:text-white"
 							role="tab"
 							aria-selected="true"
 							aria-controls="styleguide-tab-one"
@@ -922,7 +1033,7 @@
 						</button>
 						<button
 							type="button"
-							class="font-mono text-sm font-medium tracking-wide rounded-md border-zinc-200 [&.is-active]:border-zinc-950 [&.is-active]:bg-zinc-950 [&.is-active]:text-white border px-3 py-2"
+							class="rounded-md border border-zinc-200 px-3 py-2 font-mono text-sm font-medium tracking-wide [&.is-active]:border-zinc-950 [&.is-active]:bg-zinc-950 [&.is-active]:text-white"
 							role="tab"
 							aria-selected="false"
 							aria-controls="styleguide-tab-two"
@@ -933,7 +1044,7 @@
 						</button>
 						<button
 							type="button"
-							class="font-mono text-sm font-medium tracking-wide rounded-md border-zinc-200 [&.is-active]:border-zinc-950 [&.is-active]:bg-zinc-950 [&.is-active]:text-white border px-3 py-2"
+							class="rounded-md border border-zinc-200 px-3 py-2 font-mono text-sm font-medium tracking-wide [&.is-active]:border-zinc-950 [&.is-active]:bg-zinc-950 [&.is-active]:text-white"
 							role="tab"
 							aria-selected="false"
 							aria-controls="styleguide-tab-three"
@@ -980,7 +1091,7 @@
 					@agencecinq/accordion
 				</p>
 				<cinq-accordion
-					class="divide-zinc-100 bg-zinc-50 block divide-y rounded-2xl px-5"
+					class="block divide-y divide-zinc-100 rounded-2xl bg-zinc-50 px-5"
 					data-hash="false"
 				>
 					<div
@@ -991,15 +1102,27 @@
 					>
 						<button
 							type="button"
-							class="text-xl font-medium tracking-tight flex w-full items-center justify-between gap-6 text-left in-data-[open=true]:text-zinc-950"
+							class="flex w-full items-center justify-between gap-6 text-left text-xl font-medium tracking-tight in-data-[open=true]:text-zinc-950"
 							data-header
 							id="styleguide-acc-1-header"
 							aria-expanded="true"
 							aria-controls="styleguide-acc-1-body"
 						>
-							<span class="min-w-0 flex-1">{{- __('Why do you publish your prices?', 'wp-cinquante-et-un') -}}</span>
-							<span class="text-xl font-medium tracking-tight shrink-0 text-zinc-500 in-data-[open=true]:hidden" aria-hidden="true">+</span>
-							<span class="text-xl font-medium tracking-tight hidden shrink-0 in-data-[open=true]:inline" aria-hidden="true">−</span>
+							<span class="min-w-0 flex-1">
+								{{- __('Why do you publish your prices?', 'wp-cinquante-et-un') -}}
+							</span>
+							<span
+								class="shrink-0 text-xl font-medium tracking-tight text-zinc-500 in-data-[open=true]:hidden"
+								aria-hidden="true"
+							>
+								+
+							</span>
+							<span
+								class="hidden shrink-0 text-xl font-medium tracking-tight in-data-[open=true]:inline"
+								aria-hidden="true"
+							>
+								−
+							</span>
 						</button>
 						<div id="styleguide-acc-1-body" role="region" aria-labelledby="styleguide-acc-1-header">
 							<div class="text-sm text-zinc-500" data-inner>
@@ -1020,15 +1143,27 @@
 					>
 						<button
 							type="button"
-							class="text-xl font-medium tracking-tight flex w-full items-center justify-between gap-6 text-left in-data-[open=true]:text-zinc-950"
+							class="flex w-full items-center justify-between gap-6 text-left text-xl font-medium tracking-tight in-data-[open=true]:text-zinc-950"
 							data-header
 							id="styleguide-acc-2-header"
 							aria-expanded="false"
 							aria-controls="styleguide-acc-2-body"
 						>
-							<span class="min-w-0 flex-1">{{- __('What happens if the scope moves mid-build?', 'wp-cinquante-et-un') -}}</span>
-							<span class="text-xl font-medium tracking-tight shrink-0 text-zinc-500 in-data-[open=true]:hidden" aria-hidden="true">+</span>
-							<span class="text-xl font-medium tracking-tight hidden shrink-0 in-data-[open=true]:inline" aria-hidden="true">−</span>
+							<span class="min-w-0 flex-1">
+								{{- __('What happens if the scope moves mid-build?', 'wp-cinquante-et-un') -}}
+							</span>
+							<span
+								class="shrink-0 text-xl font-medium tracking-tight text-zinc-500 in-data-[open=true]:hidden"
+								aria-hidden="true"
+							>
+								+
+							</span>
+							<span
+								class="hidden shrink-0 text-xl font-medium tracking-tight in-data-[open=true]:inline"
+								aria-hidden="true"
+							>
+								−
+							</span>
 						</button>
 						<div
 							id="styleguide-acc-2-body"
@@ -1037,7 +1172,12 @@
 							hidden
 						>
 							<div class="text-sm text-zinc-500" data-inner>
-								{{- __('We reopen the estimate, agree on the extra, then we build.', 'wp-cinquante-et-un') -}}
+								{{-
+									__(
+										'We reopen the estimate, agree on the extra, then we build.',
+										'wp-cinquante-et-un'
+									)
+								-}}
 							</div>
 						</div>
 					</div>
@@ -1078,13 +1218,13 @@
 					aria-label="{{ __('Switches', 'wp-cinquante-et-un') }}"
 				>
 					<cinq-switch
-						class="font-mono text-sm font-medium tracking-wide [&[aria-checked=true]_.track]:bg-zinc-950 inline-flex cursor-pointer items-center gap-3 focus-visible:outline focus-visible:outline-offset-2 [&[aria-checked=true]_.thumb]:translate-x-4"
+						class="inline-flex cursor-pointer items-center gap-3 font-mono text-sm font-medium tracking-wide focus-visible:outline focus-visible:outline-offset-2 [&[aria-checked=true]_.thumb]:translate-x-4 [&[aria-checked=true]_.track]:bg-zinc-950"
 						role="switch"
 						aria-checked="false"
 						tabindex="0"
 					>
 						<span>{{- __('Notifications', 'wp-cinquante-et-un') -}}</span>
-						<span class="track bg-white relative block h-6 w-10 rounded-full" aria-hidden="true">
+						<span class="track relative block h-6 w-10 rounded-full bg-zinc-200" aria-hidden="true">
 							<span
 								class="thumb absolute top-0.5 left-0.5 block size-5 rounded-full bg-white transition-transform"
 							>
@@ -1096,7 +1236,7 @@
 						</div>
 					</cinq-switch>
 					<cinq-switch
-						class="font-mono text-sm font-medium tracking-wide [&[aria-checked=true]_.track]:bg-zinc-950 inline-flex cursor-pointer items-center gap-3 opacity-50 [&[aria-checked=true]_.thumb]:translate-x-4"
+						class="inline-flex cursor-pointer items-center gap-3 font-mono text-sm font-medium tracking-wide opacity-50 [&[aria-checked=true]_.thumb]:translate-x-4 [&[aria-checked=true]_.track]:bg-zinc-950"
 						role="switch"
 						aria-checked="false"
 						disabled
@@ -1104,7 +1244,7 @@
 						tabindex="-1"
 					>
 						<span>{{- __('Disabled', 'wp-cinquante-et-un') -}}</span>
-						<span class="track bg-white relative block h-6 w-10 rounded-full" aria-hidden="true">
+						<span class="track relative block h-6 w-10 rounded-full bg-zinc-200" aria-hidden="true">
 							<span
 								class="thumb absolute top-0.5 left-0.5 block size-5 rounded-full bg-white transition-transform"
 							>
@@ -1123,10 +1263,10 @@
 					@agencecinq/spinbutton
 				</p>
 				<cinq-spinbutton
-					class="focus-within:ring-zinc-950 border-zinc-200 bg-zinc-50 inline-flex w-fit items-center gap-2 rounded-md border p-1 focus-within:ring-2"
+					class="inline-flex w-fit items-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 p-1 focus-within:ring-2 focus-within:ring-zinc-950"
 				>
 					<button
-						class="hover:bg-zinc-100 grid size-8 place-items-center rounded-sm bg-white disabled:cursor-not-allowed disabled:opacity-40"
+						class="grid size-8 place-items-center rounded-sm bg-white hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-40"
 						name="decrease"
 						type="button"
 						aria-label="{{ __('Decrease', 'wp-cinquante-et-un') }}"
@@ -1144,7 +1284,7 @@
 						-}}
 					</button>
 					<input
-						class="font-mono text-sm font-medium tracking-wide w-14 bg-transparent text-center focus:outline-none"
+						class="w-14 bg-transparent text-center font-mono text-sm font-medium tracking-wide focus:outline-none"
 						type="number"
 						aria-label="{{ __('Quantity', 'wp-cinquante-et-un') }}"
 						aria-valuemin="0"
@@ -1153,7 +1293,7 @@
 						value="1"
 					/>
 					<button
-						class="hover:bg-zinc-100 grid size-8 place-items-center rounded-sm bg-white disabled:cursor-not-allowed disabled:opacity-40"
+						class="grid size-8 place-items-center rounded-sm bg-white hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-40"
 						name="increase"
 						type="button"
 						aria-label="{{ __('Increase', 'wp-cinquante-et-un') }}"
@@ -1177,7 +1317,7 @@
 				<p class="font-mono text-xs tracking-widest">
 					@agencecinq/combobox
 				</p>
-				<label class="font-mono text-xs tracking-widest block" for="styleguide-city">
+				<label class="block font-mono text-xs tracking-widest" for="styleguide-city">
 					{{- __('City', 'wp-cinquante-et-un') -}}
 				</label>
 				<cinq-combobox
@@ -1187,7 +1327,7 @@
 					data-autoselect="true"
 				>
 					<input
-						class="font-mono text-sm font-medium tracking-wide rounded-l-6 border-zinc-950 min-w-0 flex-1 border px-3 py-2"
+						class="rounded-l-6 min-w-0 flex-1 border border-zinc-950 px-3 py-2 font-mono text-sm font-medium tracking-wide"
 						id="styleguide-city"
 						type="text"
 						role="combobox"
@@ -1197,7 +1337,7 @@
 						autocomplete="off"
 					/>
 					<button
-						class="border-zinc-950 rounded-r-6 -ml-px flex size-10 shrink-0 items-center justify-center border"
+						class="rounded-r-6 -ml-px flex size-10 shrink-0 items-center justify-center border border-zinc-950"
 						type="button"
 						tabindex="-1"
 						aria-label="{{ __('Cities', 'wp-cinquante-et-un') }}"
@@ -1216,7 +1356,7 @@
 						-}}
 					</button>
 					<ul
-						class="bg-white rounded-md border-zinc-200 z-2 border **:[[role=option]]:cursor-pointer **:[[role=option]]:px-3 **:[[role=option]]:py-2 **:[[role=option][aria-selected=true]]:bg-zinc-950 **:[[role=option][aria-selected=true]]:text-white"
+						class="z-2 rounded-md border border-zinc-200 bg-white **:[[role=option]]:cursor-pointer **:[[role=option]]:px-3 **:[[role=option]]:py-2 **:[[role=option][aria-selected=true]]:bg-zinc-950 **:[[role=option][aria-selected=true]]:text-white"
 						id="styleguide-city-listbox"
 						role="listbox"
 						aria-label="{{ __('Cities', 'wp-cinquante-et-un') }}"

@@ -57,7 +57,7 @@ Points de vigilance :
 
 ## Étape 4 : polices
 
-Le starter n'embarque aucune police custom : stacks Tailwind / navigateur. `font-face.css` est vide. L'exemple Google Fonts est documenté dans `Enqueue::enqueue_styles()`.
+Le starter n'embarque aucune police custom : stacks Tailwind / navigateur. `font-face.css` est vide.
 
 Quand le projet a ses propres polices, aligne les sources — c'est un point qui dérive souvent sur les copies :
 
@@ -70,7 +70,7 @@ Vérifie que la famille déclarée, le fichier réellement présent, et `--defau
 
 ## Étape 5 : SVG et assets
 
-- `src/icons/` : garde les icônes UI génériques (flèches, chevrons, +/-, recherche, bars/times, enveloppe, globe) et les réseaux sociaux réellement utilisés. Supprime les icônes métier du projet précédent (ex pour nexiode : `controleur-wizard`, `detection-anomalies`, `eclairage-*`, `gestion-*`, `mise-en-valeur`, `pilotage-lumiere`). Ajoute les icônes du nouveau projet.
+- `src/icons/` : le set Figma vit sur une grille 24×24 (`arrow-*`, `bars`, `calendar`, `check`, `chevron-*`, `minus`, `plus`, `search`, `times`, `quote`, `mail`, `phone`, `map-pin`, réseaux). `mark` est le sigle agence (hors grille). `x` alias `twitter` et `vimeo` restent pour les socials. Supprime les icônes métier du projet précédent. Ajoute celles du nouveau projet au même format (24×24, `currentColor`).
 - `public/` : supprime tout logo ou SVG nominatif d'un ancien client (ex constaté : `public/logo-agora-makers.svg`).
 - `src/img/` : supprime les images statiques de l'ancien projet, ajoute celles du nouveau.
 - `screenshot.png` : à remplacer par le visuel du nouveau thème (ou neutre).

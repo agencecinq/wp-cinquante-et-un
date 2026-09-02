@@ -1,20 +1,30 @@
+{%- set layout = block.layout | default({}) -%}
+{%- set content = block.content | default({}) -%}
+{%- set view_all = content.link | default({}) -%}
+{%- if not view_all.url and posts_url -%}
+	{%- set view_all = {
+		title: __('View all posts', 'wp-cinquante-et-un'),
+		url: posts_url
+	} -%}
+{%- endif -%}
+
 {{-
 	include(
-		'blocks/_layout.html.twig',
+		'components/collection-posts.html.twig',
 		{
-			paddings: block.layout.paddings,
-			id: block.id
+			attributes: {
+				'data-color-scheme': layout.color_scheme | default('default')
+			} | merge(block.id ? { id: block.id } : {}),
+			classes: [ layout.classes | default('') ],
+			container_classes: layout.container_classes | default('container'),
+			content: content | merge({ link: view_all }),
+			posts: block.posts | default(
+				get_posts({
+					post_type: 'post',
+					cat: content.category,
+					posts_per_page: content.posts_per_page | default(4)
+				})
+			)
 		}
 	)
--}}
-
-{{- 
-	include(
-		'components/collection-posts.html.twig', 
-		{ 
-			attributes: { id: block.id }, 
-			content: block.content | default({}) | merge({ link: { url: posts_url } }),
-			posts: block.posts | default( get_posts( { post_type: 'post', cat: block.content.category, posts_per_page: 3 } ) ),
-		} 
-	) 
 -}}

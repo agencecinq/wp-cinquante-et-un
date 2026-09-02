@@ -32,10 +32,26 @@ class Loader implements Service {
 	}
 
 	/**
-	 * Redirect templates as needed.
+	 * Redirects orphaned search queries to the native home search URL.
+	 *
+	 * WordPress 404s when `?s=` is appended to a page permalink (e.g. /recherche/?s=foo).
 	 *
 	 * @return void
 	 */
-	public function template_redirect() {
+	public function template_redirect(): void {
+		$search_query = get_search_query();
+
+		if ( '' === $search_query || is_search() ) {
+			return;
+		}
+
+		wp_safe_redirect(
+			add_query_arg(
+				's',
+				$search_query,
+				home_url( '/' )
+			)
+		);
+		exit;
 	}
 }

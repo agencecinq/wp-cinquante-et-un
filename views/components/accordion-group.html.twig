@@ -1,57 +1,39 @@
 {#
  # Components: Accordion Group
  #
- # FAQ-style accordion (CINQ Design System). First item open by default.
+ # Native details/summary. First item open by default.
  #
- # @param classes (array) - The classes to apply to the accordion.
- # @param accordions (array) - The accordions to display.
- #
- # @example
- # {{- include('components/accordion-group.html.twig', { classes: [ 'bg-white rounded-3xl px-3.5 py-7.5 lg:px-12.75 lg:py-9.25' ], accordions: block.content.accordions }) -}}
+ # @param array accordions Panels with header and content.
+ # @param array classes Extra CSS classes.
  #}
 
-{%- if accordions | length > 1 -%}
-	<cinq-accordion
-		class="{{
-		html_classes(
-			classes | default([]) | join(' '),
-			'divide-zinc-100 block divide-y'
-		)
-		}}"
-		data-hash="false"
-	>
+{%- if accordions | length -%}
+	<div class="{{ html_classes( classes | default([]) | join(' ') ) }}">
 		{%- for accordion in accordions -%}
-			{%- set id = (accordion.header | sanitize) ~ '-' ~ loop.index0 -%}
-			{%- set is_open = loop.first -%}
-			<div
-				class="py-6 data-[open=true]:flex data-[open=true]:flex-col data-[open=true]:gap-4"
-				data-panel
-				data-open="{{ is_open ? 'true' : 'false' }}"
-				data-deselect="true"
+			<details
+				class="group border-t border-gray-200 last:border-b"
+				{{ loop.first ? 'open' }}
 			>
-				<button
-					type="button"
-					class="text-xl font-medium tracking-tight flex w-full items-center justify-between gap-6 text-left in-data-[open=true]:text-zinc-950"
-					data-header
-					id="{{ id }}-header"
-					aria-expanded="{{ is_open ? 'true' : 'false' }}"
-					aria-controls="{{ id }}-body"
+				<summary
+					class="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-sm font-semibold [&::-webkit-details-marker]:hidden"
 				>
 					<span class="min-w-0 flex-1">{{- accordion.header -}}</span>
-					<span class="text-xl font-medium tracking-tight shrink-0 text-zinc-400 in-data-[open=true]:hidden" aria-hidden="true">+</span>
-					<span class="text-xl font-medium tracking-tight hidden shrink-0 in-data-[open=true]:inline" aria-hidden="true">−</span>
-				</button>
-				<div
-					id="{{ id }}-body"
-					role="region"
-					aria-labelledby="{{ id }}-header"
-					{{ is_open ? '' : 'hidden' }}
-				>
-					<div class="text-sm text-zinc-500" data-inner>
-						{{ accordion.content }}
-					</div>
+					<span
+						class="relative flex size-8 shrink-0 items-center justify-center bg-gray-100"
+						aria-hidden="true"
+					>
+						<span class="group-open:hidden">
+							{{- include('svg/use.html.twig', { classes: ['size-3'], icon: 'plus' }) -}}
+						</span>
+						<span class="hidden group-open:block">
+							{{- include('svg/use.html.twig', { classes: ['size-3'], icon: 'minus' }) -}}
+						</span>
+					</span>
+				</summary>
+				<div class="wysiwyg max-w-3xl pb-6 text-sm">
+					{{- accordion.content | raw -}}
 				</div>
-			</div>
+			</details>
 		{%- endfor -%}
-	</cinq-accordion>
+	</div>
 {%- endif -%}

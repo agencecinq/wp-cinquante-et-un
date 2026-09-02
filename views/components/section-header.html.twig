@@ -1,0 +1,30 @@
+{#
+ # Section header: overline, title, optional text link aligned right.
+ #
+ # @param string overline Optional subtitle.
+ # @param string title Section heading.
+ # @param string heading Heading tag. Default h2.
+ # @param array link Optional { title, url, target }.
+ #}
+
+{%- if overline or title or link.url -%}
+	<div class="flex flex-wrap items-end justify-between gap-4">
+		<div class="space-y-3">
+			{{- include('components/subtitle.html.twig', { title: overline }) -}}
+
+			{%- if title -%}
+				<{{ heading | default('h2') }} class="text-2xl font-semibold">
+					{{- title -}}
+				</{{ heading | default('h2') }}>
+			{%- endif -%}
+		</div>
+
+		{{-
+			include(
+				'components/text-link.html.twig',
+				link | default({}),
+				with_context = false
+			)
+		-}}
+	</div>
+{%- endif -%}

@@ -3,18 +3,14 @@
  # Two-column text layout.
  #}
 
-{{-
-	include(
-		'blocks/_layout.html.twig',
-		{
-			paddings: block.layout.paddings,
-			id: block.id
-		}
-	)
--}}
+{%- set layout = block.layout | default({}) -%}
 
-<section id="{{ block.id }}" class="block-columns">
-	<div class="container grid grid-cols-12 gap-x-2.5 gap-y-7.5 lg:gap-x-5">
+<section
+	{% if block.id %}id="{{ block.id }}"{% endif %}
+	class="{{ html_classes( layout.classes | default(''), 'block-columns' ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+>
+	<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 gap-x-2.5 gap-y-7.5 lg:gap-x-5' ) }}">
 		{%- if block.content.column_left -%}
 			<div class="col-span-full lg:col-span-6">
 				<div class="text-xl">

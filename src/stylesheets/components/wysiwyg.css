@@ -10,7 +10,7 @@
 	}
 
 	.wysiwyg p {
-		@apply text-base;
+		@apply prose-base;
 
 		margin-bottom: 1em;
 	}
@@ -20,21 +20,21 @@
 	}
 
 	.wysiwyg h1 {
-		@apply text-4xl font-medium tracking-tight lg:text-6xl;
+		@apply text-4xl font-semibold;
 
 		margin-top: 0;
 		margin-bottom: 1.25rem;
 	}
 
 	.wysiwyg h2 {
-		@apply text-2xl font-medium tracking-tight lg:text-3xl;
+		@apply text-2xl font-semibold;
 
 		margin-top: 3.75rem;
 		margin-bottom: 1.25rem;
 	}
 
 	.wysiwyg h3 {
-		@apply text-xl font-medium tracking-tight;
+		@apply text-xl font-semibold;
 
 		margin-top: 1.25rem;
 		margin-bottom: 1.25rem;
@@ -57,7 +57,7 @@
 
 	/* Inline */
 	.wysiwyg a {
-		@apply text-zinc-950 underline underline-offset-2;
+		@apply text-black underline underline-offset-2;
 	}
 
 	.wysiwyg strong,
@@ -71,7 +71,7 @@
 	}
 
 	.wysiwyg mark {
-		@apply bg-zinc-100 px-0.5;
+		@apply bg-gray-100 px-0.5;
 	}
 
 	.wysiwyg code {
@@ -98,7 +98,7 @@
 
 	/* Blockquote */
 	.wysiwyg blockquote {
-		@apply border-zinc-950 text-base border-l-4 pl-5 italic;
+		@apply border-l-2 border-black pl-6 py-2 prose-lg not-italic;
 
 		margin-top: 1.5rem;
 		margin-bottom: 1.5rem;
@@ -109,13 +109,13 @@
 	}
 
 	.wysiwyg blockquote cite {
-		@apply mt-2 block not-italic text-xs text-zinc-500;
+		@apply mt-2 block not-italic text-xs text-gray-500;
 	}
 
 	/* Lists */
 	.wysiwyg ul,
 	.wysiwyg ol {
-		@apply text-base;
+		@apply prose-base;
 
 		margin-top: 1rem;
 		margin-bottom: 1rem;
@@ -148,12 +148,12 @@
 
 	/* Horizontal rule */
 	.wysiwyg hr {
-		@apply my-6 border-0 border-t border-zinc-200;
+		@apply my-6 border-0 border-t border-gray-200;
 	}
 
 	/* Pre / code block */
 	.wysiwyg pre {
-		@apply overflow-x-auto rounded-xl border border-zinc-200 bg-white p-5 text-sm;
+		@apply overflow-x-auto border border-gray-200 bg-white p-5 text-sm;
 
 		margin-top: 1.5rem;
 		margin-bottom: 1.5rem;
@@ -173,7 +173,7 @@
 
 	.wysiwyg th,
 	.wysiwyg td {
-		@apply border border-zinc-200 px-4 py-3 text-left;
+		@apply border border-gray-200 px-4 py-3 text-left;
 	}
 
 	.wysiwyg th {
@@ -190,7 +190,7 @@
 	}
 
 	.wysiwyg figure img, .wysiwyg p img {
-		@apply max-w-full rounded-xl align-middle;
+		@apply max-w-full align-middle;
 
 		margin-top: 0!important;
 		margin-left: auto!important;
@@ -203,6 +203,6 @@
 	}
 
 	.wysiwyg figcaption {
-		@apply mt-2 text-xs text-zinc-500;
+		@apply mt-2 text-xs text-gray-500;
 	}
 }

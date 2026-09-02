@@ -1,54 +1,50 @@
 {#
  # 404
  #
- # @package WordPress
- # @subpackage WPCinquanteEtUn
+ # @package WPCinquanteEtUn
+ # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  #}
 
 {% extends 'index.html.twig' %}
 
 {%- block content -%}
 	<main id="content" role="main">
-		<div
-			class="bg-white/30 after:bg-white/30 relative after:absolute after:inset-0 after:z-2 after:size-full"
-		>
-			<div class="relative z-3 container space-y-10 pt-5 pb-20 lg:pt-31.5 lg:pb-46.25">
-				<div class="space-y-2.5">
-					<p>
-						{{- __('404 Error', 'wp-cinquante-et-un') -}}
-					</p>
-					<h1 class="text-4xl font-medium tracking-tight lg:text-6xl space-y-2.5">
-						<p class="">
-							{{- post.title -}}
-						</p>
-						<p class="text-2xl font-medium tracking-tight lg:text-3xl">
-							{{- post.content -}}
-						</p>
-					</h1>
-				</div>
+		<div class="container py-50">
+			<div class="mx-auto flex max-w-120 flex-col items-center space-y-6 text-center">
+				<p class="text-6xl font-semibold" aria-hidden="true">
+					404
+				</p>
+
+				<h1 class="text-3xl font-semibold">
+					{{- __('This page does not exist', 'wp-cinquante-et-un') -}}
+				</h1>
+
+				<p class="prose-lg text-gray-600">
+					{{-
+						__(
+							'The link may be outdated, or the address contains an error. You can search, or go back to the homepage.',
+							'wp-cinquante-et-un'
+						)
+					-}}
+				</p>
+
+				{{-
+					get_search_form({
+						classes: ['max-w-120']
+					})
+				-}}
+
 				{{-
 					include(
 						'components/button.html.twig',
 						{
-							icon: 'bullet',
-							title: __('Back to home page', 'wp-cinquante-et-un'),
+							title: __('Back to home', 'wp-cinquante-et-un'),
 							url: site.link,
-							variant: 'primary',
-							mode: 'dark'
+							variant: 'secondary'
 						}
 					)
 				-}}
 			</div>
-
-			{{-
-				include(
-					'components/image.html.twig',
-					{
-						image: theme[404].image,
-						classes: ['absolute z-1 inset-0 size-full object-cover']
-					}
-				)
-			-}}
 		</div>
 	</main>
 {%- endblock -%}

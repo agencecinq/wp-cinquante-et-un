@@ -1,0 +1,65 @@
+{#
+ # Blocks: Testimonials
+ #}
+
+{%- set layout = block.layout | default({}) -%}
+{%- set content = block.content | default({}) -%}
+{%- set items = block.items | default([]) -%}
+
+{%- if items | length -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+class="{{ html_classes( layout.classes | default('') ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container'), 'space-y-10' ) }}">
+			{{-
+				include(
+					'components/section-header.html.twig',
+					{
+						overline: content.overline,
+						title: content.title
+					}
+				)
+			-}}
+
+			<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+				{%- for item in items -%}
+					<figure class="flex flex-col gap-6 border border-black p-8">
+						<div class="size-6" aria-hidden="true">
+							{{- include('svg/use.html.twig', { classes: ['size-6'], icon: 'quote' }) -}}
+						</div>
+
+						<blockquote class="text-lg">
+							<p>{{- item.quote -}}</p>
+						</blockquote>
+
+						<figcaption class="flex items-center gap-3">
+							<div class="size-10 shrink-0 overflow-hidden border border-black bg-gray-100">
+								{{-
+									include(
+										'components/image.html.twig',
+										{
+											image: item.avatar,
+											classes: ['size-full object-cover object-center']
+										}
+									)
+								-}}
+							</div>
+							<div>
+								{%- if item.author -%}
+									<p class="text-sm font-medium">{{- item.author -}}</p>
+								{%- endif -%}
+								{%- if item.role or item.company -%}
+									<p class="text-xs text-gray-500">
+										{{- [ item.role, item.company ] | filter(v => v) | join(' · ') -}}
+									</p>
+								{%- endif -%}
+							</div>
+						</figcaption>
+					</figure>
+				{%- endfor -%}
+			</div>
+		</div>
+	</section>
+{%- endif -%}

@@ -1,74 +1,66 @@
 {#
  # Blocks: Hero
+ #
+ # Full-bleed media, overline, title, text, primary + secondary buttons.
  #}
 
-{{- include( 'blocks/_layout.html.twig', { paddings: block.layout.paddings, id: block.id } ) -}}
+{%- set layout = block.layout | default({}) -%}
+{%- set content = block.content | default({}) -%}
 
-<div id="{{ block.id }}" class="relative flex items-end after:absolute after:inset-0 after:z-2 after:size-full after:bg-white/30 lg:min-h-screen">
-	<div class="relative z-3 container py-2.5 md:py-10 lg:py-15 grid grid-cols-4 items-end gap-x-2.5 gap-y-10 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-15">
-		<div class="col-span-full md:col-span-3 mb-4 space-y-5 lg:col-span-5 lg:mb-20">
-			{%- if block.content.title -%}
-				<{{block.content.heading|default('h2')}} class="text-4xl font-medium tracking-tight lg:text-6xl">
-					{{- block.content.title -}}
-				</{{block.content.heading|default('h2')}}>
-			{%- endif -%}
-
-			{{-
-				include(
-					'components/button.html.twig',
-					block.content.link | default( {} ) | merge( { icon: 'bullet', mode: 'dark' } ),
-					with_context = false
-				)
-			-}}
-		</div>
-
-		{%- set featured_posts = block.featured_posts.items | default([]) -%}
-		{%- if featured_posts is empty and block.featured_posts.posts -%}
-			{%- set featured_posts = get_posts({ post_type: 'post', post__in: block.featured_posts.posts, orderby: 'post__in' }) -%}
-		{%- endif -%}
-
-		{%- if featured_posts | length == 1 -%}
-			<div class="col-span-full ml-7.5 lg:col-span-4 lg:col-start-9 lg:ml-20">
-				{{- include('components/tease-post-mini.html.twig', { post: featured_posts[0] }) -}}
-			</div>
-		{%- elseif featured_posts | length > 1 -%}
-			<cinq-slideshow class="block col-span-full ml-7.5 space-y-5 lg:col-span-4 lg:col-start-9 lg:ml-20">
-				<div class="splide overflow-hidden rounded-xl" data-dom="slider">
-					<div class="splide__track" data-dom="track">
-						<div class="splide__list" style="height: auto!important;">
-							{%- for post in featured_posts -%}
-								<div class="splide__slide w-full" data-dom="slide">
-									{{- include('components/tease-post-mini.html.twig', { classes: [ 'h-full lg:h-auto' ], post: post }) -}}
-								</div>
-							{%- endfor -%}
-						</div>
-					</div>
-				</div>
-
-				<div class="flex gap-1.5 justify-end" data-dom="controls">
-					{%- for post in featured_posts -%}
-						<button type="button" class="size-1.5 bg-white/50 rounded-full aria-current:bg-zinc-950 aria-current:w-4.5 transition-[background-color,width] duration-300 ease-power1-out"></button>
-					{%- endfor -%}
-				</div>
-			</cinq-slideshow>
-		{%- endif -%}
-
-
-		{%- if block.footer.items -%}
-			<ul class="bg-zinc-950/16 border-zinc-200 scrollbar-hidden text-sm col-span-full flex items-center-safe justify-center-safe overflow-x-auto rounded-full border p-4 [backdrop-filter:blur(10px)] lg:col-span-8 lg:col-start-3">
-				{%- for item in block.footer.items -%}
-					<li class="flex items-center gap-2 whitespace-nowrap after:ms-7.5 after:me-7.5 after:block after:size-1.5 after:shrink-0 after:rounded-full after:bg-zinc-950 after:content-[''] last:after:hidden lg:after:ms-10 lg:after:me-10">
-						{%- if item.image -%}
-							<div class="size-5.25 block shrink-0">
-								{{- include( 'components/image.html.twig', { classes: [ 'size-full block object-contain' ], image: item.image, width: 21, height: 21, loading: 'lazy' } ) -}}
-							</div>
-						{%- endif -%}
-						{{- item.title -}}
-					</li>
-				{%- endfor -%}
-			</ul>
+<section
+	{% if block.id %}id="{{ block.id }}"{% endif %}
+	class="{{ html_classes( layout.classes | default(''), 'relative h-160 overflow-hidden' ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+>
+	<div class="absolute inset-0 z-10 bg-gray-100 border border-black">
+		{{-
+			include(
+				'components/media.html.twig',
+				{
+					media: block.media,
+					classes: ['absolute inset-0 z-10 size-full object-cover object-center']
+				}
+			)
+		-}}
+		{%- if block.show_media_overlay -%}
+			<div class="absolute inset-0 z-20 bg-linear-to-b from-transparent to-black/20"></div>
 		{%- endif -%}
 	</div>
 
-	{{- include( 'components/media.html.twig', { media: block.media, classes: 'absolute inset-0 z-1 size-full object-cover object-center' } ) -}}
-</div>
+	<div class="{{ html_classes( 'relative z-30', layout.container_classes | default('container'), 'grid h-full grid-cols-12 items-center gap-5' ) }}">
+		<div class="col-span-full space-y-6 lg:col-span-6">
+			{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+
+			{%- if content.title -%}
+				<{{ content.heading | default('h1') }} class="text-5xl font-semibold">
+					{{- content.title | raw -}}
+				</{{ content.heading | default('h1') }}>
+			{%- endif -%}
+
+			{%- if content.text -%}
+				<p class="text-lg">
+					{{- content.text | raw -}}
+				</p>
+			{%- endif -%}
+
+			{%- if content.link.url or content.secondary_link.url -%}
+				<div class="flex flex-wrap gap-3">
+					{{-
+						include(
+							'components/button.html.twig',
+							content.link | default({}) | merge({ variant: 'primary' }),
+							with_context = false
+						)
+					-}}
+					{{-
+						include(
+							'components/button.html.twig',
+							content.secondary_link | default({}) | merge({ variant: 'secondary' }),
+							with_context = false
+						)
+					-}}
+				</div>
+			{%- endif -%}
+		</div>
+	</div>
+</section>

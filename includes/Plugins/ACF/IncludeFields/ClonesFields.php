@@ -34,6 +34,14 @@ class ClonesFields implements Service {
 		$hide_on_screen = array();
 		$location       = array();
 
+		$spacing_choices = array(
+			'none' => __( 'None', 'wp-cinquante-et-un' ),
+			'sm'   => __( 'Small', 'wp-cinquante-et-un' ),
+			'md'   => __( 'Medium', 'wp-cinquante-et-un' ),
+			'lg'   => __( 'Large', 'wp-cinquante-et-un' ),
+			'xl'   => __( 'Extra large', 'wp-cinquante-et-un' ),
+		);
+
 		$fields = array(
 			array(
 				'key'          => 'field_' . $key . '_layout',
@@ -45,45 +53,69 @@ class ClonesFields implements Service {
 				'layout'       => 'block',
 				'sub_fields'   => array(
 					array(
-						'key'          => 'field_' . $key . '_layout_paddings',
-						'label'        => __( 'Paddings', 'wp-cinquante-et-un' ),
-						'name'         => 'paddings',
-						'aria-label'   => __( 'Paddings', 'wp-cinquante-et-un' ),
-						'type'         => 'group',
-						'instructions' => __( 'Padding settings for the block on desktop. On mobile paddings are multiplied by 0.75.', 'wp-cinquante-et-un' ) . '<br>' . __( "Don't forget to add extra padding on blocks that precede or follow by a rounded block.", 'wp-cinquante-et-un' ),
-						'layout'       => 'block',
-						'sub_fields'   => array(
-							array(
-								'key'           => 'field_' . $key . '_layout_paddings_top',
-								'label'         => __( 'Top', 'wp-cinquante-et-un' ),
-								'name'          => 'top',
-								'aria-label'    => __( 'Top', 'wp-cinquante-et-un' ),
-								'type'          => 'number',
-								'instructions'  => __( 'Top padding in pixels', 'wp-cinquante-et-un' ),
-								'default_value' => 80,
-								'min'           => 0,
-								'step'          => 1,
-								'append'        => __( 'px', 'wp-cinquante-et-un' ),
-								'wrapper'       => array(
-									'width' => 6 * 100 / 12,
-								),
-							),
-							array(
-								'key'           => 'field_' . $key . '_layout_paddings_bottom',
-								'label'         => __( 'Bottom', 'wp-cinquante-et-un' ),
-								'name'          => 'bottom',
-								'aria-label'    => __( 'Bottom', 'wp-cinquante-et-un' ),
-								'type'          => 'number',
-								'instructions'  => __( 'Bottom padding in pixels', 'wp-cinquante-et-un' ),
-								'default_value' => 80,
-								'min'           => 0,
-								'step'          => 1,
-								'append'        => __( 'px', 'wp-cinquante-et-un' ),
-								'wrapper'       => array(
-									'width' => 6 * 100 / 12,
-								),
-							),
+						'key'           => 'field_' . $key . '_layout_color_scheme',
+						'label'         => __( 'Color scheme', 'wp-cinquante-et-un' ),
+						'name'          => 'color_scheme',
+						'aria-label'    => __( 'Color scheme', 'wp-cinquante-et-un' ),
+						'type'          => 'select',
+						'instructions'  => __( 'Light (default) or inverse section colors.', 'wp-cinquante-et-un' ),
+						'choices'       => array(
+							'default' => __( 'Light', 'wp-cinquante-et-un' ),
+							'inverse' => __( 'Inverse', 'wp-cinquante-et-un' ),
 						),
+						'default_value' => 'default',
+						'return_format' => 'value',
+					),
+					array(
+						'key'           => 'field_' . $key . '_layout_spacing_top',
+						'label'         => __( 'Spacing top', 'wp-cinquante-et-un' ),
+						'name'          => 'spacing_top',
+						'aria-label'    => __( 'Spacing top', 'wp-cinquante-et-un' ),
+						'type'          => 'select',
+						'instructions'  => __( 'Section spacing. Desktop / mobile: none 0/0, sm 32/24, md 64/40, lg 96/56, xl 128/72.', 'wp-cinquante-et-un' ),
+						'choices'       => $spacing_choices,
+						'default_value' => 'md',
+						'return_format' => 'value',
+						'wrapper'       => array(
+							'width' => 6 * 100 / 12,
+						),
+					),
+					array(
+						'key'           => 'field_' . $key . '_layout_spacing_bottom',
+						'label'         => __( 'Spacing bottom', 'wp-cinquante-et-un' ),
+						'name'          => 'spacing_bottom',
+						'aria-label'    => __( 'Spacing bottom', 'wp-cinquante-et-un' ),
+						'type'          => 'select',
+						'instructions'  => __( 'Section spacing. Desktop / mobile: none 0/0, sm 32/24, md 64/40, lg 96/56, xl 128/72.', 'wp-cinquante-et-un' ),
+						'choices'       => $spacing_choices,
+						'default_value' => 'md',
+						'return_format' => 'value',
+						'wrapper'       => array(
+							'width' => 6 * 100 / 12,
+						),
+					),
+					array(
+						'key'          => 'field_' . $key . '_layout_anchor',
+						'label'        => __( 'Anchor', 'wp-cinquante-et-un' ),
+						'name'         => 'anchor',
+						'aria-label'   => __( 'Anchor', 'wp-cinquante-et-un' ),
+						'type'         => 'text',
+						'instructions' => __( 'Optional section ID slug for in-page links (e.g. contact).', 'wp-cinquante-et-un' ) . ' <em>(' . __( 'Optional', 'wp-cinquante-et-un' ) . ')</em>.',
+					),
+					array(
+						'key'           => 'field_' . $key . '_layout_container',
+						'label'         => __( 'Container', 'wp-cinquante-et-un' ),
+						'name'          => 'container',
+						'aria-label'    => __( 'Container', 'wp-cinquante-et-un' ),
+						'type'          => 'select',
+						'instructions'  => __( 'Default 1440px, wide 1760px, or full width without a container.', 'wp-cinquante-et-un' ),
+						'choices'       => array(
+							'default' => __( 'Default (1440px)', 'wp-cinquante-et-un' ),
+							'wide'    => __( 'Wide (1760px)', 'wp-cinquante-et-un' ),
+							'full'    => __( 'Full width', 'wp-cinquante-et-un' ),
+						),
+						'default_value' => 'default',
+						'return_format' => 'value',
 					),
 				),
 			),
@@ -193,13 +225,14 @@ class ClonesFields implements Service {
 				'instructions'  => __( 'Visual style only; does not change the heading level.', 'wp-cinquante-et-un' ),
 				'type'          => 'select',
 				'choices'       => array(
-					'text-5xl font-medium tracking-tight lg:text-8xl' => __( '5XL / 8XL', 'wp-cinquante-et-un' ),
-					'text-4xl font-medium tracking-tight lg:text-7xl' => __( '4XL / 7XL', 'wp-cinquante-et-un' ),
-					'text-4xl font-medium tracking-tight lg:text-6xl' => __( '4XL / 6XL', 'wp-cinquante-et-un' ),
-					'text-2xl font-medium tracking-tight lg:text-3xl' => __( '2XL / 3XL', 'wp-cinquante-et-un' ),
-					'text-xl font-medium tracking-tight' => __( 'XL', 'wp-cinquante-et-un' ),
+					'text-6xl font-semibold' => __( 'Display 6XL', 'wp-cinquante-et-un' ),
+					'text-5xl font-semibold' => __( 'Display 5XL', 'wp-cinquante-et-un' ),
+					'text-4xl font-semibold' => __( 'Display 4XL', 'wp-cinquante-et-un' ),
+					'text-3xl font-semibold' => __( 'Display 3XL', 'wp-cinquante-et-un' ),
+					'text-2xl font-semibold' => __( 'Heading 2XL', 'wp-cinquante-et-un' ),
+					'text-xl font-semibold'  => __( 'Heading XL', 'wp-cinquante-et-un' ),
 				),
-				'default_value' => 'text-4xl font-medium tracking-tight lg:text-6xl',
+				'default_value' => 'text-4xl font-semibold',
 				'return_format' => 'value',
 			),
 			array(

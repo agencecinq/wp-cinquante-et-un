@@ -1,0 +1,50 @@
+{#
+ # Blocks: Rich Text
+ #
+ # Single-column subtitle, title, body, and optional text link.
+ #}
+
+{%- set layout = block.layout | default({}) -%}
+{%- set content = block.content | default({}) -%}
+{%- set alignment = content.text_alignment | default('text-left') -%}
+
+{%- if content.overline or content.title or content.text or content.link.url -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+class="{{ html_classes( layout.classes | default('') ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 gap-2 lg:gap-4' ) }}">
+			<div
+				class="{{
+				html_classes(
+					'col-span-full max-w-prose space-y-4 lg:col-span-8',
+					alignment
+				)
+				}}"
+			>
+				{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+
+				{%- if content.title -%}
+					<{{ content.heading | default('h2') }} class="text-2xl font-semibold">
+						{{- content.title -}}
+					</{{ content.heading | default('h2') }}>
+				{%- endif -%}
+
+				{%- if content.text -%}
+					<div class="wysiwyg">
+						{{- content.text | raw -}}
+					</div>
+				{%- endif -%}
+
+				{{-
+					include(
+						'components/text-link.html.twig',
+						content.link | default({}),
+						with_context = false
+					)
+				-}}
+			</div>
+		</div>
+	</section>
+{%- endif -%}

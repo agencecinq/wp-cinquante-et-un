@@ -11,11 +11,19 @@
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields;
 
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\AccordionGroup;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\CardsGrid;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\CaseStudies;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Columns;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Cta;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Form;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Gallery;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Hero;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\KeyFigures;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\LatestPosts;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Logos;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\MediaText;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\RichText;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Testimonials;
 use WPCinquanteEtUn\Service;
 
 /**
@@ -32,12 +40,29 @@ class BlocksFields implements Service {
 	 */
 	private static $layouts = array(
 		AccordionGroup::class,
+		CardsGrid::class,
+		CaseStudies::class,
 		Columns::class,
+		Cta::class,
+		Form::class,
 		Gallery::class,
 		Hero::class,
+		KeyFigures::class,
 		LatestPosts::class,
+		Logos::class,
 		MediaText::class,
+		RichText::class,
+		Testimonials::class,
 	);
+
+	/**
+	 * Returns the kernel layout classes for flexible content fields.
+	 *
+	 * @return array<int, class-string>
+	 */
+	public static function get_layout_classes(): array {
+		return self::$layouts;
+	}
 
 	/**
 	 * Runs initialization tasks.

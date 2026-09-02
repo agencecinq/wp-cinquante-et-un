@@ -1,0 +1,48 @@
+{#
+ # Newsletter form
+ #
+ # Renders a CF7 form when form_id is set, otherwise a static email field matching the footer design.
+ #
+ # @param int|string form_id Optional Contact Form 7 post ID.
+ # @param string placeholder Optional email placeholder.
+ # @param string submit_label Optional submit button label.
+ #}
+
+{%- set form_id = form_id | default(null) -%}
+{%- set placeholder = placeholder | default(__('you@company.com', 'wp-cinquante-et-un')) -%}
+{%- set submit_label = submit_label | default(__('Subscribe', 'wp-cinquante-et-un')) -%}
+
+{%- if form_id -%}
+	<div class="newsletter-form">
+		{{-
+			function(
+				'do_shortcode',
+				'[contact-form-7 id="' ~ form_id ~ '"]'
+			)
+		-}}
+	</div>
+{%- else -%}
+	<div class="flex w-full border border-black">
+		<label class="sr-only" for="newsletter-email">
+			{{- __('Email address', 'wp-cinquante-et-un') -}}
+		</label>
+		<input
+			id="newsletter-email"
+			type="email"
+			name="newsletter_email"
+			autocomplete="email"
+			placeholder="{{ placeholder }}"
+			class="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm text-black placeholder:text-black/40 focus:outline-none"
+			disabled
+			aria-disabled="true"
+		/>
+		<button
+			type="button"
+			class="shrink-0 border-l border-black px-4 py-3 text-sm font-medium text-black"
+			disabled
+			aria-disabled="true"
+		>
+			{{- submit_label -}}
+		</button>
+	</div>
+{%- endif -%}

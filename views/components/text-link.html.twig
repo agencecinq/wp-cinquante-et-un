@@ -1,0 +1,26 @@
+{#
+ # Text link: underline on hover only. Not the tertiary button (always underlined).
+ #
+ # @param string title The link text.
+ # @param string url The URL.
+ # @param string target '_self' or '_blank'. Optional.
+ # @param array classes Extra CSS classes.
+ # @param attributes Extra HTML attributes.
+ #}
+
+{%- if title and url -%}
+	<a
+		href="{{ url }}"
+		class="{{
+		html_classes(
+			'text-sm underline-offset-2 hover:underline',
+			classes | default([]) | join(' ')
+		)
+		}}"
+		{{ target ? "target=\"#{target}\"" : '' }}
+		{{ target == '_blank' ? 'rel="noopener noreferrer"' : '' }}
+		{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
+	>
+		{{- title -}}
+	</a>
+{%- endif -%}

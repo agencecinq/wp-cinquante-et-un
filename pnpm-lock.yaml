@@ -10,31 +10,31 @@ importers:
     dependencies:
       '@agencecinq/accordion':
         specifier: ^3.0.0
-        version: 3.0.0(@agencecinq/utils@6.1.0)
+        version: 3.0.0(@agencecinq/utils@7.1.0)
       '@agencecinq/combobox':
         specifier: ^2.0.0
-        version: 2.0.0(@agencecinq/utils@6.1.0)
+        version: 2.0.0(@agencecinq/utils@7.1.0)
       '@agencecinq/disclosure-button':
         specifier: ^3.0.1
-        version: 3.0.1(@agencecinq/utils@6.1.0)
+        version: 3.0.1(@agencecinq/utils@7.1.0)
       '@agencecinq/drawer':
         specifier: ^6.1.0
-        version: 6.1.0(@agencecinq/utils@6.1.0)
+        version: 6.1.0(@agencecinq/utils@7.1.0)
       '@agencecinq/modal':
         specifier: ^3.1.0
-        version: 3.1.0(@agencecinq/utils@6.1.0)
+        version: 3.1.0(@agencecinq/utils@7.1.0)
       '@agencecinq/spinbutton':
         specifier: ^3.0.0
-        version: 3.0.0(@agencecinq/utils@6.1.0)
+        version: 3.0.0(@agencecinq/utils@7.1.0)
       '@agencecinq/switch':
         specifier: ^3.0.1
-        version: 3.0.1(@agencecinq/utils@6.1.0)
+        version: 3.0.1(@agencecinq/utils@7.1.0)
       '@agencecinq/tabs':
         specifier: ^11.0.0
-        version: 11.0.0(@agencecinq/utils@6.1.0)
+        version: 11.0.0(@agencecinq/utils@7.1.0)
       '@agencecinq/utils':
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^7.1.0
+        version: 7.1.0
       '@splidejs/splide':
         specifier: ^4.1.4
         version: 4.1.4
@@ -121,8 +121,8 @@ packages:
     peerDependencies:
       '@agencecinq/utils': '*'
 
-  '@agencecinq/utils@6.1.0':
-    resolution: {integrity: sha512-Xhj6uebzuR+edHsJ41bsWcTdnPnl993L5ZjmNvbfEoXLJ6MJRJ4WnpkzxoJR0BJjO212/kCb9oJW7Pra+Eew+Q==}
+  '@agencecinq/utils@7.1.0':
+    resolution: {integrity: sha512-OsgN92ZW+teEpjTP4vhOyOaUuKhLyNp3fmN97iiqXT/FOYYjeYVdp8iH9ac5GCNrKHqyVs3nmeV37/9cQl61Jg==}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -1431,43 +1431,43 @@ packages:
 
 snapshots:
 
-  '@agencecinq/accordion@3.0.0(@agencecinq/utils@6.1.0)':
+  '@agencecinq/accordion@3.0.0(@agencecinq/utils@7.1.0)':
     dependencies:
-      '@agencecinq/utils': 6.1.0
+      '@agencecinq/utils': 7.1.0
 
-  '@agencecinq/combobox@2.0.0(@agencecinq/utils@6.1.0)':
+  '@agencecinq/combobox@2.0.0(@agencecinq/utils@7.1.0)':
     dependencies:
-      '@agencecinq/utils': 6.1.0
+      '@agencecinq/utils': 7.1.0
 
-  '@agencecinq/disclosure-button@3.0.1(@agencecinq/utils@6.1.0)':
+  '@agencecinq/disclosure-button@3.0.1(@agencecinq/utils@7.1.0)':
     dependencies:
-      '@agencecinq/utils': 6.1.0
+      '@agencecinq/utils': 7.1.0
 
-  '@agencecinq/drawer@6.1.0(@agencecinq/utils@6.1.0)':
+  '@agencecinq/drawer@6.1.0(@agencecinq/utils@7.1.0)':
     dependencies:
-      '@agencecinq/utils': 6.1.0
+      '@agencecinq/utils': 7.1.0
       '@types/fs-extra': 11.0.4
       fs-extra: 11.4.0
 
-  '@agencecinq/modal@3.1.0(@agencecinq/utils@6.1.0)':
+  '@agencecinq/modal@3.1.0(@agencecinq/utils@7.1.0)':
     dependencies:
-      '@agencecinq/utils': 6.1.0
+      '@agencecinq/utils': 7.1.0
       '@types/fs-extra': 11.0.4
       fs-extra: 11.4.0
 
-  '@agencecinq/spinbutton@3.0.0(@agencecinq/utils@6.1.0)':
+  '@agencecinq/spinbutton@3.0.0(@agencecinq/utils@7.1.0)':
     dependencies:
-      '@agencecinq/utils': 6.1.0
+      '@agencecinq/utils': 7.1.0
 
-  '@agencecinq/switch@3.0.1(@agencecinq/utils@6.1.0)':
+  '@agencecinq/switch@3.0.1(@agencecinq/utils@7.1.0)':
     dependencies:
-      '@agencecinq/utils': 6.1.0
+      '@agencecinq/utils': 7.1.0
 
-  '@agencecinq/tabs@11.0.0(@agencecinq/utils@6.1.0)':
+  '@agencecinq/tabs@11.0.0(@agencecinq/utils@7.1.0)':
     dependencies:
-      '@agencecinq/utils': 6.1.0
+      '@agencecinq/utils': 7.1.0
 
-  '@agencecinq/utils@6.1.0': {}
+  '@agencecinq/utils@7.1.0': {}
 
   '@alloc/quick-lru@5.2.0': {}
 

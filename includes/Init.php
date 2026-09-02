@@ -38,7 +38,7 @@ class Init {
 			// WordPress integration.
 			WPImageEditor::class,
 			WPSettings::class,
-			Post::class,
+			Post\Post::class,
 			GeneralTemplate::class,
 			// Post & template.
 			PostTemplate\BodyClass::class,
@@ -53,7 +53,10 @@ class Init {
 			Plugins\ACF\FormatValue::class,
 			Plugins\ACF\IncludeFields\BlocksFields::class,
 			Plugins\ACF\IncludeFields\ClonesFields::class,
+			Plugins\ACF\IncludeFields\PostFields::class,
+			Plugins\ACF\IncludeFields\PageFields::class,
 			Plugins\ACF\IncludeFields\ThemeFields::class,
+			Plugins\ACF\IncludeFields\ArchivePostsFields::class,
 		);
 	}
 

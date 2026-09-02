@@ -1,0 +1,57 @@
+{#
+ # Social links
+ #
+ # @param array networks Optional ordered network ids. Defaults to facebook, instagram, linkedin, x.
+ # @param array classes Extra classes on the wrapper.
+ #}
+
+{%- set networks = networks
+	|default(['facebook', 'instagram', 'linkedin', 'x'])
+-%}
+{%- set icon_map = {
+	facebook: 'facebook',
+	instagram: 'instagram',
+	linkedin: 'linkedin',
+	x: 'x'
+} -%}
+
+{%- set items = [] -%}
+{%- for network in networks -%}
+	{%- if socials[network] is defined and socials[network].url -%}
+		{%- set items = items | merge([socials[network] | merge({ icon: icon_map[network] | default(network) })]) -%}
+	{%- endif -%}
+{%- endfor -%}
+
+{%- if items | length -%}
+	<ul
+		class="{{
+		html_classes(
+			'flex flex-wrap items-center gap-4',
+			classes | default([]) | join(' ')
+		)
+		}}"
+	>
+		{%- for item in items -%}
+			<li>
+				<a
+					href="{{ item.url }}"
+					class="flex size-5 items-center justify-center text-black hover:text-gray-500"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="{{ item.title }}"
+				>
+					{{-
+						include(
+							'svg/use.html.twig',
+							{
+								icon: item.icon,
+								classes: ['size-5']
+							},
+							with_context = false
+						)
+					-}}
+				</a>
+			</li>
+		{%- endfor -%}
+	</ul>
+{%- endif -%}

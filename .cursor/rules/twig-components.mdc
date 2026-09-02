@@ -30,12 +30,22 @@ Un composant dans `views/components/` encapsule son markup **et** ses précondit
 - **`label`** pour le libellé accessible d'un `<nav>` (`aria-label`), pas `nav_label` ni `aria_label`.
 - Documenter les `@param` en tête de fichier (docblock Twig).
 - Nommer les params de façon courte et générique : `title`, `items`, `label`, `classes`.
+- **Inline plutôt que `{% set %}`** : dans les templates de page, préférer l'expression directement dans la garde et le markup plutôt qu'une variable intermédiaire.
+
+```twig
+{%- if post.hero.title | default(post.title) -%}
+  <h1>{{ post.hero.title | default(post.title) }}</h1>
+{%- endif -%}
+```
+
+Réserver `{% set %}` aux cas où la même valeur coûteuse est réutilisée plusieurs fois ou allège une condition complexe.
 
 ## DONT
 
 - Pas de `{%- if items -%}` autour d'un `{% include %}` quand le composant peut le faire lui-même.
 - Pas de préfixe redondant sur les params (`nav_label`, `button_title`) quand le contexte du composant est déjà explicite.
 - Pas de duplication de la même garde parent + enfant.
+- Pas de `{% set foo = … %}` pour un affichage unique quand l'expression peut rester inline dans le `if` et le contenu.
 
 ## Références
 

@@ -25,53 +25,108 @@ class StyleguidePage extends Post {
 	 * @return array<int, array<string, mixed>>
 	 */
 	public function blocks(): array {
-		$layout = array(
-			'paddings' => array(
-				'top'    => 0,
-				'bottom' => 0,
-			),
+		$layout       = array(
+			'color_scheme'   => 'default',
+			'spacing_top'    => 'md',
+			'spacing_bottom' => 'md',
 		);
-		$posts  = $this->posts();
-		$image  = self::placeholder_image( 1600, 900 );
-		$thumb  = self::placeholder_image( 800, 800 );
-		$media  = array(
+		$layout_flush = array(
+			'color_scheme'   => 'default',
+			'spacing_top'    => 'none',
+			'spacing_bottom' => 'none',
+		);
+		$layout_cta   = array(
+			'color_scheme'   => 'inverse',
+			'spacing_top'    => 'xl',
+			'spacing_bottom' => 'xl',
+		);
+		$posts        = $this->posts();
+		$image        = self::placeholder_image( 1600, 900 );
+		$media        = array(
 			'images' => array( $image ),
 			'video'  => array(
 				'file' => null,
 			),
 		);
-		$link   = array(
-			'title' => __( 'Talk about your project', 'wp-cinquante-et-un' ),
-			'url'   => '#',
-		);
+		$logo         = self::placeholder_image( 150, 32 );
+		$avatar       = self::placeholder_image( 80, 80 );
 
-		return array(
+		$blocks = array(
 			array(
 				'id'    => 'styleguide-layout-hero',
 				'name'  => __( 'Hero', 'wp-cinquante-et-un' ),
 				'file'  => 'blocks/hero.html.twig',
 				'block' => array(
-					'id'             => 'styleguide-hero',
-					'layout'         => $layout,
-					'media'          => $media,
-					'content'        => array(
-						'title'   => __( 'A site that grows with you.', 'wp-cinquante-et-un' ),
-						'heading' => 'h2',
-						'link'    => $link,
+					'id'                 => 'styleguide-hero',
+					'layout'             => $layout_flush,
+					'media'              => $media,
+					'show_media_overlay' => false,
+					'content'            => array(
+						'overline'       => __( 'WordPress agency', 'wp-cinquante-et-un' ),
+						'title'          => __( 'Sites your team can actually run', 'wp-cinquante-et-un' ),
+						'heading'        => 'h1',
+						'text'           => __( 'Custom theme, ACF blocks, no page builder. You edit the content; we step in when the code has to move.', 'wp-cinquante-et-un' ),
+						'link'           => array(
+							'title' => __( 'Let\'s talk about your project', 'wp-cinquante-et-un' ),
+							'url'   => '#',
+						),
+						'secondary_link' => array(
+							'title' => __( 'See our work', 'wp-cinquante-et-un' ),
+							'url'   => '#',
+						),
 					),
-					'featured_posts' => array(
-						'items' => $posts,
+				),
+			),
+			array(
+				'id'    => 'styleguide-layout-logos',
+				'name'  => __( 'Logos', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/logos.html.twig',
+				'block' => array(
+					'id'        => 'styleguide-logos',
+					'layout'    => $layout,
+					'title'     => __( 'They trust us', 'wp-cinquante-et-un' ),
+					'grayscale' => true,
+					'logos'     => array( $logo, $logo, $logo, $logo, $logo, $logo ),
+				),
+			),
+			array(
+				'id'    => 'styleguide-layout-cards-grid',
+				'name'  => __( 'Cards Grid', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/cards-grid.html.twig',
+				'block' => array(
+					'id'      => 'styleguide-cards-grid',
+					'layout'  => $layout,
+					'columns' => 3,
+					'content' => array(
+						'overline' => __( 'Expertise', 'wp-cinquante-et-un' ),
+						'title'    => __( 'What we do', 'wp-cinquante-et-un' ),
 					),
-					'footer'         => array(
-						'items' => array(
-							array(
-								'title' => __( 'WordPress', 'wp-cinquante-et-un' ),
+					'cards'   => array(
+						array(
+							'icon'  => null,
+							'title' => __( 'Site build', 'wp-cinquante-et-un' ),
+							'text'  => __( 'Custom Timber theme, tailored ACF blocks. In your Git repo from the first commit.', 'wp-cinquante-et-un' ),
+							'link'  => array(
+								'title' => __( 'Our method', 'wp-cinquante-et-un' ),
+								'url'   => '#',
 							),
-							array(
-								'title' => __( 'Timber', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'icon'  => null,
+							'title' => __( 'Redesign', 'wp-cinquante-et-un' ),
+							'text'  => __( 'Page by page, with the editorial structure rebuilt. Content and SEO are kept.', 'wp-cinquante-et-un' ),
+							'link'  => array(
+								'title' => __( 'Our method', 'wp-cinquante-et-un' ),
+								'url'   => '#',
 							),
-							array(
-								'title' => __( 'Tailwind', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'icon'  => null,
+							'title' => __( 'Maintenance', 'wp-cinquante-et-un' ),
+							'text'  => __( 'Updates, backups, monitoring, and retainers. Corrective hotfixes follow the SLA.', 'wp-cinquante-et-un' ),
+							'link'  => array(
+								'title' => __( 'Our method', 'wp-cinquante-et-un' ),
+								'url'   => '#',
 							),
 						),
 					),
@@ -82,30 +137,226 @@ class StyleguidePage extends Post {
 				'name'  => __( 'Media + text', 'wp-cinquante-et-un' ),
 				'file'  => 'blocks/media-text.html.twig',
 				'block' => array(
-					'id'               => 'styleguide-media-text',
-					'layout'           => $layout,
-					'reveal_on_scroll' => false,
-					'media'            => $media,
-					'content'          => array(
-						'title'       => __( 'Three ways to grow your site.', 'wp-cinquante-et-un' ),
-						'heading'     => 'h2',
-						'title_style' => 'text-4xl font-medium tracking-tight lg:text-6xl',
+					'id'             => 'styleguide-media-text',
+					'layout'         => $layout,
+					'media_position' => 'left',
+					'media'          => $media,
+					'content'        => array(
+						'overline' => __( 'Performance', 'wp-cinquante-et-un' ),
+						'title'    => __( 'Core Web Vitals in the green, from day one', 'wp-cinquante-et-un' ),
+						'heading'  => 'h2',
+						'text'     => '<p>' . esc_html__( 'No catch-up six months later. Performance budgets are set at kickoff and checked every sprint: image weight, font loading, deferred JavaScript.', 'wp-cinquante-et-un' ) . '</p>',
+						'link'     => array(
+							'title' => __( 'Our technical approach', 'wp-cinquante-et-un' ),
+							'url'   => '#',
+						),
 					),
 				),
 			),
 			array(
-				'id'    => 'styleguide-layout-media-text-reveal',
-				'name'  => __( 'Media + text (reveal)', 'wp-cinquante-et-un' ),
-				'file'  => 'blocks/media-text.html.twig',
+				'id'    => 'styleguide-layout-key-figures',
+				'name'  => __( 'Key Figures', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/key-figures.html.twig',
 				'block' => array(
-					'id'               => 'styleguide-media-text-reveal',
-					'layout'           => $layout,
-					'reveal_on_scroll' => true,
-					'media'            => $media,
-					'content'          => array(
-						'title'       => __( 'A site that grows with you.', 'wp-cinquante-et-un' ),
-						'heading'     => 'h2',
-						'title_style' => 'text-4xl font-medium tracking-tight lg:text-6xl',
+					'id'      => 'styleguide-key-figures',
+					'layout'  => $layout,
+					'content' => array(
+						'overline' => __( 'Results', 'wp-cinquante-et-un' ),
+						'title'    => __( 'What it changes, in practice', 'wp-cinquante-et-un' ),
+					),
+					'figures' => array(
+						array(
+							'value'  => '+68',
+							'suffix' => '%',
+							'label'  => __( 'more quote requests in six months', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'value'  => '1.4',
+							'suffix' => 's',
+							'label'  => __( 'median LCP on mobile', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'value'  => '95',
+							'suffix' => '+',
+							'label'  => __( 'PageSpeed score on mobile', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'value'  => '0',
+							'suffix' => '',
+							'label'  => __( 'page builder plugins', 'wp-cinquante-et-un' ),
+						),
+					),
+				),
+			),
+			array(
+				'id'    => 'styleguide-layout-case-studies',
+				'name'  => __( 'Case Studies', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/case-studies.html.twig',
+				'block' => array(
+					'id'      => 'styleguide-case-studies',
+					'layout'  => $layout,
+					'content' => array(
+						'overline' => __( 'Work', 'wp-cinquante-et-un' ),
+						'title'    => __( 'Projects that last', 'wp-cinquante-et-un' ),
+						'link'     => array(
+							'title' => __( 'All case studies', 'wp-cinquante-et-un' ),
+							'url'   => '#',
+						),
+					),
+					'items'   => array(
+						array(
+							'image'        => $image,
+							'sector'       => __( 'Industry', 'wp-cinquante-et-un' ),
+							'client'       => 'Nexiode',
+							'title'        => __( 'Corporate site and configurator rebuild', 'wp-cinquante-et-un' ),
+							'url'          => '#',
+							'result_value' => '+68 %',
+							'result_label' => __( 'quote requests', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'image'        => $image,
+							'sector'       => __( 'Industry', 'wp-cinquante-et-un' ),
+							'client'       => 'Laffargue',
+							'title'        => __( 'Editorial platform and dealer space', 'wp-cinquante-et-un' ),
+							'url'          => '#',
+							'result_value' => '1.4 s',
+							'result_label' => __( 'LCP on mobile', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'image'        => $image,
+							'sector'       => __( 'Industry', 'wp-cinquante-et-un' ),
+							'client'       => 'Beau Nuage',
+							'title'        => __( 'Brochure site rebuild', 'wp-cinquante-et-un' ),
+							'url'          => '#',
+							'result_value' => '2.3x',
+							'result_label' => __( 'conversion rate', 'wp-cinquante-et-un' ),
+						),
+					),
+				),
+			),
+			array(
+				'id'    => 'styleguide-layout-testimonials',
+				'name'  => __( 'Testimonials', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/testimonials.html.twig',
+				'block' => array(
+					'id'      => 'styleguide-testimonials',
+					'layout'  => $layout,
+					'content' => array(
+						'overline' => __( 'Client feedback', 'wp-cinquante-et-un' ),
+						'title'    => __( 'What they say', 'wp-cinquante-et-un' ),
+					),
+					'items'   => array(
+						array(
+							'quote'   => __( 'They refused the easy option and took the time to understand our work. The back office is finally usable by the communications team.', 'wp-cinquante-et-un' ),
+							'author'  => 'Sophie Lemarchand',
+							'role'    => __( 'Communications director', 'wp-cinquante-et-un' ),
+							'company' => 'Nexiode',
+							'avatar'  => $avatar,
+						),
+						array(
+							'quote'   => __( 'The site went from 4.2 s to 1.4 s load time. Quote requests followed, without touching the ad budget.', 'wp-cinquante-et-un' ),
+							'author'  => 'Marc Vandenberghe',
+							'role'    => __( 'Managing director', 'wp-cinquante-et-un' ),
+							'company' => 'Laffargue',
+							'avatar'  => $avatar,
+						),
+						array(
+							'quote'   => __( 'Three years after launch, we still edit everything ourselves. No lock-in, no surprise invoices.', 'wp-cinquante-et-un' ),
+							'author'  => 'Ines Bakouche',
+							'role'    => __( 'Marketing lead', 'wp-cinquante-et-un' ),
+							'company' => 'Zeta',
+							'avatar'  => $avatar,
+						),
+					),
+				),
+			),
+			array(
+				'id'    => 'styleguide-layout-accordion-group',
+				'name'  => __( 'FAQ', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/accordion-group.html.twig',
+				'block' => array(
+					'id'              => 'styleguide-accordion-group',
+					'acf_fc_layout'   => 'accordion_group',
+					'layout'          => $layout,
+					'schema'     => true,
+					'content'    => array(
+						'overline' => __( 'FAQ', 'wp-cinquante-et-un' ),
+						'title'    => __( 'What we get asked most', 'wp-cinquante-et-un' ),
+					),
+					'accordions' => array(
+						array(
+							'header'  => __( 'How long does a redesign take?', 'wp-cinquante-et-un' ),
+							'content' => __( 'Eight to twelve weeks for a brochure site of about thirty pages, including scoping. The bottleneck is almost never development: it is content production.', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'header'  => __( 'Can you take over an existing site?', 'wp-cinquante-et-un' ),
+							'content' => __( 'Yes. We audit the theme, plugins, and content, then rebuild what cannot be maintained. URLs and SEO are mapped before anything goes live.', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'header'  => __( 'What happens after launch?', 'wp-cinquante-et-un' ),
+							'content' => __( 'You edit the content. We stay on for updates, backups, and the work that needs code. The retainer matches the SLA, not a surprise invoice.', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'header'  => __( 'Do you work with third-party plugins?', 'wp-cinquante-et-un' ),
+							'content' => __( 'ACF is the only plugin in the kernel. Project adapters (forms, SEO, CRM) are wired per site, not baked into the starter.', 'wp-cinquante-et-un' ),
+						),
+						array(
+							'header'  => __( 'Do we really own the code?', 'wp-cinquante-et-un' ),
+							'content' => __( 'Yes. The theme lives in your Git repository from the first commit. No page builder, no proprietary lock-in.', 'wp-cinquante-et-un' ),
+						),
+					),
+				),
+			),
+			array(
+				'id'    => 'styleguide-layout-form',
+				'name'  => __( 'Form', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/form.html.twig',
+				'block' => array(
+					'id'      => 'styleguide-form',
+					'layout'  => $layout,
+					'content' => array(
+						'overline' => __( 'Contact', 'wp-cinquante-et-un' ),
+						'title'    => __( 'Let\'s talk about your project', 'wp-cinquante-et-un' ),
+						'text'     => __( 'Describe your need in a few lines. We reply within two business days, and the first call is always free.', 'wp-cinquante-et-un' ),
+					),
+					'form'    => null,
+				),
+			),
+			array(
+				'id'    => 'styleguide-layout-cta',
+				'name'  => __( 'CTA', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/cta.html.twig',
+				'block' => array(
+					'id'      => 'styleguide-cta',
+					'layout'  => $layout_cta,
+					'content' => array(
+						'title'   => __( 'A new site or a redesign?', 'wp-cinquante-et-un' ),
+						'heading' => 'h2',
+						'text'    => __( 'Thirty minutes is enough to know if we are the right partner. No commitment, and no sales pitch.', 'wp-cinquante-et-un' ),
+						'link'    => array(
+							'title' => __( 'Book a call', 'wp-cinquante-et-un' ),
+							'url'   => '#',
+						),
+					),
+				),
+			),
+			array(
+				'id'    => 'styleguide-layout-rich-text',
+				'name'  => __( 'Rich text', 'wp-cinquante-et-un' ),
+				'file'  => 'blocks/rich-text.html.twig',
+				'block' => array(
+					'id'      => 'styleguide-rich-text',
+					'layout'  => $layout,
+					'content' => array(
+						'overline'       => __( 'Intro', 'wp-cinquante-et-un' ),
+						'title'          => __( 'Starting point', 'wp-cinquante-et-un' ),
+						'heading'        => 'h2',
+						'text'           => '<p>' . esc_html__( 'This theme is intentionally minimal. Replace the copy, wire up your menus, then build project sections on top of this base.', 'wp-cinquante-et-un' ) . '</p>',
+						'text_alignment' => 'text-left',
+						'link'           => array(
+							'title' => __( 'Contact page', 'wp-cinquante-et-un' ),
+							'url'   => '#',
+						),
 					),
 				),
 			),
@@ -119,40 +370,6 @@ class StyleguidePage extends Post {
 					'content' => array(
 						'column_left'  => '<p>' . esc_html__( 'Your site is not an expense to write off every three years.', 'wp-cinquante-et-un' ) . '</p>',
 						'column_right' => '<p>' . esc_html__( 'It is an asset you build to last, and you evolve it with the company.', 'wp-cinquante-et-un' ) . '</p>',
-					),
-				),
-			),
-			array(
-				'id'    => 'styleguide-layout-accordion-group',
-				'name'  => __( 'Accordion Group', 'wp-cinquante-et-un' ),
-				'file'  => 'blocks/accordion-group.html.twig',
-				'block' => array(
-					'id'         => 'styleguide-accordion-group',
-					'layout'     => $layout,
-					'radius'     => 'none',
-					'content'    => array(
-						'overline' => __( 'FAQ', 'wp-cinquante-et-un' ),
-						'title'    => __( 'Questions we hear often.', 'wp-cinquante-et-un' ),
-						'contact'  => array(
-							'title' => __( 'Still need a hand?', 'wp-cinquante-et-un' ),
-							'text'  => __( 'Write to us and we will find a time to talk.', 'wp-cinquante-et-un' ),
-							'image' => $thumb,
-							'link'  => $link,
-						),
-					),
-					'accordions' => array(
-						array(
-							'header'  => __( 'What is in the starter?', 'wp-cinquante-et-un' ),
-							'content' => __( 'Six layouts: accordion, columns, gallery, hero, latest posts, and media plus text.', 'wp-cinquante-et-un' ),
-						),
-						array(
-							'header'  => __( 'Where do project compositions live?', 'wp-cinquante-et-un' ),
-							'content' => __( 'On the project. A composition joins the starter only once it has been generalized.', 'wp-cinquante-et-un' ),
-						),
-						array(
-							'header'  => __( 'How do I change the palette?', 'wp-cinquante-et-un' ),
-							'content' => __( 'Override Tailwind tokens in theme.css, or add a token if the palette does not map.', 'wp-cinquante-et-un' ),
-						),
 					),
 				),
 			),
@@ -180,13 +397,27 @@ class StyleguidePage extends Post {
 					'layout'  => $layout,
 					'posts'   => $posts,
 					'content' => array(
-						'overline' => __( 'Journal', 'wp-cinquante-et-un' ),
-						'title'    => __( 'Latest posts', 'wp-cinquante-et-un' ),
-						'category' => null,
+						'overline'       => __( 'Journal', 'wp-cinquante-et-un' ),
+						'title'          => __( 'Latest posts', 'wp-cinquante-et-un' ),
+						'category'       => null,
+						'posts_per_page' => 4,
+						'link'           => array(
+							'title' => __( 'View all posts', 'wp-cinquante-et-un' ),
+							'url'   => '#',
+						),
 					),
 				),
 			),
 		);
+
+		foreach ( $blocks as &$entry ) {
+			if ( isset( $entry['block'] ) && is_array( $entry['block'] ) ) {
+				cinq_enrich_block( $entry['block'] );
+			}
+		}
+		unset( $entry );
+
+		return $blocks;
 	}
 
 	/**
@@ -197,7 +428,7 @@ class StyleguidePage extends Post {
 	public function toc(): array {
 		$catalog = array(
 			array(
-				'title' => __( 'Palette', 'wp-cinquante-et-un' ),
+				'title' => __( 'Colour', 'wp-cinquante-et-un' ),
 				'href'  => '#styleguide-colors',
 			),
 			array(
@@ -205,7 +436,15 @@ class StyleguidePage extends Post {
 				'href'  => '#styleguide-type',
 			),
 			array(
-				'title' => __( 'Corners', 'wp-cinquante-et-un' ),
+				'title' => __( 'Space', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-space',
+			),
+			array(
+				'title' => __( 'Layout', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-layout',
+			),
+			array(
+				'title' => __( 'Radius', 'wp-cinquante-et-un' ),
 				'href'  => '#styleguide-radius',
 			),
 			array(
@@ -264,12 +503,12 @@ class StyleguidePage extends Post {
 	}
 
 	/**
-	 * Dummy posts for teasers (hero featured + latest posts).
+	 * Dummy posts for teasers (latest posts grid).
 	 *
 	 * @return array<int, object>
 	 */
 	public function posts(): array {
-		$thumbnail = self::placeholder_image( 800, 800 );
+		$thumbnail = self::placeholder_image( 900, 600 );
 		$category  = (object) array(
 			'name' => __( 'Journal', 'wp-cinquante-et-un' ),
 		);
@@ -289,6 +528,10 @@ class StyleguidePage extends Post {
 			array(
 				'title'   => __( 'Maintenance and evolutions', 'wp-cinquante-et-un' ),
 				'excerpt' => __( 'Fast, maintainable WordPress brochure and editorial sites.', 'wp-cinquante-et-un' ),
+			),
+			array(
+				'title'   => __( 'Primitives, not a finished site', 'wp-cinquante-et-un' ),
+				'excerpt' => __( 'Hero, rich text, latest posts, and accordion. No cart, no products.', 'wp-cinquante-et-un' ),
 			),
 		);
 
@@ -318,25 +561,33 @@ class StyleguidePage extends Post {
 	 */
 	public function pagination(): array {
 		return array(
-			'prev'  => array(
-				'link' => '#',
-			),
+			'prev'  => array(),
 			'next'  => array(
 				'link' => '#',
 			),
 			'pages' => array(
 				array(
 					'title' => '1',
-					'link'  => '#',
-					'class' => '',
-				),
-				array(
-					'title' => '2',
 					'link'  => '',
 					'class' => 'current',
 				),
 				array(
+					'title' => '2',
+					'link'  => '#',
+					'class' => '',
+				),
+				array(
 					'title' => '3',
+					'link'  => '#',
+					'class' => '',
+				),
+				array(
+					'title' => '…',
+					'link'  => '',
+					'class' => '',
+				),
+				array(
+					'title' => '8',
 					'link'  => '#',
 					'class' => '',
 				),
@@ -474,7 +725,11 @@ class StyleguidePage extends Post {
 			 * @param string $format PHP date format.
 			 * @return string
 			 */
-			public function date( string $format = 'c' ): string {
+			public function date( string $format = '' ): string {
+				if ( '' === $format ) {
+					$format = (string) get_option( 'date_format' );
+				}
+
 				return wp_date( $format, strtotime( $this->datetime ) );
 			}
 

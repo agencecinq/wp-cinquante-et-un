@@ -27,6 +27,28 @@ export default defineConfig({
 		viteSvgSpriteWrapper({
 			icons: "src/icons/*.svg",
 			outputDir: "public",
+			sprite: {
+				shape: {
+					transform: [
+						{
+							svgo: {
+								plugins: [
+									{
+										name: "preset-default",
+										params: {
+											overrides: {
+												removeUnknownsAndDefaults: {
+													defaultAttrs: false,
+												},
+											},
+										},
+									},
+								],
+							},
+						},
+					],
+				},
+			},
 		}),
 		viteCompression(),
 	],

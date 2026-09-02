@@ -1,0 +1,184 @@
+{#
+ # Single post
+ #
+ # @package WPCinquanteEtUn
+ # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
+ #}
+
+{% extends 'index.html.twig' %}
+
+{%- block content -%}
+	<main id="content" role="main">
+		<article itemscope itemtype="https://schema.org/BlogPosting">
+		<header class="container space-y-5 pt-40 pb-section-md text-center">
+			{{- include('components/breadcrumb.html.twig') -}}
+
+			<div class="flex flex-wrap items-center justify-center gap-3">
+				{%- for category in post.categories | slice(0, 1) -%}
+					{{-
+						include(
+							'components/tag.html.twig',
+							{
+								title: category.name,
+								url: category.link,
+								attributes: {
+									itemprop: 'articleSection'
+								}
+							}
+						)
+					-}}
+				{%- endfor -%}
+
+				<time class="text-xs text-gray-500" datetime="{{ post.date('c') }}" itemprop="datePublished">
+					{{- post.date -}}
+				</time>
+
+				{%- if post.reading_time -%}
+					<span class="text-xs text-gray-500" aria-hidden="true">·</span>
+					<span class="text-xs text-gray-500">
+						{{- __('%d min read', 'wp-cinquante-et-un') | format(post.reading_time) -}}
+					</span>
+				{%- endif -%}
+			</div>
+
+			<h1 class="text-4xl font-semibold" itemprop="headline">
+				{{- post.title -}}
+			</h1>
+
+			{%- if post.excerpt({ read_more: '' }) | striptags | trim -%}
+				<p class="prose-lg mx-auto max-w-prose text-gray-600" itemprop="description">
+					{{- post.excerpt({ read_more: '' }) -}}
+				</p>
+			{%- endif -%}
+		</header>
+
+		{%- if post.thumbnail -%}
+			<div class="container">
+				<div class="aspect-2/1 overflow-hidden border border-black bg-gray-100">
+					{{-
+						include(
+							'components/image.html.twig',
+							{
+								image: post.thumbnail,
+								classes: ['size-full object-cover object-center'],
+								sizes: '(max-width: 90rem) 100vw, 87.5rem',
+								attributes: {
+									itemprop: 'image'
+								}
+							}
+						)
+					-}}
+				</div>
+			</div>
+		{%- endif -%}
+
+		<div class="container grid grid-cols-12 gap-8 pt-section-lg pb-section-lg">
+			{{-
+				include(
+					'components/toc.html.twig',
+					{
+						source: '#post-content',
+						title: __('Contents', 'wp-cinquante-et-un')
+					}
+				)
+			-}}
+
+			<div
+				id="post-content"
+				class="col-span-full lg:col-span-8"
+				itemprop="articleBody"
+			>
+				<div class="space-y-10">
+					<div class="wysiwyg">
+						{{- post.content -}}
+					</div>
+
+					{%- if post.tags | length -%}
+						<ul class="flex flex-wrap gap-2">
+							{%- for tag in post.tags -%}
+								<li>
+									{{-
+										include(
+											'components/tag.html.twig',
+											{
+												title: tag.name,
+												url: tag.link
+											}
+										)
+									-}}
+								</li>
+							{%- endfor -%}
+						</ul>
+					{%- endif -%}
+
+					{%- if post.author.name or post.author.description -%}
+						<div class="flex gap-4 border border-black p-6">
+						{%- if post.author.avatar(112) -%}
+							<img
+								src="{{ post.author.avatar(112) }}"
+								alt=""
+								width="56"
+								height="56"
+								class="size-14 shrink-0 border border-black bg-gray-100 object-cover"
+								itemprop="image"
+							/>
+						{%- endif -%}
+
+						<div class="space-y-1 text-sm">
+							{%- if post.author.name -%}
+								<p class="font-medium" itemprop="author" itemscope itemtype="https://schema.org/Person">
+									<span itemprop="name">{{- post.author.name -}}</span>
+								</p>
+							{%- endif -%}
+
+							{%- if post.author.description -%}
+								<p class="text-gray-600">
+									{{- post.author.description -}}
+								</p>
+							{%- endif -%}
+						</div>
+						</div>
+					{%- endif -%}
+				</div>
+			</div>
+		</div>
+
+		<meta itemprop="dateModified" content="{{ post.modified('c') }}" />
+
+		{%- if post.related_posts() | length -%}
+			<section class="pb-section-lg pt-section-lg">
+				<div class="container space-y-10">
+					{{-
+						include(
+							'components/section-header.html.twig',
+							{
+								overline: __('Journal', 'wp-cinquante-et-un'),
+								title: __('What we write', 'wp-cinquante-et-un'),
+								link: {
+									title: __('View all posts', 'wp-cinquante-et-un'),
+									url: posts_url
+								}
+							}
+						)
+					-}}
+
+					<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+						{%- for item in post.related_posts() -%}
+							{{- include('components/tease-post.html.twig', { post: item }, with_context = false) -}}
+						{%- endfor -%}
+					</div>
+				</div>
+			</section>
+		{%- endif -%}
+		</article>
+
+		{{-
+			include(
+				'blocks/blocks.html.twig',
+				{
+					blocks: post.blocks
+				}
+			)
+		-}}
+	</main>
+{%- endblock -%}

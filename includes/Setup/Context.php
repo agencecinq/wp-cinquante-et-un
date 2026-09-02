@@ -11,7 +11,7 @@ namespace WPCinquanteEtUn\Setup;
 
 use WPCinquanteEtUn\Service;
 use Timber\{Timber, Site };
-use WPCinquanteEtUn\Models\StyleguidePage;
+use WPCinquanteEtUn\Models\{BlogPost, CategoryArchive, Home, Search, StyleguidePage};
 
 /**
  * Context
@@ -32,6 +32,7 @@ class Context extends Site implements Service {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_filter( 'timber/context', array( $this, 'add_menus_to_context' ) );
 		add_filter( 'timber/post/classmap', array( $this, 'add_post_classmap' ) );
+		add_filter( 'timber/term/classmap', array( $this, 'add_term_classmap' ) );
 	}
 
 
@@ -79,13 +80,23 @@ class Context extends Site implements Service {
 	public function add_to_context( array $context ): array {
 		global $wp;
 
+		$theme = get_field( 'theme', 'option' );
+
 		$context['current_url']        = home_url( add_query_arg( array(), $wp->request ) );
 		$context['privacy_policy_url'] = get_privacy_policy_url();
 		$context['posts_url']          = get_permalink( get_option( 'page_for_posts' ) );
 		$context['home_url']           = home_url( '/' );
+		$context['theme']              = $theme;
+		$context['search_url']         = is_array( $theme ) ? ( $theme['search_url'] ?? null ) : null;
+		$context['menus']              = get_field( 'menus', 'option' );
 
-		$context['theme'] = get_field( 'theme', 'option' );
-		$context['menus'] = get_field( 'menus', 'option' );
+		if ( is_search() ) {
+			global $wp_query;
+
+			$context['search_query']    = get_search_query();
+			$context['results_count']   = (int) $wp_query->found_posts;
+			$context['suggested_pages'] = Search::suggested_pages();
+		}
 
 		return $context;
 	}
@@ -103,7 +114,12 @@ class Context extends Site implements Service {
 	 */
 	public function add_post_classmap( array $classmap ): array {
 		$custom_classmap = array(
+			'post' => BlogPost::class,
 			'page' => function ( \WP_Post $post ) {
+				if ( is_home() ) {
+					return Home::class;
+				}
+
 				if ( 'page-templates/styleguide-page.php' === get_page_template_slug( $post ) ) {
 					return StyleguidePage::class;
 				}
@@ -115,6 +131,23 @@ class Context extends Site implements Service {
 		return array_merge( $classmap, $custom_classmap );
 	}
 
+
+	/**
+	 * Add term classmap
+	 *
+	 * @param array $classmap Classmap.
+	 *
+	 * @see https://timber.github.io/docs/v2/guides/class-maps/#the-term-class-map
+	 *
+	 * @return array
+	 */
+	public function add_term_classmap( array $classmap ): array {
+		$custom_classmap = array(
+			'category' => CategoryArchive::class,
+		);
+
+		return array_merge( $classmap, $custom_classmap );
+	}
 
 	/**
 	 * Add menus to context

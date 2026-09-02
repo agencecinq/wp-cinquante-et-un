@@ -1,141 +1,186 @@
 {#
  # Footer
  #
- # Brand column, footer menu groups, legal baseline.
+ # Newsletter column, footer navigation, social links, legal baseline.
  #
  # @package WPCinquanteEtUn
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  #}
 
+{%- set newsletter = theme.footer.newsletter | default({}) -%}
+{%- set contact_locations = theme.contact.locations
+	|default(theme.footer.locations | default(''))
+-%}
+{%- set footer_menu_keys = ['footer_1', 'footer_2', 'footer_3'] -%}
+{%- set footer_menus = [] -%}
+
+{%- for key in footer_menu_keys -%}
+	{%- if nav_menus[key] and nav_menus[key].items | length -%}
+		{%- set footer_menus = footer_menus
+			|merge([
+				{
+					title: nav_menus[key].name,
+					items: nav_menus[key].get_items()
+				}
+			])
+		-%}
+	{%- endif -%}
+{%- endfor -%}
+
+{%- if footer_menus is empty and nav_menus.footer -%}
+	{%- for item in nav_menus.footer.get_items() -%}
+		{%- set footer_menus = footer_menus
+			|merge([
+				{
+					title: item.title,
+					items: item.children | length ? item.children : [item]
+				}
+			])
+		-%}
+	{%- endfor -%}
+{%- endif -%}
+
+{%- set has_contact_column = theme.contact.email
+	or theme.contact.phone
+	or contact_locations
+-%}
+
+{%- if has_contact_column and footer_menus | length < 3 -%}
+	{%- set footer_menus = footer_menus
+		|merge([
+			{
+				title: __('Contact', 'wp-cinquante-et-un'),
+				items: [],
+				contact: true
+			}
+		])
+	-%}
+{%- endif -%}
+
 <footer
 	role="contentinfo"
 	itemscope
 	itemtype="https://schema.org/WPFooter"
-	class="border-zinc-200 border-t bg-zinc-50 pt-18 pb-8 lg:pt-26"
+	class="border border-black bg-white py-14"
 >
-	<div class="container">
-		<div
-			class="border-zinc-200 flex flex-col gap-10 border-b pb-12 lg:flex-row lg:items-start lg:gap-8 lg:pb-20"
-		>
-			<div class="flex w-full flex-col gap-4 lg:w-90 lg:shrink-0">
-				<a href="{{ site.link }}" class="w-fit" aria-label="{{ site.name }}">
-					<img
-						class="block h-5.25 w-18"
-						src="{{ asset('src/img/svg/logo.svg') }}"
-						alt="{{ site.name }}"
-						width="72"
-						height="21"
-						loading="lazy"
-					/>
-				</a>
+	<div class="container flex flex-col gap-10">
+		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-8">
+			{%- if newsletter.title or newsletter.text or newsletter.form -%}
+				<div class="flex w-full shrink-0 flex-col gap-4 lg:max-w-105">
+					{%- if newsletter.title -%}
+						<p class="text-sm font-semibold text-black">
+							{{- newsletter.title -}}
+						</p>
+					{%- endif -%}
 
-				{%- if theme.footer.tagline -%}
-					<p class="text-zinc-500 max-w-60 text-sm">
-						{{- theme.footer.tagline -}}
-					</p>
-				{%- endif -%}
+					{%- if newsletter.text -%}
+						<p class="text-sm text-black/70">
+							{{- newsletter.text -}}
+						</p>
+					{%- endif -%}
 
-				{%- if theme.footer.locations or theme.contact.email or theme.contact.phone -%}
-					<div class="font-mono text-xs tracking-widest flex flex-col gap-1">
-						{%- if theme.footer.locations -%}
-							<p class="text-zinc-500">
-								{{- theme.footer.locations -}}
-							</p>
-						{%- endif -%}
-						{%- if theme.contact.email -%}
-							<a href="mailto:{{ theme.contact.email | e('html_attr') }}" class="text-zinc-950 hover:underline">
-								{{- theme.contact.email -}}
-							</a>
-						{%- endif -%}
-						{%- if theme.contact.phone -%}
-							<a
-								href="tel:{{ theme.contact.phone
-									| replace({
-										' ': '',
-										'.': '',
-										'-': ''
-									})
-									| e('html_attr') }}"
-								class="text-zinc-950 hover:underline"
-							>
-								{{- theme.contact.phone -}}
-							</a>
-						{%- endif -%}
-					</div>
-				{%- endif -%}
-			</div>
+					{{-
+						include(
+							'components/newsletter-form.html.twig',
+							{
+								form_id: newsletter.form | default(null)
+							}
+						)
+					-}}
+				</div>
+			{%- endif -%}
 
-			{%- if nav_menus.footer -%}
+			{%- if footer_menus | length -%}
 				<nav
 					aria-label="{{ __('Footer navigation', 'wp-cinquante-et-un') }}"
-					class="grid grid-cols-2 gap-x-4 gap-y-10 lg:flex lg:min-w-0 lg:flex-1 lg:gap-8"
+					class="grid min-w-0 flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
 				>
-					{%- for item in nav_menus.footer.get_items() -%}
-						<div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1">
-							{%- if item.children | length -%}
-								<p class="font-mono text-xs uppercase tracking-widest text-zinc-400">
-									{{- item.title -}}
+					{%- for column in footer_menus -%}
+						{%- if column.contact | default(false) -%}
+							<div class="flex min-w-0 flex-1 flex-col gap-3">
+								<p class="text-sm font-semibold text-black">
+									{{- column.title -}}
 								</p>
-								<ul class="flex flex-col gap-3">
-									{%- for child in item.children -%}
-										<li itemscope itemtype="https://schema.org/SiteNavigationElement">
+
+								<ul class="flex flex-col gap-2 text-sm text-black">
+									{%- if theme.contact.email -%}
+										<li>
 											<a
-												href="{{ child.url }}"
-												itemprop="url"
-												class="text-zinc-500 hover:text-zinc-950 text-sm"
-												{{
-												child.is_target_blank or child.is_external
-													? 'target="' ~ child.target ~ '" rel="noopener noreferrer"'
-												}}
+												href="mailto:{{ theme.contact.email | e('html_attr') }}"
+												class="hover:text-gray-500"
 											>
-												<span itemprop="name">{{- child.title -}}</span>
+												{{-
+													__(
+														'Write to us',
+														'wp-cinquante-et-un'
+													)
+												-}}
 											</a>
 										</li>
-									{%- endfor -%}
+									{%- endif -%}
+
+									{%- if theme.contact.phone -%}
+										<li>
+											<a
+												href="tel:{{ theme.contact.phone
+													| replace({
+														' ': '',
+														'.': '',
+														'-': ''
+													})
+													| e('html_attr') }}"
+												class="hover:text-gray-500"
+											>
+												{{- theme.contact.phone -}}
+											</a>
+										</li>
+									{%- endif -%}
+
+									{%- if contact_locations -%}
+										<li>
+											{{- contact_locations -}}
+										</li>
+									{%- endif -%}
 								</ul>
-							{%- else -%}
-								<a
-									href="{{ item.url }}"
-									itemprop="url"
-									class="text-zinc-500 hover:text-zinc-950 text-sm"
-									{{
-									item.is_target_blank or item.is_external
-										? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
-									}}
-								>
-									{{- item.title -}}
-								</a>
-							{%- endif -%}
-						</div>
+							</div>
+						{%- else -%}
+							{{-
+								include(
+									'components/footer-nav-column.html.twig',
+									column,
+									with_context = false
+								)
+							-}}
+						{%- endif -%}
 					{%- endfor -%}
 				</nav>
 			{%- endif -%}
 		</div>
 
-		<div class="flex flex-col gap-y-3 pt-6 lg:flex-row lg:items-center lg:justify-between">
-			<p class="font-mono text-xs tracking-widest text-zinc-400 flex items-center gap-2">
+		{{-
+			include(
+				'components/social-links.html.twig'
+			)
+		-}}
+
+		<div
+			class="flex flex-col gap-4 border-t border-black pt-6 text-xs text-black lg:flex-row lg:items-center lg:justify-between"
+		>
+			<p>
 				{{-
-					include(
-						'svg/use.html.twig',
-						{
-							icon: 'mark',
-							classes: ['w-2.5 h-1.4 shrink-0']
-						}
-					)
+					__('© %1$s %2$s. All rights reserved.', 'wp-cinquante-et-un')
+						| format('now' | date('Y'), site.name)
 				-}}
-				<span>
-					{{- __('© %s %s', 'wp-cinquante-et-un') | format('now' | date('Y'), site.name) -}}
-				</span>
 			</p>
 
 			{%- if nav_menus.legals -%}
-				<ul class="font-mono text-xs tracking-widest text-zinc-400 flex flex-wrap gap-5">
+				<ul class="flex flex-wrap gap-4">
 					{%- for item in nav_menus.legals.get_items() -%}
 						<li itemscope itemtype="https://schema.org/SiteNavigationElement">
 							<a
 								href="{{ item.url }}"
 								itemprop="url"
-								class="hover:text-zinc-950"
+								class="hover:text-gray-500"
 								{{
 								item.is_target_blank or item.is_external
 									? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'

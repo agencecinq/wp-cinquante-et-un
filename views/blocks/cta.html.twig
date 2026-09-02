@@ -1,0 +1,40 @@
+{#
+ # Blocks: CTA
+ #
+ # Centered closing call to action. Use the inverse color scheme on most pages.
+ #}
+
+{%- set layout = block.layout | default({}) -%}
+{%- set content = block.content | default({}) -%}
+
+{%- if content.title or content.text or content.link.url -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+class="{{ html_classes( layout.classes | default('') ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container') ) }}">
+			<div class="mx-auto max-w-prose space-y-5 text-center">
+				{%- if content.title -%}
+					<{{ content.heading | default('h2') }} class="text-3xl font-semibold">
+						{{- content.title -}}
+					</{{ content.heading | default('h2') }}>
+				{%- endif -%}
+
+				{%- if content.text -%}
+					<p class="text-lg opacity-80">
+						{{- content.text | raw -}}
+					</p>
+				{%- endif -%}
+
+				{{-
+					include(
+						'components/button.html.twig',
+						content.link | default({}) | merge({ variant: 'primary' }),
+						with_context = false
+					)
+				-}}
+			</div>
+		</div>
+	</section>
+{%- endif -%}

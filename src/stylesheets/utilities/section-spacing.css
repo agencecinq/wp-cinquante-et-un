@@ -1,0 +1,73 @@
+@source inline("pt-section-none pt-section-sm pt-section-md pt-section-lg pt-section-xl pb-section-none pb-section-sm pb-section-md pb-section-lg pb-section-xl");
+
+@utility pt-section-none {
+	padding-top: 0;
+}
+
+@utility pb-section-none {
+	padding-bottom: 0;
+}
+
+@utility pt-section-sm {
+	padding-top: 1.5rem;
+
+	@media (width >= 64rem) {
+		padding-top: 2rem;
+	}
+}
+
+@utility pb-section-sm {
+	padding-bottom: 1.5rem;
+
+	@media (width >= 64rem) {
+		padding-bottom: 2rem;
+	}
+}
+
+@utility pt-section-md {
+	padding-top: 2.5rem;
+
+	@media (width >= 64rem) {
+		padding-top: 4rem;
+	}
+}
+
+@utility pb-section-md {
+	padding-bottom: 2.5rem;
+
+	@media (width >= 64rem) {
+		padding-bottom: 4rem;
+	}
+}
+
+@utility pt-section-lg {
+	padding-top: 3.5rem;
+
+	@media (width >= 64rem) {
+		padding-top: 6rem;
+	}
+}
+
+@utility pb-section-lg {
+	padding-bottom: 3.5rem;
+
+	@media (width >= 64rem) {
+		padding-bottom: 6rem;
+	}
+}
+
+@utility pt-section-xl {
+	padding-top: 4.5rem;
+
+	@media (width >= 64rem) {
+		padding-top: 8rem;
+	}
+}
+
+@utility pb-section-xl {
+	padding-bottom: 4.5rem;
+
+	@media (width >= 64rem) {
+		padding-bottom: 8rem;
+	}
+}

@@ -17,7 +17,7 @@
 			aria-label="{{ __('Mobile navigation', 'wp-cinquante-et-un') }}"
 			class="w-full flex-1 overflow-y-auto"
 		>
-			<ul class="font-mono text-xs tracking-widest divide-zinc-200 divide-y">
+			<ul class="divide-y divide-black text-xs font-medium">
 				{%- for item in main_items -%}
 					<li itemscope itemtype="https://schema.org/SiteNavigationElement">
 						{%- if item.children | length -%}
@@ -25,7 +25,7 @@
 								type="button"
 								data-dom="open-sub"
 								data-open-sub="{{ item.id }}"
-								class="text-zinc-500 flex w-full items-center justify-between py-5 text-left"
+								class="flex w-full items-center justify-between py-5 text-left text-black"
 								aria-expanded="false"
 								aria-controls="mobile-sub-{{ item.id }}"
 							>
@@ -43,7 +43,7 @@
 							</button>
 						{%- else -%}
 							<a
-								class="text-zinc-500 hover:text-zinc-950 block py-5"
+								class="block py-5 text-black hover:text-gray-500"
 								href="{{ item.url }}"
 								itemprop="url"
 								{{
@@ -59,6 +59,20 @@
 			</ul>
 		</nav>
 	{%- endif -%}
+
+	{%- if theme.contact.link.url -%}
+		<div class="w-full pt-4">
+			{{-
+				include(
+					'components/button.html.twig',
+					theme.contact.link | merge({
+						classes: ['w-full'],
+						variant: 'primary'
+					})
+				)
+			-}}
+		</div>
+	{%- endif -%}
 </div>
 
 {% for item in main_items %}
@@ -72,11 +86,11 @@
 			aria-hidden="true"
 			style="display: none;"
 		>
-			<div class="border-zinc-200 relative space-y-2.5 border-b pt-5.5 pb-6.25">
+			<div class="relative space-y-2.5 border-b border-black pb-6 pt-5">
 				<button
 					type="button"
 					data-dom="back-to-main"
-					class="font-mono text-xs tracking-widest text-zinc-500 hover:text-zinc-950 inline-flex items-center gap-1"
+					class="inline-flex items-center gap-1 text-xs font-medium text-black hover:text-gray-500"
 					aria-label="{{ __('Back to menu', 'wp-cinquante-et-un') }}"
 				>
 					{{-
@@ -92,7 +106,7 @@
 					{{- __('Back', 'wp-cinquante-et-un') -}}
 				</button>
 
-				<h2 class="text-xl font-medium tracking-tight">{{- item.title -}}</h2>
+				<h2 class="text-sm font-semibold">{{- item.title -}}</h2>
 			</div>
 
 			<nav class="flex-1 overflow-y-auto" aria-label="{{ item.title }}">
@@ -102,7 +116,7 @@
 							<a
 								href="{{ child.url }}"
 								itemprop="url"
-								class="text-zinc-500 hover:text-zinc-950 block text-sm"
+								class="block text-sm text-black hover:text-gray-500"
 								{{
 								child.is_target_blank or child.is_external
 									? 'target="' ~ child.target ~ '" rel="noopener noreferrer"'

@@ -18,3 +18,29 @@ Ces deux fichiers sont autorisés. Ne pas en ajouter d'autres.
 | `wysiwyg.css` | Markup de contenu éditorial, pas un composant que l'on contrôle |
 
 Pour un nouveau composant (tease, drawer, chip, bloc) : classes Tailwind dans le Twig. Si un style n'est pas exprimable en utilitaires (ex. CSS Anchor Positioning), le mettre dans `src/stylesheets/utilities/`.
+
+## Espacement vertical entre frères
+
+Préférer **`space-y-*`** (ou `gap-*` en flex/grid) sur le conteneur parent plutôt que des marges conditionnelles (`mt-*`, `mb-*`) sur chaque enfant.
+
+```twig
+{# DO — empilement de blocs frères #}
+<div class="space-y-5">
+  {%- if breadcrumb -%}{{- breadcrumb | raw -}}{%- endif -%}
+  <h1>{{ post.title }}</h1>
+  {%- if post.excerpt({ read_more: '' }) | striptags | trim -%}
+    <p>{{ post.excerpt({ read_more: '' }) }}</p>
+  {%- endif -%}
+</div>
+
+{# DONT — marge ajoutée seulement si l'élément précédent existe #}
+<h1 class="{{ breadcrumb ? 'mt-5' : '' }}">{{ post.title }}</h1>
+```
+
+**Exceptions légitimes** : `mt-*` / `mb-*` pour séparer une section d'un autre bloc parent (ex. `mt-10` après une zone `.wysiwyg`), paddings de section (`pt-section-*`, `pb-section-*`), ou cas où les enfants ne sont pas des frères directs (grid item isolé, positionnement absolu).
+
+Même logique horizontale : `space-x-*` ou `gap-*` plutôt que `ml-*` conditionnel entre items inline.
+
+## Échelle Tailwind avant valeurs arbitraires
+
+Préférer les utilitaires de l'échelle (`max-w-105`, `w-11.5`, `gap-6.5`) aux crochets `[…rem]` ou `[…px]`. Si le linter Tailwind propose une réécriture (ex. `max-w-[26.25rem]` → `max-w-105`), appliquer la variante scale. Voir `design-tokens`.

@@ -1,0 +1,105 @@
+{#
+ # Search results
+ #
+ # @package WPCinquanteEtUn
+ # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
+ #}
+
+{% extends 'index.html.twig' %}
+
+{%- block content -%}
+	<main id="content" role="main">
+		<div class="container space-y-10 pb-section-lg pt-40">
+			<header class="max-w-prose space-y-5">
+				<h1 class="text-4xl font-semibold">
+					{{- post.title | default(__('Search', 'wp-cinquante-et-un')) -}}
+				</h1>
+
+				{{-
+					get_search_form({
+						classes: ['max-w-prose']
+					})
+				-}}
+
+				{%- if search_query -%}
+					{%- if results_count -%}
+						<p class="text-sm text-gray-500">
+							{{-
+								_n(
+									'%1$s result for “%2$s”',
+									'%1$s results for “%2$s”',
+									results_count,
+									'wp-cinquante-et-un'
+								) | format(results_count, search_query)
+							-}}
+						</p>
+					{%- else -%}
+						<p class="text-xl font-semibold">
+							{{-
+								__('No results for “%s”', 'wp-cinquante-et-un') | format(search_query)
+							-}}
+						</p>
+						<p class="prose-base text-gray-600">
+							{{-
+								__(
+									'Try fewer words, or browse the most visited pages below.',
+									'wp-cinquante-et-un'
+								)
+							-}}
+						</p>
+					{%- endif -%}
+				{%- endif -%}
+			</header>
+
+			{%- if posts | length -%}
+				<div class="space-y-0">
+					{%- for item in posts -%}
+						{{-
+							include(
+								'components/tease-search-result.html.twig',
+								{
+									post: item
+								},
+								with_context = false
+							)
+						-}}
+					{%- endfor -%}
+				</div>
+
+				<div class="flex justify-center pt-2">
+					{{-
+						include(
+							'components/pagination.html.twig',
+							{
+								pagination: posts.pagination({
+									mid_size: 1,
+									end_size: 1
+								})
+							}
+						)
+					-}}
+				</div>
+			{%- elseif search_query and suggested_pages | length -%}
+				<div class="space-y-3">
+					<p class="subtitle">
+						{{- __('Most visited pages', 'wp-cinquante-et-un') -}}
+					</p>
+
+					<ul class="space-y-3">
+						{%- for item in suggested_pages -%}
+							<li>
+								{{-
+									include(
+										'components/text-link.html.twig',
+										item,
+										with_context = false
+									)
+								-}}
+							</li>
+						{%- endfor -%}
+					</ul>
+				</div>
+			{%- endif -%}
+		</div>
+	</main>
+{%- endblock -%}

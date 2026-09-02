@@ -1,0 +1,73 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.9/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": false,
+		"color": {
+			"custom": false,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{
+					"slug": "background",
+					"color": "#ffffff",
+					"name": "Background"
+				},
+				{
+					"slug": "foreground",
+					"color": "#2A343A",
+					"name": "Foreground"
+				},
+				{
+					"slug": "button",
+					"color": "#2A343A",
+					"name": "Button"
+				},
+				{
+					"slug": "button-text",
+					"color": "#ffffff",
+					"name": "Button text"
+				},
+				{
+					"slug": "link",
+					"color": "#2A343A",
+					"name": "Link"
+				},
+				{
+					"slug": "ink",
+					"color": "#2A343A",
+					"name": "Ink"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "720px",
+			"wideSize": "1440px"
+		},
+		"typography": {
+			"customFontSize": false,
+			"dropCap": false,
+			"fontFamilies": [
+				{
+					"fontFamily": "ui-sans-serif, system-ui, sans-serif",
+					"slug": "sans",
+					"name": "Sans"
+				}
+			]
+		},
+		"border": {
+			"radius": false
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--background)",
+			"text": "var(--wp--preset--color--foreground)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--sans)"
+		}
+	}
+}

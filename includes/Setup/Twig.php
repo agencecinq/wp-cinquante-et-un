@@ -146,6 +146,21 @@ class Twig implements Service {
 			)
 		);
 
+		$twig->addFunction(
+			new TwigFunction(
+				'yoast_breadcrumb',
+				function ( $before = '', $after = '', $display = false ) {
+					if ( ! function_exists( 'yoast_breadcrumb' ) ) {
+						return '';
+					}
+
+					$html = yoast_breadcrumb( $before, $after, $display );
+
+					return is_string( $html ) ? $html : '';
+				}
+			)
+		);
+
 		return $twig;
 	}
 }

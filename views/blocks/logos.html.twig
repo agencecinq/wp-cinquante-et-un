@@ -1,0 +1,39 @@
+{#
+ # Blocks: Logos
+ #}
+
+{%- set layout = block.layout | default({}) -%}
+{%- set logos = block.logos | default([]) -%}
+
+{%- if logos | length -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+class="{{ html_classes( layout.classes | default('') ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container'), 'space-y-8 text-center' ) }}">
+			{%- if block.title -%}
+				<p class="text-sm font-medium text-gray-500">{{- block.title -}}</p>
+			{%- endif -%}
+
+			<ul class="flex flex-wrap items-center justify-between gap-x-8 gap-y-8">
+				{%- for logo in logos -%}
+					<li class="flex h-8 w-37.5 items-center justify-center">
+						{{-
+							include(
+								'components/image.html.twig',
+								{
+									image: logo,
+									classes: [
+										'h-8 w-auto object-contain',
+										block.grayscale ? 'grayscale'
+									]
+								}
+							)
+						-}}
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
+	</section>
+{%- endif -%}

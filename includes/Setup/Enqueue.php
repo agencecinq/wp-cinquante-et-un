@@ -28,7 +28,7 @@ class Enqueue implements Service {
 	 */
 	public function run(): void {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'dequeue_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'dequeue_styles' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		add_action( 'wp_head', array( $this, 'preload_wp_scripts' ) );
@@ -39,27 +39,16 @@ class Enqueue implements Service {
 	/**
 	 * Enqueue styles.
 	 *
-	 * The starter uses Tailwind / browser font stacks. To add a Google Font on a
-	 * project, register it and pass the handle in $deps, then set
-	 * --default-font-family in theme.css to the same family:
-	 *
-	 *     wp_register_style(
-	 *         'google-fonts',
-	 *         'https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,400&display=swap',
-	 *         array(),
-	 *         null
-	 *     );
-	 *     $deps[] = 'google-fonts';
+	 * The starter ships no custom typeface. Add @font-face in font-face.css and/or
+	 * register Google Fonts here when the project defines its fonts.
 	 *
 	 * @access public
 	 * @return void
 	 */
 	public function enqueue_styles(): void {
-		$deps = array();
-
 		$filename = Vite::asset( 'src/stylesheets/styles.css' );
 
-		wp_enqueue_style( get_theme_text_domain() . '-main', $filename, $deps, null );
+		wp_enqueue_style( get_theme_text_domain() . '-main', $filename, array(), null );
 		wp_enqueue_style( get_theme_text_domain() . '-style', get_stylesheet_uri(), array( get_theme_text_domain() . '-main' ), null );
 
 		if ( is_page_template( 'page-templates/styleguide-page.php' ) ) {
@@ -82,6 +71,10 @@ class Enqueue implements Service {
 	 * @return void
 	 */
 	public function dequeue_styles(): void {
+		wp_dequeue_style( 'contact-form-7' );
+		wp_deregister_style( 'contact-form-7' );
+		wp_dequeue_style( 'contact-form-7-rtl' );
+		wp_deregister_style( 'contact-form-7-rtl' );
 	}
 
 	/**

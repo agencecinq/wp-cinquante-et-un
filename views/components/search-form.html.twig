@@ -1,0 +1,42 @@
+{#
+ # Search form
+ #
+ # Used by searchform.php and get_search_form().
+ #
+ # @param array classes Extra CSS classes on the form element.
+ #}
+
+<form
+	role="search"
+	method="get"
+	action="{{ home_url }}"
+	class="{{
+	html_classes(
+		'flex w-full items-center border border-black py-3 pl-4 pr-3',
+		classes | default([]) | join(' ')
+	)
+	}}"
+>
+	<label class="sr-only" for="site-search">
+		{{- __('Search', 'wp-cinquante-et-un') -}}
+	</label>
+	<input
+		id="site-search"
+		type="search"
+		name="s"
+		value="{{ get_search_query() | e('html_attr') }}"
+		placeholder="{{ __('Search the site…', 'wp-cinquante-et-un') }}"
+		class="min-w-0 flex-1 bg-transparent text-sm text-black placeholder:text-black/40 focus:outline-none"
+	/>
+	<button type="submit" class="shrink-0 text-black" aria-label="{{ __('Search', 'wp-cinquante-et-un') }}">
+		{{-
+			include(
+				'svg/use.html.twig',
+				{
+					icon: 'search',
+					classes: ['size-5']
+				}
+			)
+		-}}
+	</button>
+</form>

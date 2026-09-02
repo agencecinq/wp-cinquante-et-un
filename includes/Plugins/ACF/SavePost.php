@@ -39,6 +39,21 @@ class SavePost implements Service {
 			return;
 		}
 
-		// Add project-specific post-save logic here.
+		$post_id = (int) $post_id;
+
+		if ( 'post' !== get_post_type( $post_id ) ) {
+			return;
+		}
+
+		if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+			return;
+		}
+
+		$content = (string) get_post_field( 'post_content', $post_id );
+		$minutes = cinq_estimate_reading_time( $content );
+
+		if ( $minutes > 0 ) {
+			update_field( 'reading_time', $minutes, $post_id );
+		}
 	}
 }

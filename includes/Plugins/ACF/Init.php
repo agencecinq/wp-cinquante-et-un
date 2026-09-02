@@ -10,6 +10,7 @@
 namespace WPCinquanteEtUn\Plugins\ACF;
 
 use WPCinquanteEtUn\Plugins\ACF\FieldTypes\MenuItemSelect;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\ArchivePostsFields;
 use WPCinquanteEtUn\Service;
 
 /**
@@ -48,6 +49,16 @@ class Init implements Service {
 				'menu_slug'   => 'options-theme',
 				'parent_slug' => 'options-general.php',
 				'position'    => '',
+				'redirect'    => false,
+			)
+		);
+
+		acf_add_options_page(
+			array(
+				'page_title'  => __( 'Archive Posts', 'wp-cinquante-et-un' ),
+				'menu_title'  => __( 'Archive', 'wp-cinquante-et-un' ),
+				'menu_slug'   => ArchivePostsFields::OPTIONS_SLUG,
+				'parent_slug' => 'edit.php',
 				'redirect'    => false,
 			)
 		);

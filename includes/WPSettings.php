@@ -48,6 +48,9 @@ class WPSettings implements Service {
 				'main'      => __( 'Main Menu', 'wp-cinquante-et-un' ),
 				'secondary' => __( 'Secondary Menu', 'wp-cinquante-et-un' ),
 				'footer'    => __( 'Footer Menu', 'wp-cinquante-et-un' ),
+				'footer_1'  => __( 'Footer Column 1', 'wp-cinquante-et-un' ),
+				'footer_2'  => __( 'Footer Column 2', 'wp-cinquante-et-un' ),
+				'footer_3'  => __( 'Footer Column 3', 'wp-cinquante-et-un' ),
 				'legals'    => __( 'Legals Menu', 'wp-cinquante-et-un' ),
 			)
 		);

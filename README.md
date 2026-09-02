@@ -34,13 +34,13 @@ pnpm build      # also generates public/sprite.svg from src/icons/
 pnpm dev        # local dev server
 ```
 
-Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`). Colors use Tailwind utilities (`bg-white`, `text-zinc-950`); override `--color-zinc-*` in `src/stylesheets/theme.css` if the project palette differs.
+Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`). Colors use Tailwind utilities (`bg-white`, `text-black`, `text-gray-500`); override `--color-gray-*` in `src/stylesheets/theme.css` if the project palette differs. Type uses the system sans-serif stack; add project fonts via `src/fonts/` and/or Google Fonts. Corners are square.
 
-`index.php` is the fallback router and always renders `index.html.twig` (ACF blocks). A journal or dedicated single is added on the project. The starter ships six kernel layouts: accordion, columns, gallery, hero, latest posts, media + text. Project-specific compositions are added per site, not copied from a previous client.
+`index.php` is the fallback router and renders `index.html.twig` (ACF blocks). Blog and single post views use native WordPress hierarchy entry points (`home.php`, `category.php`, `single.php`) that each render their Twig. Project-specific compositions are added per site, not copied from a previous client.
 
 ### SVG sprite support
 
-Includes built-in support for SVG sprites, allowing you to easily manage and use SVG icons throughout your theme. SVG will be pickup from the `src/icons/` folder and compiled into a single sprite file during the build process. This file can then be referenced in your Twig templates for efficient icon usage. This file is located in `public/sprite.svg` after build. It is located in the public folder to allow easy access and avoid Vite processing.
+Includes built-in support for SVG sprites, allowing you to easily manage and use SVG icons throughout your theme. SVG will be pickup from the `src/icons/` folder and compiled into a single sprite file during the build process. UI icons live on a 24×24 grid with `currentColor` fills and strokes. This file can then be referenced in your Twig templates for efficient icon usage. This file is located in `public/sprite.svg` after build. It is located in the public folder to allow easy access and avoid Vite processing.
 
 The theme provide a Twig component located at `views/svg/use.html.twig` to facilitate the use of SVG icons from the sprite. You can include an icon in your templates like this:
 

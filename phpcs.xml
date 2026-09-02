@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="CINQ-Standards">
-    <description>Règles de l'agence pour WordPress.</description>
+    <description>Agency coding standards for WordPress.</description>
 
     <rule ref="WordPress" />
 

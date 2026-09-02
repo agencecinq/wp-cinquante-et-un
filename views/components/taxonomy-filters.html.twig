@@ -1,0 +1,37 @@
+{#
+ # Components: Taxonomy filters
+ #
+ # Archive term links. The active term gets .is-active (underline).
+ # These are navigation links, not form controls.
+ #
+ # @param array items List of { title, url, active }.
+ # @param string [label] Accessible name for the nav.
+ # @param array classes Extra CSS classes.
+ #}
+
+{%- if items | length -%}
+	<nav
+		aria-label="{{ label | default(__('Filters', 'wp-cinquante-et-un')) }}"
+		class="{{ html_classes(classes | default([]) | join(' ')) }}"
+	>
+		<ul class="flex flex-wrap items-center gap-x-12 gap-y-2.5 text-xs uppercase">
+			{%- for item in items -%}
+				<li itemscope itemtype="https://schema.org/SiteNavigationElement">
+					<a
+						href="{{ item.url }}"
+						itemprop="url"
+						class="{{
+						html_classes(
+							'hover:underline',
+							item.active ? 'is-active underline'
+						)
+						}}"
+						{{ item.active ? 'aria-current="page"' : '' }}
+					>
+						<span itemprop="name">{{- item.title -}}</span>
+					</a>
+				</li>
+			{%- endfor -%}
+		</ul>
+	</nav>
+{%- endif -%}

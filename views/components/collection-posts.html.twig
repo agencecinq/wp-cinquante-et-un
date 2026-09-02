@@ -1,61 +1,50 @@
-{#  
+{#
  # Components: Collection Posts
  #
- # A collection of posts in a slideshow.
+ # Editorial post grid. Renders nothing when the posts list is empty.
  #
- # @params {array} content Content array.
- # @params {array} posts Posts array.
+ # @param array content Overline, title, and optional link.
+ # @param array posts Posts to display.
+ # @param attributes Extra HTML attributes on the section.
+ # @param array classes Extra CSS classes.
+ # @param string container_classes Container utility classes for the inner wrapper.
  #}
-<section {{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }} class="{{ html_classes( classes | default([]) | join( ' ' ) ) }}">
-	{%- if content.overline or content.title -%}
-		<div class="container mb-10 grid grid-cols-12 gap-2.5 lg:mb-15 lg:gap-5">
-			<div class="col-span-12">
-				<div class="space-y-5 text-center">
-					{%- if content.overline -%}
-						<p class="font-mono text-xs uppercase tracking-widest">
-							{{- content.overline -}}
-						</p>
-					{%- endif -%}
 
-					{%- if content.title -%}
-						<h2 class="text-2xl font-medium tracking-tight lg:text-3xl">{{- content.title -}}</h2>
-					{%- endif -%}
+{%- if posts | length -%}
+	<section
+		{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
+		class="{{ html_classes( classes | default([]) | join( ' ' ) ) }}"
+	>
+		<div class="{{ html_classes( container_classes | default('container'), 'space-y-6' ) }}">
+			{%- if content.overline or content.title or content.link.url -%}
+				<div class="flex flex-wrap items-end justify-between gap-4">
+					<div class="space-y-2">
+						{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+
+						{%- if content.title -%}
+							<h2 class="text-lg font-semibold">{{- content.title -}}</h2>
+						{%- endif -%}
+					</div>
+
+					{{-
+						include(
+							'components/text-link.html.twig',
+							{
+								title: content.link.title | default(__('View all posts', 'wp-cinquante-et-un')),
+								url: content.link.url,
+								target: content.link.target | default('')
+							},
+							with_context = false
+						)
+					-}}
 				</div>
+			{%- endif -%}
+
+			<div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+				{%- for post in posts -%}
+					{{- include('components/tease-post.html.twig', { post: post }, with_context = false) -}}
+				{%- endfor -%}
 			</div>
 		</div>
-	{%- endif -%}
-
-	<div class="lg:container lg:grid lg:grid-cols-12 lg:gap-5">
-		<cinq-slideshow class="block slideshow lg:col-span-10 lg:col-start-2 lg:mx-9.75">
-			<div class="splide" data-dom="slider" data-focus="center">
-				<div class="splide__track" data-dom="track">
-					<div class="splide__list">
-						{%- for post in posts -%}
-							<div class="splide__slide w-[calc(260*100%/402)] lg:w-[calc(calc(100%/3)-(--spacing(3.5)))]" data-dom="slide">
-								{{- include('components/tease-post.html.twig', { post: post }, with_context = false ) -}}
-							</div>
-						{%- endfor -%}
-					</div>
-				</div>
-			</div>
-		</cinq-slideshow>
-	</div>
-
-    {%- if link.url -%}
-        <div class="container mt-15 grid grid-cols-12 gap-2.5 text-center lg:mt-20 lg:gap-5">
-            <div class="col-span-12">
-                {{-
-                    include(
-                        'components/button.html.twig',
-                        {
-                            title: __('View all posts', 'wp-cinquante-et-un'),
-                            icon: 'bullet',
-                            url: link.url
-                        },
-                        with_context: false
-                    )
-                -}}
-            </div>
-        </div>
-    {%- endif -%}
-</section>
+	</section>
+{%- endif -%}

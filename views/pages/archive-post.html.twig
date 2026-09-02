@@ -1,0 +1,75 @@
+{#
+ # Archive: posts index and category archives.
+ #
+ # @package WPCinquanteEtUn
+ # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
+ #}
+
+{% extends 'index.html.twig' %}
+
+{%- block content -%}
+	<main id="content" role="main" itemscope itemtype="https://schema.org/Blog">
+		<header class="container space-y-6 pt-40 pb-section-md">
+			{{- include('components/breadcrumb.html.twig') -}}
+
+			{%- if post.hero.title | default(post.title) -%}
+				<h1 class="text-4xl font-semibold" itemprop="name">
+					{{- post.hero.title | default(post.title) -}}
+				</h1>
+			{%- endif -%}
+
+			{%- if post.description | default(post.hero.text) -%}
+				<p class="max-w-prose text-lg text-gray-600">
+					{{- post.description | default(post.hero.text) -}}
+				</p>
+			{%- endif -%}
+
+			{{-
+				include(
+					'components/taxonomy-filters.html.twig',
+					{
+						items: post.filter_items(),
+						label: __('Categories', 'wp-cinquante-et-un')
+					}
+				)
+			-}}
+		</header>
+
+		<div class="container space-y-12 pb-section-lg">
+			{%- if posts | length -%}
+				<div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+					{%- for item in posts -%}
+						{{- include('components/tease-post.html.twig', { post: item }, with_context = false) -}}
+					{%- endfor -%}
+				</div>
+
+				<div class="flex justify-center">
+					{{-
+						include(
+							'components/pagination.html.twig',
+							{
+								pagination: posts.pagination({
+									mid_size: 1,
+									end_size: 1
+								})
+							}
+						)
+					-}}
+				</div>
+			{%- else -%}
+				<p class="text-gray-600">
+					{{- __('No posts found.', 'wp-cinquante-et-un') -}}
+				</p>
+			{%- endif -%}
+		</div>
+
+		{{-
+			include(
+				'blocks/blocks.html.twig',
+				{
+					blocks: post.blocks
+				}
+			)
+		-}}
+	</main>
+{%- endblock -%}

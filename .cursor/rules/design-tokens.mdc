@@ -8,7 +8,7 @@ alwaysApply: false
 
 ## Declare in `@theme` only when needed
 
-- The starter uses Tailwind defaults in Twig: `bg-white`, `text-zinc-950`, `text-4xl`, `rounded-2xl`. Do not invent semantic aliases (`page`, `title-xl`, `rounded-25`).
+- The starter uses Tailwind defaults in Twig: `bg-white`, `text-black`, `text-gray-500`, `text-4xl font-semibold`, `rounded-none`. Scheme roles (`bg-background`, `text-foreground`) are for block sections. Do not invent semantic aliases (`page`, `title-xl`, `rounded-25`) except `.subtitle`, `.prose-base`, `.prose-lg`.
 - Custom colors, type, radius, or background images belong in `src/stylesheets/theme.css` inside `@theme` when the project does not map to the Tailwind scale.
 - Do not use arbitrary Tailwind values in Twig or CSS for design tokens: no `bg-[#102345]`, no `bg-[linear-gradient(...)]`, no `[background:...]`.
 - Use the generated utilities (`bg-zinc-50`, `rounded-xl`, etc.).
@@ -35,7 +35,7 @@ All custom property **suffixes** in `@theme` must be in **English**, kebab-case:
 - The Tailwind class mirrors the token suffix: `--color-accent` → `text-accent`, `bg-accent`, `border-accent`.
 - Do not add `--color-*: initial`, `--text-*: initial`, or `--radius-*: initial` unless you intentionally drop the Tailwind scale.
 - Legacy French token names may still exist in old client databases (ACF class values); **never add new French token names**.
-- When initializing a new project, override `--color-zinc-*` (or add English tokens) to match the client palette.
+- When initializing a new project, override `--color-gray-*` / `--color-black` (or add English tokens) to match the client palette.
 
 ## No preset section backgrounds in the starter
 
@@ -47,8 +47,8 @@ All dimensional values in Tailwind classes and CSS must use **rem** or the **spa
 
 Applies to: `font-size`, `width`, `height`, `gap`, `padding`, `margin`, `inset`, etc.
 
-- **Prefer spacing utilities** when the design value maps to the scale: `w-11.5` (46px), `gap-6.5` (26px), `py-3.5` (14px), not `w-[46px]` or `gap-[26px]`.
-- **Tailwind arbitrary values in Twig**: `w-[2.875rem]`, `gap-[1.625rem]`, never `w-[46px]`, `gap-[26px]`, `p-[14px]`.
+- **Prefer spacing utilities** when the design value maps to the scale: `w-11.5` (46px), `gap-6.5` (26px), `py-3.5` (14px), `max-w-105` (420px / 26.25rem), not `w-[46px]`, `gap-[26px]`, or `max-w-[26.25rem]`.
+- **Tailwind arbitrary values in Twig**: last resort only when no scale utility exists. Never use `[…rem]` or `[…px]` if the linter or IntelliSense proposes an equivalent scale class (e.g. `max-w-[26.25rem]` → `max-w-105`).
 - **`@theme` tokens** (`--text-*`, `--width-*`, etc.): declare in rem, not px.
 - **CSS** (`base/`, `utilities/`, legacy `components/`): dimensional properties in rem or `calc(var(--spacing) * n)`.
 
@@ -72,13 +72,16 @@ If a value is reused, add a token in `@theme` rather than repeating em arbitrary
 
 ## Typography (Tailwind scale)
 
-Use Tailwind type utilities in Twig: `text-xs` … `text-9xl`, plus `font-medium`, `font-mono`, `tracking-tight` / `tracking-widest`. Do not invent composite classes (`title-xl`, `eyebrow`) in the starter.
+Use Tailwind type utilities in Twig: `text-xs` … `text-6xl`, plus `font-medium`, `font-semibold`, and `font-bold` (prose only). Do not invent composite classes (`title-xl`, `eyebrow`) except `.subtitle` and `.prose-*`.
 
-- **Titles**: size + `font-medium tracking-tight` (e.g. `text-4xl font-medium tracking-tight lg:text-6xl`).
-- **Text**: `text-xs` … `text-xl` (or larger as needed).
-- **Meta**: `font-mono text-xs tracking-widest`, add `uppercase` when the design is caps.
+- **Titles**: size + `font-semibold` (e.g. `text-4xl font-semibold`). Display 5xl/6xl is editorial (heroes).
+- **Text**: `text-xs` … `text-lg`.
+- **Meta / overline**: `.subtitle` (`text-xs font-medium uppercase`, letter-spacing 0.1em).
+- **Article body**: `.prose-base` / `.prose-lg` (line-height 1.7). Never mix with Body UI styles.
 
-The starter uses Tailwind / browser font stacks. Do not add a webfont unless the project specifies one (then align `@font-face` or the Google Fonts example in `Enqueue::enqueue_styles()`, and `--default-font-family`).
+The starter ships no custom typeface: system sans-serif stack via `--default-font-family`. Add `@font-face` / Google Fonts and update `--font-sans` on the project (see `init-nouveau-projet`).
+
+Container: `--container-max-width` (90rem = 1440px, or 110rem = 1760px). Editorial measure: `--max-width-prose` (45rem = 720px) via `max-w-prose`.
 
 ## Checklist when adding a token
 

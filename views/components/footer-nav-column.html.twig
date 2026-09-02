@@ -1,0 +1,39 @@
+{#
+ # Footer navigation column
+ #
+ # @param string title Column heading.
+ # @param array items MenuItem[].
+ #}
+
+{%- set title = title | default('') -%}
+{%- set items = items | default([]) -%}
+
+{%- if title or items | length -%}
+	<div class="flex min-w-0 flex-1 flex-col gap-3">
+		{%- if title -%}
+			<p class="text-sm font-semibold text-black">
+				{{- title -}}
+			</p>
+		{%- endif -%}
+
+		{%- if items | length -%}
+			<ul class="flex flex-col gap-2">
+				{%- for item in items -%}
+					<li itemscope itemtype="https://schema.org/SiteNavigationElement">
+						<a
+							href="{{ item.url }}"
+							itemprop="url"
+							class="text-sm text-black hover:text-gray-500"
+							{{
+							item.is_target_blank or item.is_external
+								? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
+							}}
+						>
+							<span itemprop="name">{{- item.title -}}</span>
+						</a>
+					</li>
+				{%- endfor -%}
+			</ul>
+		{%- endif -%}
+	</div>
+{%- endif -%}

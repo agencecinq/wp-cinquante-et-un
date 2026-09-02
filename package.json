@@ -39,7 +39,7 @@
 		"@agencecinq/spinbutton": "^3.0.0",
 		"@agencecinq/switch": "^3.0.1",
 		"@agencecinq/tabs": "^11.0.0",
-		"@agencecinq/utils": "^6.1.0",
+		"@agencecinq/utils": "^7.1.0",
 		"@splidejs/splide": "^4.1.4",
 		"gsap": "^3.15.0",
 		"piecesjs": "^0.5.5",

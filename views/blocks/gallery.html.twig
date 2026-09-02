@@ -1,14 +1,10 @@
-{{-
-	include(
-		'blocks/_layout.html.twig',
-		{
-			paddings: block.layout.paddings,
-			id: block.id
-		}
-	)
--}}
+{%- set layout = block.layout | default({}) -%}
 
-<section id="{{ block.id }}" class="pt-5 pb-15 lg:pb-20">
+<section
+	{% if block.id %}id="{{ block.id }}"{% endif %}
+	class="{{ html_classes( layout.classes | default('') ) }}"
+	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+>
 	<div
 		class="{{
 		html_classes(
@@ -20,13 +16,14 @@
 		}}"
 	>
 		{%- if block.content.title -%}
-			<div class="container">
+			<div class="{{ layout.container_classes | default('container') }}">
 				<h2 class="font-mono text-xs uppercase tracking-widest">{{- block.content.title -}}</h2>
 			</div>
 		{%- endif -%}
 
 		{%- if block.content.gallery -%}
-			<div class="{{ html_classes( 'px-2.5 md:px-10 lg:px-15', block.marquee ? 'px-2.5 md:px-10' : 'lg:container' ) }}">
+			{%- set gallery_container = layout.container_classes | default('container') -%}
+			<div class="{{ html_classes( 'px-2.5 md:px-10', block.marquee ? 'px-2.5 md:px-10' : 'lg:px-15', not block.marquee ? gallery_container : '' ) }}">
 			
 			
 				<div

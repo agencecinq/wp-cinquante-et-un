@@ -1,0 +1,38 @@
+{#
+ # Search result item
+ #
+ # List layout for search results (tag, title, excerpt).
+ #
+ # @param object post Timber post.
+ #}
+
+{%- set excerpt =
+	post.excerpt({
+		chars: 140,
+		read_more: ''
+	}) | trim
+-%}
+
+<article class="space-y-2 border-t border-gray-200 py-6 last:border-b">
+	{{-
+		include(
+			'components/tag.html.twig',
+			{
+				title: __('Post', 'wp-cinquante-et-un')
+			},
+			with_context = false
+		)
+	-}}
+
+	<h2 class="text-xl font-semibold">
+		<a href="{{ post.link }}" class="text-black no-underline hover:underline">
+			{{- post.title -}}
+		</a>
+	</h2>
+
+	{%- if excerpt -%}
+		<p class="max-w-prose text-sm text-gray-600">
+			{{- excerpt -}}
+		</p>
+	{%- endif -%}
+</article>

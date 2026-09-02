@@ -1,0 +1,25 @@
+{#
+ # Page header
+ #
+ # Rendered when the first flexible block is not a hero. Carries the h1 and optional lead.
+ #
+ # @param object post Timber post.
+ #}
+
+{%- if post.title or post.meta('page_lead') -%}
+	<header class="container space-y-5 pb-section-md pt-40">
+		{{- include('components/breadcrumb.html.twig') -}}
+
+		{%- if post.title -%}
+			<h1 class="text-4xl font-semibold">
+				{{- post.title -}}
+			</h1>
+		{%- endif -%}
+
+		{%- if post.meta('page_lead') -%}
+			<p class="prose-lg max-w-prose text-gray-600">
+				{{- post.meta('page_lead') | raw -}}
+			</p>
+		{%- endif -%}
+	</header>
+{%- endif -%}

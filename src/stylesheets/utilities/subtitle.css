@@ -1,0 +1,5 @@
+@utility subtitle {
+	@apply text-xs font-medium uppercase;
+
+	letter-spacing: 0.1em;
+}

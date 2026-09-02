@@ -1,0 +1,83 @@
+---
+description: Options ACF pour les archives (journal natif et CPT). À appliquer quand on configure l'en-tête, les blocs ou tout contenu éditorial d'une archive.
+globs: includes/Models/**,includes/Traits/**,includes/Plugins/ACF/**,views/pages/archive*.html.twig,home.php,category.php,archive*.php
+alwaysApply: false
+---
+
+# Options d'archive ACF
+
+## Principe
+
+Le contenu éditorial d'une archive (titre, description, hero, blocs sous la liste, etc.) ne vit **pas** sur une page WordPress ni sur la page « Articles » (`page_for_posts`). Il est saisi dans une **page d'options ACF**, rangée dans le menu admin du type de contenu concerné.
+
+- **Archive des posts** (`home.php`, `category.php`) : page d'options sous **Articles** (`parent_slug` => `edit.php`), slug `archive-post`.
+- **Archive d'un CPT** (`archive-<cpt>.php`) : page d'options sous le **menu du CPT** (`parent_slug` => `edit.php?post_type=<cpt>`).
+
+La page des articles WP (`Réglages > Lecture`) sert à l'URL (`posts_url`) ; le contenu éditorial passe par ACF + modèles Timber.
+
+## Enregistrement de la page d'options
+
+Dans `includes/Plugins/ACF/Init.php` (posts natifs) ou dans la classe CPT (`includes/Post/<Cpt>.php`) :
+
+```php
+acf_add_options_page(
+	array(
+		'page_title'  => __( 'Archive Posts', 'wp-cinquante-et-un' ),
+		'menu_title'  => __( 'Archive', 'wp-cinquante-et-un' ),
+		'menu_slug'   => ArchivePostsFields::OPTIONS_SLUG, // archive-post
+		'parent_slug' => 'edit.php',
+		'redirect'    => false,
+	)
+);
+```
+
+Conventions de slug : `archive-post`, `archive-<cpt>`.
+
+## Champs ACF
+
+- Groupe dédié dans `includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php`.
+- Champ racine **`archive_posts`** (group) : `hero` (title, text), `blocks` (flexible content).
+- Location : `options_page` == `archive-post`.
+- Lecture : `get_field( 'archive_posts', 'option' )` — pas le slug de la page d'options.
+
+## Modèles Timber (pattern Nexiode)
+
+Pas de hook `add_archive_to_context` dans `Context.php`. Les archives passent par classmaps + trait :
+
+| Vue | `post` dans Twig | Classmap |
+|---|---|---|
+| `is_home()` | Page des articles (`page_for_posts`) | `Home` via post classmap `is_home()` |
+| `is_category()` | Terme courant | `CategoryArchive` ; `category.php` fait `$data['post'] = $data['term']` |
+
+**Trait** `includes/Traits/ArchivePost.php` :
+
+- `hero()` — `archive_posts.hero`
+- `blocks()` — `archive_posts.blocks`
+- `categories()` — termes `category` pour les filtres
+- `active_category_id()` — ID du terme courant ou `null` sur l'index
+
+**Modèles** : `Models/Home.php` (extends `Timber\Post`), `Models/CategoryArchive.php` (extends `Timber\Term`).
+
+**Term classmap** dans `Context.php` : `'category' => CategoryArchive::class`.
+
+## Twig (`archive-post.html.twig`)
+
+API unifiée via `post.*` :
+
+- Titre : inline `post.hero.title | default(post.title)` (garde + contenu, pas de `{% set %}`)
+- Description : inline `post.description | default(post.hero.text)`
+- Filtres catégories : boucle `post.categories` + lien « Tous » (`posts_url`), état actif via `post.active_category_id`
+- Blocs : `post.blocks`
+- Fil d'Ariane : Yoast via `components/breadcrumb.html.twig`
+
+## DO
+
+- Placer la page d'options sous le menu du type de contenu.
+- Lire l'archive via le trait / modèles Timber, pas via `Context.php`.
+- Alias `$data['post'] = $data['term']` dans `category.php`.
+
+## DONT
+
+- Pas de `add_archive_to_context`, `archive_filters`, ni tableaux de filtres construits en PHP.
+- Pas de titre, extrait ou blocs lus depuis `page_for_posts`.
+- Pas de variables parallèles `archive`, `term.*` dans le Twig d'archive : tout passe par `post.*`.

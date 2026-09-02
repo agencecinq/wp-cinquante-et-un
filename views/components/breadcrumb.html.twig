@@ -1,0 +1,19 @@
+{#
+ # Breadcrumb
+ #
+ # Yoast SEO wrapper. Schema.org BreadcrumbList is output by Yoast (JSON-LD).
+ #
+ # @param string label Accessible name of the nav.
+ # @param array  classes Extra CSS classes.
+ #}
+
+{%- set breadcrumb = yoast_breadcrumb() -%}
+
+{%- if breadcrumb -%}
+	<nav
+		aria-label="{{ label | default(__('Breadcrumb', 'wp-cinquante-et-un')) }}"
+		class="{{ html_classes('text-xs text-black opacity-60', classes | default([]) | join(' ')) }}"
+	>
+		{{- breadcrumb | raw -}}
+	</nav>
+{%- endif -%}

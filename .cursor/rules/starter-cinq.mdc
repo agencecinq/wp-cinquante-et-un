@@ -11,12 +11,12 @@ Quand l'utilisateur démarre un nouveau projet, applique la règle `init-nouveau
 
 ## Stack
 
-- **Templating** : Timber 2 + Twig. Routeurs racine : `index.php` (tout ce qui n’a pas de template plus spécifique) et `404.php`. Pas de `page.php`, `front-page.php`, `home.php`, `single-post.php` ni `category.php`. Le seul template de page WP du starter est **Styleguide**. La présentation vit dans les `.twig`. Un journal ou un single dédié s’ajoute sur le projet.
+- **Templating** : Timber 2 + Twig. Routeurs racine : `index.php` (pages + fallback), `404.php`, et les points d’entrée natifs de la hiérarchie WP quand la vue existe (`home.php`, `category.php`, `single.php`, `archive-<cpt>.php`, `single-<cpt>.php`, …). Chaque fichier racine ne charge le contexte Timber et rend qu’un Twig — pas de logique conditionnelle. `index.php` rend `index.html.twig` (blocs ACF). Le journal utilise `home.php` / `category.php` → `pages/archive-post.html.twig` ; le single article `single.php` → `pages/single-post.html.twig`. Pas de `page.php` ni `front-page.php` dans le starter (pages = blocs via `index.php`). Le seul template de page WP nommé du starter est **Styleguide**.
 - **Build** : Vite (`pnpm dev` / `pnpm build`), plugin `laravel-vite-plugin`. Entrées site : `src/stylesheets/styles.css` et `src/scripts/app.js`. Entrées catalogue (template Styleguide seulement) : `src/stylesheets/styleguide.css` et `src/scripts/styleguide.ts`. Sortie dans `dist/` (gitignored).
-- **CSS** : Tailwind CSS v4, configuré en CSS pur (pas de `tailwind.config.js`). Couleurs, typo et radius : classes Tailwind (`bg-white`, `text-4xl`, `rounded-2xl`). Tokens custom uniquement si besoin, dans `@theme` de `src/stylesheets/theme.css`. Pas de police custom : stacks Tailwind / navigateur. Pour une Google Font, voir l'exemple dans `Enqueue::enqueue_styles()`.
+- **CSS** : Tailwind CSS v4, configuré en CSS pur (pas de `tailwind.config.js`). Palette : `white`, `black`, `ink` (#2A343A), `gray-*`, `red-700`. Schémas de section : `default` / `inverse` (`data-color-scheme`, champ ACF `color_scheme`). Titres : `text-4xl font-semibold` (5xl/6xl en éditorial). Rayon 0. Conteneur : `px-5`, max-width 1440px (`--container-max-width`, 1760px en option). Mesure éditoriale : `max-w-prose` 720px. Police : stack système (`ui-sans-serif`, `system-ui`) via `--default-font-family` ; aucune police embarquée dans le starter. Tokens custom uniquement si besoin, dans `@theme` de `src/stylesheets/theme.css`.
 - **JS** : TypeScript. Composants dans `src/scripts/components/*.ts`, montés via `piecesjs`. L'objet global `cinq` (données du thème : `text_domain`, `ajax_url`, `nonce`, etc.) est injecté côté PHP dans `includes/Setup/Enqueue.php` et typé dans `src/scripts/.d.ts`. Libs courantes : GSAP, Splide, `@agencecinq/utils`, et les Web Components [agencecinq/ui](https://agencecinq.github.io/ui/) (drawer, modal, tabs, accordion, switch, …). Le catalogue les démontre sur le template **Styleguide**. Toujours suivre le markup de [la doc officielle](https://agencecinq.github.io/ui/), pas seulement le README npm.
 - **PHP** : POO, PSR-4, standards WordPress (phpcs + wpcs, voir `phpcs.xml`). Le namespace racine est mappé sur `includes/`. Les classes sont rangées comme les fichiers du core WordPress (le hook `after_setup_theme` vit dans `includes/Setup/`, etc.).
-- **Champs** : ACF. Les groupes sont définis en PHP dans `includes/Plugins/ACF/IncludeFields/` (et leurs `Layouts/` pour les blocs flexibles), pas seulement en JSON.
+- **Champs** : ACF. Les groupes sont définis en PHP dans `includes/Plugins/ACF/IncludeFields/` (et leurs `Layouts/` pour les blocs flexibles), pas seulement en JSON. Options globales du thème : Réglages > Thème (`options-theme`). Contenu éditorial des archives : page d'options ACF sous le menu du type de contenu (Articles pour le journal, menu CPT pour un CPT) — voir `archive-options`.
 - **CPT / taxonomies** : à créer dans `includes/Post/` et `includes/Taxonomy/` (le starter livre `Post/Page.php` ; les CPT et taxonomies spécifiques sont ajoutés par projet).
 - **i18n** : text domain unique, fichiers dans `languages/` (`.pot` source, `.po`/`.mo` par langue).
 - **Déploiement** : `deploy.sh` (build prod + purge des fichiers de dev), déclenché par le workflow `.github/workflows/release.yml` sur tag `v*`.
@@ -39,7 +39,7 @@ views/              Twig (pages/, blocks/, components/, svg/)
 languages/          Traductions liées au text domain
 acf-json/           Sync JSON ACF (si présent)
 page-templates/     Templates de page WP (Styleguide)
-*.php (racine)      index.php, 404.php
+*.php (racine)      index.php, 404.php, search.php, searchform.php, home.php, category.php, single.php (+ CPT/tax par projet)
 ```
 
 ## Noyau de blocs ACF
@@ -48,14 +48,24 @@ Le starter n'est pas une bibliothèque de pages marketing. `index.php` rend touj
 
 Le starter ne livre que des **primitives**. Une composition de page (équipe, process, push, etc.) s'ajoute sur le projet, et ne rejoint le starter que si elle a été généralisée (voir `remontee-vers-starter`).
 
+Référence Figma d'accueil (ordre proposé, réordonnable dans ACF) : hero, logos, cards_grid, media_text, key_figures, case_studies, testimonials, accordion_group, cta.
+
 | Layout | Usage |
 |---|---|
-| `AccordionGroup` | FAQ / contenu repliable |
+| `Hero` | En-tête de page (un par page) |
+| `Logos` | Bandeau de logos (gallery, hauteur fixe 32px) |
+| `CardsGrid` | Grille de cartes saisies (2 à 12, 2/3/4 colonnes) |
+| `MediaText` | Média + texte (6 + gouttière + 5, `media_position`) |
+| `KeyFigures` | Chiffres clés (repeater 2 à 4, `value` en texte) |
+| `CaseStudies` | Cas clients (repeater manuel ; un CPT peut remplacer sur le projet) |
+| `Testimonials` | Témoignages (repeater manuel ; un CPT peut remplacer sur le projet) |
+| `AccordionGroup` | FAQ / contenu repliable (`details`/`summary`, sans JS ; JSON-LD FAQPage optionnel) |
+| `Form` | Pitch + formulaire plugin (CF7 sur le projet ; max 1 par page) |
+| `Cta` | Appel à l'action (souvent `color_scheme` inverse) |
 | `Columns` | Deux colonnes de texte |
 | `Gallery` | Galerie média |
-| `Hero` | En-tête de page |
 | `LatestPosts` | Boucle d'articles |
-| `MediaText` | Média + texte |
+| `RichText` | Sur-titre, titre, texte, lien |
 
 Nouveau bloc : trio layout (`IncludeFields/Layouts/`) + Twig (`views/blocks/`) + composant TS si besoin, puis l'entrée dans `BlocksFields::$layouts`.
 
@@ -65,14 +75,15 @@ Nouveau bloc : trio layout (`IncludeFields/Layouts/`) + Twig (`views/blocks/`) +
 - Nouvelle classe PHP : respecter PSR-4 et le rangement par fichier de core WP, et reprendre le docblock d'en-tête existant (`@package`, `@author CINQ <contact@agencecinq.com> (https://agencecinq.com)`). Faire passer phpcs.
 - Nouveau bloc ACF : créer le layout dans `includes/Plugins/ACF/IncludeFields/Layouts/`, le template Twig correspondant dans `views/blocks/`, et le cas échéant le composant TS dans `src/scripts/components/`. L’ajouter au catalogue `views/pages/styleguide-page.html.twig` (données dans `Models/StyleguidePage.php`).
 - Nouveau token de design (couleur, typo, radius) : seulement si l’échelle Tailwind ne suffit pas. Le déclarer dans `@theme` de `src/stylesheets/theme.css`, jamais en dur dans les classes utilitaires. Suffixe du token **en anglais** (voir `design-tokens`). L'ajouter au catalogue `views/components/styleguide.html.twig` (page template `styleguide-page`).
-- Nouveau template de page : le suffixer `-page` (`page-templates/<nom>-page.php` + `views/pages/<nom>-page.html.twig`). Le styleguide est `styleguide-page`. Les pages de contenu passent par `index.php` (blocs), pas par un template dédié. Ne pas ajouter de routeur racine (`page.php`, `single-post.php`, …) tant que `index.php` suffit.
-- Nouvelle icône : ajouter le SVG dans `src/icons/`, puis `pnpm build` pour régénérer `public/sprite.svg`. L'utiliser via `views/svg/use.html.twig`. L'ajouter à la liste du catalogue styleguide.
+- Nouveau template de page : le suffixer `-page` (`page-templates/<nom>-page.php` + `views/pages/<nom>-page.html.twig`). Le styleguide est `styleguide-page`. Les pages de contenu passent par `index.php` (blocs), pas par un template dédié. Pour une nouvelle vue (journal, single, archive CPT), préférer le fichier racine de la hiérarchie WP (`home.php`, `single.php`, `archive-<cpt>.php`, …) plutôt qu’un branchement conditionnel dans `index.php`.
+- Nouvelle icône : SVG 24×24, `viewBox="0 0 24 24"`, fills/strokes en `currentColor` (pas de fond de canvas). Ajouter le fichier dans `src/icons/`, puis `pnpm build` pour régénérer `public/sprite.svg`. L'utiliser via `views/svg/use.html.twig`. L'ajouter à la liste du catalogue styleguide.
 - Images responsive : composant `views/components/image.html.twig` (srcset, WebP, lazy). Images statiques : `assets('src/img/...')`.
 - Cache Twig : activé dès que `WP_DEBUG` est à false (défaut d'une install WordPress / Local fraîche). En `local` / `development`, une notice admin le rappelle. En prod, vider `vendor/timber/timber/cache/*` après une modif de `.twig`.
 
 ## Standards de code et langue
 
 - **WordPress Coding Standards (WPCS)** : tout le PHP suit les standards WordPress. Référence : https://github.com/WordPress/wpcs-docs/tree/master. Ils sont vérifiés par phpcs via `phpcs.xml` ; aucun code ne doit introduire de nouvelle erreur phpcs.
+- **API WordPress** : avant d'écrire une URL, une requête, un hook ou un helper maison, **consulter la doc officielle** (https://developer.wordpress.org/reference/). Préférer les fonctions core aux constructions manuelles.
 - **Langue du code** : le code et les commentaires (docblocks, commentaires inline, noms de variables, de fonctions et de classes) sont rédigés en anglais. Les chaînes destinées à l'utilisateur passent par les fonctions i18n (`__()`, `_e()`, etc.) avec le text domain du thème.
 - Ne pas confondre avec la langue de ces fichiers de règles, qui restent en français pour l'équipe.
 
@@ -87,33 +98,49 @@ Liste vivante des règles courtes. Elle s'enrichit au fil des projets (voir la s
 DO :
 
 - Suivre les WordPress Coding Standards et faire passer phpcs.
+- **Double-checker la doc WordPress** (https://developer.wordpress.org/reference/) avant d'implémenter une URL, une requête, un hook ou une intégration plugin : le core expose souvent déjà la bonne fonction (`get_search_link()`, `get_permalink()`, …).
 - Coder et commenter en anglais.
 - Déclarer les tokens de design dans `@theme` de `theme.css` (noms en anglais, sizes en rem, letter-spacing en em, voir `design-tokens`).
-- Utiliser les classes typo Tailwind (`text-xl`, `text-4xl lg:text-6xl`, `font-medium`, `font-mono`) plutôt que des tailles en dur ou des composites (`title-xl`, `eyebrow`).
+- Utiliser les classes typo Tailwind (`text-sm`, `text-4xl font-semibold`, `font-medium`) plutôt que des tailles en dur ou des composites (`title-xl`, `eyebrow`). Le sur-titre est `.subtitle` (`uppercase`, 0.1em). Le corps d'article est `.prose-base` / `.prose-lg` (line-height 1.7), pas `text-base`.
 - Passer les chaînes utilisateur par les fonctions i18n.
 - Commits en anglais avec gitmoji (voir la règle `git-commits`).
 - Encapsuler les gardes d'affichage dans les composants Twig inclus (voir `twig-components`).
 - Espacer les filtres Twig via Prettier : `twigFollowOfficialCodingStandards: false` (voir `twig-wpcs`).
 - Styler header, footer, blocs et composants avec Tailwind directement dans les `.twig` (voir `tailwind-twig`).
+- Empiler des éléments frères avec `space-y-*` (ou `gap-*`) sur le parent, pas avec des `mt-*` / `mb-*` conditionnels (voir `tailwind-twig`).
 - Enrichir le markup avec schema.org quand un type correspond (voir `schema-org`).
+- Préférer les points d’entrée natifs de la hiérarchie WordPress (`home.php`, `single.php`, `category.php`, `archive-<cpt>.php`, …) plutôt que des `if ( is_* )` dans `index.php`.
+- Configurer le contenu éditorial d'une archive via page d'options ACF + modèles Timber (`Home`, `CategoryArchive`, trait `ArchivePost`) — voir `archive-options`. Pas de hook archive dans `Context.php`.
+- Afficher le fil d'Ariane via Yoast SEO et `views/components/breadcrumb.html.twig` (`yoast_breadcrumb()` Twig).
 - En TypeScript, privatiser champs et méthodes avec `#` (privé runtime), pas le mot-clé `private`. Un callback passé à `on` / `off` est un champ flèche (`#handleResize = () => {}`) pour garder la même référence.
+- Préférer les expressions inline dans les Twig de page plutôt que des `{% set %}` intermédiaires (voir `twig-components`).
 
 DONT :
 
 - Pas de logique métier dans les `*.php` racine.
-- Pas de `page.php` / `front-page.php` / `home.php` / `single-post.php` / `category.php` dans le starter : `index.php` rend `index.html.twig`.
+- Pas d'URL, requête ou comportement WordPress reconstruit à la main sans avoir d'abord vérifié la doc officielle (ex. `home_url('/?s=')` → `get_search_link()`).
+- Pas de branchement conditionnel (`is_home()`, `is_singular()`, …) dans `index.php` : une vue = un fichier racine de la hiérarchie WP qui rend son Twig.
+- Pas de `page.php` / `front-page.php` dans le starter : les pages de contenu passent par `index.php` (blocs ACF).
 - Pas de template de page Blocks : les pages de contenu passent par `index.php`.
 - Pas de valeurs de design en dur dans les classes utilitaires.
+- Pas de `rounded-*` dans le starter (rayon 0).
+- Pas de paddings de section hors de l'échelle ACF `spacing_top` / `spacing_bottom` (`none` `sm` `md` `lg` `xl`).
 - Pas de `{%- if items -%}` autour d'un `{% include %}` quand le composant peut tester ses props lui-même (voir `twig-components`).
 - Pas de backgrounds décoratifs preset (dégradés, fills de section) dans les templates du starter.
 - Pas de valeurs dimensionnelles en px dans les classes Tailwind (`w-[46px]`, `gap-[26px]`, `text-[22px]`) ; utiliser l'échelle spacing ou rem (voir `design-tokens`).
+- Pas de valeurs `[…rem]` ou `[…px]` en arbitraire quand l'échelle Tailwind expose déjà l'utilitaire (`max-w-[26.25rem]` → `max-w-105`, etc.).
 - Pas de letter-spacing en px (`tracking-[0.5px]`) ; utiliser em (voir `design-tokens`).
 - Pas de liens de navigation sans `<ul>`/`<li>` ni microdata `SiteNavigationElement` quand c'est un menu (voir `schema-org`).
 - Pas de nouvelle feuille `src/stylesheets/components/<nom>.css` pour un composant UI (BEM + `@apply`) ; utiliser Tailwind dans le Twig (voir `tailwind-twig`). Exception figée : `button.css`, `wysiwyg.css`.
 - Pas d'intégration de plugin tiers (Yoast, Contact Form 7, …) dans le starter : ACF est la seule dépendance plugin du noyau. Les adapters se câblent sur le projet.
+- Pas de dimension e-commerce (panier, fiches produit, featured collection, moyens de paiement). L'équivalent éditorial de la featured collection Shopify, c'est `LatestPosts`.
 - Ne pas modifier l'identité agence lors d'un renommage.
 - Pas d'emoji ni de tiret cadratin dans les contenus rédigés.
 - Pas de `private` TypeScript sur les composants JS : utiliser `#`.
+- Pas de `mt-*` / `mb-*` conditionnels pour espacer des frères : utiliser `space-y-*` ou `gap-*` sur le conteneur (voir `tailwind-twig`).
+- Pas de titre, extrait ou blocs d'archive lus depuis `page_for_posts` : le contenu éditorial de l'archive vit dans la page d'options ACF du menu Articles ou du CPT (voir `archive-options`).
+- Pas de hook `add_archive_to_context` ni filtres d'archive construits en PHP : classmaps Timber + trait `ArchivePost` (voir `archive-options`).
+- Pas de fil d'Ariane construit en PHP : Yoast SEO + `components/breadcrumb.html.twig`.
 
 ## Faire évoluer ces règles
 
@@ -128,8 +155,9 @@ Règles dédiées existantes :
 - `init-nouveau-projet` : procédure d'initialisation d'un nouveau projet à partir du thème.
 - `remontee-vers-starter` : procédure pour faire remonter une brique d'un projet vers le starter (flux inverse de l'init).
 - `git-commits` : messages de commit en anglais avec gitmoji.
-- `design-tokens` : tokens `@theme` en anglais, sizes en rem, letter-spacing en em, couleurs Tailwind (`bg-white`, `text-zinc-950`), pas de valeurs en dur ni de backgrounds preset dans le starter.
+- `design-tokens` : tokens `@theme` en anglais, sizes en rem, letter-spacing en em, couleurs Tailwind (`bg-white`, `text-black`, `text-gray-500`), rayon 0, pas de valeurs en dur ni de backgrounds preset dans le starter.
 - `twig-components` : gardes et nommage des params dans les composants Twig réutilisables.
 - `twig-wpcs` : espacement des filtres Twig compatible Prettier.
 - `tailwind-twig` : styling en Tailwind dans les `.twig` ; feuilles `components/` autorisées uniquement pour boutons et WYSIWYG.
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
+- `archive-options` : page d'options ACF pour le contenu éditorial des archives (posts sous Articles, CPT sous son menu).
