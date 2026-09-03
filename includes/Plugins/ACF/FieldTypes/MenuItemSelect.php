@@ -55,24 +55,10 @@ class MenuItemSelect extends \acf_field {
 			return;
 		}
 
-		global $wp_scripts;
-
-		$min   = defined( 'ACF_DEVELOPMENT_MODE' ) && ACF_DEVELOPMENT_MODE ? '' : '.min';
-		$major = acf_get_setting( 'select2_version' );
-
-		if ( isset( $wp_scripts->registered['select2'] ) ) {
-			$major = (int) $wp_scripts->registered['select2']->ver;
-		}
-
-		if ( $major === 3 ) {
-			$version = '3.5.2';
-			$script  = acf_get_url( "assets/inc/select2/3/select2{$min}.js" );
-			$style   = acf_get_url( 'assets/inc/select2/3/select2.css' );
-		} else {
-			$version = '4.0.13';
-			$script  = acf_get_url( "assets/inc/select2/4/select2.full{$min}.js" );
-			$style   = acf_get_url( "assets/inc/select2/4/select2{$min}.css" );
-		}
+		$min     = defined( 'ACF_DEVELOPMENT_MODE' ) && ACF_DEVELOPMENT_MODE ? '' : '.min';
+		$version = '4.0.13';
+		$script  = acf_get_url( "assets/inc/select2/4/select2.full{$min}.js" );
+		$style   = acf_get_url( "assets/inc/select2/4/select2{$min}.css" );
 
 		wp_enqueue_script( 'select2', $script, array( 'jquery' ), $version );
 		wp_enqueue_style( 'select2', $style, '', $version );
@@ -105,7 +91,7 @@ class MenuItemSelect extends \acf_field {
 	 */
 	public function render_field_settings( $field ): void {
 		$menus   = wp_get_nav_menus();
-		$choices = array( '' => '— ' . __( 'Select a menu', 'wp-cinquante-et-un' ) . ' —' );
+		$choices = array( '' => __( 'Select a menu', 'wp-cinquante-et-un' ) );
 
 		foreach ( $menus as $menu ) {
 			$choices[ (string) $menu->term_id ] = $menu->name;

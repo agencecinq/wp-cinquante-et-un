@@ -66,7 +66,7 @@
 				<p class="text-gray-500 max-w-prose text-lg">
 					{{-
 						__(
-							'The ACF layouts shipped with the starter, rendered from the same Twig as production. Copy and media are dummy data from the page model.',
+							'Kernel ACF layouts rendered with the same Twig as production. Blocks with variants expose a switcher; dummy data lives in includes/Models/Styleguide/.',
 							'wp-cinquante-et-un'
 						)
 					-}}
@@ -74,17 +74,7 @@
 			</header>
 
 			{%- for item in post.blocks -%}
-				<article id="{{ item.id }}" class="space-y-6">
-					<header class="container space-y-1">
-						<p class="text-xs font-medium">
-							{{ item.name }}
-						</p>
-						<p class="text-gray-500 text-xs">
-							{{ item.file }}
-						</p>
-					</header>
-					{{- include(item.file, { block: item.block, posts_url: posts_url }, with_context = false) -}}
-				</article>
+				{{- include('components/styleguide-layout-block.html.twig', { item: item }) -}}
 			{%- endfor -%}
 		</section>
 	</main>

@@ -104,17 +104,6 @@ class Twig implements Service {
 			);
 		}
 
-		if ( function_exists( 'wp_get_document_title' ) ) {
-			$twig->addFunction(
-				new TwigFunction(
-					'wp_get_document_title',
-					function () {
-						return wp_get_document_title();
-					}
-				)
-			);
-		}
-
 		$twig->addFunction( new TwigFunction( 'uniqid', 'uniqid' ) );
 
 		$twig->addFunction(

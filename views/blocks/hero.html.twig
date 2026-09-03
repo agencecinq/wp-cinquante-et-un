@@ -6,45 +6,67 @@
 
 {%- set layout = block.layout | default({}) -%}
 {%- set content = block.content | default({}) -%}
+{%- set alignment = block.alignment | default('left') -%}
+{%- set height = block.height | default('standard') -%}
+{%- set has_media = block.media.images[0] or block.media.images[1] or block.media.video.file -%}
+{%- set height_class = {
+	'compact': 'h-120',
+	'standard': 'h-160',
+	'full': 'min-h-dvh h-dvh'
+}[height] | default('h-160') -%}
+{%- set content_column_classes = alignment == 'center'
+	? 'col-span-full flex flex-col items-center space-y-6 text-center lg:col-span-8 lg:col-start-3'
+	: 'col-span-full space-y-6 lg:col-span-6'
+-%}
 
 <section
 	{% if block.id %}id="{{ block.id }}"{% endif %}
-	class="{{ html_classes( layout.classes | default(''), 'relative h-160 overflow-hidden' ) }}"
-	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	class="{{ html_classes( layout.classes | default(''), 'relative overflow-hidden', height_class ) }}"
+	data-color-scheme="{{ has_media ? 'inverse' : layout.color_scheme | default('default') }}"
 >
-	<div class="absolute inset-0 z-10 bg-gray-100 border border-black">
-		{{-
-			include(
-				'components/media.html.twig',
-				{
-					media: block.media,
-					classes: ['absolute inset-0 z-10 size-full object-cover object-center']
-				}
-			)
-		-}}
-		{%- if block.show_media_overlay -%}
-			<div class="absolute inset-0 z-20 bg-linear-to-b from-transparent to-black/20"></div>
-		{%- endif -%}
-	</div>
+	{%- if has_media -%}
+		<div class="absolute inset-0 z-10">
+			{{-
+				include(
+					'components/media.html.twig',
+					{
+						media: block.media,
+						image_size: 'hero',
+						video_desktop_only: true,
+						classes: ['absolute inset-0 z-10 size-full object-cover object-center']
+					}
+				)
+			-}}
+			{%- if block.show_media_overlay -%}
+				<div class="absolute inset-0 z-20 bg-linear-to-b from-black/0 to-black/45" aria-hidden="true"></div>
+			{%- endif -%}
+		</div>
+	{%- endif -%}
 
-	<div class="{{ html_classes( 'relative z-30', layout.container_classes | default('container'), 'grid h-full grid-cols-12 items-center gap-5' ) }}">
-		<div class="col-span-full space-y-6 lg:col-span-6">
-			{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+	<div class="{{ html_classes( 'relative z-30', layout.container_classes | default('container'), 'grid h-full grid-cols-12 items-center gap-5', has_media ? 'text-white' : '' ) }}">
+		<div class="{{ content_column_classes }}">
+			{{- include(
+				'components/subtitle.html.twig',
+				{
+					title: content.overline,
+					classes: has_media ? ['text-white/70'] : []
+				}
+			) -}}
 
 			{%- if content.title -%}
 				<{{ content.heading | default('h1') }} class="text-5xl font-semibold">
-					{{- content.title | raw -}}
+					{{- content.title | e -}}
 				</{{ content.heading | default('h1') }}>
 			{%- endif -%}
 
 			{%- if content.text -%}
-				<p class="text-lg">
+				<p class="{{ html_classes('text-lg', has_media ? 'text-white/90' : '') }}">
 					{{- content.text | raw -}}
 				</p>
 			{%- endif -%}
 
-			{%- if content.link.url or content.secondary_link.url -%}
-				<div class="flex flex-wrap gap-3">
+			{%- if content.link.url -%}
+				<div class="{{ html_classes('flex flex-wrap gap-3', alignment == 'center' ? 'justify-center' : '') }}">
 					{{-
 						include(
 							'components/button.html.twig',
@@ -52,13 +74,15 @@
 							with_context = false
 						)
 					-}}
-					{{-
-						include(
-							'components/button.html.twig',
-							content.secondary_link | default({}) | merge({ variant: 'secondary' }),
-							with_context = false
-						)
-					-}}
+					{%- if content.secondary_link.url -%}
+						{{-
+							include(
+								'components/button.html.twig',
+								content.secondary_link | default({}) | merge({ variant: 'secondary' }),
+								with_context = false
+							)
+						-}}
+					{%- endif -%}
 				</div>
 			{%- endif -%}
 		</div>

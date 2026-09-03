@@ -3,7 +3,7 @@
  * Post Fields
  *
  * ACF group on the native post type: reading time and related posts.
- * The body stays in Gutenberg (`content`). This is not a page-builder group.
+ * The body stays in the native editor (`post_content`). This is not a page-builder group.
  *
  * @package WordPress
  * @subpackage WPCinquanteEtUn/Plugins/ACF/IncludeFields

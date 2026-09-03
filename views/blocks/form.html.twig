@@ -1,44 +1,77 @@
 {#
  # Blocks: Form
  #
- # Pitch on 5 cols, plugin form on 6. The block references an external form, it does not define fields.
+ # Pitch + plugin form. Split (5 + 6 cols) or centered (720 px).
  #}
 
 {%- set layout = block.layout | default({}) -%}
-{%- set content = block.content | default({}) -%}
-{%- set form_id = block.form | default(null) -%}
+{%- set form_id = block.form_id | default(block.form | default(null)) -%}
+{%- set form_layout = block.form_layout | default('split') -%}
 
-{%- if content.overline or content.title or content.text or form_id -%}
+{%- if block.overline or block.title or block.text or form_id -%}
 	<section
 		{% if block.id %}id="{{ block.id }}"{% endif %}
-class="{{ html_classes( layout.classes | default('') ) }}"
-	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		class="{{ html_classes( layout.classes | default('') ) }}"
+		data-color-scheme="{{ layout.color_scheme | default('default') }}"
 	>
-		<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 items-start gap-x-8 gap-y-10' ) }}">
-			<div class="col-span-full space-y-5 lg:col-span-5">
-				{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+		<div class="{{ html_classes( layout.container_classes | default('container') ) }}">
+			{%- if form_layout == 'centered' -%}
+				<div class="mx-auto max-w-prose space-y-6 text-center">
+					<div class="space-y-5">
+						{{- include('components/subtitle.html.twig', { title: block.overline }) -}}
 
-				{%- if content.title -%}
-					<h2 class="text-2xl font-semibold">
-						{{- content.title -}}
-					</h2>
-				{%- endif -%}
+						{%- if block.title -%}
+							<h2 class="text-2xl font-semibold">
+								{{- block.title -}}
+							</h2>
+						{%- endif -%}
 
-				{%- if content.text -%}
-					<p class="prose-base text-gray-600">
-						{{- content.text | raw -}}
-					</p>
-				{%- endif -%}
-			</div>
+						{%- if block.text -%}
+							<div class="wysiwyg prose-base text-gray-600">
+								{{- block.text | raw -}}
+							</div>
+						{%- endif -%}
+					</div>
 
-			{%- if form_id -%}
-				<div class="col-span-full lg:col-span-6 lg:col-start-7">
-					{{-
-						function(
-							'do_shortcode',
-							'[contact-form-7 id="' ~ form_id ~ '"]'
-						)
-					-}}
+					{%- if form_id -%}
+						<div class="text-left">
+							{{-
+								function(
+									'do_shortcode',
+									'[contact-form-7 id="' ~ form_id ~ '"]'
+								)
+							-}}
+						</div>
+					{%- endif -%}
+				</div>
+			{%- else -%}
+				<div class="grid grid-cols-12 items-start gap-x-8 gap-y-10">
+					<div class="col-span-full space-y-5 lg:col-span-5">
+						{{- include('components/subtitle.html.twig', { title: block.overline }) -}}
+
+						{%- if block.title -%}
+							<h2 class="text-2xl font-semibold">
+								{{- block.title -}}
+							</h2>
+						{%- endif -%}
+
+						{%- if block.text -%}
+							<div class="wysiwyg prose-base text-gray-600">
+								{{- block.text | raw -}}
+							</div>
+						{%- endif -%}
+					</div>
+
+					{%- if form_id -%}
+						<div class="col-span-full lg:col-span-6 lg:col-start-7">
+							{{-
+								function(
+									'do_shortcode',
+									'[contact-form-7 id="' ~ form_id ~ '"]'
+								)
+							-}}
+						</div>
+					{%- endif -%}
 				</div>
 			{%- endif -%}
 		</div>

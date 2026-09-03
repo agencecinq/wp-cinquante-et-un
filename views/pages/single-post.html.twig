@@ -122,18 +122,29 @@
 
 					{%- if post.author.name or post.author.description -%}
 						<div class="flex gap-4 border border-black p-6">
-						{%- if post.author.avatar(112) -%}
-							<img
-								src="{{ post.author.avatar(112) }}"
-								alt=""
-								width="56"
-								height="56"
-								class="size-14 shrink-0 border border-black bg-gray-100 object-cover"
-								itemprop="image"
-							/>
-						{%- endif -%}
+							{{-
+								include(
+									'components/image.html.twig',
+									{
+										image: {
+											src: function('get_theme_file_uri', 'public/placeholder.svg'),
+											alt: '',
+											width: 56,
+											height: 56,
+											placeholder: true
+										},
+										classes: [
+											'size-14 shrink-0 border border-black bg-gray-100 object-cover'
+										],
+										loading: 'eager',
+										attributes: {
+											itemprop: 'image'
+										}
+									}
+								)
+							-}}
 
-						<div class="space-y-1 text-sm">
+							<div class="space-y-1 text-sm">
 							{%- if post.author.name -%}
 								<p class="font-medium" itemprop="author" itemscope itemtype="https://schema.org/Person">
 									<span itemprop="name">{{- post.author.name -}}</span>
@@ -145,7 +156,7 @@
 									{{- post.author.description -}}
 								</p>
 							{%- endif -%}
-						</div>
+							</div>
 						</div>
 					{%- endif -%}
 				</div>

@@ -1,14 +1,70 @@
-{%- if media.video.file -%}
-	<video class="{{ classes | default('') | join(' ') }}" src="{{ media.video.file.url }}" poster="{{ media.video.poster ? media.video.poster.url : '' }}" autoplay muted loop playsinline></video>
-{%- endif -%}
+{#
+ # Media: responsive images and optional video (hero replaces image from lg when video_desktop_only).
+ #
+ # @param array  media               Media clone ({ images, video }).
+ # @param array  classes             Classes applied to img/video elements.
+ # @param string image_size          WordPress image size for attachments.
+ # @param bool   video_desktop_only   Show video from lg up; images below lg.
+ #}
 
-{%- if ( media.images[0] or media.images[1] ) and not media.video.file -%}
-	{{- include( 'components/image.html.twig', { image: media.images[0], classes: [
-		media.images[1] ? 'block lg:hidden' : 'block',
-		classes | default('') | join(' ')
-	] } ) -}}
-	{{- include( 'components/image.html.twig', { image: media.images[1], classes: [
-		media.images[0] ? 'hidden lg:block' : 'block',
-		classes | default('') | join(' ')
-	] } ) -}}
+{%- set image_size = image_size | default( 'large' ) -%}
+{%- set video_desktop_only = video_desktop_only | default( false ) -%}
+{%- set media_classes = classes | default( [] ) -%}
+
+{%- if media.video.file and video_desktop_only -%}
+	{%- if media.images[0] or media.images[1] -%}
+		{{- include(
+			'components/image.html.twig',
+			{
+				image: media.images[0] ? media.images[0] : media.images[1],
+				size: image_size,
+				classes: [
+					'block lg:hidden',
+					media_classes | join( ' ' )
+				]
+			}
+		) -}}
+	{%- endif -%}
+	<video
+		class="{{ html_classes( 'hidden lg:block', media_classes | join( ' ' ) ) }}"
+		src="{{ media.video.file.url }}"
+		poster="{{ media.video.poster ? media.video.poster.url : '' }}"
+		autoplay
+		muted
+		loop
+		playsinline
+	></video>
+{%- elseif media.video.file -%}
+	<video
+		class="{{ html_classes( media_classes | join( ' ' ) ) }}"
+		src="{{ media.video.file.url }}"
+		poster="{{ media.video.poster ? media.video.poster.url : '' }}"
+		autoplay
+		muted
+		loop
+		playsinline
+	></video>
+{%- elseif media.images[0] or media.images[1] -%}
+	{{- include(
+		'components/image.html.twig',
+		{
+			image: media.images[0],
+			size: image_size,
+			classes: [
+				media.images[1] ? 'block lg:hidden' : 'block',
+				media_classes | join( ' ' )
+			]
+		}
+	) -}}
+	{{- include(
+		'components/image.html.twig',
+		{
+			image: media.images[1],
+			size: image_size,
+			classes: [
+				media.images[0] ? 'hidden lg:block' : 'block',
+				media_classes | join( ' ' )
+			]
+		}
+	) -}}
 {%- endif -%}

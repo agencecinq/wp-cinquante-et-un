@@ -11,12 +11,6 @@
 use Timber\Timber;
 
 $templates = array( 'pages/search.html.twig' );
-$context   = Timber::context();
+$data      = Timber::context();
 
-if ( is_search() ) {
-	$context['post'] = (object) array(
-		'title' => __( 'Search', 'wp-cinquante-et-un' ),
-	);
-}
-
-Timber::render( $templates, $context );
+Timber::render( $templates, $data );

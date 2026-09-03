@@ -43,12 +43,12 @@ class Init {
 			// Post & template.
 			PostTemplate\BodyClass::class,
 			PostTemplate\PostClass::class,
-			Template\Loader::class,
 			Template\PostStates::class,
 			// Build & assets.
 			Vite::class,
 			// ACF.
 			Plugins\ACF\Init::class,
+			Plugins\ACF\LoadField::class,
 			Plugins\ACF\SavePost::class,
 			Plugins\ACF\FormatValue::class,
 			Plugins\ACF\IncludeFields\BlocksFields::class,

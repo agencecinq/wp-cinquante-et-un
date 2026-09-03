@@ -1,0 +1,52 @@
+{#
+ # Styleguide kernel block: single layout or variant playground.
+ #
+ # @param array item Catalog row from StyleguidePage::blocks().
+ #}
+
+<article id="{{ item.id }}" class="space-y-6">
+	<header class="container space-y-3">
+		<div class="space-y-1">
+			<p class="text-xs font-medium">
+				{{ item.name }}
+			</p>
+			<p class="text-gray-500 text-xs">
+				{{ item.file }}
+			</p>
+		</div>
+
+		{%- if item.variants -%}
+			<div class="flex flex-wrap items-center gap-3">
+				<label class="text-xs font-medium" for="{{ item.id }}-variant">
+					{{- __('Variant', 'wp-cinquante-et-un') -}}
+				</label>
+				<select
+					id="{{ item.id }}-variant"
+					class="border border-black bg-white px-3 py-2 text-xs"
+					data-styleguide-variant-select
+				>
+					{%- for variant in item.variants -%}
+						<option value="{{ variant.id }}">
+							{{ variant.label }}
+						</option>
+					{%- endfor -%}
+				</select>
+			</div>
+		{%- endif -%}
+	</header>
+
+	{%- if item.variants -%}
+		<div data-styleguide-playground>
+			{%- for variant in item.variants -%}
+				<div
+					data-styleguide-variant="{{ variant.id }}"
+					{% if not loop.first %}hidden{% endif %}
+				>
+					{{- include(item.file, { block: variant.block, posts_url: posts_url }, with_context = false) -}}
+				</div>
+			{%- endfor -%}
+		</div>
+	{%- else -%}
+		{{- include(item.file, { block: item.block, posts_url: posts_url }, with_context = false) -}}
+	{%- endif -%}
+</article>

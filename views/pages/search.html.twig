@@ -12,7 +12,7 @@
 		<div class="container space-y-10 pb-section-lg pt-40">
 			<header class="max-w-prose space-y-5">
 				<h1 class="text-4xl font-semibold">
-					{{- post.title | default(__('Search', 'wp-cinquante-et-un')) -}}
+					{{- search_query is defined ? __('Search', 'wp-cinquante-et-un') : post.title -}}
 				</h1>
 
 				{{-

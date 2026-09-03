@@ -3,22 +3,21 @@
  #}
 
 {%- set layout = block.layout | default({}) -%}
-{%- set content = block.content | default({}) -%}
 {%- set figures = block.figures | default([]) -%}
 
 {%- if figures | length -%}
 	<section
 		{% if block.id %}id="{{ block.id }}"{% endif %}
-class="{{ html_classes( layout.classes | default('') ) }}"
-	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		class="{{ html_classes( layout.classes | default('') ) }}"
+		data-color-scheme="{{ layout.color_scheme | default('default') }}"
 	>
 		<div class="{{ html_classes( layout.container_classes | default('container'), 'space-y-10' ) }}">
 			{{-
 				include(
 					'components/section-header.html.twig',
 					{
-						overline: content.overline,
-						title: content.title
+						overline: block.overline,
+						title: block.title
 					}
 				)
 			-}}

@@ -5,35 +5,48 @@
  #}
 
 {%- set layout = block.layout | default({}) -%}
-{%- set content = block.content | default({}) -%}
+{%- set cta_primary = block.cta_primary | default({}) -%}
+{%- set cta_secondary = block.cta_secondary | default({}) -%}
 
-{%- if content.title or content.text or content.link.url -%}
+{%- if block.title or block.text or cta_primary.url -%}
 	<section
 		{% if block.id %}id="{{ block.id }}"{% endif %}
-class="{{ html_classes( layout.classes | default('') ) }}"
-	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		class="{{ html_classes( layout.classes | default('') ) }}"
+		data-color-scheme="{{ layout.color_scheme | default('default') }}"
 	>
 		<div class="{{ html_classes( layout.container_classes | default('container') ) }}">
-			<div class="mx-auto max-w-prose space-y-5 text-center">
-				{%- if content.title -%}
-					<{{ content.heading | default('h2') }} class="text-3xl font-semibold">
-						{{- content.title -}}
-					</{{ content.heading | default('h2') }}>
+			<div class="mx-auto max-w-prose space-y-6 text-center">
+				{%- if block.title -%}
+					<h2 class="text-3xl font-semibold">
+						{{- block.title -}}
+					</h2>
 				{%- endif -%}
 
-				{%- if content.text -%}
+				{%- if block.text -%}
 					<p class="text-lg opacity-80">
-						{{- content.text | raw -}}
+						{{- block.text | raw -}}
 					</p>
 				{%- endif -%}
 
-				{{-
-					include(
-						'components/button.html.twig',
-						content.link | default({}) | merge({ variant: 'primary' }),
-						with_context = false
-					)
-				-}}
+				{%- if cta_primary.url or cta_secondary.url -%}
+					<div class="flex flex-wrap items-center justify-center gap-3">
+						{{-
+							include(
+								'components/button.html.twig',
+								cta_primary | merge({ variant: 'primary' }),
+								with_context = false
+							)
+						-}}
+
+						{{-
+							include(
+								'components/button.html.twig',
+								cta_secondary | merge({ variant: 'secondary' }),
+								with_context = false
+							)
+						-}}
+					</div>
+				{%- endif -%}
 			</div>
 		</div>
 	</section>

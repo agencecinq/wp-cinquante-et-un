@@ -1,49 +1,45 @@
 {#
  # Blocks: Rich Text
  #
- # Single-column subtitle, title, body, and optional text link.
+ # Overline, h2 title, Prose body. Column width and grid position from ACF.
  #}
 
 {%- set layout = block.layout | default({}) -%}
-{%- set content = block.content | default({}) -%}
-{%- set alignment = content.text_alignment | default('text-left') -%}
+{%- set width = block.width | default('prose') -%}
+{%- set alignment = block.alignment | default('start') -%}
+{%- set width_class = {
+	'prose': 'max-w-prose',
+	'wide': 'max-w-prose-wide',
+	'full': ''
+}[width] | default('max-w-prose') -%}
+{%- set column_classes = width == 'full'
+	? 'col-span-full'
+	: (alignment == 'center'
+		? 'col-span-full lg:col-span-8 lg:col-start-3'
+		: 'col-span-full lg:col-span-8')
+-%}
 
-{%- if content.overline or content.title or content.text or content.link.url -%}
+{%- if block.content or block.overline or block.title -%}
 	<section
 		{% if block.id %}id="{{ block.id }}"{% endif %}
-class="{{ html_classes( layout.classes | default('') ) }}"
-	data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		class="{{ html_classes( layout.classes | default('') ) }}"
+		data-color-scheme="{{ layout.color_scheme | default('default') }}"
 	>
 		<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 gap-2 lg:gap-4' ) }}">
-			<div
-				class="{{
-				html_classes(
-					'col-span-full max-w-prose space-y-4 lg:col-span-8',
-					alignment
-				)
-				}}"
-			>
-				{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+			<div class="{{ html_classes( column_classes, width_class, 'space-y-4' ) }}">
+				{{- include('components/subtitle.html.twig', { title: block.overline }) -}}
 
-				{%- if content.title -%}
-					<{{ content.heading | default('h2') }} class="text-2xl font-semibold">
-						{{- content.title -}}
-					</{{ content.heading | default('h2') }}>
+				{%- if block.title -%}
+					<h2 class="text-2xl font-semibold">
+						{{- block.title | e -}}
+					</h2>
 				{%- endif -%}
 
-				{%- if content.text -%}
+				{%- if block.content -%}
 					<div class="wysiwyg">
-						{{- content.text | raw -}}
+						{{- block.content | raw -}}
 					</div>
 				{%- endif -%}
-
-				{{-
-					include(
-						'components/text-link.html.twig',
-						content.link | default({}),
-						with_context = false
-					)
-				-}}
 			</div>
 		</div>
 	</section>

@@ -14,6 +14,7 @@ use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\AccordionGroup;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\CardsGrid;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\CaseStudies;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Columns;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Contact;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Cta;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Form;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Gallery;
@@ -23,6 +24,7 @@ use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\LatestPosts;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Logos;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\MediaText;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\RichText;
+use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Team;
 use WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts\Testimonials;
 use WPCinquanteEtUn\Service;
 
@@ -43,6 +45,7 @@ class BlocksFields implements Service {
 		CardsGrid::class,
 		CaseStudies::class,
 		Columns::class,
+		Contact::class,
 		Cta::class,
 		Form::class,
 		Gallery::class,
@@ -52,6 +55,7 @@ class BlocksFields implements Service {
 		Logos::class,
 		MediaText::class,
 		RichText::class,
+		Team::class,
 		Testimonials::class,
 	);
 

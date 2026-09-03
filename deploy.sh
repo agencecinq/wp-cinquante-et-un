@@ -79,7 +79,7 @@ if [ -d "node_modules" ]; then
 fi
 
 if [ -d "vendor" ]; then
-    # Keep vendor/ — required for the PHP autoloader
+    # Keep vendor/ (required for the PHP autoloader)
     info "vendor/ kept (required for PHP autoloader)"
 fi
 

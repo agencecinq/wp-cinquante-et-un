@@ -29,11 +29,12 @@ class AcfFieldHelpers {
 	 * );
 	 * ```
 	 *
-	 * @param string $key The key prefix for the field (e.g. 'hero', 'page', 'media_text').
+	 * @param string               $key  The key prefix for the field (e.g. 'hero', 'page', 'media_text').
+	 * @param array<string, mixed> $args Optional field overrides merged via wp_parse_args() (e.g. instructions).
 	 *
 	 * @return array<int, array<string, mixed>> Tab and clone field definitions.
 	 */
-	public static function media( string $key = '' ): array {
+	public static function media( string $key = '', array $args = array() ): array {
 		$tab = array(
 			'key'        => 'field_' . $key . '_tab_media',
 			'label'      => __( 'Media', 'wp-cinquante-et-un' ),
@@ -41,15 +42,18 @@ class AcfFieldHelpers {
 			'type'       => 'tab',
 		);
 
-		$field = array(
-			'key'        => 'field_' . $key . '_media',
-			'label'      => __( 'Media', 'wp-cinquante-et-un' ),
-			'name'       => 'media',
-			'aria-label' => __( 'Media', 'wp-cinquante-et-un' ),
-			'type'       => 'clone',
-			'clone'      => array( 'field_clones_media' ),
-			'display'    => 'seamless',
-			'layout'     => 'block',
+		$field = wp_parse_args(
+			$args,
+			array(
+				'key'        => 'field_' . $key . '_media',
+				'label'      => __( 'Media', 'wp-cinquante-et-un' ),
+				'name'       => 'media',
+				'aria-label' => __( 'Media', 'wp-cinquante-et-un' ),
+				'type'       => 'clone',
+				'clone'      => array( 'field_clones_media' ),
+				'display'    => 'seamless',
+				'layout'     => 'block',
+			)
 		);
 
 		return array( $tab, $field );

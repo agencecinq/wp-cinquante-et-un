@@ -1,0 +1,103 @@
+{#
+ # Components: Contact details
+ #
+ # Icon rows for address, phone, email, and opening hours.
+ #
+ # @param string address
+ # @param string phone
+ # @param string email
+ # @param array hours Repeater rows with days and hours.
+ #}
+
+{%- set hours = hours | default([]) -%}
+{%- set has_hours = false -%}
+
+{%- for row in hours -%}
+	{%- if row.days or row.hours -%}
+		{%- set has_hours = true -%}
+	{%- endif -%}
+{%- endfor -%}
+
+{%- if address or phone or email or has_hours -%}
+	<div class="{{ html_classes( classes | default([]) | join(' '), 'space-y-6' ) }}">
+		{%- if address -%}
+			<div class="flex items-start gap-3">
+				<span class="mt-0.5 shrink-0 text-black" aria-hidden="true">
+					{{- include('svg/use.html.twig', { classes: ['size-4'], icon: 'map-pin' }) -}}
+				</span>
+				<div class="min-w-0 space-y-1">
+					<p class="text-xs font-medium text-gray-500">
+						{{- __('Address', 'wp-cinquante-et-un') -}}
+					</p>
+					<address class="text-sm not-italic">
+						{{- address | raw -}}
+					</address>
+				</div>
+			</div>
+		{%- endif -%}
+
+		{%- if phone -%}
+			<div class="flex items-start gap-3">
+				<span class="mt-0.5 shrink-0 text-black" aria-hidden="true">
+					{{- include('svg/use.html.twig', { classes: ['size-4'], icon: 'phone' }) -}}
+				</span>
+				<div class="min-w-0 space-y-1">
+					<p class="text-xs font-medium text-gray-500">
+						{{- __('Phone', 'wp-cinquante-et-un') -}}
+					</p>
+					<p class="text-sm">
+						<a href="tel:{{ phone | replace({' ': ''}) | e('html_attr') }}">
+							{{- phone -}}
+						</a>
+					</p>
+				</div>
+			</div>
+		{%- endif -%}
+
+		{%- if email -%}
+			<div class="flex items-start gap-3">
+				<span class="mt-0.5 shrink-0 text-black" aria-hidden="true">
+					{{- include('svg/use.html.twig', { classes: ['size-4'], icon: 'mail' }) -}}
+				</span>
+				<div class="min-w-0 space-y-1">
+					<p class="text-xs font-medium text-gray-500">
+						{{- __('Email', 'wp-cinquante-et-un') -}}
+					</p>
+					<p class="text-sm">
+						<a href="mailto:{{ email | e('html_attr') }}">
+							{{- email -}}
+						</a>
+					</p>
+				</div>
+			</div>
+		{%- endif -%}
+
+		{%- if has_hours -%}
+			<div class="flex items-start gap-3">
+				<span class="mt-0.5 shrink-0 text-black" aria-hidden="true">
+					{{- include('svg/use.html.twig', { classes: ['size-4'], icon: 'calendar' }) -}}
+				</span>
+				<div class="min-w-0 space-y-1">
+					<p class="text-xs font-medium text-gray-500">
+						{{- __('Hours', 'wp-cinquante-et-un') -}}
+					</p>
+					<div class="space-y-1 text-sm">
+						{%- for row in hours -%}
+							{%- if row.days or row.hours -%}
+								<p>
+									{%- if row.days and row.hours -%}
+										{{- row.days -}}, {{ row.hours }}
+									{%- elseif row.days -%}
+										{{- row.days -}}
+									{%- else -%}
+										{{- row.hours -}}
+									{%- endif -%}
+								</p>
+							{%- endif -%}
+						{%- endfor -%}
+					</div>
+				</div>
+			</div>
+		{%- endif -%}
+	</div>
+{%- endif -%}

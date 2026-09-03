@@ -24,7 +24,7 @@ Pour un nouveau composant (tease, drawer, chip, bloc) : classes Tailwind dans le
 Préférer **`space-y-*`** (ou `gap-*` en flex/grid) sur le conteneur parent plutôt que des marges conditionnelles (`mt-*`, `mb-*`) sur chaque enfant.
 
 ```twig
-{# DO — empilement de blocs frères #}
+{# DO: empilement de blocs frères #}
 <div class="space-y-5">
   {%- if breadcrumb -%}{{- breadcrumb | raw -}}{%- endif -%}
   <h1>{{ post.title }}</h1>
@@ -33,7 +33,7 @@ Préférer **`space-y-*`** (ou `gap-*` en flex/grid) sur le conteneur parent plu
   {%- endif -%}
 </div>
 
-{# DONT — marge ajoutée seulement si l'élément précédent existe #}
+{# DONT: marge ajoutée seulement si l'élément précédent existe #}
 <h1 class="{{ breadcrumb ? 'mt-5' : '' }}">{{ post.title }}</h1>
 ```
 

@@ -319,13 +319,45 @@ function cinq_enrich_block( array &$block ): void {
 		isset( $block['acf_fc_layout'] )
 		&& 'accordion_group' === $block['acf_fc_layout']
 		&& ! empty( $block['schema'] )
-		&& ! empty( $block['accordions'] )
-		&& is_array( $block['accordions'] )
+		&& ! empty( $block['items'] )
+		&& is_array( $block['items'] )
 	) {
-		$faq_schema = cinq_faq_schema_json( $block['accordions'] );
+		$faq_schema = cinq_faq_schema_json( $block['items'] );
 
 		if ( '' !== $faq_schema ) {
 			$block['faq_schema_json'] = $faq_schema;
+		}
+	}
+
+	if ( isset( $block['acf_fc_layout'] ) && 'testimonials' === $block['acf_fc_layout'] ) {
+		$block['items'] = cinq_testimonial_block_items( $block );
+	}
+
+	if ( isset( $block['acf_fc_layout'] ) && 'team' === $block['acf_fc_layout'] ) {
+		$block['members'] = cinq_team_block_members( $block );
+	}
+
+	if ( isset( $block['acf_fc_layout'] ) && 'case_studies' === $block['acf_fc_layout'] ) {
+		if ( empty( $block['items'] ) || ! is_array( $block['items'] ) ) {
+			$block['items'] = cinq_case_study_block_items( $block );
+		}
+	}
+
+	if ( isset( $block['acf_fc_layout'] ) && 'latest_posts' === $block['acf_fc_layout'] ) {
+		if ( empty( $block['posts'] ) ) {
+			$block['posts'] = cinq_latest_posts_block_posts( $block );
+		}
+	}
+
+	if (
+		isset( $block['acf_fc_layout'] )
+		&& 'contact' === $block['acf_fc_layout']
+		&& ! empty( $block['schema'] )
+	) {
+		$local_business_schema = cinq_local_business_schema_json( $block );
+
+		if ( '' !== $local_business_schema ) {
+			$block['local_business_schema_json'] = $local_business_schema;
 		}
 	}
 }
@@ -341,8 +373,8 @@ function cinq_faq_schema_json( array $items ): string {
 	$entities = array();
 
 	foreach ( $items as $item ) {
-		$question = isset( $item['header'] ) ? wp_strip_all_tags( (string) $item['header'] ) : '';
-		$answer   = isset( $item['content'] ) ? wp_strip_all_tags( (string) $item['content'] ) : '';
+		$question = isset( $item['question'] ) ? wp_strip_all_tags( (string) $item['question'] ) : '';
+		$answer   = isset( $item['answer'] ) ? wp_strip_all_tags( (string) $item['answer'] ) : '';
 
 		if ( '' === $question || '' === $answer ) {
 			continue;
@@ -370,4 +402,451 @@ function cinq_faq_schema_json( array $items ): string {
 		),
 		JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 	);
+}
+
+/**
+ * Contact Form 7 forms for ACF form_id select fields.
+ *
+ * @return array<string, string> Form ID => title.
+ */
+function cinq_cf7_form_choices(): array {
+	if ( ! post_type_exists( 'wpcf7_contact_form' ) ) {
+		return array();
+	}
+
+	$forms = get_posts(
+		array(
+			'post_type'      => 'wpcf7_contact_form',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		)
+	);
+
+	if ( empty( $forms ) ) {
+		return array();
+	}
+
+	$choices = array();
+
+	foreach ( $forms as $form ) {
+		$choices[ (string) $form->ID ] = $form->post_title;
+	}
+
+	return $choices;
+}
+
+/**
+ * LocalBusiness JSON-LD from a contact block row.
+ *
+ * @param array<string, mixed> $block ACF layout row.
+ * @return string Empty when there is nothing to output.
+ */
+function cinq_local_business_schema_json( array $block ): string {
+	$has_contact_data = ! empty( $block['address'] )
+		|| ! empty( $block['phone'] )
+		|| ! empty( $block['email'] )
+		|| ( ! empty( $block['hours'] ) && is_array( $block['hours'] ) )
+		|| ! empty( $block['map_image'] )
+		|| ! empty( $block['map_link'] );
+
+	if ( ! $has_contact_data ) {
+		return '';
+	}
+
+	$entity = array(
+		'@context' => 'https://schema.org',
+		'@type'    => 'LocalBusiness',
+		'name'     => get_bloginfo( 'name' ),
+	);
+
+	if ( ! empty( $block['address'] ) ) {
+		$entity['address'] = array(
+			'@type'         => 'PostalAddress',
+			'streetAddress' => wp_strip_all_tags( (string) $block['address'] ),
+		);
+	}
+
+	if ( ! empty( $block['phone'] ) ) {
+		$entity['telephone'] = preg_replace( '/\s+/', '', (string) $block['phone'] );
+	}
+
+	if ( ! empty( $block['email'] ) ) {
+		$entity['email'] = sanitize_email( (string) $block['email'] );
+	}
+
+	if ( ! empty( $block['hours'] ) && is_array( $block['hours'] ) ) {
+		$specifications = array();
+
+		foreach ( $block['hours'] as $row ) {
+			if ( ! is_array( $row ) ) {
+				continue;
+			}
+
+			$days  = isset( $row['days'] ) ? wp_strip_all_tags( (string) $row['days'] ) : '';
+			$hours = isset( $row['hours'] ) ? wp_strip_all_tags( (string) $row['hours'] ) : '';
+
+			if ( '' === $days && '' === $hours ) {
+				continue;
+			}
+
+			$specification = array(
+				'@type' => 'OpeningHoursSpecification',
+			);
+
+			if ( '' !== $days ) {
+				$specification['dayOfWeek'] = $days;
+			}
+
+			if ( '' !== $hours ) {
+				$specification['description'] = $hours;
+			}
+
+			$specifications[] = $specification;
+		}
+
+		if ( ! empty( $specifications ) ) {
+			$entity['openingHoursSpecification'] = $specifications;
+		}
+	}
+
+	if ( ! empty( $block['map_image'] ) ) {
+		$image_url = wp_get_attachment_image_url( (int) $block['map_image'], 'large' );
+
+		if ( is_string( $image_url ) && '' !== $image_url ) {
+			$entity['image'] = $image_url;
+		}
+	}
+
+	if ( ! empty( $block['map_link'] ) ) {
+		$entity['hasMap'] = esc_url_raw( (string) $block['map_link'] );
+	}
+
+	return (string) wp_json_encode(
+		$entity,
+		JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+	);
+}
+
+/**
+ * Resolve a case study URL for a logo attachment when link_logos is enabled.
+ *
+ * Projects wire filename matching (or CPT lookup) via the cinq_logos_case_study_url filter.
+ *
+ * @param int|array<string, mixed>|object $logo Attachment ID or image value.
+ * @return string Empty when no link should be rendered.
+ */
+function cinq_logos_case_study_url( $logo ): string {
+	$url = apply_filters( 'cinq_logos_case_study_url', '', $logo );
+
+	return is_string( $url ) ? $url : '';
+}
+
+/**
+ * Resolve testimonial rows for the testimonials block.
+ *
+ * @param array<string, mixed> $block ACF layout row.
+ * @return array<int, array<string, mixed>>
+ */
+function cinq_testimonial_block_items( array $block ): array {
+	$source = $block['source'] ?? 'manual';
+
+	if ( 'cpt' === $source && ! empty( $block['selection'] ) && is_array( $block['selection'] ) ) {
+		$items = apply_filters( 'cinq_testimonials_from_selection', array(), $block['selection'], $block );
+
+		return is_array( $items ) ? $items : array();
+	}
+
+	if ( ! empty( $block['items'] ) && is_array( $block['items'] ) ) {
+		return $block['items'];
+	}
+
+	return array();
+}
+
+/**
+ * Normalize one testimonial row from a manual repeater or CPT post.
+ *
+ * @param array<string, mixed>|object $item Repeater row or post object.
+ * @return array<string, mixed>
+ */
+function cinq_normalize_testimonial_item( $item ): array {
+	if ( is_array( $item ) && isset( $item['quote'] ) ) {
+		return $item;
+	}
+
+	if ( is_object( $item ) && method_exists( $item, 'meta' ) ) {
+		$avatar = $item->meta( 'avatar' );
+
+		return array(
+			'quote'   => (string) $item->meta( 'quote' ),
+			'author'  => $item->title(),
+			'role'    => (string) $item->meta( 'role' ),
+			'company' => (string) $item->meta( 'company' ),
+			'avatar'  => $avatar ? $avatar : $item->thumbnail(),
+		);
+	}
+
+	return array();
+}
+
+/**
+ * Resolve member rows for the team block.
+ *
+ * @param array<string, mixed> $block ACF layout row.
+ * @return array<int, array<string, mixed>>
+ */
+function cinq_team_block_members( array $block ): array {
+	if ( ! empty( $block['members'] ) && is_array( $block['members'] ) ) {
+		$members = array_map( 'cinq_normalize_team_member', $block['members'] );
+
+		return array_values( array_filter( $members ) );
+	}
+
+	$members = apply_filters( 'cinq_team_members', array(), $block );
+
+	return is_array( $members ) ? array_values( array_filter( array_map( 'cinq_normalize_team_member', $members ) ) ) : array();
+}
+
+/**
+ * Normalize one team member from a styleguide fixture or CPT post.
+ *
+ * @param array<string, mixed>|object $member Fixture row or post object.
+ * @return array<string, mixed>
+ */
+function cinq_normalize_team_member( $member ): array {
+	if ( is_array( $member ) && isset( $member['name'] ) ) {
+		return $member;
+	}
+
+	if ( is_object( $member ) && method_exists( $member, 'meta' ) ) {
+		$socials = $member->meta( 'socials' );
+
+		return array(
+			'name'    => $member->title(),
+			'role'    => (string) $member->meta( 'role' ),
+			'bio'     => (string) $member->meta( 'bio' ),
+			'photo'   => $member->thumbnail(),
+			'socials' => is_array( $socials ) ? $socials : array(),
+		);
+	}
+
+	return array();
+}
+
+/**
+ * Resolve case study cards for the case_studies block.
+ *
+ * @param array<string, mixed> $block ACF layout row.
+ * @return array<int, array<string, mixed>>
+ */
+function cinq_case_study_block_items( array $block ): array {
+	$mode = $block['mode'] ?? 'auto';
+
+	if ( ! empty( $block['items'] ) && is_array( $block['items'] ) ) {
+		$first = reset( $block['items'] );
+
+		if ( is_array( $first ) && ( isset( $first['image'] ) || isset( $first['client'] ) ) ) {
+			return $block['items'];
+		}
+	}
+
+	if ( 'manual' === $mode && ! empty( $block['selection'] ) && is_array( $block['selection'] ) ) {
+		$items = apply_filters( 'cinq_case_studies_from_selection', array(), $block['selection'], $block );
+		$items = is_array( $items ) ? $items : array();
+
+		return array_values( array_filter( array_map( 'cinq_normalize_case_study_item', $items ) ) );
+	}
+
+	if ( 'auto' === $mode && post_type_exists( 'case_study' ) ) {
+		$count = max( 1, min( 6, (int) ( $block['count'] ?? 3 ) ) );
+		$query = array(
+			'post_type'      => 'case_study',
+			'posts_per_page' => $count,
+			'post_status'    => 'publish',
+		);
+
+		if ( ! empty( $block['sector'] ) ) {
+			$term_id = is_array( $block['sector'] ) ? (int) ( $block['sector'][0] ?? 0 ) : (int) $block['sector'];
+
+			if ( $term_id > 0 ) {
+				$query['tax_query'] = array(
+					array(
+						'taxonomy' => 'sector',
+						'field'    => 'term_id',
+						'terms'    => $term_id,
+					),
+				);
+			}
+		}
+
+		$posts = \Timber\Timber::get_posts( $query );
+
+		if ( $posts ) {
+			return array_values(
+				array_filter(
+					array_map( 'cinq_normalize_case_study_item', iterator_to_array( $posts, false ) )
+				)
+			);
+		}
+	}
+
+	$items = apply_filters( 'cinq_case_study_block_items', array(), $block );
+
+	return is_array( $items ) ? $items : array();
+}
+
+/**
+ * Normalize one case study card from a fixture row or CPT post.
+ *
+ * @param array<string, mixed>|object $item Fixture row or post object.
+ * @return array<string, mixed>
+ */
+function cinq_normalize_case_study_item( $item ): array {
+	if ( is_array( $item ) && isset( $item['title'] ) ) {
+		return $item;
+	}
+
+	if ( is_object( $item ) && method_exists( $item, 'meta' ) ) {
+		$result_value = '';
+		$result_label = '';
+		$results      = $item->meta( 'results' );
+
+		if ( is_array( $results ) && ! empty( $results[0] ) && is_array( $results[0] ) ) {
+			$result_value = (string) ( $results[0]['value'] ?? '' );
+			$result_label = (string) ( $results[0]['label'] ?? '' );
+		}
+
+		$sector = '';
+
+		if ( method_exists( $item, 'terms' ) ) {
+			$terms = $item->terms( 'sector' );
+
+			if ( ! empty( $terms ) && is_array( $terms ) ) {
+				$sector = (string) ( $terms[0]->name ?? '' );
+			}
+		}
+
+		return array(
+			'image'        => $item->thumbnail(),
+			'sector'       => $sector,
+			'client'       => (string) $item->meta( 'client' ),
+			'title'        => $item->title(),
+			'url'          => $item->link(),
+			'result_value' => $result_value,
+			'result_label' => $result_label,
+		);
+	}
+
+	return array();
+}
+
+/**
+ * Starter demo cards when the case_study CPT is not registered yet.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function cinq_starter_demo_case_study_cards(): array {
+	$image = \WPCinquanteEtUn\Models\Styleguide\StyleguideContext::placeholder_image( 1600, 1200 );
+
+	return array(
+		array(
+			'image'        => $image,
+			'sector'       => __( 'Industry', 'wp-cinquante-et-un' ),
+			'client'       => 'Nexiode',
+			'title'        => __( 'Corporate site and configurator rebuild', 'wp-cinquante-et-un' ),
+			'url'          => '#',
+			'result_value' => '+68 %',
+			'result_label' => __( 'quote requests', 'wp-cinquante-et-un' ),
+		),
+		array(
+			'image'        => $image,
+			'sector'       => __( 'Industry', 'wp-cinquante-et-un' ),
+			'client'       => 'Laffargue',
+			'title'        => __( 'Editorial platform and dealer space', 'wp-cinquante-et-un' ),
+			'url'          => '#',
+			'result_value' => '1.4 s',
+			'result_label' => __( 'LCP on mobile', 'wp-cinquante-et-un' ),
+		),
+		array(
+			'image'        => $image,
+			'sector'       => __( 'Industry', 'wp-cinquante-et-un' ),
+			'client'       => 'Beau Nuage',
+			'title'        => __( 'Brochure site rebuild', 'wp-cinquante-et-un' ),
+			'url'          => '#',
+			'result_value' => '2.3x',
+			'result_label' => __( 'conversion rate', 'wp-cinquante-et-un' ),
+		),
+	);
+}
+
+/**
+ * Resolve posts for the latest_posts block.
+ *
+ * @param array<string, mixed> $block ACF layout row.
+ * @return array<int, object>
+ */
+function cinq_latest_posts_block_posts( array $block ): array {
+	$mode     = $block['mode'] ?? 'auto';
+	$content  = is_array( $block['content'] ?? null ) ? $block['content'] : array();
+	$category = $block['category'] ?? ( $content['category'] ?? null );
+	$count    = (int) ( $block['count'] ?? $block['posts_per_page'] ?? $content['posts_per_page'] ?? 3 );
+	$count    = max( 1, min( 12, $count ) );
+
+	if ( 'manual' === $mode && ! empty( $block['selection'] ) && is_array( $block['selection'] ) ) {
+		$ids = array_values( array_filter( array_map( 'absint', $block['selection'] ) ) );
+
+		if ( empty( $ids ) ) {
+			return array();
+		}
+
+		$posts = \Timber\Timber::get_posts(
+			array(
+				'post_type'      => 'post',
+				'post__in'       => $ids,
+				'orderby'        => 'post__in',
+				'posts_per_page' => count( $ids ),
+				'post_status'    => 'publish',
+			)
+		);
+
+		return $posts ? iterator_to_array( $posts, false ) : array();
+	}
+
+	$query = array(
+		'post_type'           => 'post',
+		'posts_per_page'      => $count,
+		'post_status'         => 'publish',
+		'ignore_sticky_posts' => true,
+	);
+
+	if ( ! empty( $category ) ) {
+		$term_id = is_array( $category ) ? (int) ( $category[0] ?? 0 ) : (int) $category;
+
+		if ( $term_id > 0 ) {
+			$query['cat'] = $term_id;
+		}
+	}
+
+	$posts = \Timber\Timber::get_posts( $query );
+
+	return $posts ? iterator_to_array( $posts, false ) : array();
+}
+
+/**
+ * Demo case study cards for starter installs without a case_study CPT.
+ *
+ * @param array<int, array<string, mixed>> $items Resolved cards.
+ * @param array<string, mixed>             $block ACF layout row.
+ * @return array<int, array<string, mixed>>
+ */
+function cinq_starter_demo_case_study_items( array $items, array $block ): array {
+	if ( ! empty( $items ) || post_type_exists( 'case_study' ) ) {
+		return $items;
+	}
+
+	unset( $block );
+
+	return cinq_starter_demo_case_study_cards();
 }

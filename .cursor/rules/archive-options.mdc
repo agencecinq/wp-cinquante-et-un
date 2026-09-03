@@ -24,7 +24,7 @@ acf_add_options_page(
 	array(
 		'page_title'  => __( 'Archive Posts', 'wp-cinquante-et-un' ),
 		'menu_title'  => __( 'Archive', 'wp-cinquante-et-un' ),
-		'menu_slug'   => ArchivePostsFields::OPTIONS_SLUG, // archive-post
+		'menu_slug'   => 'archive-post',
 		'parent_slug' => 'edit.php',
 		'redirect'    => false,
 	)
@@ -38,7 +38,7 @@ Conventions de slug : `archive-post`, `archive-<cpt>`.
 - Groupe dédié dans `includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php`.
 - Champ racine **`archive_posts`** (group) : `hero` (title, text), `blocks` (flexible content).
 - Location : `options_page` == `archive-post`.
-- Lecture : `get_field( 'archive_posts', 'option' )` — pas le slug de la page d'options.
+- Lecture : `get_field( 'archive_posts', 'option' )`, pas le slug de la page d'options.
 
 ## Modèles Timber (pattern Nexiode)
 
@@ -51,10 +51,10 @@ Pas de hook `add_archive_to_context` dans `Context.php`. Les archives passent pa
 
 **Trait** `includes/Traits/ArchivePost.php` :
 
-- `hero()` — `archive_posts.hero`
-- `blocks()` — `archive_posts.blocks`
-- `categories()` — termes `category` pour les filtres
-- `active_category_id()` — ID du terme courant ou `null` sur l'index
+- `hero()` : `archive_posts.hero`
+- `blocks()` : `archive_posts.blocks`
+- `categories()` : termes `category` pour les filtres
+- `active_category_id()` : ID du terme courant ou `null` sur l'index
 
 **Modèles** : `Models/Home.php` (extends `Timber\Post`), `Models/CategoryArchive.php` (extends `Timber\Term`).
 
