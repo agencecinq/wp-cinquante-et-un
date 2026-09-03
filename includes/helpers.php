@@ -251,6 +251,48 @@ function cinq_add_heading_ids( string $content ): string {
 
 
 /**
+ * Extract H2 table-of-contents entries from HTML content.
+ *
+ * Expects heading ids from cinq_add_heading_ids() or the editor.
+ *
+ * @param string $content HTML content.
+ * @return array<int, array{title: string, id: string}>
+ */
+function cinq_parse_toc_items( string $content ): array {
+	if ( '' === $content || false === stripos( $content, '<h2' ) ) {
+		return array();
+	}
+
+	$items = array();
+
+	if ( ! preg_match_all( '/<h2([^>]*)>(.*?)<\/h2>/is', $content, $matches, PREG_SET_ORDER ) ) {
+		return array();
+	}
+
+	foreach ( $matches as $match ) {
+		$attrs = $match[1];
+		$inner = $match[2];
+		$title = trim( wp_strip_all_tags( $inner ) );
+
+		if ( '' === $title ) {
+			continue;
+		}
+
+		if ( ! preg_match( '/\bid=["\']([^"\']+)["\']/i', $attrs, $id_match ) ) {
+			continue;
+		}
+
+		$items[] = array(
+			'title' => $title,
+			'id'    => $id_match[1],
+		);
+	}
+
+	return $items;
+}
+
+
+/**
  * Enrich a flexible content block with computed layout and schema values.
  *
  * @param array<string, mixed> $block ACF layout row.

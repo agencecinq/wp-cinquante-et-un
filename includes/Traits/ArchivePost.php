@@ -2,7 +2,7 @@
 /**
  * ArchivePost Trait
  *
- * Shared archive helpers for the posts index and category archives.
+ * Shared archive helpers for the posts index, category archives, and tag archives.
  *
  * @package WPCinquanteEtUn
  * @subpackage WPCinquanteEtUn/Traits
@@ -85,7 +85,7 @@ trait ArchivePost {
 	 *
 	 * @return array<int, array{title: string, url: string, active: bool}>
 	 */
-	public function filter_items(): array {
+	public function filters(): array {
 		$posts_page_id = (int) get_option( 'page_for_posts' );
 		$posts_url     = $posts_page_id ? (string) get_permalink( $posts_page_id ) : (string) get_post_type_archive_link( 'post' );
 		$active_id     = $this->active_category_id();

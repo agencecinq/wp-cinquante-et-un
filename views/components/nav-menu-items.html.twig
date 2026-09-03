@@ -7,9 +7,9 @@
  # @param id The ID of the parent item
  #}
 
-{%- set fields = menus.main.submenu|default([])|filter(row => row.item == id)|first -%}
+{%- set fields = menus.main.submenu | default([]) | filter(row => row.item == id) | first | default({}) -%}
 
-{%- set length = fields.pushes|length -%}
+{%- set length = fields.pushes | default([]) | length -%}
 
 {%- set span = length == 1
 	? 'col-span-3'
@@ -109,7 +109,7 @@
 			</div>
 		{%- endif -%}
 
-		{%- for push in fields.pushes -%}
+		{%- for push in fields.pushes | default([]) -%}
 			<div class="{{ html_classes(loop.first ? start : '', 'col-span-1') }}">
 				{% set mode = push.mode|default('dark') %}
 				<article

@@ -1,32 +1,41 @@
 {#
  # Table of contents
  #
- # Filled client-side from H2 headings in the source. Hidden when none are found.
+ # Server-rendered list of H2 anchors. Layout and breakpoints belong to the parent
+ # grid via the classes param.
  #
- # @param string source CSS selector of the content root (e.g. #post-content).
+ # @param array items List of { title, id }.
  # @param string label Nav accessible name.
  # @param string title Overline above the list.
+ # @param array classes Extra CSS classes on the nav (grid column, sticky, responsive visibility).
  #}
 
-{%- if source -%}
-	<cinq-toc class="contents" source="{{ source }}">
-		<nav
-			data-dom="panel"
-			class="hidden self-start lg:sticky lg:top-24 lg:col-span-3 lg:block"
-			aria-label="{{ label | default(__('Table of contents', 'wp-cinquante-et-un')) }}"
-		>
-			<div class="space-y-4">
-				{{-
-					include(
-						'components/subtitle.html.twig',
-						{
-							title: title | default(__('Contents', 'wp-cinquante-et-un'))
-						}
-					)
-				-}}
-				<ul data-dom="list" class="flex flex-col gap-3 text-sm"></ul>
-			</div>
-		</nav>
-		<div class="hidden lg:col-span-1 lg:block" aria-hidden="true"></div>
-	</cinq-toc>
+{%- if items | length -%}
+	<nav
+		class="{{ html_classes(classes | default([]) | join(' ')) }}"
+		aria-label="{{ label | default(__('Table of contents', 'wp-cinquante-et-un')) }}"
+	>
+		<div class="space-y-4">
+			{{-
+				include(
+					'components/subtitle.html.twig',
+					{
+						title: title | default(__('Contents', 'wp-cinquante-et-un'))
+					}
+				)
+			-}}
+			<ul class="flex flex-col gap-3 text-sm">
+				{%- for item in items -%}
+					<li>
+						<a
+							href="#{{ item.id | e('html_attr') }}"
+							class="text-gray-500 hover:text-black"
+						>
+							{{- item.title -}}
+						</a>
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
+	</nav>
 {%- endif -%}

@@ -8,9 +8,7 @@
  #}
 
 {%- set newsletter = theme.footer.newsletter | default({}) -%}
-{%- set contact_locations = theme.contact.locations
-	|default(theme.footer.locations | default(''))
--%}
+{%- set contact_locations = theme.contact.locations | default('') -%}
 {%- set footer_menu_keys = ['footer_1', 'footer_2', 'footer_3'] -%}
 {%- set footer_menus = [] -%}
 

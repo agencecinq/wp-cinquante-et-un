@@ -29,10 +29,7 @@
 
 		{%- block content -%}
 			<main id="content" role="main">
-				{%- set blocks = post.meta('blocks') -%}
-				{%- set show_page_header = post.title and (blocks | length == 0 or blocks[0].acf_fc_layout != 'hero') -%}
-
-				{%- if show_page_header -%}
+				{%- if post.meta('blocks') | length == 0 or post.meta('blocks')[0].acf_fc_layout != 'hero' -%}
 					{{-
 						include(
 							'components/page-header.html.twig',
@@ -43,11 +40,19 @@
 					-}}
 				{%- endif -%}
 
+				{%- if post.content -%}
+					<section class="container pb-section-lg">
+						<div class="wysiwyg max-w-prose">
+							{{- post.content -}}
+						</div>
+					</section>
+				{%- endif -%}
+
 				{{-
 					include(
 						'blocks/blocks.html.twig',
 						{
-							blocks: blocks
+							blocks: post.meta('blocks')
 						}
 					)
 				-}}

@@ -11,7 +11,7 @@ namespace WPCinquanteEtUn\Setup;
 
 use WPCinquanteEtUn\Service;
 use Timber\{Timber, Site };
-use WPCinquanteEtUn\Models\{BlogPost, CategoryArchive, Home, Search, StyleguidePage};
+use WPCinquanteEtUn\Models\{BlogPost, CategoryArchive, Home, Search, StyleguidePage, TagArchive};
 
 /**
  * Context
@@ -78,17 +78,13 @@ class Context extends Site implements Service {
 	 * @return array
 	 */
 	public function add_to_context( array $context ): array {
-		global $wp;
-
 		$theme = get_field( 'theme', 'option' );
 
-		$context['current_url']        = home_url( add_query_arg( array(), $wp->request ) );
-		$context['privacy_policy_url'] = get_privacy_policy_url();
-		$context['posts_url']          = get_permalink( get_option( 'page_for_posts' ) );
-		$context['home_url']           = home_url( '/' );
-		$context['theme']              = $theme;
-		$context['search_url']         = is_array( $theme ) ? ( $theme['search_url'] ?? null ) : null;
-		$context['menus']              = get_field( 'menus', 'option' );
+		$context['posts_url']  = get_permalink( get_option( 'page_for_posts' ) );
+		$context['home_url']   = home_url( '/' );
+		$context['theme']      = $theme;
+		$context['search_url'] = is_array( $theme ) ? ( $theme['search_url'] ?? null ) : null;
+		$context['menus']      = get_field( 'menus', 'option' );
 
 		if ( is_search() ) {
 			global $wp_query;
@@ -144,6 +140,7 @@ class Context extends Site implements Service {
 	public function add_term_classmap( array $classmap ): array {
 		$custom_classmap = array(
 			'category' => CategoryArchive::class,
+			'post_tag' => TagArchive::class,
 		);
 
 		return array_merge( $classmap, $custom_classmap );

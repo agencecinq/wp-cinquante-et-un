@@ -1,5 +1,5 @@
 {#
- # Archive: posts index and category archives.
+ # Archive: posts index, category archives, and tag archives.
  #
  # @package WPCinquanteEtUn
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
@@ -28,7 +28,7 @@
 				include(
 					'components/taxonomy-filters.html.twig',
 					{
-						items: post.filter_items(),
+						items: post.filters,
 						label: __('Categories', 'wp-cinquante-et-un')
 					}
 				)

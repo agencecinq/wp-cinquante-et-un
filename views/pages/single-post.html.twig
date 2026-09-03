@@ -77,11 +77,20 @@
 				include(
 					'components/toc.html.twig',
 					{
-						source: '#post-content',
-						title: __('Contents', 'wp-cinquante-et-un')
+						items: post.table_of_contents,
+						title: __('Contents', 'wp-cinquante-et-un'),
+						classes: [
+							'self-start',
+							'hidden',
+							'lg:sticky',
+							'lg:top-24',
+							'lg:col-span-3',
+							'lg:block'
+						]
 					}
 				)
 			-}}
+			<div class="hidden lg:col-span-1 lg:block" aria-hidden="true"></div>
 
 			<div
 				id="post-content"

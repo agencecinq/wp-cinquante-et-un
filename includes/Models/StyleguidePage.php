@@ -275,15 +275,15 @@ class StyleguidePage extends Post {
 				'name'  => __( 'FAQ', 'wp-cinquante-et-un' ),
 				'file'  => 'blocks/accordion-group.html.twig',
 				'block' => array(
-					'id'              => 'styleguide-accordion-group',
-					'acf_fc_layout'   => 'accordion_group',
-					'layout'          => $layout,
-					'schema'     => true,
-					'content'    => array(
+					'id'            => 'styleguide-accordion-group',
+					'acf_fc_layout' => 'accordion_group',
+					'layout'        => $layout,
+					'schema'        => true,
+					'content'       => array(
 						'overline' => __( 'FAQ', 'wp-cinquante-et-un' ),
 						'title'    => __( 'What we get asked most', 'wp-cinquante-et-un' ),
 					),
-					'accordions' => array(
+					'accordions'    => array(
 						array(
 							'header'  => __( 'How long does a redesign take?', 'wp-cinquante-et-un' ),
 							'content' => __( 'Eight to twelve weeks for a brochure site of about thirty pages, including scoping. The bottleneck is almost never development: it is content production.', 'wp-cinquante-et-un' ),
@@ -452,8 +452,8 @@ class StyleguidePage extends Post {
 				'href'  => '#styleguide-buttons',
 			),
 			array(
-				'title' => __( 'Chip and tag', 'wp-cinquante-et-un' ),
-				'href'  => '#styleguide-chips',
+				'title' => __( 'Tag', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-tag',
 			),
 			array(
 				'title' => __( 'Icons', 'wp-cinquante-et-un' ),
@@ -490,16 +490,193 @@ class StyleguidePage extends Post {
 			);
 		}
 
+		$shell = array(
+			array(
+				'title' => __( 'Editorial shell', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-editorial',
+			),
+			array(
+				'title' => __( 'Search form', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-search-form',
+			),
+			array(
+				'title' => __( 'Newsletter form', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-newsletter',
+			),
+			array(
+				'title' => __( 'Breadcrumb', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-breadcrumb',
+			),
+			array(
+				'title' => __( 'Taxonomy filters', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-filters',
+			),
+			array(
+				'title' => __( 'Search result', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-search-result',
+			),
+			array(
+				'title' => __( 'Social links', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-socials',
+			),
+			array(
+				'title' => __( 'Page header', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-page-header',
+			),
+			array(
+				'title' => __( 'Table of contents', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-toc',
+			),
+			array(
+				'title' => __( 'Skip links', 'wp-cinquante-et-un' ),
+				'href'  => '#styleguide-shell-skip-links',
+			),
+		);
+
 		return array(
 			array(
 				'title' => __( 'Catalog', 'wp-cinquante-et-un' ),
 				'items' => $catalog,
 			),
 			array(
+				'title' => __( 'Shell', 'wp-cinquante-et-un' ),
+				'items' => $shell,
+			),
+			array(
 				'title' => __( 'Blocks', 'wp-cinquante-et-un' ),
 				'items' => $layouts,
 			),
 		);
+	}
+
+	/**
+	 * Dummy taxonomy filter links for the styleguide shell section.
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	public function shell_filters(): array {
+		return array(
+			array(
+				'title'  => __( 'All', 'wp-cinquante-et-un' ),
+				'url'    => '#',
+				'active' => true,
+			),
+			array(
+				'title'  => __( 'Strategy', 'wp-cinquante-et-un' ),
+				'url'    => '#',
+				'active' => false,
+			),
+			array(
+				'title'  => __( 'Performance', 'wp-cinquante-et-un' ),
+				'url'    => '#',
+				'active' => false,
+			),
+			array(
+				'title'  => __( 'WordPress', 'wp-cinquante-et-un' ),
+				'url'    => '#',
+				'active' => false,
+			),
+		);
+	}
+
+	/**
+	 * Dummy table-of-contents entries for the styleguide shell section.
+	 *
+	 * @return array<int, array{title: string, id: string}>
+	 */
+	public function shell_toc_items(): array {
+		return array(
+			array(
+				'title' => __( 'Why ACF blocks', 'wp-cinquante-et-un' ),
+				'id'    => 'why-acf-blocks',
+			),
+			array(
+				'title' => __( 'Performance budgets', 'wp-cinquante-et-un' ),
+				'id'    => 'performance-budgets',
+			),
+			array(
+				'title' => __( 'Editor experience', 'wp-cinquante-et-un' ),
+				'id'    => 'editor-experience',
+			),
+		);
+	}
+
+	/**
+	 * Dummy social URLs for the styleguide shell section.
+	 *
+	 * @return array<string, array<string, string>>
+	 */
+	public function shell_socials(): array {
+		return array(
+			'facebook'  => array(
+				'id'    => 'facebook',
+				'title' => __( 'Facebook', 'wp-cinquante-et-un' ),
+				'url'   => '#',
+			),
+			'instagram' => array(
+				'id'    => 'instagram',
+				'title' => __( 'Instagram', 'wp-cinquante-et-un' ),
+				'url'   => '#',
+			),
+			'linkedin'  => array(
+				'id'    => 'linkedin',
+				'title' => __( 'LinkedIn', 'wp-cinquante-et-un' ),
+				'url'   => '#',
+			),
+			'x'         => array(
+				'id'    => 'x',
+				'title' => __( 'X (Twitter)', 'wp-cinquante-et-un' ),
+				'url'   => '#',
+			),
+		);
+	}
+
+	/**
+	 * Dummy page object for the page header shell demo.
+	 *
+	 * @return object
+	 */
+	public function shell_page(): object {
+		$title = __( 'Flexible page', 'wp-cinquante-et-un' );
+		$lead  = __( 'Lead paragraph for pages whose first block is not a hero.', 'wp-cinquante-et-un' );
+
+		return new class( $title, $lead ) {
+
+			/**
+			 * Page title.
+			 *
+			 * @var string
+			 */
+			public string $title;
+
+			/**
+			 * Page lead text.
+			 *
+			 * @var string
+			 */
+			private string $lead;
+
+			/**
+			 * Constructor.
+			 *
+			 * @param string $title Page title.
+			 * @param string $lead  Page lead.
+			 */
+			public function __construct( string $title, string $lead ) {
+				$this->title = $title;
+				$this->lead  = $lead;
+			}
+
+			/**
+			 * Returns ACF meta for the shell demo.
+			 *
+			 * @param string $key Field name.
+			 * @return string
+			 */
+			public function meta( string $key ): string {
+				return 'page_lead' === $key ? $this->lead : '';
+			}
+		};
 	}
 
 	/**
@@ -604,7 +781,7 @@ class StyleguidePage extends Post {
 	 */
 	public static function placeholder_image( int $width, int $height ): array {
 		return array(
-			'src'         => get_theme_file_uri( 'src/img/svg/placeholder.svg' ),
+			'src'         => get_theme_file_uri( 'public/placeholder.svg' ),
 			'alt'         => __( 'Placeholder', 'wp-cinquante-et-un' ),
 			'width'       => $width,
 			'height'      => $height,

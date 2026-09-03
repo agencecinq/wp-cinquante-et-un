@@ -38,6 +38,18 @@ class BlogPost extends Post {
 
 
 	/**
+	 * H2 entries for the single-post table of contents.
+	 *
+	 * @return array<int, array{title: string, id: string}>
+	 */
+	public function table_of_contents(): array {
+		$content = cinq_add_heading_ids( (string) $this->content );
+
+		return cinq_parse_toc_items( $content );
+	}
+
+
+	/**
 	 * Related posts from the ACF relationship, falling back to the latest posts.
 	 *
 	 * @return array<int, object>

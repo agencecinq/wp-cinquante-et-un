@@ -48,7 +48,7 @@ class Post implements Service {
 			return;
 		}
 
-		if ( $query->is_home() || $query->is_category() ) {
+		if ( $query->is_home() || $query->is_category() || $query->is_tag() ) {
 			$query->set( 'posts_per_page', 6 );
 		}
 	}

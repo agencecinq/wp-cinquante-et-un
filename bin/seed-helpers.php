@@ -342,10 +342,60 @@ function cinq_seed_add_custom_menu_item(
 }
 
 /**
+ * Adds a page to a navigation menu.
+ *
+ * @param int    $menu_id   Menu term ID.
+ * @param int    $page_id   Page ID.
+ * @param string $title     Optional menu label override.
+ * @param int    $parent_id Parent menu item ID.
+ * @return int Menu item ID or 0 on failure.
+ */
+function cinq_seed_add_page_to_nav_menu(
+	int $menu_id,
+	int $page_id,
+	string $title = '',
+	int $parent_id = 0
+): int {
+	if ( ! $menu_id || ! $page_id ) {
+		return 0;
+	}
+
+	$items = wp_get_nav_menu_items( $menu_id );
+
+	if ( is_array( $items ) ) {
+		foreach ( $items as $item ) {
+			if ( 'page' === $item->object && (int) $item->object_id === $page_id ) {
+				return (int) $item->ID;
+			}
+		}
+	}
+
+	$item_id = wp_update_nav_menu_item(
+		$menu_id,
+		0,
+		array(
+			'menu-item-title'     => $title ? $title : get_the_title( $page_id ),
+			'menu-item-object'    => 'page',
+			'menu-item-object-id' => $page_id,
+			'menu-item-type'      => 'post_type',
+			'menu-item-status'    => 'publish',
+			'menu-item-parent-id' => $parent_id,
+		)
+	);
+
+	if ( is_wp_error( $item_id ) ) {
+		WP_CLI::warning( $item_id->get_error_message() );
+		return 0;
+	}
+
+	return (int) $item_id;
+}
+
+/**
  * Creates or replaces a navigation menu and its custom links.
  *
- * @param string                            $name  Menu name.
- * @param array<int, array<string, string>> $links Link definitions (`title`, optional `url`).
+ * @param string                           $name  Menu name.
+ * @param array<int, array<string, mixed>> $links Link definitions (`title`, optional `url` or `page_id`).
  * @return int Menu term ID or 0 on failure.
  */
 function cinq_seed_sync_custom_nav_menu( string $name, array $links ): int {
@@ -358,6 +408,15 @@ function cinq_seed_sync_custom_nav_menu( string $name, array $links ): int {
 	cinq_seed_clear_nav_menu( $menu_id );
 
 	foreach ( $links as $link ) {
+		if ( ! empty( $link['page_id'] ) ) {
+			cinq_seed_add_page_to_nav_menu(
+				$menu_id,
+				(int) $link['page_id'],
+				(string) ( $link['title'] ?? '' )
+			);
+			continue;
+		}
+
 		if ( empty( $link['title'] ) ) {
 			continue;
 		}
@@ -370,6 +429,82 @@ function cinq_seed_sync_custom_nav_menu( string $name, array $links ): int {
 	}
 
 	return $menu_id;
+}
+
+/**
+ * Creates or updates a content-only page (page header + native editor content).
+ *
+ * @param string $slug      Page slug.
+ * @param string $title     Page title.
+ * @param string $lead      Page lead shown in the page header.
+ * @param string $html_body WYSIWYG body stored in post_content.
+ * @return int Page ID or 0 on failure.
+ */
+function cinq_seed_content_page( string $slug, string $title, string $lead, string $html_body ): int {
+	$existing_page = get_page_by_path( $slug );
+
+	if ( ! $existing_page ) {
+		$page_id = wp_insert_post(
+			array(
+				'post_title'   => $title,
+				'post_name'    => $slug,
+				'post_status'  => 'publish',
+				'post_type'    => 'page',
+				'post_content' => $html_body,
+			),
+			true
+		);
+
+		if ( is_wp_error( $page_id ) ) {
+			WP_CLI::warning( $page_id->get_error_message() );
+			return 0;
+		}
+	} else {
+		$page_id = (int) $existing_page->ID;
+
+		wp_update_post(
+			array(
+				'ID'           => $page_id,
+				'post_title'   => $title,
+				'post_status'  => 'publish',
+				'post_content' => $html_body,
+			)
+		);
+	}
+
+	update_field( 'page_lead', $lead, $page_id );
+	update_field( 'blocks', array(), $page_id );
+
+	return (int) $page_id;
+}
+
+/**
+ * Seeds the legal mentions demo page.
+ *
+ * @return int Page ID or 0 on failure.
+ */
+function cinq_seed_mentions_legales_page(): int {
+	$body = <<<'HTML'
+<h2>Éditeur du site</h2>
+<p><strong>CINQ</strong><br />
+SAS au capital de 10 000 euros<br />
+Siège social : 37000 Tours, France<br />
+SIRET : 000 000 000 00000<br />
+Directeur de la publication : CINQ</p>
+<h2>Contact</h2>
+<p>Courriel : <a href="mailto:contact@agencecinq.com">contact@agencecinq.com</a></p>
+<h2>Hébergement</h2>
+<p>Ce site de démonstration est hébergé localement dans le cadre du starter WordPress CINQ. Remplacez ce contenu par les informations de votre hébergeur avant mise en production.</p>
+<h2>Propriété intellectuelle</h2>
+<p>L’ensemble des éléments composant ce site (textes, graphismes, logos, icônes, images, code source) est protégé par le droit de la propriété intellectuelle. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite.</p>
+HTML;
+
+	return cinq_seed_content_page(
+		'mentions-legales',
+		'Mentions légales',
+		'Informations légales relatives à l’édition et à l’hébergement du site.',
+		$body
+	);
 }
 
 /**
@@ -402,9 +537,10 @@ function cinq_seed_main_menu(): void {
 /**
  * Seeds footer and legal navigation menus from the Figma reference (node 29:178).
  *
+ * @param int $mentions_page_id Optional legal mentions page ID for the legals menu.
  * @return void
  */
-function cinq_seed_footer_menus(): void {
+function cinq_seed_footer_menus( int $mentions_page_id = 0 ): void {
 	$footer_1_id = cinq_seed_sync_custom_nav_menu(
 		__( 'Expertises', 'wp-cinquante-et-un' ),
 		array(
@@ -431,14 +567,28 @@ function cinq_seed_footer_menus(): void {
 		)
 	);
 
+	$legals_links = array(
+		array(
+			'title' => 'Mentions légales',
+		),
+		array(
+			'title' => 'Confidentialité',
+		),
+		array(
+			'title' => 'Cookies',
+		),
+		array(
+			'title' => 'Accessibilité',
+		),
+	);
+
+	if ( $mentions_page_id ) {
+		$legals_links[0]['page_id'] = $mentions_page_id;
+	}
+
 	$legals_id = cinq_seed_sync_custom_nav_menu(
 		__( 'Legals', 'wp-cinquante-et-un' ),
-		array(
-			array( 'title' => 'Mentions légales' ),
-			array( 'title' => 'Confidentialité' ),
-			array( 'title' => 'Cookies' ),
-			array( 'title' => 'Accessibilité' ),
-		)
+		$legals_links
 	);
 
 	cinq_seed_assign_menu_location( 'footer_1', $footer_1_id );

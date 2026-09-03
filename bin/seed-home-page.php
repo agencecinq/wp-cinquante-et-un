@@ -284,8 +284,6 @@ function cinq_seed_theme_options(): void {
 		$theme['search_url'] = $search_url;
 	}
 
-	unset( $theme['header']['search_url'] );
-
 	$theme['contact'] = array_merge(
 		$theme['contact'] ?? array(),
 		array(
@@ -367,9 +365,13 @@ $blocks = cinq_seed_home_blocks(
 );
 
 update_field( 'blocks', $blocks, $page_id );
+
+WP_CLI::log( 'Seeding legal mentions page…' );
+$mentions_page_id = cinq_seed_mentions_legales_page();
+
 cinq_seed_theme_options();
 cinq_seed_main_menu();
-cinq_seed_footer_menus();
+cinq_seed_footer_menus( $mentions_page_id );
 cinq_seed_social_links();
 
 update_option( 'show_on_front', 'page' );

@@ -4,7 +4,7 @@
  *
  * Fallback router. Pages use index.html.twig (ACF blocks). Named page
  * templates and 404.php still win in the WordPress hierarchy. Blog and
- * single post views use home.php, category.php and single.php.
+ * single post views use home.php, category.php, tag.php and single.php.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
