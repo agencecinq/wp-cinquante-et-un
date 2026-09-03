@@ -1,6 +1,8 @@
-<?php // phpcs:ignore
+<?php
 /**
- * Blocks Fields
+ * Clones Fields
+ *
+ * Inactive ACF field group used as a clone library for shared block fields.
  *
  * @package WordPress
  * @subpackage WPCinquanteEtUn
@@ -215,24 +217,6 @@ class ClonesFields implements Service {
 					'h3' => __( 'H3', 'wp-cinquante-et-un' ),
 				),
 				'default_value' => 'h2',
-				'return_format' => 'value',
-			),
-			array(
-				'key'           => 'field_' . $key . '_style',
-				'label'         => __( 'Title Style', 'wp-cinquante-et-un' ),
-				'name'          => 'title_style',
-				'aria-label'    => __( 'Title Style', 'wp-cinquante-et-un' ),
-				'instructions'  => __( 'Visual style only; does not change the heading level.', 'wp-cinquante-et-un' ),
-				'type'          => 'select',
-				'choices'       => array(
-					'text-6xl font-semibold' => __( 'Display 6XL', 'wp-cinquante-et-un' ),
-					'text-5xl font-semibold' => __( 'Display 5XL', 'wp-cinquante-et-un' ),
-					'text-4xl font-semibold' => __( 'Display 4XL', 'wp-cinquante-et-un' ),
-					'text-3xl font-semibold' => __( 'Display 3XL', 'wp-cinquante-et-un' ),
-					'text-2xl font-semibold' => __( 'Heading 2XL', 'wp-cinquante-et-un' ),
-					'text-xl font-semibold'  => __( 'Heading XL', 'wp-cinquante-et-un' ),
-				),
-				'default_value' => 'text-4xl font-semibold',
 				'return_format' => 'value',
 			),
 			array(

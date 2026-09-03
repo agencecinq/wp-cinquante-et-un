@@ -21,11 +21,6 @@ use WPCinquanteEtUn\Service;
 class ArchivePostsFields implements Service {
 
 	/**
-	 * ACF options page menu slug.
-	 */
-	public const OPTIONS_SLUG = 'archive-post';
-
-	/**
 	 * Runs initialization tasks.
 	 *
 	 * @return void
@@ -47,7 +42,7 @@ class ArchivePostsFields implements Service {
 				array(
 					'param'    => 'options_page',
 					'operator' => '==',
-					'value'    => self::OPTIONS_SLUG,
+					'value'    => 'archive-post',
 				),
 			),
 		);

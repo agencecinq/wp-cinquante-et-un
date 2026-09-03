@@ -1,0 +1,86 @@
+{#
+ # Blocks: Contact
+ #
+ # Coordinates and static map. 5 cols info + 6 cols map.
+ #}
+
+{%- set layout = block.layout | default({}) -%}
+{%- set hours = block.hours | default([]) -%}
+{%- set has_hours = false -%}
+
+{%- for row in hours -%}
+	{%- if row.days or row.hours -%}
+		{%- set has_hours = true -%}
+	{%- endif -%}
+{%- endfor -%}
+
+{%- set has_details = block.address or block.phone or block.email or has_hours -%}
+{%- set has_map = block.map_image -%}
+
+{%- if block.title or has_details or has_map -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+		class="{{ html_classes( layout.classes | default('') ) }}"
+		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 items-start gap-x-8 gap-y-10' ) }}">
+			<div class="col-span-full space-y-6 lg:col-span-5">
+				{%- if block.title -%}
+					<h2 class="text-2xl font-semibold">
+						{{- block.title -}}
+					</h2>
+				{%- endif -%}
+
+				{{-
+					include(
+						'components/contact-details.html.twig',
+						{
+							address: block.address,
+							phone: block.phone,
+							email: block.email,
+							hours: hours
+						}
+					)
+				-}}
+			</div>
+
+			{%- if has_map -%}
+				<div class="col-span-full lg:col-span-6 lg:col-start-7">
+					{%- if block.map_link -%}
+						<a
+							href="{{ block.map_link | e('html_attr') }}"
+							class="block border border-black"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+					{%- else -%}
+						<div class="border border-black">
+					{%- endif -%}
+
+					{{-
+						include(
+							'components/image.html.twig',
+							{
+								image: block.map_image,
+								classes: ['block', 'aspect-3/2', 'size-full', 'object-cover'],
+								alt: block.title | default('')
+							}
+						)
+					-}}
+
+					{%- if block.map_link -%}
+						</a>
+					{%- else -%}
+						</div>
+					{%- endif -%}
+				</div>
+			{%- endif -%}
+		</div>
+
+		{%- if block.local_business_schema_json | default('') -%}
+			<script type="application/ld+json">
+				{{- block.local_business_schema_json | raw -}}
+			</script>
+		{%- endif -%}
+	</section>
+{%- endif -%}

@@ -36,12 +36,9 @@ function cinq_seed_archive_posts_options(): array {
 			array(
 				'acf_fc_layout' => 'cta',
 				'layout'        => $layout_cta,
-				'content'       => array(
-					'title'   => 'Un projet de site ou de refonte ?',
-					'heading' => 'h2',
-					'text'    => 'Un premier échange de trente minutes suffit à savoir si nous sommes le bon partenaire. Sans engagement, et sans présentation commerciale.',
-					'link'    => cinq_seed_link( 'Prendre rendez-vous', '#contact' ),
-				),
+				'title'         => 'Un projet de site ou de refonte ?',
+				'text'          => 'Un premier échange de trente minutes suffit à savoir si nous sommes le bon partenaire. Sans engagement, et sans présentation commerciale.',
+				'cta_primary'   => cinq_seed_link( 'Prendre rendez-vous', '#contact' ),
 			),
 		),
 	);

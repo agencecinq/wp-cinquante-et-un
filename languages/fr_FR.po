@@ -1,0 +1,3426 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP CINQ 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wp-cinquante-et-"
+"un\n"
+"POT-Creation-Date: 2026-09-03T16:06:50+00:00\n"
+"PO-Revision-Date: 2026-09-03T08:15:58+00:00\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: wp-cinquante-et-un\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:88
+msgid "%, s, +, yrs… Rendered in Heading/2xl gray next to the value."
+msgstr "%, s, +, ans… Rendu en Heading/2xl gris à côté de la valeur."
+
+#: views/pages/search.html.twig:28
+msgid "%1$s result for “%2$s”"
+msgid_plural "%1$s results for “%2$s”"
+msgstr[0] "%1$s résultat pour « %2$s »"
+msgstr[1] "%1$s résultats pour « %2$s »"
+
+#: views/pages/single-post.html.twig:39
+msgid "%d min read"
+msgstr "%d min de lecture"
+
+#: views/components/styleguide.html.twig:364
+msgid ""
+"12-column grid. Container max-width is 1440px by default (set --container-"
+"max-width to 110rem for 1760px). Article body never exceeds 720px."
+msgstr ""
+"Grille 12 colonnes. Largeur max. du conteneur : 1440 px par défaut (définir "
+"--container-max-width à 110rem pour 1760 px). Le corps d'article ne dépasse "
+"jamais 720 px."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:73
+msgid "1:1"
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:151
+msgid "2 or 3 columns. Always one column below the md breakpoint."
+msgstr "2 ou 3 colonnes. Toujours une colonne en dessous du breakpoint md."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:189
+msgid "2 or 3 columns. Default 3."
+msgstr "2 ou 3 colonnes. Défaut 3."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:46
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:151
+msgid "2, 3, or 4 columns. Always one column below the md breakpoint."
+msgstr "2, 3 ou 4 colonnes. Toujours une colonne en dessous du breakpoint md."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:80
+msgid "3 or 4 columns. Default 4."
+msgstr "3 ou 4 colonnes. Défaut 4."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:94
+msgid "32×32 SVG. Decorative: empty alt."
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:74
+msgid "3:2"
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:72
+msgid "4:3"
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:48
+msgid "4:3 ratio. Content size 1200×900."
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:148
+msgid "80×80 square, center crop."
+msgstr "Carré 80×80, recadrage centré."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:326
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:98
+msgid "9 am – 6 pm"
+msgstr "9 h – 18 h"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:340
+msgid "A new site or a redesign?"
+msgstr "Un nouveau site ou une refonte ?"
+
+#: includes/Models/StyleguidePage.php:318
+msgid "A site that grows with you."
+msgstr "Un site qui évolue avec vous."
+
+#. Description of the theme
+msgid "A starter WordPress theme by CINQ."
+msgstr "Un thème WordPress de démarrage par CINQ."
+
+#: views/components/styleguide.html.twig:1609
+msgid ""
+"A web build has a scope and a cost. Hiding them until the third meeting only "
+"buys time to get attached. Our bases run from 12 900 to 36 900 euros. The "
+"full grid is public."
+msgstr ""
+"Un site web a un périmètre et un coût. Les cacher jusqu'à la troisième "
+"réunion ne fait que gagner du temps pour s'attacher au projet. Nos bases "
+"vont de 12 900 à 36 900 euros. La grille complète est publique."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:288
+msgid ""
+"ACF is the only plugin in the kernel. Project adapters (forms, SEO, CRM) are "
+"wired per site, not baked into the starter."
+msgstr ""
+"ACF est le seul plugin du noyau. Les adaptateurs projet (formulaires, SEO, "
+"CRM) se branchent site par site, pas dans le starter."
+
+#: views/components/styleguide.html.twig:1543
+msgid "Accordion"
+msgstr "Accordéon"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:78
+msgid "Accordion summary line."
+msgstr "Ligne de résumé de l'accordéon."
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:110
+#: includes/Plugins/ACF/IncludeFields/BlocksFields.php:113
+msgid "Add Block"
+msgstr "Ajouter un bloc"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:82
+msgid "Add Card"
+msgstr "Ajouter une carte"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:66
+msgid "Add Figure"
+msgstr "Ajouter un chiffre"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:286
+msgid "Add Push"
+msgstr "Ajouter une mise en avant"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:254
+msgid "Add Submenu Item"
+msgstr "Ajouter un élément de sous-menu"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:82
+msgid "Add Testimonial"
+msgstr "Ajouter un témoignage"
+
+#: includes/Plugins/ACF/IncludeFields/BlocksFields.php:111
+msgid "Add and arrange blocks to build the page content."
+msgstr "Ajoutez et organisez des blocs pour composer le contenu de la page."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:81
+msgid "Add hours row"
+msgstr "Ajouter une ligne d'horaires"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:67
+msgid "Add item"
+msgstr "Ajouter un élément"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:253
+msgid ""
+"Add submenu items. Each can be linked to a main menu entry with optional "
+"pushes."
+msgstr ""
+"Ajoutez des éléments de sous-menu. Chacun peut être lié à une entrée du menu "
+"principal avec des mises en avant optionnelles."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:284
+msgid "Add up to 3 push items (overline, title, image, link)."
+msgstr "Ajoutez jusqu'à 3 mises en avant (sur-titre, titre, image, lien)."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:50
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:52
+msgid "Address"
+msgstr ""
+
+#: includes/Models/Styleguide/Catalogs/HeroCatalog.php:52
+msgid "Align center · Standard"
+msgstr "Centré · Standard"
+
+#: includes/Models/Styleguide/Catalogs/HeroCatalog.php:65
+msgid "Align left · Compact"
+msgstr "Aligné à gauche · Compact"
+
+#: includes/Models/Styleguide/Catalogs/HeroCatalog.php:104
+msgid "Align left · Desktop video"
+msgstr "Aligné à gauche · Vidéo desktop"
+
+#: includes/Models/Styleguide/Catalogs/HeroCatalog.php:78
+msgid "Align left · Full viewport"
+msgstr "Aligné à gauche · Plein écran"
+
+#: includes/Models/Styleguide/Catalogs/HeroCatalog.php:91
+msgid "Align left · No overlay"
+msgstr "Aligné à gauche · Sans overlay"
+
+#: includes/Models/Styleguide/Catalogs/HeroCatalog.php:39
+msgid "Align left · Standard"
+msgstr "Aligné à gauche · Standard"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:53
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:55
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:87
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:89
+msgid "Alignment"
+msgstr "Alignement"
+
+#: includes/Models/StyleguidePage.php:176 includes/Models/TagArchive.php:35
+#: includes/Traits/ArchivePost.php:94
+msgid "All"
+msgstr "Tous"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:135
+msgid "All case studies"
+msgstr "Tous les cas clients"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:101
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:103
+msgid "Anchor"
+msgstr "Ancre"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:82
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:84
+msgid "Answer"
+msgstr "Réponse"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:67
+msgid ""
+"Applies filter: grayscale(1). Does not fix a poorly prepared color logo."
+msgstr ""
+"Applique filter: grayscale(1). Ne compense pas un logo couleur mal préparé."
+
+#: includes/Plugins/ACF/Init.php:58
+msgid "Archive"
+msgstr "Archive"
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:53
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:55
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:120
+#: includes/Plugins/ACF/Init.php:57
+msgid "Archive Posts"
+msgstr "Archive des articles"
+
+#: views/components/styleguide.html.twig:806
+msgid "Archive pagination. Dummy pages come from the page model."
+msgstr ""
+"Pagination d'archive. Les pages factices proviennent du modèle de page."
+
+#: views/components/styleguide.html.twig:66
+msgid "Article body"
+msgstr "Corps d'article"
+
+#: views/components/styleguide.html.twig:412
+msgid "Article body never exceeds this width, whatever the container."
+msgstr ""
+"Le corps d'article ne dépasse jamais cette largeur, quel que soit le "
+"conteneur."
+
+#: views/components/styleguide.html.twig:65
+msgid "Article lead"
+msgstr "Chapô d'article"
+
+#: views/components/styleguide.html.twig:641
+#: views/components/styleguide.html.twig:701
+msgid "Assets"
+msgstr "Assets"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:106
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:108
+msgid "Author"
+msgstr "Auteur"
+
+#: views/components/styleguide.html.twig:1872
+msgid ""
+"Autocomplete listbox. Options are filled from JavaScript in styleguide.ts."
+msgstr ""
+"Listbox avec autocomplétion. Les options sont remplies depuis JavaScript "
+"dans styleguide.ts."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:67
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:66
+msgid "Automatic"
+msgstr "Automatique"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:71
+msgid "Automatic queries posts. Manual picks specific entries."
+msgstr "Interroge les articles. Manuel permet une sélection précise."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:72
+msgid "Automatic queries the case_study CPT. Manual picks specific entries."
+msgstr "Interroge le CPT case_study. Manuel permet une sélection précise."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:142
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:144
+msgid "Avatar"
+msgstr "Avatar"
+
+#: views/components/mobile-menu.html.twig:106
+msgid "Back"
+msgstr "Retour"
+
+#: views/pages/404.html.twig:41
+msgid "Back to home"
+msgstr "Retour à l'accueil"
+
+#: views/components/mobile-menu.html.twig:94
+msgid "Back to menu"
+msgstr "Retour au menu"
+
+#: views/components/styleguide.html.twig:1731
+msgid ""
+"Binary toggle with role=\"switch\". Square track matches the starter radius."
+msgstr ""
+"Interrupteur binaire avec role=\"switch\". La piste carrée correspond au "
+"rayon du starter."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:49
+msgid ""
+"Black gradient from 0% at the top to 45% at the bottom, for text legibility."
+msgstr ""
+"Dégradé noir de 0 % en haut à 45 % en bas, pour la lisibilité du texte."
+
+#: views/components/styleguide.html.twig:55
+msgid "Block lead"
+msgstr "Chapô du bloc"
+
+#: views/components/styleguide.html.twig:64
+msgid "Block overline"
+msgstr "Sur-titre du bloc"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:61
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:47
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:46
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:47
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:47
+msgid "Block subtitle. Subtitle component."
+msgstr "Sur-titre du bloc. Composant Subtitle."
+
+#: views/components/styleguide.html.twig:52
+msgid "Block title"
+msgstr "Titre du bloc"
+
+#: includes/Models/StyleguidePage.php:162
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:97
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:99
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:104
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:106
+#: includes/Plugins/ACF/IncludeFields/BlocksFields.php:107
+#: includes/Plugins/ACF/IncludeFields/BlocksFields.php:109
+msgid "Blocks"
+msgstr "Blocs"
+
+#: includes/Plugins/ACF/IncludeFields/BlocksFields.php:121
+msgid "Blocks Fields"
+msgstr "Champs Blocs"
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:108
+msgid ""
+"Blocks displayed below the posts list on the archive and category pages."
+msgstr ""
+"Blocs affichés sous la liste des articles sur les pages d'archive et de "
+"catégorie."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:102
+msgid "Body/lg style. Three lines maximum to stay readable in a column."
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:56
+msgid "Body/lg, 80% opacity."
+msgstr ""
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:343
+msgid "Book a call"
+msgstr "Prendre rendez-vous"
+
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:107
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:109
+msgid "Border Radius"
+msgstr "Rayon de bordure"
+
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:113
+msgid "Bottom"
+msgstr "Bas"
+
+#: includes/Models/StyleguidePage.php:123
+msgid "Breadcrumb"
+msgstr "Fil d'Ariane"
+
+#: views/components/styleguide.html.twig:384
+msgid "Breakpoints"
+msgstr "Breakpoints"
+
+#: includes/helpers.php:776
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:161
+msgid "Brochure site rebuild"
+msgstr "Refonte de site vitrine"
+
+#: views/components/styleguide.html.twig:1212
+msgid ""
+"Built server-side from H2 headings in the article content. The single "
+"template hides the nav below lg; this demo keeps it visible. Grid layout is "
+"set on the parent include via classes."
+msgstr ""
+"Construit côté serveur à partir des titres H2 du contenu de l'article. Le "
+"template single masque la navigation en dessous de lg ; cette démo la garde "
+"visible. La grille est définie sur l'include parent via des classes."
+
+#: views/components/styleguide.html.twig:477
+#: views/components/styleguide.html.twig:485
+#: views/components/styleguide.html.twig:494
+#: views/components/styleguide.html.twig:511
+#: views/components/styleguide.html.twig:520
+#: views/components/styleguide.html.twig:530
+#: views/components/styleguide.html.twig:548
+#: views/components/styleguide.html.twig:557
+#: views/components/styleguide.html.twig:567
+msgid "Button"
+msgstr "Bouton"
+
+#: views/components/styleguide.html.twig:26
+msgid "Button label"
+msgstr "Libellé du bouton"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:274
+msgid "Button or link label."
+msgstr "Libellé du bouton ou du lien."
+
+#: includes/Models/StyleguidePage.php:67
+msgid "Buttons"
+msgstr "Boutons"
+
+#. Author of the theme
+msgid "CINQ"
+msgstr "CINQ"
+
+#: views/components/styleguide.html.twig:1313
+msgid "CINQ UI"
+msgstr "CINQ UI"
+
+#: views/components/styleguide.html.twig:1329
+msgid "CINQ UI documentation"
+msgstr "Documentation CINQ UI"
+
+#: views/components/styleguide.html.twig:895
+msgid "CMS"
+msgstr "CMS"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:67
+msgid "CPT"
+msgstr "CPT"
+
+#: views/components/styleguide.html.twig:857
+msgid "CRM connected"
+msgstr "CRM connecté"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:335
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:28
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:119
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:121
+msgid "CTA"
+msgstr "CTA"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:279
+msgid "Can you take over an existing site?"
+msgstr "Pouvez-vous reprendre un site existant ?"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:74
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:76
+msgid "Cards"
+msgstr "Cartes"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:49
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:28
+msgid "Cards Grid"
+msgstr "Grille de cartes"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:123
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:30
+msgid "Case Studies"
+msgstr "Cas clients"
+
+#: includes/Models/StyleguidePage.php:154
+msgid "Catalog"
+msgstr "Catalogue"
+
+#: views/pages/archive-post.html.twig:32
+msgid "Categories"
+msgstr "Catégories"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:97
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:99
+msgid "Category"
+msgstr "Catégorie"
+
+#: views/components/styleguide.html.twig:1104
+msgid "Category links on the journal archive. Active term uses .is-active."
+msgstr ""
+"Liens de catégories sur l'archive du journal. Le terme actif utilise .is-"
+"active."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:231
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:60
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:94
+msgid "Center"
+msgstr "Centre"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:79
+msgid "Centered (720 px)"
+msgstr "Centré (720 px)"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:213
+msgid ""
+"Choose the heading level for the title of the block. It is important to use "
+"heading levels in a hierarchical way for accessibility and SEO reasons."
+msgstr ""
+"Choisissez le niveau de titre pour le titre du bloc. Il est important "
+"d'utiliser les niveaux de titres de manière hiérarchique pour "
+"l'accessibilité et le SEO."
+
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:104
+msgid "Choose the menu from which to list items."
+msgstr "Choisissez le menu à partir duquel lister les éléments."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:228
+msgid "Choose the text alignment for the block."
+msgstr "Choisissez l'alignement du texte pour le bloc."
+
+#: views/components/styleguide.html.twig:1906
+#: views/components/styleguide.html.twig:1925
+msgid "Cities"
+msgstr "Villes"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:219
+msgid "Cities or locations shown in the footer contact column."
+msgstr ""
+"Villes ou localisations affichées dans la colonne contact du pied de page."
+
+#: views/components/styleguide.html.twig:1884
+msgid "City"
+msgstr "Ville"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:179
+msgid "Client feedback"
+msgstr "Retour client"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:244
+msgid "Clones Fields"
+msgstr "Champs Clones"
+
+#: views/components/styleguide.html.twig:881
+msgid "Code sample"
+msgstr "Exemple de code"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:59
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:61
+msgid "Color scheme"
+msgstr "Schéma de couleurs"
+
+#: views/components/styleguide.html.twig:166
+msgid "Color schemes"
+msgstr "Schémas de couleurs"
+
+#: includes/Models/StyleguidePage.php:47
+msgid "Colour"
+msgstr "Couleur"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:98
+msgid "Column position in the grid, not text alignment."
+msgstr "Position de la colonne dans la grille, pas l'alignement du texte."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:350
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:36
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:140
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:142
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:28
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:139
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:141
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:69
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:71
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:178
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:180
+msgid "Columns"
+msgstr "Colonnes"
+
+#: views/components/styleguide.html.twig:1868
+msgid "Combobox"
+msgstr "Combobox"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:185
+msgid "Communications director"
+msgstr "Directrice de la communication"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:74
+msgid "Compact (480px)"
+msgstr "Compact (480 px)"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:130
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:132
+msgid "Company"
+msgstr "Entreprise"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:135
+msgid "Company name."
+msgstr ""
+
+#: views/components/styleguide.html.twig:457
+#: views/components/styleguide.html.twig:581
+#: views/components/styleguide.html.twig:747
+#: views/components/styleguide.html.twig:800
+msgid "Components"
+msgstr "Composants"
+
+#: views/components/styleguide.html.twig:920
+msgid ""
+"Components used in the header, footer, archives, search, and editorial "
+"templates. Not ACF blocks."
+msgstr ""
+"Composants utilisés dans l'en-tête, le pied de page, les archives, la "
+"recherche et les templates éditoriaux. Pas des blocs ACF."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:305
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:313
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:28
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:172
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:174
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:179
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:181
+msgid "Contact"
+msgstr "Contact"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:164
+msgid ""
+"Contact Form 7 form displayed in the footer. Wire another plugin on the "
+"project if needed."
+msgstr ""
+"Formulaire Contact Form 7 affiché dans le pied de page. Branchez un autre "
+"plugin sur le projet si besoin."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:109
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:111
+msgid "Container"
+msgstr "Conteneur"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:50
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:51
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:36
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:37
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:36
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:36
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:61
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:62
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:67
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:69
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:83
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:84
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:89
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:91
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:36
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:37
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:81
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:82
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:106
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:108
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:58
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:60
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:36
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:37
+msgid "Content"
+msgstr "Contenu"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:64
+msgid "Content alignment inside the hero."
+msgstr "Alignement du contenu dans le hero."
+
+#: views/components/toc.html.twig:23 views/pages/single-post.html.twig:81
+msgid "Contents"
+msgstr "Sommaire"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:71
+msgid "Controls the two fields below. Choose at kickoff, not mid-project."
+msgstr ""
+
+#: views/components/styleguide.html.twig:1255
+msgid "Core Web Vitals are checked before launch, not after."
+msgstr "Les Core Web Vitals sont vérifiés avant le lancement, pas après."
+
+#: includes/Models/Styleguide/StyleguideContext.php:188
+msgid "Core Web Vitals in the green, from day one"
+msgstr "Core Web Vitals au vert, dès le premier jour"
+
+#: includes/helpers.php:758
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:143
+msgid "Corporate site and configurator rebuild"
+msgstr "Refonte site corporate et configurateur"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:119
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:121
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:118
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:120
+msgid "Count"
+msgstr "Nombre"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:221
+msgid "Creative director"
+msgstr "Directrice de création"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:61
+msgid ""
+"Custom Timber theme, tailored ACF blocks. In your Git repo from the first "
+"commit."
+msgstr ""
+"Thème Timber sur mesure, blocs ACF adaptés. Dans votre dépôt Git dès le "
+"premier commit."
+
+#: includes/Models/Styleguide/StyleguideContext.php:146
+msgid ""
+"Custom theme, ACF blocks, no page builder. You edit the content; we step in "
+"when the code has to move."
+msgstr ""
+"Thème sur mesure, blocs ACF, sans page builder. Vous éditez le contenu ; "
+"nous intervenons quand le code doit évoluer."
+
+#: views/components/styleguide.html.twig:856
+msgid "D2C and B2B"
+msgstr "D2C et B2B"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:294
+msgid "Dark"
+msgstr "Sombre"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:86
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:88
+msgid "Days"
+msgstr ""
+
+#: views/components/styleguide.html.twig:170
+msgid ""
+"Declared in src/stylesheets/theme.css (@theme). Each block sets color_scheme "
+"to default or inverse."
+msgstr ""
+"Déclaré dans src/stylesheets/theme.css (@theme). Chaque bloc définit "
+"color_scheme sur default ou inverse."
+
+#: views/components/styleguide.html.twig:1820
+msgid "Decrease"
+msgstr "Diminuer"
+
+#: includes/Models/StyleguidePage.php:315
+msgid "Dedicated theme, D2C and B2B, CRM connected from day one."
+msgstr "Thème dédié, D2C et B2B, CRM connecté dès le premier jour."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:115
+msgid "Default (1440px)"
+msgstr "Par défaut (1440 px)"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:113
+msgid "Default 1440px, wide 1760px, or full width without a container."
+msgstr ""
+"1440 px par défaut, 1760 px en large, ou pleine largeur sans conteneur."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:307
+msgid ""
+"Describe your need in a few lines. We reply within two business days, and "
+"the first call is always free."
+msgstr ""
+"Décrivez votre besoin en quelques lignes. Nous répondons sous deux jours "
+"ouvrés, et le premier appel est toujours gratuit."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:194
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:196
+msgid "Desktop"
+msgstr "Bureau"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:198
+msgid "Desktop image for the block."
+msgstr "Image bureau pour le bloc."
+
+#: views/components/styleguide.html.twig:1776
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: views/components/styleguide.html.twig:1687
+msgid "Disclosure"
+msgstr "Disclosure"
+
+#: views/components/tease-post-mini.html.twig:75
+msgid "Discover"
+msgstr "Découvrir"
+
+#: views/components/tease-post-mini.html.twig:73
+msgid "Discover: %s"
+msgstr "Découvrir : %s"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:54
+msgid "Display images in a horizontal scrolling row instead of a fixed grid."
+msgstr "Afficher les images en défilement horizontal plutôt qu'en grille fixe."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:46
+msgid "Display/3xl (h2). Centered closing call to action."
+msgstr "Display/3xl (h2). Appel à l'action de clôture centré."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:113
+msgid ""
+"Display/5xl. Use h1 on the homepage, h2 elsewhere (heading level below)."
+msgstr ""
+"Display/5xl. Utilisez h1 sur la page d'accueil, h2 ailleurs (niveau de titre "
+"ci-dessous)."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:201
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:210
+msgid "Displayed in the footer contact column."
+msgstr "Affiché dans la colonne contact du pied de page."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:91
+msgid "Displayed in the header. Falls back to the site name when empty."
+msgstr "Affiché dans l'en-tête. Retombe sur le nom du site si vide."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:90
+msgid "Displays the member CPT bio field below the role."
+msgstr ""
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:291
+msgid "Do we really own the code?"
+msgstr "Le code nous appartient-il vraiment ?"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:287
+msgid "Do you work with third-party plugins?"
+msgstr "Travaillez-vous avec des plugins tiers ?"
+
+#: views/components/styleguide.html.twig:1341
+#: views/components/styleguide.html.twig:1380
+msgid "Drawer"
+msgstr "Drawer"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:63
+msgid ""
+"Drives the layout variant. Ignored below the md breakpoint (media stacks "
+"first)."
+msgstr ""
+"Pilote la variante. Ignoré sous md (le média reste au-dessus du texte)."
+
+#: views/components/styleguide.html.twig:1246
+msgid "Each layout maps to a Twig file the team can version and review."
+msgstr ""
+"Chaque layout correspond à un fichier Twig que l'équipe peut versionner et "
+"relire."
+
+#: includes/Models/StyleguidePage.php:214
+msgid "Editor experience"
+msgstr "Expérience éditoriale"
+
+#: views/components/styleguide.html.twig:48
+#: views/components/styleguide.html.twig:49
+#: views/components/styleguide.html.twig:82
+#: views/components/styleguide.html.twig:83
+#: views/components/styleguide.html.twig:84
+msgid "Editorial"
+msgstr "Éditorial"
+
+#: views/components/styleguide.html.twig:29
+msgid "Editorial links"
+msgstr "Liens éditoriaux"
+
+#: views/components/styleguide.html.twig:837
+msgid ""
+"Editorial markup styled by wysiwyg.css. Used on posts and generic pages."
+msgstr ""
+"Markup éditorial stylé par wysiwyg.css. Utilisé sur les articles et les "
+"pages génériques."
+
+#: views/components/styleguide.html.twig:406
+msgid "Editorial measure"
+msgstr "Mesure éditoriale"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:83
+msgid "Editorial measure: 720 px, 960 px, or the full container width."
+msgstr "Mesure éditoriale : 720 px, 960 px, ou pleine largeur du conteneur."
+
+#: includes/helpers.php:767
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:152
+msgid "Editorial platform and dealer space"
+msgstr "Plateforme éditoriale et espace revendeurs"
+
+#: views/components/styleguide.html.twig:936
+msgid "Editorial primitives reused inside blocks and archive headers."
+msgstr ""
+"Primitives éditoriales réutilisées dans les blocs et les en-têtes d'archive."
+
+#: includes/Models/StyleguidePage.php:111
+msgid "Editorial shell"
+msgstr "Shell éditorial"
+
+#: views/components/styleguide.html.twig:65
+#: views/components/styleguide.html.twig:66
+msgid "Editorial, line-height 1.7"
+msgstr "Éditorial, interlignage 1.7"
+
+#: views/components/styleguide.html.twig:67
+msgid "Editorial, weight 700"
+msgstr "Éditorial, graisse 700"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:276
+msgid ""
+"Eight to twelve weeks for a brochure site of about thirty pages, including "
+"scoping. The bottleneck is almost never development: it is content "
+"production."
+msgstr ""
+"Huit à douze semaines pour un site vitrine d'environ trente pages, cadrage "
+"inclus. Le goulot d'étranglement est presque jamais le développement : c'est "
+"la production de contenu."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:68
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:70
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:196
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:198
+msgid "Email"
+msgstr "E-mail"
+
+#: views/components/newsletter-form.html.twig:27
+msgid "Email address"
+msgstr "Adresse e-mail"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:49
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:51
+msgid "Enable marquee mode"
+msgstr "Activer le mode bandeau défilant"
+
+#: includes/socials.php:15
+msgid "Enter the Facebook URL here."
+msgstr "Saisissez ici l'URL Facebook."
+
+#: includes/socials.php:25
+msgid "Enter the Instagram URL here."
+msgstr "Saisissez ici l'URL Instagram."
+
+#: includes/socials.php:33
+msgid "Enter the LinkedIn URL here."
+msgstr "Saisissez ici l'URL LinkedIn."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:143
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:154
+msgid "Enter the URL of the link"
+msgstr "Saisissez l'URL du lien"
+
+#: includes/socials.php:43
+msgid "Enter the Vimeo URL here."
+msgstr "Saisissez ici l'URL Vimeo."
+
+#: includes/socials.php:50
+msgid "Enter the X URL here."
+msgstr "Saisissez ici l'URL X."
+
+#: includes/socials.php:59
+msgid "Enter the YouTube URL here."
+msgstr "Saisissez ici l'URL YouTube."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:44
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:60
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:46
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:101
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:44
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:46
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:91
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:44
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:44
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:46
+msgid "Enter the overline of the block"
+msgstr "Saisissez le sur-titre du bloc"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:77
+msgid "Enter the question"
+msgstr "Saisissez la question"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:54
+msgid "Enter the text for the left column"
+msgstr "Saisissez le texte de la colonne gauche"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:67
+msgid "Enter the text for the right column"
+msgstr "Saisissez le texte de la colonne droite"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:133
+msgid "Enter the text of the block"
+msgstr "Saisissez le texte du bloc"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:54
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:69
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:56
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:55
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:79
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:111
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:53
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:55
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:101
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:53
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:53
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:55
+msgid "Enter the title of the block"
+msgstr "Saisissez le titre du bloc"
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:80
+msgid "Enter the title of the hero"
+msgstr "Saisissez le titre du hero"
+
+#: includes/Plugins/ACF/IncludeFields/PostFields.php:62
+msgid "Estimated from the content and stored on save."
+msgstr "Estimé à partir du contenu et enregistré à la sauvegarde."
+
+#: views/components/styleguide.html.twig:872
+msgid "Evolve with the company"
+msgstr "Évoluer avec l'entreprise"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:55
+msgid "Expertise"
+msgstr "Expertise"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:44
+msgid "Extra large"
+msgstr "Très grand"
+
+#: views/components/styleguide.html.twig:675
+msgid "Extras"
+msgstr "Extras"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:264
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:271
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:28
+msgid "FAQ"
+msgstr "FAQ"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:97
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:99
+msgid "FAQ schema"
+msgstr "Schéma FAQ"
+
+#: includes/Models/StyleguidePage.php:229 includes/socials.php:13
+msgid "Facebook"
+msgstr "Facebook"
+
+#: includes/Models/StyleguidePage.php:323
+msgid "Fast, maintainable WordPress brochure and editorial sites."
+msgstr "Sites vitrine et éditoriaux WordPress rapides et maintenables."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:58
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:60
+msgid "Figures"
+msgstr "Chiffres"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:147
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:149
+msgid "File"
+msgstr "Fichier"
+
+#: views/components/taxonomy-filters.html.twig:14
+msgid "Filters"
+msgstr "Filtres"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:319
+msgid "Find us"
+msgstr "Nous trouver"
+
+#: views/components/styleguide.html.twig:1281
+msgid ""
+"First focusable element in the document. Visible on keyboard focus only."
+msgstr ""
+"Premier élément focusable du document. Visible uniquement au focus clavier."
+
+#: views/components/styleguide.html.twig:1514
+msgid "First panel. Arrow keys move between tabs."
+msgstr "Premier panneau. Les flèches permettent de naviguer entre les onglets."
+
+#: includes/Models/StyleguidePage.php:314
+msgid "Five commitments. None negotiable."
+msgstr "Cinq engagements. Aucun n'est négociable."
+
+#: includes/Models/StyleguidePage.php:256
+msgid "Flexible page"
+msgstr "Page flexible"
+
+#: views/components/styleguide.html.twig:1438
+msgid ""
+"Focus trap and backdrop dismiss. Use for confirmations or compact forms."
+msgstr ""
+"Focus trap et fermeture au clic sur le fond. À utiliser pour des "
+"confirmations ou des formulaires compacts."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:114
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:116
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:121
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:123
+msgid "Footer"
+msgstr "Pied de page"
+
+#: includes/WPSettings.php:53
+msgid "Footer Column 1"
+msgstr "Colonne pied de page 1"
+
+#: includes/WPSettings.php:54
+msgid "Footer Column 2"
+msgstr "Colonne pied de page 2"
+
+#: includes/WPSettings.php:55
+msgid "Footer Column 3"
+msgstr "Colonne pied de page 3"
+
+#: includes/WPSettings.php:52
+msgid "Footer Menu"
+msgstr "Menu pied de page"
+
+#: views/components/styleguide.html.twig:1156
+msgid "Footer icon row. URLs come from Réglages > Socials."
+msgstr ""
+"Rangée d'icônes du pied de page. Les URL proviennent de Réglages > Socials."
+
+#: views/footer.html.twig:93
+msgid "Footer navigation"
+msgstr "Navigation pied de page"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:299
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:28
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:87
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:89
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:157
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:159
+msgid "Form"
+msgstr "Formulaire"
+
+#: views/components/styleguide.html.twig:128
+#: views/components/styleguide.html.twig:250
+#: views/components/styleguide.html.twig:289
+#: views/components/styleguide.html.twig:357
+#: views/components/styleguide.html.twig:432
+#: views/pages/styleguide-page.html.twig:17
+msgid "Foundations"
+msgstr "Fondations"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:111
+msgid "Full name. An anonymous testimonial has no proof value."
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:76
+msgid "Full viewport"
+msgstr "Plein écran"
+
+#: includes/Models/Styleguide/Catalogs/RichTextCatalog.php:56
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:117
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:79
+msgid "Full width"
+msgstr "Pleine largeur"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:363
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:371
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:28
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:84
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:86
+msgid "Gallery"
+msgstr "Galerie"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:61
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:63
+msgid "Grayscale"
+msgstr "Niveaux de gris"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:215
+msgid "H1"
+msgstr "H1"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:216
+msgid "H2"
+msgstr "H2"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:217
+msgid "H3"
+msgstr "H3"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:70
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:72
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:77
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:79
+msgid "Header"
+msgstr "En-tête"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:192
+msgid "Header CTA (label and URL)."
+msgstr "CTA d'en-tête (libellé et URL)."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:209
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:211
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:117
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:119
+msgid "Heading"
+msgstr "Titre"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:142
+msgid "Heading for the newsletter block."
+msgstr "Titre du bloc newsletter."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:70
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:57
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:46
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:54
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:56
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:102
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:54
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:56
+msgid "Heading/2xl (h2)."
+msgstr "Titre/2xl (h2)."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:56
+msgid "Heading/2xl (h2). Left column in split layout."
+msgstr "Titre/2xl (h2). Colonne gauche en layout split."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:55
+msgid "Heading/2xl (h2). Left column, sticky on desktop."
+msgstr "Titre/2xl (h2). Colonne gauche, sticky sur desktop."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:54
+msgid "Heading/2xl (h2). Optional when the block follows a previous title."
+msgstr "Titre/2xl (h2). Facultatif lorsque le bloc suit un titre précédent."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:103
+msgid "Heading/xl."
+msgstr "Titre/xl."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:68
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:70
+msgid "Height"
+msgstr "Hauteur"
+
+#: includes/Models/Styleguide/Catalogs/HeroCatalog.php:34
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:61
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:63
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:68
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:70
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:28
+msgid "Hero"
+msgstr "Hero"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:35
+msgid ""
+"Hero image 2880×1280. Required as the mobile fallback when a video is added "
+"(video plays from the lg breakpoint up). Provide alt text: this is content, "
+"not decoration."
+msgstr ""
+"Image hero 2880×1280. Obligatoire comme fallback mobile lorsqu'une vidéo est "
+"ajoutée (la vidéo joue à partir du breakpoint lg). Renseignez un texte "
+"alternatif : il s'agit de contenu, pas de décoration."
+
+#: views/components/styleguide.html.twig:48
+#: views/components/styleguide.html.twig:49
+msgid "Hero title"
+msgstr "Titre du hero"
+
+#: includes/Models/StyleguidePage.php:327
+msgid "Hero, rich text, latest posts, and accordion. No cart, no products."
+msgstr ""
+"Hero, texte enrichi, derniers articles et accordéon. Pas de panier, pas de "
+"produits."
+
+#: views/components/styleguide.html.twig:1719
+msgid "Hidden until the disclosure button opens it."
+msgstr "Masqué jusqu'à l'ouverture via le bouton disclosure."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:163
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:165
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:163
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:165
+msgid "Hide if empty"
+msgstr "Masquer si vide"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:169
+msgid "Hides the entire block when no case studies are found."
+msgstr "Masque tout le bloc lorsqu'aucun cas client n'est trouvé."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:169
+msgid "Hides the entire block when no posts are found."
+msgstr "Masque tout le bloc lorsqu'aucun article n'est trouvé."
+
+#: views/components/styleguide.html.twig:67
+msgid "Highlighted passage"
+msgstr "Passage mis en avant"
+
+#: views/components/styleguide.html.twig:1080
+msgid "Home"
+msgstr "Accueil"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:76
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:78
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:94
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:96
+msgid "Hours"
+msgstr ""
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:275
+msgid "How long does a redesign take?"
+msgstr "Combien de temps dure une refonte ?"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:87
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:89
+msgid "Icon"
+msgstr "Icône"
+
+#: includes/Models/StyleguidePage.php:75
+msgid "Icons"
+msgstr "Icônes"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:175
+msgid ""
+"If only one image is provided, it will be used for both desktop and mobile "
+"whatever the screen size. If both desktop and mobile images are provided, "
+"the desktop image will be used for screens larger than 1024px and the mobile "
+"image for screens smaller than 1024px."
+msgstr ""
+"Si une seule image est fournie, elle sera utilisée pour le bureau et le "
+"mobile, quelle que soit la taille d'écran. Si les deux images sont fournies, "
+"l'image bureau sera utilisée au-dessus de 1024 px et l'image mobile en "
+"dessous."
+
+#: includes/Models/StyleguidePage.php:79
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:171
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:173
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:320
+msgid "Image"
+msgstr "Image"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:36
+msgid "Images per row"
+msgstr "Images par ligne"
+
+#: views/components/styleguide.html.twig:1293
+msgid ""
+"Included once in the layout shell. Tab into the page to reveal the skip link."
+msgstr ""
+"Inclus une fois dans le shell de layout. Tabulez dans la page pour afficher "
+"le lien d'évitement."
+
+#: views/components/styleguide.html.twig:1847
+msgid "Increase"
+msgstr "Augmenter"
+
+#: views/components/styleguide.html.twig:1802
+msgid "Increment and decrement a numeric value with keyboard support."
+msgstr "Incrémenter et décrémenter une valeur numérique avec le clavier."
+
+#: includes/helpers.php:756 includes/helpers.php:765 includes/helpers.php:774
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:141
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:150
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:159
+msgid "Industry"
+msgstr "Secteur"
+
+#: includes/Models/StyleguidePage.php:234 includes/socials.php:23
+msgid "Instagram"
+msgstr "Instagram"
+
+#: views/components/styleguide.html.twig:56
+#: views/components/styleguide.html.twig:57
+msgid "Interface text"
+msgstr "Texte d'interface"
+
+#: includes/Models/Styleguide/StyleguideContext.php:242
+msgid "Intro"
+msgstr "Intro"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:45
+msgid "Intro line. Body/sm gray."
+msgstr "Ligne d'introduction. Style Body/sm gris."
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:91
+msgid "Introductory text below the archive title."
+msgstr "Texte d'introduction sous le titre de l'archive."
+
+#: includes/Plugins/ACF/IncludeFields/PageFields.php:65
+msgid ""
+"Introductory text below the page title. Shown in the page header when the "
+"first block is not a hero."
+msgstr ""
+"Texte d'introduction sous le titre de la page. Affiché dans l'en-tête de "
+"page lorsque le premier bloc n'est pas un hero."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:66
+msgid "Inverse"
+msgstr "Inversé"
+
+#: views/components/styleguide.html.twig:854
+msgid "It is an asset you build to last"
+msgstr "C'est un actif que l'on construit pour durer"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:357
+#: includes/Models/StyleguidePage.php:319
+msgid "It is an asset you build to last, and you evolve it with the company."
+msgstr ""
+"C'est un actif que l'on construit pour durer, et que l'on fait évoluer avec "
+"l'entreprise."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:59
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:61
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:75
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:77
+msgid "Items"
+msgstr "Éléments"
+
+#: views/components/styleguide.html.twig:1547
+msgid ""
+"JS accordion from CINQ UI. Production FAQ blocks use the native details/"
+"summary component instead."
+msgstr ""
+"Accordéon JS de CINQ UI. Les blocs FAQ en production utilisent plutôt le "
+"composant natif details/summary."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:123
+msgid "Job title."
+msgstr ""
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:387
+#: includes/Models/StyleguidePage.php:306
+msgid "Journal"
+msgstr "Journal"
+
+#: views/pages/styleguide-page.html.twig:68
+msgid ""
+"Kernel ACF layouts rendered with the same Twig as production. Blocks with "
+"variants expose a switcher; dummy data lives in includes/Models/Styleguide/."
+msgstr ""
+"Layouts ACF du noyau rendus avec les mêmes Twig qu'en production. Les blocs "
+"avec variantes exposent un sélecteur ; les données de démo vivent dans "
+"includes/Models/Styleguide/."
+
+#: views/pages/styleguide-page.html.twig:64
+msgid "Kernel layouts"
+msgstr "Layouts du noyau"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:90
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:28
+msgid "Key Figures"
+msgstr "Chiffres clés"
+
+#: views/components/styleguide.html.twig:1457
+msgid ""
+"Keyboard navigable tablist. Active tab mirrors the secondary button pattern."
+msgstr ""
+"Tablist navigable au clavier. L'onglet actif reprend le pattern du bouton "
+"secondaire."
+
+#: includes/helpers.php:770
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:155
+msgid "LCP on mobile"
+msgstr "LCP sur mobile"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:95
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:97
+msgid "Label"
+msgstr "Libellé"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:43
+msgid "Large"
+msgstr "Grand"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:30
+msgid "Latest Posts"
+msgstr "Derniers articles"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:378
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:388
+msgid "Latest posts"
+msgstr "Derniers articles"
+
+#: includes/Models/StyleguidePage.php:59
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:86
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:88
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:50
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:52
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:72
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:74
+msgid "Layout"
+msgstr "Layout"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:54
+msgid "Layout settings for the block."
+msgstr "Réglages de layout pour le bloc."
+
+#: views/components/styleguide.html.twig:916
+msgid "Layout shell"
+msgstr "Shell de layout"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:135
+msgid "Lead copy. Body/lg. Two lines maximum in practice."
+msgstr ""
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:231
+msgid "Lead developer"
+msgstr "Lead développeur"
+
+#: includes/Models/StyleguidePage.php:257
+msgid "Lead paragraph for pages whose first block is not a hero."
+msgstr "Chapô pour les pages dont le premier bloc n'est pas un hero."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:230
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:59
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:58
+msgid "Left"
+msgstr "Gauche"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:48
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:50
+msgid "Left column"
+msgstr "Colonne gauche"
+
+#: includes/WPSettings.php:56
+msgid "Legals Menu"
+msgstr "Menu mentions légales"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:306
+#: includes/Models/Styleguide/StyleguideContext.php:148
+msgid "Let's talk about your project"
+msgstr "Parlons de votre projet"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:65
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:295
+msgid "Light"
+msgstr "Clair"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:63
+msgid "Light (default) or inverse section colors."
+msgstr "Couleurs de section clair (par défaut) ou inversé."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:117
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:119
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:155
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:157
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:155
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:157
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:187
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:189
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:328
+msgid "Link"
+msgstr "Lien"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:270
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:273
+msgid "Link Title"
+msgstr "Titre du lien"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:71
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:73
+msgid "Link logos"
+msgstr "Lier les logos"
+
+#: views/components/styleguide.html.twig:623
+msgid "Linked tag"
+msgstr "Étiquette liée"
+
+#: includes/Models/StyleguidePage.php:239 includes/socials.php:31
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: views/blocks/team.html.twig:67
+msgid "LinkedIn profile"
+msgstr "Profil LinkedIn"
+
+#: views/components/styleguide.html.twig:1130
+msgid "List item on the search results page."
+msgstr "Élément de liste sur la page de résultats de recherche."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:122
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:124
+msgid "LocalBusiness schema"
+msgstr "Schéma LocalBusiness"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:214
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:216
+msgid "Locations"
+msgstr "Localisations"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:85
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:87
+msgid "Logo"
+msgstr "Logo"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:37
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:28
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:49
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:51
+msgid "Logos"
+msgstr "Logos"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:242
+#: includes/WPSettings.php:50
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:81
+msgid "Main heading for the posts archive hero."
+msgstr "Titre principal du hero de l'archive des articles."
+
+#: views/header.html.twig:44
+msgid "Main navigation"
+msgstr "Navigation principale"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:78
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: includes/Models/StyleguidePage.php:322
+msgid "Maintenance and evolutions"
+msgstr "Maintenance et évolutions"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:192
+msgid "Managing director"
+msgstr "Directeur général"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:68
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:67
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:66
+msgid "Manual"
+msgstr "Manuel"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:104
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:106
+msgid "Map image"
+msgstr "Image de la carte"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:114
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:116
+msgid "Map link"
+msgstr "Lien vers la carte"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:199
+msgid "Marketing lead"
+msgstr "Responsable marketing"
+
+#: views/components/styleguide.html.twig:1264
+msgid "Marketing teams compose pages without touching markup."
+msgstr "Les équipes marketing composent des pages sans toucher au markup."
+
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:40
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:41
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:49
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:51
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:126
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:128
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:34
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:35
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:40
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:42
+msgid "Media"
+msgstr "Média"
+
+#: includes/Models/Styleguide/Catalogs/MediaTextCatalog.php:29
+msgid "Media + text"
+msgstr "Média + texte"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:28
+msgid "Media Text"
+msgstr "Média texte"
+
+#: includes/Models/Styleguide/Catalogs/MediaTextCatalog.php:34
+msgid "Media left"
+msgstr "Média à gauche"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:43
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:45
+msgid "Media overlay"
+msgstr "Superposition média"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:52
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:54
+msgid "Media position"
+msgstr "Position du média"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:67
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:69
+msgid "Media ratio"
+msgstr "Ratio média"
+
+#: includes/Models/Styleguide/Catalogs/MediaTextCatalog.php:44
+msgid "Media right"
+msgstr "Média à droite"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:42
+msgid "Medium"
+msgstr "Moyen"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:58
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:60
+msgid "Members"
+msgstr "Membres"
+
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:103
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:227
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:229
+msgid "Menu"
+msgstr "Menu"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:258
+msgid "Menu Item"
+msgstr "Élément de menu"
+
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:121
+msgid "Menu Item Object"
+msgstr "Objet élément de menu"
+
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:36
+msgid "Menu Item Select"
+msgstr "Sélection d'élément de menu"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:234
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:236
+msgid "Menus"
+msgstr "Menus"
+
+#: views/components/styleguide.html.twig:614
+msgid "Method"
+msgstr "Méthode"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:83
+msgid "Min 2, max 12. Each row is one card."
+msgstr "Min 2, max 12. Chaque ligne = une carte."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:67
+msgid "Min 2, max 4."
+msgstr "Min 2, max 4."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:68
+msgid "Min 3, max 12. Native details/summary; first item open by default."
+msgstr ""
+"Min 3, max 12. details/summary natif ; le premier élément est ouvert par "
+"défaut."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:183
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:185
+msgid "Mobile"
+msgstr "Mobile"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:187
+msgid "Mobile image for the block."
+msgstr "Image mobile pour le bloc."
+
+#: views/components/mobile-menu.html.twig:17
+msgid "Mobile navigation"
+msgstr "Navigation mobile"
+
+#: views/components/styleguide.html.twig:1399
+#: views/components/styleguide.html.twig:1434
+msgid "Modal"
+msgstr "Modal"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:61
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:63
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:60
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:62
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:290
+msgid "Mode"
+msgstr "Mode"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:325
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:90
+msgid "Monday to Friday"
+msgstr "Du lundi au vendredi"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:57
+msgid "Monochrome SVG required. Rendered height 32 px, auto width."
+msgstr "SVG monochromes exigés. Hauteur rendue 32 px, largeur auto."
+
+#: views/pages/search.html.twig:85
+msgid "Most visited pages"
+msgstr "Pages les plus visitées"
+
+#: views/components/styleguide.html.twig:1403
+msgid "Native dialog. Pair cinq-modal with cinq-modal-button."
+msgstr "Dialogue natif. Associez cinq-modal avec cinq-modal-button."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:155
+msgid "Never add a secondary link without a primary link."
+msgstr "N'ajoutez jamais de lien secondaire sans lien principal."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:129
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:131
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: includes/Models/StyleguidePage.php:119
+msgid "Newsletter form"
+msgstr "Formulaire newsletter"
+
+#: views/components/pagination.html.twig:81
+msgid "Next"
+msgstr "Suivant"
+
+#: includes/Vite.php:93
+msgid "No Vite Manifest exists. Should hot server be running?"
+msgstr "Aucun manifest Vite. Le serveur hot devrait-il être lancé ?"
+
+#: includes/Models/Styleguide/StyleguideContext.php:189
+msgid ""
+"No catch-up six months later. Performance budgets are set at kickoff and "
+"checked every sprint: image weight, font loading, deferred JavaScript."
+msgstr ""
+"Pas de rattrapage six mois plus tard. Les budgets performance sont fixés au "
+"kick-off et vérifiés à chaque sprint : poids des images, chargement des "
+"polices, JavaScript différé."
+
+#: views/pages/archive-post.html.twig:61
+msgid "No posts found."
+msgstr "Aucun article trouvé."
+
+#: views/pages/search.html.twig:39
+msgid "No results for “%s”"
+msgstr "Aucun résultat pour « %s »"
+
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:115
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:40
+msgid "None"
+msgstr "Aucun"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:76
+msgid "Not a number field: « +68 », « 2.4 M », « ×3 » must be allowed."
+msgstr "PAS un number : « +68 », « 2,4 M », « ×3 » doivent passer."
+
+#: views/components/styleguide.html.twig:1753
+msgid "Notifications"
+msgstr "Notifications"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:38
+msgid "Number of images per row on desktop."
+msgstr "Nombre d'images par ligne sur bureau."
+
+#: views/components/styleguide.html.twig:1345
+msgid "Off-canvas panel. Pair cinq-drawer with cinq-drawer-button."
+msgstr "Panneau off-canvas. Associez cinq-drawer avec cinq-drawer-button."
+
+#: views/components/styleguide.html.twig:1482
+msgid "One"
+msgstr "Un"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:152
+msgid ""
+"One article per month about the web, performance, and design. No promos."
+msgstr ""
+"Un article par mois sur le web, la performance et le design. Pas de promos."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:100
+msgid "One short line. Body/sm style."
+msgstr "Une ligne courte. Style Body/sm."
+
+#: views/components/styleguide.html.twig:1361
+msgid "Open drawer"
+msgstr "Ouvrir le drawer"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:118
+msgid "Open in Maps link."
+msgstr "Lien « ouvrir dans Maps »."
+
+#: views/components/styleguide.html.twig:1416
+msgid "Open modal"
+msgstr "Ouvrir la modal"
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:91
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:105
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:61
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:70
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:94
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:113
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:121
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:47
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:106
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:159
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:56
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:64
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:72
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:82
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:110
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:118
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:56
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:73
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:46
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:68
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:102
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:135
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:54
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:88
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:47
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:56
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:105
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:159
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:67
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:77
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:92
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:123
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:54
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:45
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:54
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:65
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:90
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:47
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:56
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:148
+#: includes/Plugins/ACF/IncludeFields/PageFields.php:65
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:91
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:110
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:142
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:153
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:164
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:192
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:201
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:210
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:219
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:265
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:274
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:284
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:300
+msgid "Optional"
+msgstr "Optionnel"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:105
+msgid "Optional section ID slug for in-page links (e.g. contact)."
+msgstr "Slug d'ID de section optionnel pour les liens internes (ex. contact)."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:159
+msgid "Optional view-all link."
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:159
+msgid "Optional view-all link. Falls back to the posts page."
+msgstr "Lien « tout voir » optionnel. Retombe sur la page des articles."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:63
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:72
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:81
+msgid "Our method"
+msgstr "Notre méthode"
+
+#: includes/Models/Styleguide/StyleguideContext.php:194
+msgid "Our technical approach"
+msgstr "Notre approche technique"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:103
+msgid ""
+"Output FAQPage JSON-LD from the accordion items. Enable on one block per "
+"page only."
+msgstr ""
+"Générer du JSON-LD FAQPage à partir des éléments d'accordéon. À activer sur "
+"un seul bloc par page."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:128
+msgid ""
+"Output LocalBusiness JSON-LD from the fields above. Enable on one block per "
+"site."
+msgstr ""
+"Génère le JSON-LD LocalBusiness à partir des champs ci-dessus. Activer sur "
+"un seul bloc par site."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:40
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:56
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:58
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:44
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:41
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:43
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:97
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:99
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:40
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:44
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:87
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:89
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:40
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:40
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:44
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:304
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:307
+msgid "Overline"
+msgstr "Sur-titre"
+
+#: views/components/styleguide.html.twig:1320
+msgid ""
+"Packages from agencecinq/ui. Import the package in app.js, then use the "
+"custom element with the required ARIA markup."
+msgstr ""
+"Packages de agencecinq/ui. Importez le package dans app.js, puis utilisez le "
+"custom element avec le markup ARIA requis."
+
+#: includes/Plugins/ACF/IncludeFields/PageFields.php:73
+msgid "Page"
+msgstr "Page"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:70
+msgid ""
+"Page by page, with the editorial structure rebuilt. Content and SEO are kept."
+msgstr ""
+"Page par page, avec la structure éditoriale reconstruite. Le contenu et le "
+"SEO sont conservés."
+
+#: includes/Models/StyleguidePage.php:139
+msgid "Page header"
+msgstr "En-tête de page"
+
+#: includes/Plugins/ACF/IncludeFields/PageFields.php:59
+#: includes/Plugins/ACF/IncludeFields/PageFields.php:61
+msgid "Page lead"
+msgstr "Chapô de page"
+
+#: views/components/styleguide.html.twig:50
+#: views/components/styleguide.html.twig:51
+msgid "Page title"
+msgstr "Titre de page"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:110
+msgid ""
+"Page using the Search Page template. Used for the header search icon and "
+"anywhere else the search landing URL is needed."
+msgstr ""
+"Page utilisant le template Search Page. Utilisée pour l'icône de recherche "
+"de l'en-tête et partout où l'URL de la page de recherche est nécessaire."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:111
+msgid "PageSpeed score on mobile"
+msgstr "Score PageSpeed sur mobile"
+
+#: includes/Models/StyleguidePage.php:87
+msgid "Pagination"
+msgstr "Pagination"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:218
+msgid "Paris · Tours · Marseille"
+msgstr "Paris · Tours · Marseille"
+
+#: includes/Models/Styleguide/StyleguideContext.php:187
+#: includes/Models/StyleguidePage.php:186
+msgid "Performance"
+msgstr "Performance"
+
+#: includes/Models/StyleguidePage.php:210
+msgid "Performance budgets"
+msgstr "Budgets performance"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:60
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:62
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:205
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:207
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:209
+msgid "Phone"
+msgstr "Téléphone"
+
+#: includes/Models/Styleguide/StyleguideContext.php:93
+msgid "Placeholder"
+msgstr "Texte indicatif"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:96
+msgid ""
+"Populated from the forms plugin via acf/load_field. Contact Form 7 on the "
+"starter."
+msgstr ""
+"Alimenté dynamiquement via acf/load_field depuis les formulaires du plugin. "
+"Contact Form 7 sur le starter."
+
+#: includes/Plugins/ACF/IncludeFields/PostFields.php:82
+msgid "Post"
+msgstr "Article"
+
+#: views/components/styleguide.html.twig:754
+msgid ""
+"Post cards used on the archive and latest posts. Landscape 3:2 image, first "
+"category, date, title, excerpt, read-more link."
+msgstr ""
+"Cartes d'article utilisées sur l'archive et les derniers articles. Image "
+"paysage 3:2, première catégorie, date, titre, extrait, lien lire la suite."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:65
+msgid ""
+"Post type member. When empty, all published members are shown ordered by "
+"menu_order."
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:158
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:160
+msgid "Poster"
+msgstr "Affiche"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:162
+msgid "Poster image for the video."
+msgstr "Image d'affiche pour la vidéo."
+
+#: views/components/pagination.html.twig:20
+msgid "Previous"
+msgstr "Précédent"
+
+#: views/components/styleguide.html.twig:470
+msgid "Primary"
+msgstr "Principal"
+
+#: views/components/styleguide.html.twig:25
+msgid "Primary button"
+msgstr "Bouton principal"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:65
+msgid "Primary button."
+msgstr "Bouton principal."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:60
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:62
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:139
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:141
+msgid "Primary link"
+msgstr "Lien principal"
+
+#: views/components/styleguide.html.twig:145
+msgid "Primitives"
+msgstr "Primitives"
+
+#: includes/Models/StyleguidePage.php:326
+msgid "Primitives, not a finished site"
+msgstr "Des primitives, pas un site fini"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:241
+msgid "Project manager"
+msgstr "Cheffe de projet"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:133
+msgid "Projects that last"
+msgstr "Des projets qui durent"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:77
+msgid "Prose (720px)"
+msgstr "Prose (720 px)"
+
+#: includes/Models/Styleguide/Catalogs/RichTextCatalog.php:67
+msgid "Prose · Center"
+msgstr "Prose · Centré"
+
+#: includes/Models/Styleguide/Catalogs/RichTextCatalog.php:34
+msgid "Prose · Start"
+msgstr "Prose · Début"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:279
+msgid "Pushes"
+msgstr "Mises en avant"
+
+#: views/components/styleguide.html.twig:1837
+msgid "Quantity"
+msgstr "Quantité"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:72
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:74
+msgid "Question"
+msgstr "Question"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:96
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:98
+msgid "Quote"
+msgstr "Citation"
+
+#: includes/Models/StyleguidePage.php:63
+msgid "Radius"
+msgstr "Rayon"
+
+#: views/components/styleguide.html.twig:439
+msgid "Radius is 0. Do not add rounded-* utilities in the starter."
+msgstr "Le rayon est 0. N'ajoutez pas d'utilitaires rounded-* dans le starter."
+
+#: includes/Models/Styleguide/Catalogs/MediaTextCatalog.php:54
+msgid "Ratio 1:1"
+msgstr "Ratio 1:1"
+
+#: views/components/tease-post.html.twig:31
+msgid "Read"
+msgstr "Lire"
+
+#: views/components/tease-post.html.twig:84
+msgid "Read more"
+msgstr "Lire la suite"
+
+#: views/components/tease-post.html.twig:28
+msgid "Read: %s"
+msgstr "Lire : %s"
+
+#: includes/Plugins/ACF/IncludeFields/PostFields.php:54
+#: includes/Plugins/ACF/IncludeFields/PostFields.php:56
+msgid "Reading time"
+msgstr "Temps de lecture"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:69
+msgid "Redesign"
+msgstr "Refonte"
+
+#: includes/Plugins/ACF/IncludeFields/PostFields.php:66
+#: includes/Plugins/ACF/IncludeFields/PostFields.php:68
+msgid "Related posts"
+msgstr "Articles associés"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:72
+msgid "Rendered as a mailto: link."
+msgstr "Rendu en lien mailto:."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:64
+msgid "Rendered as a tel: link. Spaces are stripped in the href."
+msgstr "Rendu en lien tel: — les espaces sont retirés dans le href."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:56
+msgid "Rendered in an address element. Line breaks preserved."
+msgstr "Rendu dans une balise address. Sauts de ligne préservés."
+
+#: views/components/styleguide.html.twig:1183
+msgid "Rendered when the first flexible block is not a hero."
+msgstr "Affiché lorsque le premier bloc flexible n'est pas un hero."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:121
+msgid "Renders the Text link component at the foot of the card."
+msgstr "Affiche le composant Text link en pied de carte."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:91
+msgid "Restricted toolbar. Prose styles."
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:67
+msgid ""
+"Restricted toolbar. Prose styles; width is controlled by the width field "
+"below."
+msgstr ""
+"Barre d'outils restreinte. Styles Prose ; la largeur est contrôlée par le "
+"champ ci-dessous."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:115
+msgid "Restricted toolbar: bold, italic, lists, and links. No headings."
+msgstr ""
+"Barre d'outils restreinte : gras, italique, listes et liens. Pas de titres."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:95
+msgid "Results"
+msgstr "Résultats"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:28
+msgid "Rich Text"
+msgstr "Texte enrichi"
+
+#: includes/Models/Styleguide/Catalogs/RichTextCatalog.php:29
+msgid "Rich text"
+msgstr "Texte enrichi"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:232
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:59
+msgid "Right"
+msgstr "Droite"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:61
+#: includes/Plugins/ACF/IncludeFields/Layouts/Columns.php:63
+msgid "Right column"
+msgstr "Colonne droite"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:118
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:120
+msgid "Role"
+msgstr "Rôle"
+
+#: views/components/styleguide.html.twig:221
+msgid ""
+"Roles consumed by buttons and surfaces. They are Tailwind utilities, not "
+"extra tokens, and they do not follow a color scheme."
+msgstr ""
+"Rôles consommés par les boutons et surfaces. Ce sont des utilitaires "
+"Tailwind, pas des tokens supplémentaires, et ils ne suivent pas un schéma de "
+"couleurs."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:251
+msgid "SEO consultant"
+msgstr "Consultant SEO"
+
+#: includes/Admin/Menu.php:62
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#: views/components/styleguide.html.twig:179
+msgid "Scheme 1 · Light"
+msgstr "Schéma 1 · Clair"
+
+#: views/components/styleguide.html.twig:197
+msgid "Scheme 2 · Inverse"
+msgstr "Schéma 2 · Inversé"
+
+#: views/components/styleguide.html.twig:870
+msgid "Scope the build"
+msgstr "Cadrer le projet"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:97
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:99
+msgid "Search"
+msgstr "Rechercher"
+
+#. Template Name of the theme
+#: includes/Template/PostStates.php:52
+msgid "Search Page"
+msgstr "Page de recherche"
+
+#: includes/Models/StyleguidePage.php:115
+msgid "Search form"
+msgstr "Formulaire de recherche"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:104
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:106
+msgid "Search page"
+msgstr "Page de recherche"
+
+#: includes/Models/StyleguidePage.php:131
+msgid "Search result"
+msgstr "Résultat de recherche"
+
+#: views/components/search-form.html.twig:28
+msgid "Search the site…"
+msgstr "Rechercher sur le site…"
+
+#: views/components/styleguide.html.twig:1524
+msgid "Second panel."
+msgstr "Deuxième panneau."
+
+#: views/components/styleguide.html.twig:504
+msgid "Secondary"
+msgstr "Secondaire"
+
+#: includes/WPSettings.php:51
+msgid "Secondary Menu"
+msgstr "Menu secondaire"
+
+#: views/components/styleguide.html.twig:27
+msgid "Secondary button"
+msgstr "Bouton secondaire"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:73
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:123
+msgid "Secondary button."
+msgstr "Bouton secondaire."
+
+#: views/components/styleguide.html.twig:28
+msgid "Secondary label"
+msgstr "Libellé secondaire"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:69
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:71
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:150
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:152
+msgid "Secondary link"
+msgstr "Lien secondaire"
+
+#: views/components/styleguide.html.twig:58
+#: views/components/styleguide.html.twig:59
+#: views/components/styleguide.html.twig:60
+msgid "Secondary text"
+msgstr "Texte secondaire"
+
+#: views/components/styleguide.html.twig:23
+msgid "Section background"
+msgstr "Fond de section"
+
+#: views/components/styleguide.html.twig:324
+msgid "Section spacing"
+msgstr "Espacement de section"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:77
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:91
+msgid ""
+"Section spacing. Desktop / mobile: none 0/0, sm 32/24, md 64/40, lg 96/56, "
+"xl 128/72."
+msgstr ""
+"Espacement de section. Bureau / mobile : none 0/0, sm 32/24, md 64/40, lg "
+"96/56, xl 128/72."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:98
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:100
+msgid "Sector"
+msgstr "Secteur"
+
+#: includes/Models/Styleguide/StyleguideContext.php:152
+msgid "See our work"
+msgstr "Voir nos réalisations"
+
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:94
+msgid "Select a menu"
+msgstr "Sélectionner un menu"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:263
+msgid "Select a menu to attach to this submenu"
+msgstr "Sélectionner un menu à associer à ce sous-menu"
+
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:38
+msgid "Select a single entry from a WordPress navigation menu."
+msgstr "Sélectionner une entrée d'un menu de navigation WordPress."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:265
+msgid "Select the menu to attach to this submenu."
+msgstr "Sélectionner le menu à associer à ce sous-menu."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:300
+msgid "Select the mode for the push."
+msgstr "Sélectionner le mode de la mise en avant."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:76
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:78
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:75
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:77
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:157
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:159
+msgid "Selection"
+msgstr "Sélection"
+
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:79
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:80
+msgid "Settings"
+msgstr "Réglages"
+
+#: includes/socials.php:17
+msgid "Share on Facebook"
+msgstr "Partager sur Facebook"
+
+#: includes/socials.php:35
+msgid "Share on LinkedIn"
+msgstr "Partager sur LinkedIn"
+
+#: includes/socials.php:53
+msgid "Share on X"
+msgstr "Partager sur X"
+
+#: views/components/styleguide.html.twig:423
+msgid "Sharp corners, 1px borders."
+msgstr "Angles vifs, bordures 1 px."
+
+#: includes/Models/StyleguidePage.php:158
+msgid "Shell"
+msgstr "Shell"
+
+#: views/components/styleguide.html.twig:871
+msgid "Ship the starter"
+msgstr "Livrer le starter"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:68
+msgid "Short pitch. Restricted toolbar."
+msgstr "Argumentaire court. Barre d'outils restreinte."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:84
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:86
+msgid "Show bio"
+msgstr "Afficher la bio"
+
+#: views/components/styleguide.html.twig:1707
+msgid "Show more"
+msgstr "Afficher plus"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:60
+msgid "Site build"
+msgstr "Conception de site"
+
+#: includes/Models/Styleguide/StyleguideContext.php:144
+msgid "Sites your team can actually run"
+msgstr "Des sites que votre équipe peut vraiment administrer"
+
+#: includes/Models/StyleguidePage.php:147
+msgid "Skip links"
+msgstr "Liens d'évitement"
+
+#: views/components/skip-links.html.twig:6
+msgid "Skip to content"
+msgstr "Aller au contenu"
+
+#: views/components/styleguide.html.twig:1384
+msgid "Slide-over navigation or filters. Close with Escape or the backdrop."
+msgstr "Navigation ou filtres en slide-over. Fermer avec Échap ou le fond."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:41
+msgid "Small"
+msgstr "Petit"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:102
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:92
+msgid "Small label above the title."
+msgstr "Petit libellé au-dessus du titre."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:45
+msgid "Small label above the title. Subtitle component."
+msgstr "Petit libellé au-dessus du titre. Composant Subtitle."
+
+#: includes/Models/StyleguidePage.php:135
+msgid "Social links"
+msgstr "Liens sociaux"
+
+#: includes/Admin/Menu.php:42 includes/Admin/Menu.php:43
+#: includes/Admin/Menu.php:57
+msgid "Socials"
+msgstr "Socials"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:60
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:62
+msgid "Source"
+msgstr "Source"
+
+#: includes/Models/StyleguidePage.php:55
+msgid "Space"
+msgstr "Espace"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:87
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:89
+msgid "Spacing bottom"
+msgstr "Espacement bas"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:73
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:75
+msgid "Spacing top"
+msgstr "Espacement haut"
+
+#: views/components/styleguide.html.twig:1798
+msgid "Spin button"
+msgstr "Bouton numérique"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:78
+msgid "Split (two columns)"
+msgstr "Split (deux colonnes)"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:83
+msgid "Split: pitch on 5 cols, form on 6. Centered: single 720 px column."
+msgstr ""
+"Split : pitch sur 5 cols, formulaire sur 6. Centré : colonne unique 720 px."
+
+#: views/components/styleguide.html.twig:888
+msgid "Stack"
+msgstr "Empilement"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:75
+msgid "Standard (640px)"
+msgstr "Standard (640 px)"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:93
+msgid "Start"
+msgstr "Début"
+
+#: includes/Models/Styleguide/StyleguideContext.php:243
+msgid "Starting point"
+msgstr "Point de départ"
+
+#: views/components/styleguide.html.twig:1029
+msgid ""
+"Static fallback when no Contact Form 7 form is selected in theme options."
+msgstr ""
+"Repli statique lorsqu'aucun formulaire Contact Form 7 n'est sélectionné dans "
+"les options du thème."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:110
+msgid ""
+"Static map capture. Preferred over an iframe: no third-party cookie, no API "
+"key."
+msgstr ""
+"Capture statique de la carte. Préférée à l'iframe : pas de cookie tiers, pas "
+"de clé API."
+
+#: views/components/styleguide.html.twig:1088
+msgid "Static preview shown when Yoast SEO is inactive on this environment."
+msgstr ""
+"Aperçu statique affiché lorsque Yoast SEO est inactif sur cet environnement."
+
+#: includes/Models/StyleguidePage.php:181
+msgid "Strategy"
+msgstr "Stratégie"
+
+#. Template Name of the theme
+#: includes/Template/PostStates.php:48
+msgid "Styleguide"
+msgstr "Styleguide"
+
+#: views/components/styleguide.html.twig:1374
+msgid "Styleguide drawer"
+msgstr "Drawer du styleguide"
+
+#: views/components/styleguide.html.twig:1472
+msgid "Styleguide tabs"
+msgstr "Onglets du styleguide"
+
+#: views/components/styleguide.html.twig:903
+msgid "Styles"
+msgstr "Styles"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:82
+msgid "Sub-fields: days (text), hours (text)."
+msgstr "Sous-champs : days (text), hours (text)."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:249
+msgid "Submenu"
+msgstr "Sous-menu"
+
+#: views/components/newsletter-form.html.twig:13
+msgid "Subscribe"
+msgstr "S'abonner"
+
+#: views/components/styleguide.html.twig:53
+#: views/components/styleguide.html.twig:54
+msgid "Subtitle"
+msgstr "Sous-titre"
+
+#: views/components/styleguide.html.twig:932
+msgid "Subtitle, section header, text link"
+msgstr "Sous-titre, en-tête de section, lien texte"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:83
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:85
+msgid "Suffix"
+msgstr "Suffixe"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:151
+msgid "Supported formats: mp4, mpeg, avi, ogv, webm, and 3gp."
+msgstr "Formats pris en charge : mp4, mpeg, avi, ogv, webm et 3gp."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:153
+msgid "Supporting text below the heading."
+msgstr "Texte d'accompagnement sous le titre."
+
+#: views/components/styleguide.html.twig:1727
+msgid "Switch"
+msgstr "Switch"
+
+#: views/components/styleguide.html.twig:1745
+msgid "Switches"
+msgstr "Switches"
+
+#: views/components/styleguide.html.twig:257
+msgid ""
+"System sans-serif stack (ui-sans-serif, system-ui). Fifteen interface styles "
+"plus five editorial styles (5xl, 6xl, and Prose at line-height 1.7). Never "
+"use Prose in UI, nor Body in an article. .subtitle is uppercase with 0.1em "
+"tracking."
+msgstr ""
+"Stack sans-serif système (ui-sans-serif, system-ui). Quinze styles "
+"d'interface plus cinq styles éditoriaux (5xl, 6xl et Prose en interlignage "
+"1.7). N'utilisez jamais Prose en UI, ni Body dans un article. .subtitle est "
+"en majuscules avec un tracking de 0.1em."
+
+#: includes/Models/StyleguidePage.php:143
+msgid "Table of contents"
+msgstr "Table des matières"
+
+#: views/components/styleguide.html.twig:1453
+msgid "Tabs"
+msgstr "Onglets"
+
+#: includes/Models/StyleguidePage.php:71
+msgid "Tag"
+msgstr "Étiquette"
+
+#: views/components/styleguide.html.twig:30
+msgid "Tag background"
+msgstr "Fond d'étiquette"
+
+#: views/components/styleguide.html.twig:32
+msgid "Tag border"
+msgstr "Bordure d'étiquette"
+
+#: views/components/styleguide.html.twig:31
+msgid "Tag text"
+msgstr "Texte d'étiquette"
+
+#: views/components/styleguide.html.twig:296
+msgid ""
+"Tailwind spacing scale (0.25rem) for gutters and component padding, never "
+"between sections. Section spacing is a separate ACF scale of five values."
+msgstr ""
+"Échelle d'espacement Tailwind (0.25rem) pour les gouttières et le padding "
+"des composants, jamais entre les sections. L'espacement de section est une "
+"échelle ACF séparée de cinq valeurs."
+
+#: views/components/styleguide.html.twig:135
+msgid ""
+"Tailwind v4 primitives (plus ink). Never pick primitives in the editor. "
+"Blocks switch Light or Inverse via ACF color_scheme. UI components read the "
+"Tailwind layer below, not the schemes."
+msgstr ""
+"Primitives Tailwind v4 (plus ink). Ne choisissez jamais les primitives dans "
+"l'éditeur. Les blocs basculent Clair ou Inversé via ACF color_scheme. Les "
+"composants UI lisent la couche Tailwind ci-dessous, pas les schémas."
+
+#: includes/Models/StyleguidePage.php:127
+msgid "Taxonomy filters"
+msgstr "Filtres taxonomiques"
+
+#: views/components/styleguide.html.twig:588
+msgid ""
+"Taxonomy label for article categories, case study sectors, or post tags. One "
+"visual style; labels come from get_the_terms(), never from a hand-typed ACF "
+"field."
+msgstr ""
+"Libellé taxonomique pour les catégories d'articles, secteurs de cas clients "
+"ou étiquettes. Un seul style visuel ; les libellés viennent de "
+"get_the_terms(), jamais d'un champ ACF saisi à la main."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:208
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:28
+msgid "Team"
+msgstr "Équipe"
+
+#: includes/Models/StyleguidePage.php:83
+msgid "Teasers"
+msgstr "Teasers"
+
+#: views/components/styleguide.html.twig:899
+msgid "Templates"
+msgstr "Templates"
+
+#: views/components/styleguide.html.twig:541
+msgid "Tertiary"
+msgstr "Tertiaire"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:171
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:30
+msgid "Testimonials"
+msgstr "Témoignages"
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:85
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:87
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:107
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:109
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:50
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:52
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:60
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:62
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:127
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:129
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:146
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:148
+msgid "Text"
+msgstr "Texte"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:224
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:226
+msgid "Text Alignment"
+msgstr "Alignement du texte"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:141
+msgid "The CINQ newsletter"
+msgstr "La newsletter CINQ"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:216
+msgid "The agency"
+msgstr "L'agence"
+
+#: views/pages/404.html.twig:24
+msgid ""
+"The link may be outdated, or the address contains an error. You can search, "
+"or go back to the homepage."
+msgstr ""
+"Le lien est peut-être obsolète, ou l'adresse contient une erreur. Vous "
+"pouvez rechercher, ou revenir à l'accueil."
+
+#: views/components/styleguide.html.twig:328
+msgid ""
+"The only values for ACF spacing_top and spacing_bottom. Desktop then mobile."
+msgstr ""
+"Les seules valeurs pour ACF spacing_top et spacing_bottom. Bureau puis "
+"mobile."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:217
+msgid "The people behind the projects"
+msgstr "Les personnes derrière les projets"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:190
+msgid ""
+"The site went from 4.2 s to 1.4 s load time. Quote requests followed, "
+"without touching the ad budget."
+msgstr ""
+"Le site est passé de 4,2 s à 1,4 s de temps de chargement. Les demandes de "
+"devis ont suivi, sans toucher au budget pub."
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:130
+msgid "The video will take precedence over the image if both are filled."
+msgstr "La vidéo aura la priorité sur l'image si les deux sont renseignées."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:55
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:57
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:62
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:64
+#: includes/Plugins/ACF/Init.php:47
+msgid "Theme"
+msgstr "Thème"
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:348
+msgid "Theme Fields"
+msgstr "Champs Thème"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:183
+msgid ""
+"They refused the easy option and took the time to understand our work. The "
+"back office is finally usable by the communications team."
+msgstr ""
+"Ils ont refusé la solution facile et pris le temps de comprendre notre "
+"métier. Le back-office est enfin utilisable par l'équipe communication."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:44
+msgid "They trust us"
+msgstr "Ils nous font confiance"
+
+#: views/components/styleguide.html.twig:1534
+msgid "Third panel."
+msgstr "Troisième panneau."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:341
+msgid ""
+"Thirty minutes is enough to know if we are the right partner. No commitment, "
+"and no sales pitch."
+msgstr ""
+"Trente minutes suffisent pour savoir si nous sommes le bon partenaire. Sans "
+"engagement, et sans discours commercial."
+
+#: views/pages/404.html.twig:19
+msgid "This page does not exist"
+msgstr "Cette page n'existe pas"
+
+#: includes/Models/Styleguide/StyleguideContext.php:224
+msgid ""
+"This theme is intentionally minimal. Replace the copy, wire up your menus, "
+"then build project sections on top of this base."
+msgstr ""
+"Ce thème est volontairement minimal. Remplacez les textes, branchez vos "
+"menus, puis construisez les sections projet sur cette base."
+
+#: includes/Admin/Notices.php:50
+msgid ""
+"This theme requires the Advanced Custom Fields plugin. Install and activate "
+"it to edit theme options and page blocks."
+msgstr ""
+"Ce thème nécessite le plugin Advanced Custom Fields. Installez-le et activez-"
+"le pour éditer les options du thème et les blocs de page."
+
+#: views/components/styleguide.html.twig:1504
+msgid "Three"
+msgstr "Trois"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:113
+msgid "Three lines maximum in practice."
+msgstr "Trois lignes maximum en pratique."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:197
+msgid ""
+"Three years after launch, we still edit everything ourselves. No lock-in, no "
+"surprise invoices."
+msgstr ""
+"Trois ans après le lancement, nous éditons encore tout nous-mêmes. Pas de "
+"verrouillage, pas de factures surprises."
+
+#: views/components/styleguide.html.twig:866
+msgid "Timber and Tailwind"
+msgstr "Timber et Tailwind"
+
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:76
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:78
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:49
+#: includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:51
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:65
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:67
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:98
+#: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:100
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:51
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:53
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:40
+#: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:40
+#: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:50
+#: includes/Plugins/ACF/IncludeFields/Layouts/Form.php:52
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:75
+#: includes/Plugins/ACF/IncludeFields/Layouts/Gallery.php:77
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:106
+#: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:108
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:49
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:51
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:51
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:53
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:40
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:42
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:96
+#: includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:98
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:49
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:51
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:49
+#: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:51
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:51
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:53
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:137
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:139
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:312
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:315
+msgid "Title"
+msgstr "Titre"
+
+#: views/components/styleguide.html.twig:1691
+msgid "Toggle visibility of a single region. Wrap any button markup."
+msgstr ""
+"Basculer la visibilité d'une région. Enveloppez n'importe quel markup de "
+"bouton."
+
+#: views/pages/styleguide-page.html.twig:24
+msgid ""
+"Tokens, UI components, and kernel blocks shipped with the starter. Assign "
+"this page template; the catalog is rendered from Twig, not from ACF."
+msgstr ""
+"Tokens, composants UI et blocs du noyau livrés avec le starter. Assignez ce "
+"template de page ; le catalogue est rendu depuis Twig, pas depuis ACF."
+
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:112
+msgid "Top"
+msgstr "Haut"
+
+#: includes/Plugins/ACF/IncludeFields/AcfFieldHelpers.php:114
+msgid "Top and Bottom"
+msgstr "Haut et bas"
+
+#: views/pages/search.html.twig:44
+msgid "Try fewer words, or browse the most visited pages below."
+msgstr ""
+"Essayez moins de mots, ou parcourez les pages les plus visitées ci-dessous."
+
+#: views/components/styleguide.html.twig:648
+msgid ""
+"Twenty-one icons on a 24 by 24 grid, recolorable with currentColor. Add a "
+"file to src/icons/, run pnpm build, then include svg/use.html.twig."
+msgstr ""
+"Vingt et une icônes sur une grille 24 par 24, recolorables avec "
+"currentColor. Ajoutez un fichier dans src/icons/, lancez pnpm build, puis "
+"incluez svg/use.html.twig."
+
+#. translators: 1: WP_DEBUG constant. 2: define() snippet for wp-config.php. 3: Twig cache path.
+#: includes/Admin/Notices.php:69
+msgid ""
+"Twig templates are cached because %1$s is false (WordPress default on a "
+"fresh install). Set %2$s in wp-config.php while developing, or delete %3$s "
+"after editing a Twig file."
+msgstr ""
+"Les templates Twig sont mis en cache car %1$s est false (valeur par défaut "
+"WordPress sur une installation fraîche). Définissez %2$s dans wp-config.php "
+"en développement, ou supprimez %3$s après avoir modifié un fichier Twig."
+
+#: views/components/styleguide.html.twig:1493
+msgid "Two"
+msgstr "Deux"
+
+#: views/components/styleguide.html.twig:401
+msgid ""
+"Two modes. Override --container-max-width (90rem or 110rem) from the start."
+msgstr ""
+"Deux modes. Surchargez --container-max-width (90rem ou 110rem) dès le départ."
+
+#: includes/Models/StyleguidePage.php:51
+msgid "Type"
+msgstr "Type"
+
+#: views/components/styleguide.html.twig:217
+msgid "UI"
+msgstr "UI"
+
+#. translators: %s: asset path
+#: includes/Vite.php:135
+msgid "Unknown Vite build asset: %s"
+msgstr "Asset de build Vite inconnu : %s"
+
+#: includes/Plugins/ACF/IncludeFields/PostFields.php:74
+msgid "Up to three posts. Leave empty to show the latest posts instead."
+msgstr ""
+"Jusqu'à trois articles. Laisser vide pour afficher les derniers articles à "
+"la place."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:79
+msgid ""
+"Updates, backups, monitoring, and retainers. Corrective hotfixes follow the "
+"SLA."
+msgstr ""
+"Mises à jour, sauvegardes, monitoring et forfaits. Les correctifs suivent le "
+"SLA."
+
+#: views/components/styleguide.html.twig:1002
+msgid ""
+"Used in the header, the 404 page, and the search landing page via "
+"get_search_form()."
+msgstr ""
+"Utilisé dans l'en-tête, la page 404 et la page de recherche via "
+"get_search_form()."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:71
+#: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:73
+msgid "Value"
+msgstr "Valeur"
+
+#: views/components/styleguide-layout-block.html.twig:21
+msgid "Variant"
+msgstr "Variante"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:135
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:137
+msgid "Video"
+msgstr "Vidéo"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:390
+msgid "View all posts"
+msgstr "Voir tous les articles"
+
+#: includes/socials.php:41
+msgid "Vimeo"
+msgstr "Vimeo"
+
+#. Theme Name of the theme
+msgid "WP CINQ"
+msgstr "WP CINQ"
+
+#: includes/Models/StyleguidePage.php:91
+msgid "WYSIWYG"
+msgstr "WYSIWYG"
+
+#: views/components/styleguide.html.twig:1672
+msgid "We reopen the estimate, agree on the extra, then we build."
+msgstr ""
+"Nous rouvrons le devis, nous nous accordons sur le supplément, puis nous "
+"construisons."
+
+#: includes/Models/StyleguidePage.php:95
+msgid "Web Components"
+msgstr "Web Components"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:283
+msgid "What happens after launch?"
+msgstr "Que se passe-t-il après le lancement ?"
+
+#: views/components/styleguide.html.twig:1632
+msgid "What happens if the scope moves mid-build?"
+msgstr "Que se passe-t-il si le périmètre évolue en cours de route ?"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:96
+msgid "What it changes, in practice"
+msgstr "Ce que ça change, concrètement"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:180
+msgid "What they say"
+msgstr "Ce qu'ils disent"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:56
+msgid "What we do"
+msgstr "Ce que nous faisons"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:272
+msgid "What we get asked most"
+msgstr "Ce qu'on nous demande le plus"
+
+#: views/pages/single-post.html.twig:176
+msgid "What we write"
+msgstr "Ce que nous écrivons"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:77
+msgid ""
+"When enabled, each logo links to the matching case study (filename "
+"matching). Wire on the project via the cinq_logos_case_study_url filter."
+msgstr ""
+"Si activé, chaque logo devient un lien vers le cas client correspondant "
+"(matching par nom de fichier). À câbler sur le projet via le filtre "
+"cinq_logos_case_study_url."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:127
+msgid "When mode is automatic. Default 3, max 6."
+msgstr "En mode automatique. Défaut 3, max 6."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:126
+msgid "When mode is automatic. Default 3."
+msgstr "En mode automatique. Défaut 3."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:105
+msgid "When mode is automatic. Leave empty for all categories."
+msgstr "En mode automatique. Laisser vide pour toutes les catégories."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:106
+msgid "When mode is automatic. Leave empty for all sectors."
+msgstr "En mode automatique. Laisser vide pour tous les secteurs."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:84
+msgid "When mode is manual. Min 2, max 12."
+msgstr "En mode manuel. Min 2, max 12."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:85
+msgid "When mode is manual. Min 2, max 6."
+msgstr "En mode manuel. Min 2, max 6."
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:165
+msgid "When source is CPT. Post type testimonial, max 6."
+msgstr ""
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:83
+msgid "When source is manual. Min 1, max 6."
+msgstr ""
+
+#: includes/Models/StyleguidePage.php:206
+msgid "Why ACF blocks"
+msgstr "Pourquoi des blocs ACF"
+
+#: views/components/styleguide.html.twig:1574
+msgid "Why do you publish your prices?"
+msgstr "Pourquoi publiez-vous vos tarifs ?"
+
+#: includes/Plugins/ACF/IncludeFields/ClonesFields.php:116
+msgid "Wide (1760px)"
+msgstr "Large (1760 px)"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:78
+msgid "Wide (960px)"
+msgstr "Large (960 px)"
+
+#: includes/Models/Styleguide/Catalogs/RichTextCatalog.php:45
+msgid "Wide · Start"
+msgstr "Large · Début"
+
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:71
+#: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:73
+msgid "Width"
+msgstr "Largeur"
+
+#: includes/Models/StyleguidePage.php:191
+msgid "WordPress"
+msgstr "WordPress"
+
+#: includes/Models/Styleguide/StyleguideContext.php:143
+msgid "WordPress agency"
+msgstr "Agence WordPress"
+
+#: views/components/styleguide.html.twig:865
+msgid "WordPress brochure and editorial sites"
+msgstr "Sites vitrine et éditoriaux WordPress"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:132
+msgid "Work"
+msgstr "Réalisations"
+
+#: views/footer.html.twig:111
+msgid "Write to us"
+msgstr "Nous écrire"
+
+#: includes/Models/StyleguidePage.php:244 includes/socials.php:48
+msgid "X (Twitter)"
+msgstr "X (Twitter)"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:292
+msgid ""
+"Yes. The theme lives in your Git repository from the first commit. No page "
+"builder, no proprietary lock-in."
+msgstr ""
+"Oui. Le thème vit dans votre dépôt Git dès le premier commit. Pas de page "
+"builder, pas de verrouillage propriétaire."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:280
+msgid ""
+"Yes. We audit the theme, plugins, and content, then rebuild what cannot be "
+"maintained. URLs and SEO are mapped before anything goes live."
+msgstr ""
+"Oui. Nous auditons le thème, les plugins et le contenu, puis reconstruisons "
+"ce qui ne peut pas être maintenu. Les URL et le SEO sont cartographiés avant "
+"toute mise en ligne."
+
+#: views/components/styleguide.html.twig:1057
+msgid "Yoast SEO wrapper. JSON-LD BreadcrumbList is output by the plugin."
+msgstr "Wrapper Yoast SEO. Le JSON-LD BreadcrumbList est généré par le plugin."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:284
+msgid ""
+"You edit the content. We stay on for updates, backups, and the work that "
+"needs code. The retainer matches the SLA, not a surprise invoice."
+msgstr ""
+"Vous éditez le contenu. Nous restons pour les mises à jour, les sauvegardes "
+"et le travail qui nécessite du code. Le forfait correspond au SLA, pas à une "
+"facture surprise."
+
+#: includes/socials.php:57
+msgid "YouTube"
+msgstr "YouTube"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:356
+msgid "Your site is not an expense to write off every three years."
+msgstr "Votre site n'est pas une dépense à amortir tous les trois ans."
+
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:200
+msgid "contact@example.com"
+msgstr "contact@example.com"
+
+#: includes/helpers.php:779
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:164
+msgid "conversion rate"
+msgstr "taux de conversion"
+
+#: views/components/styleguide.html.twig:855
+msgid "dedicated theme"
+msgstr "thème dédié"
+
+#: views/components/styleguide.html.twig:346
+msgid "desktop · mobile"
+msgstr "bureau · mobile"
+
+#: views/components/styleguide.html.twig:859
+msgid "from day one, in"
+msgstr "dès le premier jour, en"
+
+#. Author URI of the theme
+msgid "https://agencecinq.com/"
+msgstr "https://agencecinq.com/"
+
+#. Theme URI of the theme
+msgid "https://github.com/agencecinq/wp-cinquante-et-un/"
+msgstr "https://github.com/agencecinq/wp-cinquante-et-un/"
+
+#: views/components/styleguide.html.twig:708
+msgid ""
+"image.html.twig accepts a WordPress attachment or a placeholder array: src, "
+"alt, width, height, and placeholder true. The starter ships public/"
+"placeholder.svg so catalog blocks do not need a media library file."
+msgstr ""
+"image.html.twig accepte une pièce jointe WordPress ou un tableau "
+"placeholder : src, alt, width, height et placeholder true. Le starter inclut "
+"public/placeholder.svg pour que les blocs du catalogue n'aient pas besoin "
+"d'un fichier de la médiathèque."
+
+#: views/components/styleguide.html.twig:378
+msgid ""
+"layout/prose-max-width: 720px, about 65 characters. The measure for long "
+"copy."
+msgstr ""
+"layout/prose-max-width : 720 px, environ 65 caractères. La mesure pour les "
+"textes longs."
+
+#: views/components/styleguide.html.twig:390
+msgid "md is used here: editorial grids often go to two columns before lg."
+msgstr ""
+"md est utilisé ici : les grilles éditoriales passent souvent à deux colonnes "
+"avant lg."
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:106
+msgid "median LCP on mobile"
+msgstr "LCP médian sur mobile"
+
+#: includes/Plugins/ACF/IncludeFields/PostFields.php:58
+msgid "min"
+msgstr "min"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:101
+msgid "more quote requests in six months"
+msgstr "demandes de devis en plus en six mois"
+
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:116
+msgid "page builder plugins"
+msgstr "plugins page builder"
+
+#: includes/helpers.php:761
+#: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:146
+msgid "quote requests"
+msgstr "demandes de devis"
+
+#: views/components/newsletter-form.html.twig:12
+msgid "you@company.com"
+msgstr "you@company.com"
+
+#: views/footer.html.twig:169
+msgid "© %1$s %2$s. All rights reserved."
+msgstr "© %1$s %2$s. Tous droits réservés."
+
+#~ msgid "Add Case Study"
+#~ msgstr "Ajouter un cas client"
+
+#~ msgid "Client"
+#~ msgstr "Client"
+
+#~ msgid "Leave empty to show latest posts from all categories."
+#~ msgstr ""
+#~ "Laisser vide pour afficher les derniers articles de toutes les catégories."
+
+#~ msgid "Number of posts"
+#~ msgstr "Nombre d'articles"
+
+#~ msgid "Result label"
+#~ msgstr "Libellé du résultat"
+
+#~ msgid "Result value"
+#~ msgstr "Valeur du résultat"
+
+#~ msgid "Section heading displayed above the posts list."
+#~ msgstr "Titre de section affiché au-dessus de la liste des articles."
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid ""
+#~ "Contact Form 7 form to render. Wire another plugin on the project if "
+#~ "needed."
+#~ msgstr ""
+#~ "Formulaire Contact Form 7 à afficher. Branchez un autre plugin sur le "
+#~ "projet si besoin."
+
+#~ msgid "Pitch shown next to the form."
+#~ msgstr "Accroche affichée à côté du formulaire."
+
+#~ msgid "Accordions"
+#~ msgstr "Accordéons"
+
+#~ msgid "Add Accordion"
+#~ msgstr "Ajouter un accordéon"
+
+#~ msgid "Enter the content of the accordion"
+#~ msgstr "Saisissez le contenu de l'accordéon"
+
+#~ msgid "Enter the title of the accordion"
+#~ msgstr "Saisissez le titre de l'accordéon"
+
+#~ msgid "Optional text shown above the main title."
+#~ msgstr "Texte optionnel affiché au-dessus du titre principal."
+
+#~ msgid "Overline of the block"
+#~ msgstr "Sur-titre du bloc"
+
+#~ msgid "Title of the block"
+#~ msgstr "Titre du bloc"
+
+#~ msgid "Prefer monochrome SVGs. Images are rendered at a fixed height."
+#~ msgstr ""
+#~ "Privilégiez des SVG monochromes. Les images sont rendues à hauteur fixe."
+
+#~ msgid "Text, not a number: +68, 2.4 M, 24/7, x3."
+#~ msgstr "Texte, pas un nombre : +68, 2.4 M, 24/7, x3."
+
+#~ msgid "Always one column below the md breakpoint."
+#~ msgstr "Toujours une colonne en dessous du breakpoint md."
+
+#~ msgid "Optional SVG."
+#~ msgstr "SVG optionnel."
+
+#~ msgid "Hero · Align center · Standard"
+#~ msgstr "Hero · Centré · Standard"
+
+#~ msgid "Hero · Align left · Compact"
+#~ msgstr "Hero · Aligné à gauche · Compact"
+
+#~ msgid "Hero · Align left · Desktop video"
+#~ msgstr "Hero · Aligné à gauche · Vidéo desktop"
+
+#~ msgid "Hero · Align left · Full viewport"
+#~ msgstr "Hero · Aligné à gauche · Plein écran"
+
+#~ msgid "Hero · Align left · No overlay"
+#~ msgstr "Hero · Aligné à gauche · Sans superposition"
+
+#~ msgid "Hero · Align left · Standard"
+#~ msgstr "Hero · Aligné à gauche · Standard"
+
+#~ msgid "Media + text · Media left"
+#~ msgstr "Média + texte · Média à gauche"
+
+#~ msgid "Media + text · Media right"
+#~ msgstr "Média + texte · Média à droite"
+
+#~ msgid "Media + text · Ratio 1:1"
+#~ msgstr "Média + texte · Ratio 1:1"
+
+#~ msgid "Rich text · Full width"
+#~ msgstr "Rich text · Pleine largeur"
+
+#~ msgid "Rich text · Prose · Center"
+#~ msgstr "Rich text · Prose · Centré"
+
+#~ msgid "Rich text · Prose · Start"
+#~ msgstr "Rich text · Prose · Début"
+
+#~ msgid "Rich text · Wide · Start"
+#~ msgstr "Rich text · Large · Début"
+
+#~ msgid ""
+#~ "The ACF layouts shipped with the starter, rendered from the same Twig as "
+#~ "production. Copy and media are dummy data from the page model."
+#~ msgstr ""
+#~ "Les layouts ACF livrés avec le starter, rendus depuis les mêmes Twig "
+#~ "qu'en production. Textes et médias sont des données factices du modèle de "
+#~ "page."
+
+#~ msgid "On small screens the media always stacks above the text."
+#~ msgstr "Sur petit écran, le média s'empile toujours au-dessus du texte."
+
+#~ msgid "Contact page"
+#~ msgstr "Page contact"
+
+#~ msgid "Optional text link below the body."
+#~ msgstr "Lien texte optionnel sous le corps."
+
+#~ msgid ""
+#~ "Hero size 2880×1280. Provide alt text: this is content, not decoration."
+#~ msgstr ""
+#~ "Format hero 2880×1280. Renseignez un texte alternatif : il s'agit de "
+#~ "contenu, pas de décoration."
+
+#~ msgid "Darken the media from top to bottom."
+#~ msgstr "Assombrir le média de haut en bas."

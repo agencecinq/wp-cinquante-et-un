@@ -33,6 +33,7 @@ class Context extends Site implements Service {
 		add_filter( 'timber/context', array( $this, 'add_menus_to_context' ) );
 		add_filter( 'timber/post/classmap', array( $this, 'add_post_classmap' ) );
 		add_filter( 'timber/term/classmap', array( $this, 'add_term_classmap' ) );
+		add_filter( 'cinq_case_study_block_items', 'cinq_starter_demo_case_study_items', 10, 2 );
 	}
 
 

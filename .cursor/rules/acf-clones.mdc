@@ -1,0 +1,60 @@
+---
+description: Bibliothèque ACF clone pour les champs partagés entre blocs flexibles. À appliquer quand on ajoute ou modifie un layout de bloc, les settings layout/media, ou les champs communs heading / alignment.
+globs: includes/Plugins/ACF/**,views/blocks/**
+alwaysApply: false
+---
+
+# Champs clone ACF (blocs)
+
+## Principe
+
+Les champs réutilisés par plusieurs layouts flexibles ne sont pas dupliqués dans chaque `Layouts/*.php`. Ils vivent dans un **groupe ACF inactif** (`ClonesFields.php`, `active => false`) et sont injectés via des champs `type: clone` (`display: seamless`).
+
+Modifier un clone une fois met à jour tous les blocs qui le référencent.
+
+## Bibliothèque (`ClonesFields.php`)
+
+| Clé ACF | Contenu | Nommé côté bloc |
+| --- | --- | --- |
+| `field_clones_layout` | `color_scheme`, `spacing_top/bottom`, `anchor`, `container` | `layout` |
+| `field_clones_media` | vidéo + images desktop/mobile | `media` |
+| `field_clones_heading` | niveau sémantique `h1` / `h2` / `h3` | `heading` (souvent dans un group `content`) |
+| `field_clones_text_alignment` | `text-left` / `text-center` / `text-right` | `text_alignment` |
+
+## Helpers
+
+`AcfFieldHelpers.php` encapsule les clones les plus courants :
+
+- `settings( $key )` : onglet Settings + clone `field_clones_layout` → `layout`
+- `media( $key )` : onglet Media + clone `field_clones_media` → `media`
+
+Dans un layout :
+
+```php
+'sub_fields' => array(
+    ...AcfFieldHelpers::settings( $key . '_hero' ),
+    ...AcfFieldHelpers::media( $key . '_hero' ),
+    // champs spécifiques au bloc
+),
+```
+
+Pour `heading` ou `text_alignment`, clone direct dans le group `content` du layout (voir `Hero.php`, `MediaText.php`).
+
+Rich Text : champs propres au layout (`width`, `alignment` pour la position de colonne), pas le clone `text_alignment`.
+
+## Front
+
+- `layout` : enrichi par `cinq_enrich_block()` (`classes`, `container_classes`, `color_scheme`, `id` depuis `anchor`).
+- `content.heading` : balise HTML sémantique dans le Twig ; **la typo visuelle est en Tailwind dans le template**, pas en champ ACF.
+- Rich Text : `width` (`max-w-prose`, `max-w-prose-wide`, pleine largeur) et `alignment` (`start` / `center`, position de colonne dans la grille).
+
+## DO
+
+- Ajouter un champ partagé dans `ClonesFields.php`, puis le cloner depuis les layouts ou via un helper dédié dans `AcfFieldHelpers.php`.
+- Garder les clés stables (`field_clones_*`) : elles sont référencées par les clones existants en base.
+
+## DONT
+
+- Pas de champ ACF pour la typo visuelle des titres de bloc : utiliser les utilitaires Tailwind dans `views/blocks/`.
+- Pas de duplication inline des champs `layout` ou `media` dans chaque layout : passer par les clones ou les helpers.
+- Pas de groupe clone actif avec location : la bibliothèque reste `active => false`.

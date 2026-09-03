@@ -58,52 +58,41 @@ class Vite implements Service {
 	 * @return void
 	 */
 	public function run(): void {
-		self::boot( null, true );
+		self::boot();
 	}
 
 
 	/**
-	 * Boot Vite (static entry point). Initializes state and optionally outputs the client script.
+	 * Boot Vite (static entry point). Initializes hot server state or loads the manifest.
 	 *
-	 * @param  string|null $build_path Build path.
-	 * @param  bool        $output     Whether to output the Vite client.
-	 * @return string|null
-	 * @throws Exception Exception.
+	 * @param string|null $build_path Optional build path override.
+	 * @return string|null Vite client URL when running hot, null otherwise.
+	 * @throws Exception When the manifest is missing in production.
 	 */
-	public static function boot( ?string $build_path = null, bool $output = true ): ?string {
+	public static function boot( ?string $build_path = null ): ?string {
 		if ( is_admin() || wp_doing_ajax() || wp_is_json_request() ) {
 			return null;
 		}
 
 		static::$is_hot = file_exists( static::hot_file_path() );
 
-		// Have we got a build path override?
 		if ( $build_path ) {
 			static::$build_path = $build_path;
 		}
 
-		// Are we running hot?
 		if ( static::$is_hot ) {
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Safe usage.
 			static::$server = file_get_contents( static::hot_file_path() );
-			$client         = static::$server . '/@vite/client';
 
-			if ( $output ) {
-				// phpcs:ignore 
-				printf( '<script type="module" src="%s"></script>', $client );
-			}
-
-			return $client;
+			return static::$server . '/@vite/client';
 		}
 
-		// we must have a manifest file...
 		$manifest_path = static::build_path() . '/.vite/manifest.json';
 
 		if ( ! file_exists( $manifest_path ) ) {
 			throw new Exception( esc_html( __( 'No Vite Manifest exists. Should hot server be running?', 'wp-cinquante-et-un' ) ) );
 		}
 
-		// Store our manifest contents.
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Safe usage.
 		static::$manifest = json_decode( file_get_contents( $manifest_path ), true );
 
@@ -119,14 +108,12 @@ class Vite implements Service {
 	 * @throws Exception Exception.
 	 */
 	public static function enqueue_script_module( ?string $build_path = null ): void {
-		// we only want to continue if we have a client.
-		$client = self::boot( $build_path, false );
+		$client = self::boot( $build_path );
 
 		if ( ! $client ) {
 			return;
 		}
 
-		// Enqueue our client script.
 		wp_enqueue_script_module( 'vite-client', $client, array(), null );
 	}
 
@@ -170,29 +157,13 @@ class Vite implements Service {
 	}
 
 	/**
-	 * Return URI path to an image.
+	 * Return URI path to an image under src/img/.
 	 *
-	 * @param string $img Image path.
-	 *
-	 * @return string|null
-	 * @throws Exception Exception.
+	 * @param string $img Image path relative to src/img/.
+	 * @return string
+	 * @throws Exception When the asset is missing from the Vite build.
 	 */
-	public static function img( string $img ): ?string {
-
-		try {
-
-			// set the asset path to the image.
-			$asset = 'src/img/' . ltrim( $img, '/' );
-
-			// if we're not running hot, return the asset.
-			return static::asset( $asset );
-
-		} catch ( Exception $e ) {
-
-			// handle the exception here or log it if needed.
-			// you can also return a default image or null in case of an error.
-			return $e->getMessage(); // Optionally, you can retrieve the error message.
-
-		}
+	public static function img( string $img ): string {
+		return static::asset( 'src/img/' . ltrim( $img, '/' ) );
 	}
 }

@@ -21,7 +21,9 @@ class WPSettings implements Service {
 	public function run(): void {
 		add_action( 'after_setup_theme', array( $this, 'register_menus' ) );
 		add_action( 'after_setup_theme', array( $this, 'add_theme_supports' ) );
+		add_action( 'after_setup_theme', array( $this, 'disable_block_editor_supports' ), 100 );
 		add_action( 'after_setup_theme', array( $this, 'load_textdomain' ), 0 );
+		add_filter( 'use_widgets_block_editor', '__return_false' );
 	}
 
 	/**
@@ -70,6 +72,9 @@ class WPSettings implements Service {
 		 * @see https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
+		add_image_size( 'hero', 2880, 1280, true );
+		add_image_size( 'content', 1200, 900, true );
+		add_image_size( 'member', 640, 853, true );
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -85,5 +90,17 @@ class WPSettings implements Service {
 				'caption',
 			)
 		);
+	}
+
+	/**
+	 * Removes block editor theme supports (patterns, FSE templates).
+	 *
+	 * Not handled by Classic Editor.
+	 *
+	 * @return void
+	 */
+	public function disable_block_editor_supports(): void {
+		remove_theme_support( 'core-block-patterns' );
+		remove_theme_support( 'block-templates' );
 	}
 }

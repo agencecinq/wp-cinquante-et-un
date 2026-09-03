@@ -5,37 +5,39 @@
  #}
 
 {%- set layout = block.layout | default({}) -%}
-{%- set content = block.content | default({}) -%}
+{%- set items = block.items | default([]) -%}
 
-<section
-	{% if block.id %}id="{{ block.id }}"{% endif %}
-	class="{{ html_classes( layout.classes | default('') ) }}"
-	data-color-scheme="{{ layout.color_scheme | default('default') }}"
->
-	<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 items-start gap-x-8 gap-y-10' ) }}">
-		<div class="col-span-full space-y-3 lg:sticky lg:top-24 lg:col-span-4">
-			{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+{%- if items | length -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+		class="{{ html_classes( layout.classes | default('') ) }}"
+		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 items-start gap-x-8 gap-y-10' ) }}">
+			<div class="col-span-full space-y-3 lg:sticky lg:top-24 lg:col-span-4">
+				{{- include('components/subtitle.html.twig', { title: block.overline }) -}}
 
-			{%- if content.title -%}
-				<h2 class="text-2xl font-semibold">{{- content.title -}}</h2>
-			{%- endif -%}
+				{%- if block.title -%}
+					<h2 class="text-2xl font-semibold">{{- block.title -}}</h2>
+				{%- endif -%}
+			</div>
+
+			<div class="col-span-full lg:col-span-7 lg:col-start-6">
+				{{-
+					include(
+						'components/accordion-group.html.twig',
+						{
+							items: items
+						}
+					)
+				-}}
+			</div>
 		</div>
 
-		<div class="col-span-full lg:col-span-7 lg:col-start-6">
-			{{-
-				include(
-					'components/accordion-group.html.twig',
-					{
-						accordions: block.accordions
-					}
-				)
-			-}}
-		</div>
-	</div>
-
-	{%- if block.faq_schema_json | default('') -%}
-		<script type="application/ld+json">
-			{{- block.faq_schema_json | raw -}}
-		</script>
-	{%- endif -%}
-</section>
+		{%- if block.faq_schema_json | default('') -%}
+			<script type="application/ld+json">
+				{{- block.faq_schema_json | raw -}}
+			</script>
+		{%- endif -%}
+	</section>
+{%- endif -%}

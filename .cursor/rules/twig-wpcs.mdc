@@ -49,7 +49,7 @@ views/**/*.twig
 ## Exemples
 
 ```twig
-{# DO — compatible Prettier #}
+{# DO: compatible Prettier #}
 {%- set items = nav_menus.footer.get_items() | default([]) -%}
 {%- if items | length -%}
 {{ post.title | default(post.hero.title) }}

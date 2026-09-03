@@ -5,42 +5,46 @@
  #
  # @param array content Overline, title, and optional link.
  # @param array posts Posts to display.
- # @param attributes Extra HTML attributes on the section.
+ # @param int columns Grid columns (2, 3, or 4).
+ # @param bool allow_empty Render the section header when posts is empty.
+ # @param array attributes Extra HTML attributes on the section.
  # @param array classes Extra CSS classes.
  # @param string container_classes Container utility classes for the inner wrapper.
  #}
 
-{%- if posts | length -%}
+{%- set columns = columns | default(3) -%}
+{%- set grid_classes =
+	columns == 4
+		? 'grid-cols-2 gap-4 lg:grid-cols-4'
+		: (
+			columns == 2
+				? 'grid-cols-1 gap-8 md:grid-cols-2'
+				: 'grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'
+		)
+-%}
+
+{%- if posts | length or allow_empty | default(false) -%}
 	<section
 		{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
 		class="{{ html_classes( classes | default([]) | join( ' ' ) ) }}"
 	>
-		<div class="{{ html_classes( container_classes | default('container'), 'space-y-6' ) }}">
-			{%- if content.overline or content.title or content.link.url -%}
-				<div class="flex flex-wrap items-end justify-between gap-4">
-					<div class="space-y-2">
-						{{- include('components/subtitle.html.twig', { title: content.overline }) -}}
+		<div class="{{ html_classes( container_classes | default('container'), 'space-y-10' ) }}">
+			{{-
+				include(
+					'components/section-header.html.twig',
+					{
+						overline: content.overline,
+						title: content.title,
+						link: {
+							title: content.link.title | default(__('View all posts', 'wp-cinquante-et-un')),
+							url: content.link.url,
+							target: content.link.target | default('')
+						}
+					}
+				)
+			-}}
 
-						{%- if content.title -%}
-							<h2 class="text-lg font-semibold">{{- content.title -}}</h2>
-						{%- endif -%}
-					</div>
-
-					{{-
-						include(
-							'components/text-link.html.twig',
-							{
-								title: content.link.title | default(__('View all posts', 'wp-cinquante-et-un')),
-								url: content.link.url,
-								target: content.link.target | default('')
-							},
-							with_context = false
-						)
-					-}}
-				</div>
-			{%- endif -%}
-
-			<div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+			<div class="grid {{ grid_classes }}">
 				{%- for post in posts -%}
 					{{- include('components/tease-post.html.twig', { post: post }, with_context = false) -}}
 				{%- endfor -%}

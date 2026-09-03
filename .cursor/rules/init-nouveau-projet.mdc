@@ -42,7 +42,7 @@ Points de vigilance :
 ## Étape 2 : renommer les fichiers et le dossier
 
 - `languages/<ancien-slug>.pot` -> `languages/<slug>.pot`.
-- Fichiers de langue compilés type `languages/<ancien-slug>-fr_FR.mo` -> `<slug>-fr_FR.mo` si présents.
+- Fichiers de langue compilés : `languages/fr_FR.mo` (et `fr_FR.po`). Le `.pot` reste nommé d'après le slug (`languages/<slug>.pot`).
 - Le dossier du thème lui-même -> `<slug>` (dans `wp-content/themes/`).
 - Remets `style.css` `Version` à `1.0.0` (ou la convention en vigueur) pour le nouveau projet.
 
@@ -59,7 +59,7 @@ Points de vigilance :
 
 Le starter n'embarque aucune police custom : stacks Tailwind / navigateur. `font-face.css` est vide.
 
-Quand le projet a ses propres polices, aligne les sources — c'est un point qui dérive souvent sur les copies :
+Quand le projet a ses propres polices, aligne les sources : c'est un point qui dérive souvent sur les copies :
 
 1. Les fichiers dans `src/fonts/` (un `.woff2` orphelin d'un ancien projet).
 2. Les `@font-face` dans `src/stylesheets/base/font-face.css`.
@@ -91,6 +91,7 @@ Le PHP se nettoie au fur et à mesure, mais retire d'emblée ce qui est claireme
 - Dans `.env`, règle `APP_URL` sur l'URL locale du nouveau projet, dérivée du slug (étape 0) : `APP_URL = https://<slug>.local` (ex : `https://bellitalia.local`), sans slash final.
 - Dans `wp-config.php`, passe `WP_DEBUG` à `true` : une install WordPress fraîche (et Local) le laisse à `false`, ce qui active le cache Twig. Une notice admin le signale tant que c'est le cas.
 - `composer install` puis `pnpm install`.
+- Installe et active **Advanced Custom Fields** et **Classic Editor** (plugins requis du starter).
 - `pnpm dev` pour développer, `pnpm build` pour vérifier le build prod.
 - Lance phpcs (`composer` / config `phpcs.xml`) et corrige les avertissements introduits.
 

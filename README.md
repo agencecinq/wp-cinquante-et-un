@@ -12,6 +12,9 @@ It ships a generic, reusable foundation (block library, components, helpers, too
 - **Accessibility**: semantic HTML, clear structure, ARIA best practices where relevant.
 - **Performance**: optimized images (WebP, lazy‑loading), SVG sprite, minified assets in production.
 - **Extensibility**: class‑based PHP in `includes/`, Twig components in `views/`, front‑end sources in `src/`.
+- **ACF block library**: flexible page layouts (hero, cards grid, media + text, FAQ, …) with a styleguide catalogue.
+- **Journal**: posts index, category and tag archives, single post with server-side table of contents.
+- **Demo seeds**: WP-CLI scripts in `bin/` to populate a local site for development.
 
 ## Workflows (AI-assisted)
 
@@ -36,7 +39,73 @@ pnpm dev        # local dev server
 
 Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`). Colors use Tailwind utilities (`bg-white`, `text-black`, `text-gray-500`); override `--color-gray-*` in `src/stylesheets/theme.css` if the project palette differs. Type uses the system sans-serif stack; add project fonts via `src/fonts/` and/or Google Fonts. Corners are square.
 
-`index.php` is the fallback router and renders `index.html.twig` (ACF blocks). Blog and single post views use native WordPress hierarchy entry points (`home.php`, `category.php`, `single.php`) that each render their Twig. Project-specific compositions are added per site, not copied from a previous client.
+### Template hierarchy
+
+Root PHP files load the Timber context and render a single Twig view, with no conditional routing in `index.php`. Named page templates win over the default page flow.
+
+| Entry point | Twig view | Purpose |
+| --- | --- | --- |
+| `index.php` | `index.html.twig` | Pages (default) and fallback |
+| `home.php` | `pages/archive-post.html.twig` | Posts index |
+| `category.php` | `pages/archive-post.html.twig` | Category archives |
+| `tag.php` | `pages/archive-post.html.twig` | Tag archives |
+| `single-post.php` | `pages/single-post.html.twig` | Single post |
+| `search.php` | `pages/search.html.twig` | Search results |
+| `404.php` | `pages/404.html.twig` | Not found |
+| `page-templates/styleguide-page.php` | `pages/styleguide-page.html.twig` | Component and block catalogue |
+| `page-templates/search-page.php` | `pages/search.html.twig` | Dedicated search landing page |
+
+There is no `page.php` or `front-page.php`: content pages go through `index.php`. Project-specific CPT or taxonomy views follow the same pattern (`archive-<cpt>.php`, `single-<cpt>.php`, …).
+
+### Page content
+
+`index.html.twig` composes pages from up to three layers:
+
+1. **Page header**: rendered when the first flexible block is not a `hero` (`components/page-header.html.twig`: h1, optional ACF `page_lead`, Yoast breadcrumb).
+2. **Native editor content**: WordPress `post_content`, output in a `.wysiwyg` wrapper (legal pages, simple editorial content).
+3. **ACF flexible blocks**: marketing layouts via `blocks/blocks.html.twig`.
+
+WYSIWYG content and blocks are independent: a page can use either, or both (editorial intro followed by blocks). Block definitions live in `includes/Plugins/ACF/IncludeFields/Layouts/` with matching Twig in `views/blocks/`. Shared fields (layout settings, media, heading level) use the ACF clone library documented in `.cursor/rules/acf-clones.mdc`. See the block list in `.cursor/rules/starter-cinq.mdc`.
+
+### Journal and archives
+
+The blog uses Timber models (`includes/Models/`) mapped in `includes/Setup/Context.php`:
+
+- `Home`: posts index (`home.php`)
+- `CategoryArchive`: category archives (`category.php`)
+- `TagArchive`: tag archives (`tag.php`)
+- `BlogPost`: single post (server-side table of contents, reading time)
+
+Archive editorial content (title, lead, hero) is stored in an **ACF options page** under the Posts menu, not on `page_for_posts`. See `.cursor/rules/archive-options.mdc`. Category and tag filters share `pages/archive-post.html.twig` via the `ArchivePost` trait.
+
+### Search and styleguide
+
+- **Search**: `search.php` renders `pages/search.html.twig`. A dedicated search page can use the `search-page` page template.
+- **Styleguide**: the `styleguide-page` template ships a live catalogue of design tokens, shell components, Web Components ([agencecinq/ui](https://agencecinq.github.io/ui/)), and ACF blocks. It loads separate Vite entries (`src/stylesheets/styleguide.css`, `src/scripts/styleguide.ts`). Demo data comes from `includes/Models/StyleguidePage.php`.
+
+### Theme options
+
+Global theme settings (footer menus, social links, …) are managed under **Settings → Theme** (`options-theme` ACF options page). Header navigation uses WordPress nav menus registered by the theme.
+
+### Demo content (seeds)
+
+The `bin/` folder contains WP-CLI seed scripts to populate a local install with demo content (home page blocks, journal posts, flexible page, legal mentions, menus, theme options). Run them from the WordPress web root with ACF active:
+
+```bash
+wp eval-file wp-content/themes/wp-cinquante-et-un/bin/seed-home-page.php --path=/path/to/wordpress/public
+wp eval-file wp-content/themes/wp-cinquante-et-un/bin/seed-archive-post.php --path=/path/to/wordpress/public
+wp eval-file wp-content/themes/wp-cinquante-et-un/bin/seed-flexible-page.php --path=/path/to/wordpress/public
+wp eval-file wp-content/themes/wp-cinquante-et-un/bin/seed-agence-page.php --path=/path/to/wordpress/public
+```
+
+`seed-home-page.php` also seeds the agency page, legal mentions page and footer menus. To refresh those pages alone:
+
+```bash
+wp eval-file wp-content/themes/wp-cinquante-et-un/bin/seed-agence-page.php --path=/path/to/wordpress/public
+wp eval-file wp-content/themes/wp-cinquante-et-un/bin/seed-legal-page.php --path=/path/to/wordpress/public
+```
+
+Shared helpers live in `bin/seed-helpers.php`. Replace the theme slug in the path when working on a renamed project.
 
 ### SVG sprite support
 
@@ -60,8 +129,8 @@ The theme provide a Twig component located at `views/svg/use.html.twig` to facil
 The sprite itself is included in the theme's `index.html.twig` file to ensure it's available throughout the site:
 
 ```twig
-<div style="display: none;">
-	{{ include 'svg/sprite.html.twig' }}
+<div id="svg-sprite" style="display: none;">
+	{{- include('public/sprite.svg', ignore_missing = true) -}}
 </div>
 ```
 
@@ -117,10 +186,12 @@ The theme supports static images located in the `src/img/` directory. You can re
 
 It's useful for images that don't require responsive handling or WebP conversion, such as logos or decorative images without losing dev and build mode benefits provided by Vite.
 
+Assets that must survive production deploy without Vite processing (e.g. `public/placeholder.svg`) live directly in `public/` and are referenced with `get_theme_file_uri()` or a plain path. `deploy.sh` keeps `public/` but removes `src/`.
+
 Example of usage in a Twig template:
 
 ```twig
-<img src="{{ assets('src/img/logo.png') }}" alt="Logo" width="200" height="100" />
+<img src="{{ asset('src/img/logo.png') }}" alt="Logo" width="200" height="100" />
 ```
 
 ## Structure
@@ -131,16 +202,23 @@ The project structure is organized as follows:
 wp-cinquante-et-un/
 ├── .cursor/rules/       # Cursor rules (conventions + init/back-port workflows)
 ├── .github/workflows/   # CI: release on tag v*
+├── bin/                 # WP-CLI seed scripts (demo content)
 ├── includes/            # PHP classes (PSR-4, namespace WPCinquanteEtUn)
+│   ├── Models/          # Timber models (Home, BlogPost, StyleguidePage, …)
+│   ├── Plugins/ACF/     # ACF field groups and block layouts
+│   ├── Setup/           # Context, Enqueue, Twig bootstrap
+│   └── Traits/          # Shared model behaviour (ArchivePost, …)
 ├── languages/           # i18n (.pot template; translations generated per project)
+├── page-templates/      # Named WordPress page templates (styleguide, search)
 ├── src/                 # Source files for assets
 │   ├── stylesheets/     # CSS (theme.css = @theme tokens, styles.css = imports)
 │   ├── scripts/         # TypeScript components (mounted via piecesjs)
 │   ├── icons/           # SVG icons compiled into public/sprite.svg
-│   ├── img/             # Static images
-|   └── fonts/           # Font files
+│   ├── img/             # Static images (processed by Vite)
+│   └── fonts/           # Font files
 ├── views/               # Twig templates (pages/, blocks/, components/, svg/)
-├── public/              # Compiled assets (sprite.svg, etc.)
+├── public/              # Production assets (sprite.svg, placeholder.svg, …)
+├── *.php (root)         # WordPress template hierarchy entry points
 ├── deploy.sh            # Production build + dev-files purge (used by CI)
 ├── .env.sample          # Sample environment variables file
 ├── composer.json        # PHP dependencies
@@ -191,7 +269,7 @@ Use Composer to install the required PHP dependencies:
 composer install
 ```
 
-Don't forget to install and activate the required WordPress plugins, such as ACF, to ensure full functionality of the theme.
+Don't forget to install and activate the required WordPress plugins: **Advanced Custom Fields** and **Classic Editor**. Project plugins (Contact Form 7, Yoast SEO, etc.) are added per site.
 
 ### JavaScript Dependencies
 
@@ -240,6 +318,7 @@ rm -rf vendor/timber/timber/cache/*
 - If you encounter issues with Twig templates not updating, ensure you have cleared the cache as described above.
 - Make sure all dependencies are installed correctly by running `composer install` and `pnpm install`.
 - Check your local environment variables in the `.env` file to ensure they are set up correctly.
+- On Local by Flywheel, if `wp eval-file` fails to connect to MySQL with `DB_HOST=localhost`, pass PHP the site socket: `php -d mysqli.default_socket="/path/to/mysqld.sock" $(which wp) eval-file …`.
 
 ## Resources
 

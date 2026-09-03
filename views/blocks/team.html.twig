@@ -1,0 +1,78 @@
+{#
+ # Blocks: Team
+ #}
+
+{%- set layout = block.layout | default({}) -%}
+{%- set members = block.members | default([]) -%}
+{%- set columns = block.columns | default(4) ~ '' -%}
+{%- set col_class = {
+	'3': 'md:grid-cols-3',
+	'4': 'md:grid-cols-4'
+}[columns] | default('md:grid-cols-4') -%}
+
+{%- if members | length -%}
+	<section
+		{% if block.id %}id="{{ block.id }}"{% endif %}
+		class="{{ html_classes( layout.classes | default('') ) }}"
+		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+	>
+		<div class="{{ html_classes( layout.container_classes | default('container'), 'space-y-10' ) }}">
+			{{-
+				include(
+					'components/section-header.html.twig',
+					{
+						overline: block.overline,
+						title: block.title
+					}
+				)
+			-}}
+
+			<ul class="grid grid-cols-1 gap-8 {{ col_class }}">
+				{%- for member in members -%}
+					<li class="flex flex-col gap-4">
+						{%- if member.photo -%}
+							<div class="aspect-3/4 w-full overflow-hidden border border-black bg-gray-100">
+								{{-
+									include(
+										'components/image.html.twig',
+										{
+											image: member.photo,
+											size: 'member',
+											classes: ['size-full object-cover object-center']
+										}
+									)
+								-}}
+							</div>
+						{%- endif -%}
+
+						<div class="space-y-1">
+							{%- if member.name -%}
+								<p class="text-base font-medium">{{- member.name -}}</p>
+							{%- endif -%}
+							{%- if member.role -%}
+								<p class="text-sm text-gray-500">{{- member.role -}}</p>
+							{%- endif -%}
+							{%- if block.show_bio and member.bio -%}
+								<p class="text-sm text-gray-600">{{- member.bio -}}</p>
+							{%- endif -%}
+						</div>
+
+						{%- if member.socials.linkedin.url|default('') -%}
+							<div class="flex gap-2">
+								<a
+									href="{{ member.socials.linkedin.url | e('html_attr') }}"
+									class="inline-flex size-4.5 items-center justify-center"
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label="{{ __('LinkedIn profile', 'wp-cinquante-et-un') | e('html_attr') }}"
+								>
+									{{- include('svg/use.html.twig', { classes: ['size-4.5'], icon: 'linkedin' }) -}}
+								</a>
+							</div>
+						{%- endif -%}
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
+	</section>
+{%- endif -%}

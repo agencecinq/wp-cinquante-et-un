@@ -61,3 +61,28 @@ void customElements.whenDefined('cinq-combobox').then(() => {
 		wireCombobox($combobox);
 	}
 });
+
+function wireStyleguidePlaygrounds() {
+	document.querySelectorAll<HTMLElement>('[data-styleguide-playground]').forEach(($playground) => {
+		const $select = $playground.parentElement?.querySelector<HTMLSelectElement>(
+			'[data-styleguide-variant-select]',
+		);
+
+		if (!$select) {
+			return;
+		}
+
+		const $panels = $playground.querySelectorAll<HTMLElement>('[data-styleguide-variant]');
+
+		$select.addEventListener('change', () => {
+			const value = $select.value;
+
+			$panels.forEach(($panel) => {
+				const isActive = $panel.dataset.styleguideVariant === value;
+				$panel.hidden = !isActive;
+			});
+		});
+	});
+}
+
+wireStyleguidePlaygrounds();

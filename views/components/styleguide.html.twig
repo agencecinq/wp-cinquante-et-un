@@ -168,7 +168,7 @@
 			<p class="text-gray-500 max-w-prose text-sm">
 				{{-
 					__(
-						'Exposed in theme.json for Gutenberg. Each block sets color_scheme to default or inverse.',
+						'Declared in src/stylesheets/theme.css (@theme). Each block sets color_scheme to default or inverse.',
 						'wp-cinquante-et-un'
 					)
 				-}}
@@ -375,7 +375,7 @@
 	</div>
 	<div class="flex h-14 w-full max-w-prose items-center justify-center border border-black">
 		<p class="text-gray-600 text-xs">
-			{{- __('layout/prose-max-width — 720px, about 65 characters. The measure for long copy.', 'wp-cinquante-et-un') -}}
+			{{- __('layout/prose-max-width: 720px, about 65 characters. The measure for long copy.', 'wp-cinquante-et-un') -}}
 		</p>
 	</div>
 	<ul class="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-4">
@@ -1811,7 +1811,7 @@
 			</header>
 			<div class="border border-black p-6">
 				<cinq-spinbutton
-					class="inline-flex w-fit items-center gap-0 border border-black bg-gray-50 p-1 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-black"
+					class="inline-flex w-fit items-center gap-0 border border-black bg-gray-50 p-1 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-black"
 				>
 					<button
 						class="grid size-8 place-items-center bg-white hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"

@@ -18,10 +18,10 @@ alwaysApply: false
 All custom property **suffixes** in `@theme` must be in **English**, kebab-case:
 
 ```css
-/* GOOD — project overrides the Tailwind scale */
+/* GOOD: project overrides the Tailwind scale */
 --color-zinc-950: #08090a;
 
-/* GOOD — project token when the palette / scale does not map */
+/* GOOD: project token when the palette / scale does not map */
 --color-accent: #b3fca4;
 --radius-4xl: 2.5rem;
 

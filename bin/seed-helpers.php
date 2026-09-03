@@ -508,6 +508,251 @@ HTML;
 }
 
 /**
+ * Returns a published page permalink, or a fallback when the page is missing.
+ *
+ * @param string $slug     Page slug.
+ * @param string $fallback Fallback URL.
+ * @return string
+ */
+function cinq_seed_page_permalink( string $slug, string $fallback = '#' ): string {
+	$page = get_page_by_path( $slug );
+
+	if ( ! $page ) {
+		return $fallback;
+	}
+
+	$url = get_permalink( $page->ID );
+
+	return is_string( $url ) ? $url : $fallback;
+}
+
+/**
+ * Builds flexible blocks for the agency page demo.
+ *
+ * @param int $hero_image_id   Hero image attachment ID.
+ * @param int $media_image_id  Media + text image attachment ID.
+ * @param int $avatar_image_id Testimonial avatar attachment ID.
+ * @return array<int, array<string, mixed>>
+ */
+function cinq_seed_agence_page_blocks(
+	int $hero_image_id,
+	int $media_image_id,
+	int $avatar_image_id
+): array {
+	$layout       = cinq_seed_layout();
+	$layout_none  = cinq_seed_layout( 'none', 'none' );
+	$layout_cta   = cinq_seed_layout( 'xl', 'xl', 'inverse' );
+	$layout_team  = cinq_seed_layout( 'md', 'md', 'default', 'equipe' );
+	$layout_story = cinq_seed_layout( 'md', 'md', 'default', 'methode' );
+
+	$story_body = <<<'HTML'
+<p>CINQ est une agence WordPress indépendante, fondée en 2011 à Tours. Nous concevons des sites éditoriaux que les équipes marketing tiennent au quotidien, sans dépendre d’un intégrateur à chaque modification de contenu.</p>
+<h2>Notre promesse</h2>
+<p>Pas de page builder, pas de thème générique revendu. Chaque projet repart du starter maison : blocs ACF en PHP, thème versionné dans votre dépôt Git, performances mesurées dès la première mise en ligne.</p>
+<ul>
+<li>Du code lisible : chaque bloc est un fichier que votre équipe technique peut auditer</li>
+<li>De l’éditorial durable : Classic Editor, champs nommés, pas de HTML généré opaque</li>
+<li>De la performance : budgets posés au cadrage, LCP vérifié à chaque sprint</li>
+</ul>
+HTML;
+
+	return array(
+		array(
+			'acf_fc_layout'      => 'hero',
+			'layout'             => $layout_none,
+			'alignment'          => 'left',
+			'height'             => 'standard',
+			'show_media_overlay' => 1,
+			'media'              => cinq_seed_media( $hero_image_id ),
+			'content'            => array(
+				'overline'       => 'L’agence',
+				'title'          => 'Une agence WordPress qui code pour durer',
+				'heading'        => 'h1',
+				'text'           => 'Nous construisons des sites éditoriaux que vos équipes font vivre seules. Le code vous appartient, les performances aussi.',
+				'link'           => cinq_seed_link( 'Parlons de votre projet', '#contact' ),
+				'secondary_link' => cinq_seed_link( 'Notre méthode', '#methode' ),
+			),
+		),
+		array(
+			'acf_fc_layout' => 'rich_text',
+			'layout'        => $layout_story,
+			'overline'      => 'Notre histoire',
+			'title'         => 'Du thème custom, pas du sur-mesure de façade',
+			'content'       => $story_body,
+			'width'         => 'prose',
+			'alignment'     => 'start',
+		),
+		array(
+			'acf_fc_layout' => 'key_figures',
+			'layout'        => $layout,
+			'overline'      => 'En chiffres',
+			'title'         => 'Quinze ans de sites qui tiennent',
+			'figures'       => array(
+				array(
+					'value'  => '15',
+					'suffix' => '+',
+					'label'  => 'ans d’existence',
+				),
+				array(
+					'value'  => '120',
+					'suffix' => '+',
+					'label'  => 'projets livrés',
+				),
+				array(
+					'value'  => '12',
+					'suffix' => '',
+					'label'  => 'personnes à Tours et Lille',
+				),
+				array(
+					'value'  => '0',
+					'suffix' => '',
+					'label'  => 'page builder livré',
+				),
+			),
+		),
+		array(
+			'acf_fc_layout'  => 'media_text',
+			'layout'         => $layout,
+			'media'          => $media_image_id,
+			'media_position' => 'right',
+			'media_ratio'    => '4:3',
+			'overline'       => 'Notre façon de travailler',
+			'title'          => 'Cadrage, design system, développement itératif',
+			'content'        => '<p>Chaque projet démarre par un cadrage éditorial et technique : arborescence, types de contenu, contraintes de performance. Le design system est posé dans Figma, traduit en tokens Tailwind, puis intégré bloc par bloc.</p>',
+			'cta'            => cinq_seed_link( 'Voir nos expertises', cinq_seed_page_permalink( 'creation-de-site-wordpress' ) ),
+		),
+		array(
+			'acf_fc_layout' => 'cards_grid',
+			'layout'        => $layout_team,
+			'columns'       => 4,
+			'overline'      => 'L’équipe',
+			'title'         => 'Des profils complémentaires, une même exigence',
+			'cards'         => array(
+				array(
+					'icon'  => null,
+					'title' => 'Thomas Aubert',
+					'text'  => 'Directeur technique. Architecture WordPress, revue de code, performance.',
+					'link'  => cinq_seed_link( 'LinkedIn', 'https://www.linkedin.com/company/agencecinq' ),
+				),
+				array(
+					'icon'  => null,
+					'title' => 'Sophie Martin',
+					'text'  => 'Directrice de projet. Cadrage éditorial, coordination client, recette.',
+					'link'  => cinq_seed_link( 'LinkedIn', 'https://www.linkedin.com/company/agencecinq' ),
+				),
+				array(
+					'icon'  => null,
+					'title' => 'Julien Rivière',
+					'text'  => 'Lead développeur front. Intégration Tailwind, accessibilité, Web Vitals.',
+					'link'  => cinq_seed_link( 'LinkedIn', 'https://www.linkedin.com/company/agencecinq' ),
+				),
+				array(
+					'icon'  => null,
+					'title' => 'Camille Roussel',
+					'text'  => 'Designer UI. Design system Figma, composants, direction artistique.',
+					'link'  => cinq_seed_link( 'LinkedIn', 'https://www.linkedin.com/company/agencecinq' ),
+				),
+			),
+		),
+		array(
+			'acf_fc_layout' => 'testimonials',
+			'layout'        => $layout,
+			'source'        => 'manual',
+			'columns'       => 3,
+			'overline'      => 'Ils nous font confiance',
+			'title'         => 'Des collaborations longues, pas des one-shots',
+			'items'         => array(
+				array(
+					'quote'   => 'CINQ a refusé la solution facile et pris le temps de comprendre notre métier. Trois ans après, l’équipe communication édite toujours seule.',
+					'author'  => 'Sophie Lemarchand',
+					'role'    => 'Directrice communication',
+					'company' => 'Nexiode',
+					'avatar'  => $avatar_image_id,
+				),
+				array(
+					'quote'   => 'Le site est passé de 4,2 s à 1,4 s de chargement. Nos demandes de devis ont suivi, sans qu’on touche au budget publicitaire.',
+					'author'  => 'Marc Vandenberghe',
+					'role'    => 'Directeur général',
+					'company' => 'Laffargue',
+					'avatar'  => $avatar_image_id,
+				),
+				array(
+					'quote'   => 'Le code est dans notre dépôt Git depuis le jour un. Quand nous avons recruté un développeur, il a pu reprendre le projet en une semaine.',
+					'author'  => 'Inès Bakouche',
+					'role'    => 'Responsable marketing',
+					'company' => 'Zeta',
+					'avatar'  => $avatar_image_id,
+				),
+			),
+		),
+		array(
+			'acf_fc_layout' => 'cta',
+			'layout'        => $layout_cta,
+			'title'         => 'Envie de travailler avec nous ?',
+			'text'          => 'Un premier échange de trente minutes suffit à cadrer votre besoin. Sans engagement, et sans présentation commerciale.',
+			'cta_primary'   => cinq_seed_link( 'Prendre rendez-vous', '#contact' ),
+		),
+	);
+}
+
+/**
+ * Creates or updates the agency demo page.
+ *
+ * @param int $hero_image_id   Hero image attachment ID.
+ * @param int $media_image_id  Media + text image attachment ID.
+ * @param int $avatar_image_id Testimonial avatar attachment ID.
+ * @return int Page ID or 0 on failure.
+ */
+function cinq_seed_agence_page(
+	int $hero_image_id,
+	int $media_image_id,
+	int $avatar_image_id
+): int {
+	$slug  = 'agence';
+	$title = 'Agence';
+	$lead  = 'Agence WordPress indépendante, fondée en 2011. Nous construisons des sites éditoriaux que vos équipes tiennent sans nous.';
+
+	$existing_page = get_page_by_path( $slug );
+
+	if ( ! $existing_page ) {
+		$page_id = wp_insert_post(
+			array(
+				'post_title'   => $title,
+				'post_name'    => $slug,
+				'post_status'  => 'publish',
+				'post_type'    => 'page',
+				'post_content' => '',
+			),
+			true
+		);
+
+		if ( is_wp_error( $page_id ) ) {
+			WP_CLI::warning( $page_id->get_error_message() );
+			return 0;
+		}
+	} else {
+		$page_id = (int) $existing_page->ID;
+
+		wp_update_post(
+			array(
+				'ID'          => $page_id,
+				'post_title'  => $title,
+				'post_status' => 'publish',
+			)
+		);
+	}
+
+	update_field( 'page_lead', $lead, $page_id );
+	update_field(
+		'blocks',
+		cinq_seed_agence_page_blocks( $hero_image_id, $media_image_id, $avatar_image_id ),
+		$page_id
+	);
+
+	return (int) $page_id;
+}
+
+/**
  * Seeds the main navigation menu from the Figma reference (node 32:3).
  *
  * @return void
@@ -523,13 +768,27 @@ function cinq_seed_main_menu(): void {
 
 	$expertises_id = cinq_seed_add_custom_menu_item( $menu_id, 'Nos expertises', '#' );
 
-	foreach ( array( 'Création de site', 'Refonte', 'SEO', 'Maintenance' ) as $title ) {
-		cinq_seed_add_custom_menu_item( $menu_id, $title, '#', $expertises_id );
+	$expertise_urls = array(
+		'Création de site' => cinq_seed_page_permalink( 'creation-de-site-wordpress' ),
+		'Refonte'          => '#',
+		'SEO'              => '#',
+		'Maintenance'      => '#',
+	);
+
+	foreach ( $expertise_urls as $title => $url ) {
+		cinq_seed_add_custom_menu_item( $menu_id, $title, $url, $expertises_id );
 	}
 
 	cinq_seed_add_custom_menu_item( $menu_id, 'Réalisations', '#realisations' );
 	cinq_seed_add_custom_menu_item( $menu_id, 'Journal', cinq_seed_posts_url() );
-	cinq_seed_add_custom_menu_item( $menu_id, 'Agence', '#' );
+
+	$agence_page = get_page_by_path( 'agence' );
+
+	if ( $agence_page ) {
+		cinq_seed_add_page_to_nav_menu( $menu_id, (int) $agence_page->ID, 'Agence' );
+	} else {
+		cinq_seed_add_custom_menu_item( $menu_id, 'Agence', '#' );
+	}
 
 	cinq_seed_assign_menu_location( 'main', $menu_id );
 }
@@ -541,21 +800,36 @@ function cinq_seed_main_menu(): void {
  * @return void
  */
 function cinq_seed_footer_menus( int $mentions_page_id = 0 ): void {
+	$creation_page = get_page_by_path( 'creation-de-site-wordpress' );
+	$agence_url    = cinq_seed_page_permalink( 'agence' );
+
+	$footer_1_links = array(
+		array( 'title' => 'Création de site' ),
+		array( 'title' => 'Refonte' ),
+		array( 'title' => 'SEO' ),
+		array( 'title' => 'Maintenance' ),
+	);
+
+	if ( $creation_page ) {
+		$footer_1_links[0]['page_id'] = (int) $creation_page->ID;
+	}
+
 	$footer_1_id = cinq_seed_sync_custom_nav_menu(
 		__( 'Expertises', 'wp-cinquante-et-un' ),
-		array(
-			array( 'title' => 'Création de site' ),
-			array( 'title' => 'Refonte' ),
-			array( 'title' => 'SEO' ),
-			array( 'title' => 'Maintenance' ),
-		)
+		$footer_1_links
 	);
 
 	$footer_2_id = cinq_seed_sync_custom_nav_menu(
 		__( 'Agence', 'wp-cinquante-et-un' ),
 		array(
-			array( 'title' => 'Notre méthode' ),
-			array( 'title' => 'Équipe' ),
+			array(
+				'title' => 'Notre méthode',
+				'url'   => '#' !== $agence_url ? $agence_url . '#methode' : '#',
+			),
+			array(
+				'title' => 'Équipe',
+				'url'   => '#' !== $agence_url ? $agence_url . '#equipe' : '#',
+			),
 			array(
 				'title' => 'Réalisations',
 				'url'   => '#realisations',
@@ -760,15 +1034,6 @@ function cinq_seed_get_or_create_author(): int {
 		)
 	);
 
-	$avatar_id = cinq_seed_import_remote_image(
-		'https://picsum.photos/seed/cinq-author-thomas/112/112',
-		'Thomas Aubert avatar'
-	);
-
-	if ( $avatar_id ) {
-		update_user_meta( $user_id, 'cinq_avatar_id', $avatar_id );
-	}
-
 	return $user_id;
 }
 
@@ -780,18 +1045,18 @@ function cinq_seed_get_or_create_author(): int {
 function cinq_seed_page_builders_post_content(): string {
 	return <<<'HTML'
 <h2>Ce que promet un page builder</h2>
-<p>L'argument est toujours le même&nbsp;: vous n'aurez plus besoin de développeur. En pratique, vous en aurez besoin exactement autant, mais pour des raisons moins intéressantes — réparer une mise en page cassée par une mise à jour plutôt que construire une fonctionnalité.</p>
+<p>L'argument est toujours le même&nbsp;: vous n'aurez plus besoin de développeur. En pratique, vous en aurez besoin exactement autant, mais pour des raisons moins intéressantes&nbsp;: réparer une mise en page cassée par une mise à jour plutôt que construire une fonctionnalité.</p>
 <p>Le premier mois est agréable. On glisse des blocs, on voit le résultat. Puis la page d'accueil atteint quatre-vingts sections imbriquées et plus personne n'ose y toucher.</p>
 <h2>Ce que vous perdez vraiment</h2>
-<p>Un site construit au page builder porte en moyenne trois fois plus de CSS que nécessaire. Sur mobile, c'est la différence entre un LCP à 1,8&nbsp;s et un LCP à 4&nbsp;s — donc entre une page qui convertit et une page qu'on quitte.</p>
+<p>Un site construit au page builder porte en moyenne trois fois plus de CSS que nécessaire. Sur mobile, c'est la différence entre un LCP à 1,8&nbsp;s et un LCP à 4&nbsp;s, donc entre une page qui convertit et une page qu'on quitte.</p>
 <blockquote><p>Le vrai coût d'un page builder n'apparaît pas à la livraison. Il apparaît à la deuxième refonte, quand il faut extraire le contenu.</p></blockquote>
-<p>Avec ACF et Gutenberg, chaque bloc est un fichier PHP que vous pouvez ouvrir, lire et modifier. Le contenu reste dans la base de données, dans des champs nommés, exportable.</p>
+<p>Avec ACF, chaque bloc est un fichier PHP que vous pouvez ouvrir, lire et modifier. Le contenu reste dans la base de données, dans des champs nommés, exportable.</p>
 <h2>La façon dont nous procédons</h2>
 <p>Sur un projet CINQ, le contenu éditorial passe par des blocs ACF typés&nbsp;: hero, média + texte, chiffres clés, FAQ. Chaque layout a son Twig, ses tokens, ses contraintes de spacing. L'équipe éditoriale compose dans l'admin sans toucher au markup.</p>
-<p>Les développeurs gardent la main sur la structure HTML, le schema.org, les performances et l'accessibilité. Quand le design évolue, on met à jour un composant une fois — pas quatre-vingts sections dans l'interface d'un plugin.</p>
+<p>Les développeurs gardent la main sur la structure HTML, le schema.org, les performances et l'accessibilité. Quand le design évolue, on met à jour un composant une fois, pas quatre-vingts sections dans l'interface d'un plugin.</p>
 <h2>Quand un page builder se justifie</h2>
 <p>Nous refusons les page builders par défaut, pas dogmatiquement. Un landing ponctuel, une campagne isolée, un site interne à courte durée de vie&nbsp;: la vélocité peut primer sur la maintenabilité long terme.</p>
-<p>Dès qu'un site doit durer, se faire référencer, accueillir du trafic payant ou évoluer avec la marque, nous recommandons une stack maîtrisée. C'est le cas de la plupart de nos clients — et la raison pour laquelle nous documentons nos arbitrages ici.</p>
+<p>Dès qu'un site doit durer, se faire référencer, accueillir du trafic payant ou évoluer avec la marque, nous recommandons une stack maîtrisée. C'est le cas de la plupart de nos clients, et c'est la raison pour laquelle nous documentons nos arbitrages ici.</p>
 HTML;
 }
 
