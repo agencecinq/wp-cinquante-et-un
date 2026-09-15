@@ -1,0 +1,72 @@
+{#
+ # Blockstudio: CTA
+ # Pilot block for feat/blockstudio.
+ #}
+{%- set layout = {
+	color_scheme: a.color_scheme | default('inverse'),
+	spacing_top: a.spacing_top | default('md'),
+	spacing_bottom: a.spacing_bottom | default('md'),
+	container: a.container | default('default')
+} -%}
+{%- set cta_primary = a.cta_primary | default({}) -%}
+{%- set cta_secondary = a.cta_secondary | default({}) -%}
+{%- set has_content = a.title or a.text or (cta_primary.url | default('')) -%}
+
+<section
+	useBlockProps
+	class="{{ fn('cinq_block_layout_classes', layout) }}"
+	data-color-scheme="{{ fn('cinq_block_color_scheme', layout) }}"
+	{% if not has_content %}hidden{% endif %}
+>
+	{%- if has_content -%}
+		<div class="{{ fn('cinq_block_container_classes', layout) | default('container') }}">
+			<div class="mx-auto max-w-prose space-y-6 text-center">
+				{%- if a.title -%}
+					<h2 class="text-3xl font-semibold">
+						{{- a.title | e -}}
+					</h2>
+				{%- endif -%}
+
+				{%- if a.text -%}
+					<p class="text-lg opacity-80">
+						{{- a.text | nl2br -}}
+					</p>
+				{%- endif -%}
+
+				{%- if (cta_primary.url | default('')) or (cta_secondary.url | default('')) -%}
+					<div class="flex flex-wrap items-center justify-center gap-3">
+						{%- if cta_primary.url | default('') -%}
+							{{-
+								include(
+									'components/button.html.twig',
+									{
+										title: cta_primary.title | default(cta_primary.url),
+										url: cta_primary.url,
+										target: cta_primary.target | default('_self'),
+										variant: 'primary'
+									},
+									with_context = false
+								)
+							-}}
+						{%- endif -%}
+
+						{%- if cta_secondary.url | default('') -%}
+							{{-
+								include(
+									'components/button.html.twig',
+									{
+										title: cta_secondary.title | default(cta_secondary.url),
+										url: cta_secondary.url,
+										target: cta_secondary.target | default('_self'),
+										variant: 'secondary'
+									},
+									with_context = false
+								)
+							-}}
+						{%- endif -%}
+					</div>
+				{%- endif -%}
+			</div>
+		</div>
+	{%- endif -%}
+</section>

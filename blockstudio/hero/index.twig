@@ -1,0 +1,102 @@
+{#
+ # Blockstudio: Hero
+ # Pilot block for feat/blockstudio.
+ #}
+{%- set layout = {
+	color_scheme: a.color_scheme | default('default'),
+	spacing_top: a.spacing_top | default('none'),
+	spacing_bottom: a.spacing_bottom | default('none'),
+	container: a.container | default('default')
+} -%}
+{%- set alignment = a.alignment | default('left') -%}
+{%- set height = a.height | default('standard') -%}
+{%- set image = a.image | default(null) -%}
+{%- set image_url = image ? (image.url | default(image is iterable ? '' : image)) : '' -%}
+{%- set image_alt = image and image.alt is defined ? image.alt : '' -%}
+{%- set has_media = image_url != '' -%}
+{%- set height_class = {
+	'compact': 'h-120',
+	'standard': 'h-160',
+	'full': 'min-h-dvh h-dvh'
+}[height] | default('h-160') -%}
+{%- set content_column_classes = alignment == 'center'
+	? 'col-span-full flex flex-col items-center space-y-6 text-center lg:col-span-8 lg:col-start-3'
+	: 'col-span-full space-y-6 lg:col-span-6'
+-%}
+{%- set heading_tag = a.heading | default('h1') -%}
+{%- set primary = a.link | default({}) -%}
+{%- set secondary = a.secondary_link | default({}) -%}
+
+<section
+	useBlockProps
+	class="{{ html_classes( fn('cinq_block_layout_classes', layout), 'relative overflow-hidden', height_class ) }}"
+	data-color-scheme="{{ has_media ? 'inverse' : fn('cinq_block_color_scheme', layout) }}"
+>
+	{%- if has_media -%}
+		<div class="absolute inset-0 z-10">
+			<img
+				src="{{ image_url }}"
+				alt="{{ image_alt }}"
+				class="absolute inset-0 z-10 size-full object-cover object-center"
+				loading="eager"
+				decoding="async"
+			/>
+			{%- if a.show_media_overlay -%}
+				<div class="absolute inset-0 z-20 bg-linear-to-b from-black/0 to-black/45" aria-hidden="true"></div>
+			{%- endif -%}
+		</div>
+	{%- endif -%}
+
+	<div class="{{ html_classes( 'relative z-30', fn('cinq_block_container_classes', layout) | default('container'), 'grid h-full grid-cols-12 items-center gap-5', has_media ? 'text-white' : '' ) }}">
+		<div class="{{ content_column_classes }}">
+			{%- if a.overline -%}
+				<p class="{{ html_classes( 'subtitle', has_media ? 'text-white/70' : '' ) }}">
+					{{- a.overline | e -}}
+				</p>
+			{%- endif -%}
+
+			{%- if a.title -%}
+				<{{ heading_tag }} class="text-5xl font-semibold">
+					{{- a.title | e -}}
+				</{{ heading_tag }}>
+			{%- endif -%}
+
+			{%- if a.text -%}
+				<p class="{{ html_classes( 'text-lg', has_media ? 'text-white/90' : '' ) }}">
+					{{- a.text | nl2br -}}
+				</p>
+			{%- endif -%}
+
+			{%- if primary.url | default('') -%}
+				<div class="{{ html_classes( 'flex flex-wrap gap-3', alignment == 'center' ? 'justify-center' : '' ) }}">
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: primary.title | default(primary.url),
+								url: primary.url,
+								target: primary.target | default('_self'),
+								variant: 'primary'
+							},
+							with_context = false
+						)
+					-}}
+					{%- if secondary.url | default('') -%}
+						{{-
+							include(
+								'components/button.html.twig',
+								{
+									title: secondary.title | default(secondary.url),
+									url: secondary.url,
+									target: secondary.target | default('_self'),
+									variant: 'secondary'
+								},
+								with_context = false
+							)
+						-}}
+					{%- endif -%}
+				</div>
+			{%- endif -%}
+		</div>
+	</div>
+</section>

@@ -61,7 +61,7 @@ class Testimonials {
 					'name'          => 'source',
 					'aria-label'    => __( 'Source', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						'manual' => __( 'Manual', 'wp-cinquante-et-un' ),
 						'cpt'    => __( 'CPT', 'wp-cinquante-et-un' ),
@@ -98,7 +98,7 @@ class Testimonials {
 							'aria-label'   => __( 'Quote', 'wp-cinquante-et-un' ),
 							'type'         => 'textarea',
 							'rows'         => 3,
-							'required'     => 1,
+							'required'     => 0,
 							'instructions' => __( 'Body/lg style. Three lines maximum to stay readable in a column.', 'wp-cinquante-et-un' ),
 						),
 						array(
@@ -107,7 +107,7 @@ class Testimonials {
 							'name'         => 'author',
 							'aria-label'   => __( 'Author', 'wp-cinquante-et-un' ),
 							'type'         => 'text',
-							'required'     => 1,
+							'required'     => 0,
 							'instructions' => __( 'Full name. An anonymous testimonial has no proof value.', 'wp-cinquante-et-un' ),
 							'wrapper'      => array(
 								'width' => 50,
@@ -119,7 +119,7 @@ class Testimonials {
 							'name'         => 'role',
 							'aria-label'   => __( 'Role', 'wp-cinquante-et-un' ),
 							'type'         => 'text',
-							'required'     => 1,
+							'required'     => 0,
 							'instructions' => __( 'Job title.', 'wp-cinquante-et-un' ),
 							'wrapper'      => array(
 								'width' => 50,
@@ -131,7 +131,7 @@ class Testimonials {
 							'name'         => 'company',
 							'aria-label'   => __( 'Company', 'wp-cinquante-et-un' ),
 							'type'         => 'text',
-							'required'     => 1,
+							'required'     => 0,
 							'instructions' => __( 'Company name.', 'wp-cinquante-et-un' ),
 							'wrapper'      => array(
 								'width' => 50,
@@ -179,7 +179,7 @@ class Testimonials {
 					'name'          => 'columns',
 					'aria-label'    => __( 'Columns', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						2 => '2',
 						3 => '3',

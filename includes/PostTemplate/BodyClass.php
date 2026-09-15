@@ -30,7 +30,7 @@ class BodyClass implements Service {
 	 * @return void
 	 */
 	public function run(): void {
-		add_filter( 'body_class', array( $this, 'body_classes' ), 10, 2 );
+		add_filter( 'body_class', array( $this, 'body_classes' ), 10, 1 );
 	}
 
 
@@ -41,12 +41,11 @@ class BodyClass implements Service {
 	 * it is finished processing, or all of the classes will be cleared and
 	 * could seriously impact the visual state of a user’s site.
 	 *
-	 * @param string[] $classes             An array of body class names.
-	 * @param string[] $additional_classes An array of additional class names added to the body.
+	 * @param string[] $classes An array of body class names.
 	 *
 	 * @return array
 	 */
-	public function body_classes( array $classes, array $additional_classes ): array {
+	public function body_classes( array $classes ): array {
 		return $classes;
 	}
 }

@@ -4,7 +4,8 @@
 		"twig/html-extra": "^3.8",
 		"twig/intl-extra": "^3.8",
 		"19h47/wp-form-controls": "dev-master",
-		"19h47/wp-get-theme": "dev-master"
+		"19h47/wp-get-theme": "dev-master",
+		"blockstudio/blockstudio": "^7.0"
 	},
 	"name": "agencecinq/wp-cinquante-et-un",
 	"version": "1.0.0",

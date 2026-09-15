@@ -29,7 +29,12 @@
 
 		{%- block content -%}
 			<main id="content" role="main">
-				{%- if post.meta('blocks') | length == 0 or post.meta('blocks')[0].acf_fc_layout != 'hero' -%}
+				{%- set acf_blocks = post.meta('blocks') | default([]) -%}
+				{%- set has_acf_hero = acf_blocks | length > 0 and acf_blocks[0].acf_fc_layout == 'hero' -%}
+				{%- set has_bs_hero = function('has_block', 'wp-cinquante-et-un/hero', post.id) -%}
+				{%- set has_gutenberg = function('has_blocks', post.content) -%}
+
+				{%- if not has_acf_hero and not has_bs_hero -%}
 					{{-
 						include(
 							'components/page-header.html.twig',
@@ -41,18 +46,21 @@
 				{%- endif -%}
 
 				{%- if post.content -%}
-					<section class="container pb-section-lg">
-						<div class="wysiwyg max-w-prose">
-							{{- post.content -}}
+					
+						<div class="container pb-section-lg">
+							
+								{{- post.content -}}
+							
 						</div>
-					</section>
+					
 				{%- endif -%}
 
+				{# ACF flexible content kept during the dual-run experiment. #}
 				{{-
 					include(
 						'blocks/blocks.html.twig',
 						{
-							blocks: post.meta('blocks')
+							blocks: acf_blocks
 						}
 					)
 				-}}

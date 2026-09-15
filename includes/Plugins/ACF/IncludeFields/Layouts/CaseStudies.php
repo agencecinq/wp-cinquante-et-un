@@ -52,7 +52,7 @@ class CaseStudies {
 					'name'         => 'title',
 					'aria-label'   => __( 'Title', 'wp-cinquante-et-un' ),
 					'type'         => 'text',
-					'required'     => 1,
+					'required'     => 0,
 					'placeholder'  => __( 'Enter the title of the block', 'wp-cinquante-et-un' ),
 					'instructions' => __( 'Heading/2xl (h2).', 'wp-cinquante-et-un' ),
 				),
@@ -62,7 +62,7 @@ class CaseStudies {
 					'name'          => 'mode',
 					'aria-label'    => __( 'Mode', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						'auto'   => __( 'Automatic', 'wp-cinquante-et-un' ),
 						'manual' => __( 'Manual', 'wp-cinquante-et-un' ),
@@ -141,7 +141,7 @@ class CaseStudies {
 					'name'          => 'columns',
 					'aria-label'    => __( 'Columns', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						2 => '2',
 						3 => '3',

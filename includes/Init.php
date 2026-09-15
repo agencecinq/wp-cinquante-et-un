@@ -35,6 +35,7 @@ class Init {
 			Setup\Enqueue::class,
 			Setup\Context::class,
 			Setup\Twig::class,
+			Setup\Blockstudio::class,
 			// WordPress integration.
 			WPImageEditor::class,
 			WPSettings::class,

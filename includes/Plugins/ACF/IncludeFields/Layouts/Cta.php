@@ -41,7 +41,7 @@ class Cta {
 					'name'         => 'title',
 					'aria-label'   => __( 'Title', 'wp-cinquante-et-un' ),
 					'type'         => 'text',
-					'required'     => 1,
+					'required'     => 0,
 					'placeholder'  => __( 'Enter the title of the block', 'wp-cinquante-et-un' ),
 					'instructions' => __( 'Display/3xl (h2). Centered closing call to action.', 'wp-cinquante-et-un' ),
 				),
@@ -61,7 +61,7 @@ class Cta {
 					'name'         => 'cta_primary',
 					'aria-label'   => __( 'Primary link', 'wp-cinquante-et-un' ),
 					'type'         => 'link',
-					'required'     => 1,
+					'required'     => 0,
 					'instructions' => __( 'Primary button.', 'wp-cinquante-et-un' ),
 				),
 				array(

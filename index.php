@@ -2,7 +2,7 @@
 /**
  * Main template file
  *
- * Fallback router. Pages use index.html.twig (ACF blocks). Named page
+ * Fallback router. Pages use index.html.twig (Gutenberg/Blockstudio + ACF dual-run). Named page
  * templates and 404.php still win in the WordPress hierarchy. Blog and
  * single post views use home.php, category.php, tag.php and single.php.
  *

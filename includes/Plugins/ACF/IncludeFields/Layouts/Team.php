@@ -70,7 +70,7 @@ class Team {
 					'name'          => 'columns',
 					'aria-label'    => __( 'Columns', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						3 => '3',
 						4 => '4',

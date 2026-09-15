@@ -59,7 +59,7 @@ class RichText {
 					'name'         => 'content',
 					'aria-label'   => __( 'Content', 'wp-cinquante-et-un' ),
 					'type'         => 'wysiwyg',
-					'required'     => 1,
+					'required'     => 0,
 					'tabs'         => 'visual',
 					'toolbar'      => 'basic',
 					'media_upload' => 0,
@@ -72,7 +72,7 @@ class RichText {
 					'name'          => 'width',
 					'aria-label'    => __( 'Width', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						'prose' => __( 'Prose (720px)', 'wp-cinquante-et-un' ),
 						'wide'  => __( 'Wide (960px)', 'wp-cinquante-et-un' ),
@@ -88,7 +88,7 @@ class RichText {
 					'name'          => 'alignment',
 					'aria-label'    => __( 'Alignment', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						'start'  => __( 'Start', 'wp-cinquante-et-un' ),
 						'center' => __( 'Center', 'wp-cinquante-et-un' ),

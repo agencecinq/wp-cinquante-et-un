@@ -61,7 +61,7 @@ class LatestPosts {
 					'name'          => 'mode',
 					'aria-label'    => __( 'Mode', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						'auto'   => __( 'Automatic', 'wp-cinquante-et-un' ),
 						'manual' => __( 'Manual', 'wp-cinquante-et-un' ),
@@ -140,7 +140,7 @@ class LatestPosts {
 					'name'          => 'columns',
 					'aria-label'    => __( 'Columns', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						2 => '2',
 						3 => '3',

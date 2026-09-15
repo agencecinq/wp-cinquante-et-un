@@ -1,0 +1,166 @@
+{
+  "$schema": "https://blockstudio.dev/schema/block",
+  "name": "wp-cinquante-et-un/hero",
+  "title": "Hero",
+  "category": "design",
+  "icon": "cover-image",
+  "description": "Full-bleed media, overline, title, text, primary and secondary buttons.",
+  "keywords": ["hero", "banner", "cinq"],
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "customClassName": false
+  },
+  "blockstudio": {
+    "attributes": [
+      {
+        "id": "tabs",
+        "type": "tabs",
+        "tabs": [
+          {
+            "id": "content",
+            "title": "Content",
+            "attributes": [
+              {
+                "id": "overline",
+                "type": "text",
+                "label": "Overline",
+                "help": "Small label above the title. Optional."
+              },
+              {
+                "id": "title",
+                "type": "text",
+                "label": "Title",
+                "default": ""
+              },
+              {
+                "id": "heading",
+                "type": "select",
+                "label": "Heading",
+                "default": "h1",
+                "options": [
+                  { "value": "h1", "label": "H1" },
+                  { "value": "h2", "label": "H2" },
+                  { "value": "h3", "label": "H3" }
+                ]
+              },
+              {
+                "id": "text",
+                "type": "textarea",
+                "label": "Text",
+                "help": "Lead copy. Optional."
+              },
+              {
+                "id": "link",
+                "type": "link",
+                "label": "Primary link",
+                "opensInNewTab": true
+              },
+              {
+                "id": "secondary_link",
+                "type": "link",
+                "label": "Secondary link",
+                "opensInNewTab": true,
+                "help": "Never add a secondary link without a primary link."
+              }
+            ]
+          },
+          {
+            "id": "media",
+            "title": "Media",
+            "attributes": [
+              {
+                "id": "image",
+                "type": "files",
+                "label": "Image",
+                "multiple": false,
+                "help": "Hero background image. Provide alt text: this is content, not decoration."
+              },
+              {
+                "id": "show_media_overlay",
+                "type": "toggle",
+                "label": "Media overlay",
+                "default": false,
+                "help": "Black gradient for text legibility."
+              }
+            ]
+          },
+          {
+            "id": "settings",
+            "title": "Settings",
+            "attributes": [
+              {
+                "id": "alignment",
+                "type": "select",
+                "label": "Alignment",
+                "default": "left",
+                "options": [
+                  { "value": "left", "label": "Left" },
+                  { "value": "center", "label": "Center" }
+                ]
+              },
+              {
+                "id": "height",
+                "type": "select",
+                "label": "Height",
+                "default": "standard",
+                "options": [
+                  { "value": "compact", "label": "Compact (480px)" },
+                  { "value": "standard", "label": "Standard (640px)" },
+                  { "value": "full", "label": "Full viewport" }
+                ]
+              },
+              {
+                "id": "color_scheme",
+                "type": "select",
+                "label": "Color scheme",
+                "default": "default",
+                "options": [
+                  { "value": "default", "label": "Default" },
+                  { "value": "inverse", "label": "Inverse" }
+                ]
+              },
+              {
+                "id": "spacing_top",
+                "type": "select",
+                "label": "Spacing top",
+                "default": "none",
+                "options": [
+                  { "value": "none", "label": "None" },
+                  { "value": "sm", "label": "Small" },
+                  { "value": "md", "label": "Medium" },
+                  { "value": "lg", "label": "Large" },
+                  { "value": "xl", "label": "Extra large" }
+                ]
+              },
+              {
+                "id": "spacing_bottom",
+                "type": "select",
+                "label": "Spacing bottom",
+                "default": "none",
+                "options": [
+                  { "value": "none", "label": "None" },
+                  { "value": "sm", "label": "Small" },
+                  { "value": "md", "label": "Medium" },
+                  { "value": "lg", "label": "Large" },
+                  { "value": "xl", "label": "Extra large" }
+                ]
+              },
+              {
+                "id": "container",
+                "type": "select",
+                "label": "Container",
+                "default": "default",
+                "options": [
+                  { "value": "default", "label": "Default" },
+                  { "value": "wide", "label": "Wide" },
+                  { "value": "full", "label": "Full" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

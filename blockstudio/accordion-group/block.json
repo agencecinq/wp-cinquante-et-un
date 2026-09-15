@@ -1,0 +1,137 @@
+{
+  "$schema": "https://blockstudio.dev/schema/block",
+  "name": "wp-cinquante-et-un/accordion-group",
+  "title": "FAQ",
+  "category": "design",
+  "icon": "editor-ul",
+  "description": "FAQ accordion with sticky heading. Powered by @agencecinq/accordion.",
+  "keywords": ["faq", "accordion", "cinq"],
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "customClassName": false
+  },
+  "blockstudio": {
+    "attributes": [
+      {
+        "id": "tabs",
+        "type": "tabs",
+        "tabs": [
+          {
+            "id": "content",
+            "title": "Content",
+            "attributes": [
+              {
+                "id": "overline",
+                "type": "text",
+                "label": "Overline",
+                "help": "Block subtitle. Optional."
+              },
+              {
+                "id": "title",
+                "type": "text",
+                "label": "Title",
+                "help": "Left column, sticky on desktop."
+              },
+              {
+                "id": "items",
+                "type": "repeater",
+                "label": "Items",
+                "min": 1,
+                "max": 12,
+                "textButton": "Add item",
+                "help": "First item open by default. Min 1 for the pilot (ACF uses min 3).",
+                "attributes": [
+                  {
+                    "id": "question",
+                    "type": "text",
+                    "label": "Question"
+                  },
+                  {
+                    "id": "answer",
+                    "type": "wysiwyg",
+                    "label": "Answer"
+                  }
+                ],
+                "default": [
+                  {
+                    "question": "Why do you publish your prices?",
+                    "answer": "<p>A web build has a scope and a cost. Our bases are public.</p>"
+                  },
+                  {
+                    "question": "What happens if the scope moves mid-build?",
+                    "answer": "<p>We reopen the estimate, agree on the extra, then we build.</p>"
+                  },
+                  {
+                    "question": "Do you work with existing design systems?",
+                    "answer": "<p>Yes. Tokens and components land in the theme before pages.</p>"
+                  }
+                ]
+              },
+              {
+                "id": "schema",
+                "type": "toggle",
+                "label": "FAQ schema",
+                "default": false,
+                "help": "Output FAQPage JSON-LD. Enable on one block per page only."
+              }
+            ]
+          },
+          {
+            "id": "settings",
+            "title": "Settings",
+            "attributes": [
+              {
+                "id": "color_scheme",
+                "type": "select",
+                "label": "Color scheme",
+                "default": "default",
+                "options": [
+                  { "value": "default", "label": "Default" },
+                  { "value": "inverse", "label": "Inverse" }
+                ]
+              },
+              {
+                "id": "spacing_top",
+                "type": "select",
+                "label": "Spacing top",
+                "default": "md",
+                "options": [
+                  { "value": "none", "label": "None" },
+                  { "value": "sm", "label": "Small" },
+                  { "value": "md", "label": "Medium" },
+                  { "value": "lg", "label": "Large" },
+                  { "value": "xl", "label": "Extra large" }
+                ]
+              },
+              {
+                "id": "spacing_bottom",
+                "type": "select",
+                "label": "Spacing bottom",
+                "default": "md",
+                "options": [
+                  { "value": "none", "label": "None" },
+                  { "value": "sm", "label": "Small" },
+                  { "value": "md", "label": "Medium" },
+                  { "value": "lg", "label": "Large" },
+                  { "value": "xl", "label": "Extra large" }
+                ]
+              },
+              {
+                "id": "container",
+                "type": "select",
+                "label": "Container",
+                "default": "default",
+                "options": [
+                  { "value": "default", "label": "Default" },
+                  { "value": "wide", "label": "Wide" },
+                  { "value": "full", "label": "Full" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -54,7 +54,7 @@ class Hero {
 					'name'          => 'alignment',
 					'aria-label'    => __( 'Alignment', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						'left'   => __( 'Left', 'wp-cinquante-et-un' ),
 						'center' => __( 'Center', 'wp-cinquante-et-un' ),
@@ -69,7 +69,7 @@ class Hero {
 					'name'          => 'height',
 					'aria-label'    => __( 'Height', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						'compact'  => __( 'Compact (480px)', 'wp-cinquante-et-un' ),
 						'standard' => __( 'Standard (640px)', 'wp-cinquante-et-un' ),
@@ -107,7 +107,7 @@ class Hero {
 							'name'          => 'title',
 							'aria-label'    => __( 'Title', 'wp-cinquante-et-un' ),
 							'type'          => 'text',
-							'required'      => 1,
+							'required'      => 0,
 							'placeholder'   => __( 'Enter the title of the block', 'wp-cinquante-et-un' ),
 							'default_value' => '',
 							'instructions'  => __( 'Display/5xl. Use h1 on the homepage, h2 elsewhere (heading level below).', 'wp-cinquante-et-un' ),

@@ -50,7 +50,7 @@ class Logos {
 					'name'          => 'logos',
 					'aria-label'    => __( 'Logos', 'wp-cinquante-et-un' ),
 					'type'          => 'gallery',
-					'required'      => 1,
+					'required'      => 0,
 					'return_format' => 'id',
 					'preview_size'  => 'medium',
 					'mime_types'    => 'svg',

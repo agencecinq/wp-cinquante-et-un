@@ -269,7 +269,7 @@ Use Composer to install the required PHP dependencies:
 composer install
 ```
 
-Don't forget to install and activate the required WordPress plugins: **Advanced Custom Fields** and **Classic Editor**. Project plugins (Contact Form 7, Yoast SEO, etc.) are added per site.
+Don't forget to install and activate **Advanced Custom Fields**. On `feat/blockstudio`, deactivate **Classic Editor** (Gutenberg + bundled Blockstudio). On `main`, Classic Editor remains required. See `docs/feat-blockstudio.md`. Project plugins (Contact Form 7, Yoast SEO, etc.) are added per site.
 
 ### JavaScript Dependencies
 

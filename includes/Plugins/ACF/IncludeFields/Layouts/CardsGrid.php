@@ -35,7 +35,7 @@ class CardsGrid {
 					'name'          => 'columns',
 					'aria-label'    => __( 'Columns', 'wp-cinquante-et-un' ),
 					'type'          => 'select',
-					'required'      => 1,
+					'required'      => 0,
 					'choices'       => array(
 						2 => '2',
 						3 => '3',
@@ -75,7 +75,7 @@ class CardsGrid {
 					'name'         => 'cards',
 					'aria-label'   => __( 'Cards', 'wp-cinquante-et-un' ),
 					'type'         => 'repeater',
-					'required'     => 1,
+					'required'     => 0,
 					'min'          => 2,
 					'max'          => 12,
 					'layout'       => 'block',
@@ -99,7 +99,7 @@ class CardsGrid {
 							'name'         => 'title',
 							'aria-label'   => __( 'Title', 'wp-cinquante-et-un' ),
 							'type'         => 'text',
-							'required'     => 1,
+							'required'     => 0,
 							'instructions' => __( 'Heading/xl.', 'wp-cinquante-et-un' ),
 						),
 						array(

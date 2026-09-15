@@ -93,14 +93,13 @@ class WPSettings implements Service {
 	}
 
 	/**
-	 * Removes block editor theme supports (patterns, FSE templates).
+	 * Disable full-site editing templates while keeping the block editor for pages.
 	 *
-	 * Not handled by Classic Editor.
+	 * feat/blockstudio: core patterns stay available; Classic Editor is no longer required.
 	 *
 	 * @return void
 	 */
 	public function disable_block_editor_supports(): void {
-		remove_theme_support( 'core-block-patterns' );
 		remove_theme_support( 'block-templates' );
 	}
 }

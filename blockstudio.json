@@ -1,0 +1,27 @@
+{
+  "$schema": "https://blockstudio.dev/schema/blockstudio",
+  "assets": {
+    "enqueue": true,
+    "reset": {
+      "enabled": true
+    },
+    "minify": {
+      "css": false,
+      "js": false
+    },
+    "process": {
+      "scss": false
+    }
+  },
+  "tailwind": {
+    "enabled": true
+  },
+  "themeDefaults": {
+    "titleTag": false,
+    "suppressDirectoryUpdates": true
+  },
+  "blockEditor": {
+    "disableLoading": false,
+    "enhance": false
+  }
+}
