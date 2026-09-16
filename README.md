@@ -336,3 +336,4 @@ Contributions are welcome! If you find a bug or have a feature request, please o
 ## License
 
 This theme is licensed under the GNU General Public License v2 or later, like WordPress. See the [LICENSE](LICENSE) file for details.
+Built by [CINQ - Agence Wordpress & Shopify](https://agencecinq.com).
