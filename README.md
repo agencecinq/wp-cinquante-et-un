@@ -329,6 +329,14 @@ rm -rf vendor/timber/timber/cache/*
 - Vite documentation: [https://vitejs.dev/](https://vitejs.dev/)
 - ACF documentation: [https://www.advancedcustomfields.com/resources/](https://www.advancedcustomfields.com/resources/)
 
+## Release
+
+Push a semver tag (`v1.2.3`) to trigger `.github/workflows/release.yml`. The workflow:
+
+1. Sets `Version` in `style.css` (and `version` in `package.json` / `composer.json`) from the tag
+2. Runs `deploy.sh`, zips the theme, and publishes a GitHub release
+3. Commits the version bump back to the default branch when needed
+
 ## Contributing
 
 Contributions are welcome! If you find a bug or have a feature request, please open an issue or submit a pull request.

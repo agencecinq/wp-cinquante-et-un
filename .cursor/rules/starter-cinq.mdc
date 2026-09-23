@@ -19,7 +19,7 @@ Quand l'utilisateur démarre un nouveau projet, applique la règle `init-nouveau
 - **Champs** : ACF. Les groupes sont définis en PHP dans `includes/Plugins/ACF/IncludeFields/` (et leurs `Layouts/` pour les blocs flexibles), pas seulement en JSON. Options globales du thème : Réglages > Thème (`options-theme`). Contenu éditorial des archives : page d'options ACF sous le menu du type de contenu (Articles pour le journal, menu CPT pour un CPT), voir `archive-options`. Édition : **Classic Editor** (plugin requis) pour posts/pages ; le thème complète avec `use_widgets_block_editor` et `remove_theme_support` dans `WPSettings.php`. Pas de `theme.json` ni de blocs Gutenberg pour le contenu.
 - **CPT / taxonomies** : à créer dans `includes/Post/` et `includes/Taxonomy/` (le starter livre `Post/Page.php` ; les CPT et taxonomies spécifiques sont ajoutés par projet).
 - **i18n** : text domain unique, fichiers dans `languages/` (`.pot` nommé d'après le slug ; `.po`/`.mo` par locale, ex. `fr_FR.po`, sans préfixe de domaine).
-- **Déploiement** : `deploy.sh` (build prod + purge des fichiers de dev), déclenché par le workflow `.github/workflows/release.yml` sur tag `v*`.
+- **Déploiement** : `deploy.sh` (build prod + purge des fichiers de dev), déclenché par le workflow `.github/workflows/release.yml` sur tag `v*`. Le workflow aligne aussi `style.css` / `package.json` / `composer.json` sur la version du tag et commit le bump sur la branche par défaut.
 - **Prérequis** : PHP 8.4, Composer, pnpm, Node 22.
 
 ## Arborescence clé
