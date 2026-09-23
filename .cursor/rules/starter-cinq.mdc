@@ -157,7 +157,7 @@ Règles dédiées existantes :
 - `remontee-vers-starter` : procédure pour faire remonter une brique d'un projet vers le starter (flux inverse de l'init).
 - `git-commits` : messages de commit en anglais avec gitmoji.
 - `design-tokens` : tokens `@theme` en anglais, sizes en rem, letter-spacing en em, couleurs Tailwind (`bg-white`, `text-black`, `text-gray-500`), rayon 0, pas de valeurs en dur ni de backgrounds preset dans le starter.
-- `twig-components` : gardes et nommage des params dans les composants Twig réutilisables.
+- `twig-components` : gardes, nommage des params, et layout via `classes` (pas de sticky/placement hardcodé) dans les composants Twig.
 - `twig-wpcs` : espacement des filtres Twig compatible Prettier.
 - `tailwind-twig` : styling en Tailwind dans les `.twig` ; feuilles `components/` autorisées uniquement pour boutons et WYSIWYG.
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
