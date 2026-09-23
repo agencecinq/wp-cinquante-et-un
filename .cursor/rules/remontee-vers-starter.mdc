@@ -41,7 +41,7 @@ Priorités actuelles de remontée : les **conventions/règles** et la **config/o
 ### Étape 4 : vérifier et versionner
 
 - phpcs OK, `pnpm build` OK (régénère `public/sprite.svg`), `grep` confirmant zéro identifiant du projet source dans les fichiers remontés.
-- Bump de version (`style.css`, `package.json`, `composer.json`) et tag de release (`v*`, voir `.github/workflows/release.yml`).
+- Tag de release (`v*`, voir `.github/workflows/release.yml`) : le CI bump `style.css` / `package.json` / `composer.json` et republie sur la branche par défaut. Pas besoin de bump manuel avant le tag.
 
 ## Par type de brique
 
@@ -71,4 +71,4 @@ Priorités actuelles de remontée : les **conventions/règles** et la **config/o
 
 1. `grep` : zéro identifiant du projet source dans les fichiers remontés.
 2. phpcs et `pnpm build` passent.
-3. Version bumpée et changement décrit dans le commit.
+3. Tag `v*` poussé (le CI gère le bump de version).

@@ -16,6 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Resolve version from tag
+        id: version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid semver from tag: ${GITHUB_REF_NAME}"
+            exit 1
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -32,6 +42,42 @@ jobs:
         with:
           node-version: '22'
           cache: 'pnpm'
+
+      - name: Bump theme version
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          version = os.environ["VERSION"]
+
+          style = Path("style.css")
+          style_text, count = re.subn(
+              r"^(\s*\* Version: ).*$",
+              rf"\g<1>{version}",
+              style.read_text(),
+              count=1,
+              flags=re.MULTILINE,
+          )
+          if count != 1:
+              raise SystemExit("Could not update Version in style.css")
+          style.write_text(style_text)
+
+          for name in ("package.json", "composer.json"):
+              path = Path(name)
+              data = json.loads(path.read_text())
+              data["version"] = version
+              path.write_text(json.dumps(data, indent="\t") + "\n")
+          PY
+
+      - name: Persist version files for branch sync
+        run: |
+          mkdir -p "${RUNNER_TEMP}/version-bump"
+          cp style.css package.json composer.json "${RUNNER_TEMP}/version-bump/"
 
       - name: Build production package
         run: |
@@ -50,3 +96,30 @@ jobs:
         with:
           files: ${{ format('{0}.zip', github.event.repository.name) }}
           generate_release_notes: true
+
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: default-branch
+
+      - name: Sync version to default branch
+        working-directory: default-branch
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          cp "${RUNNER_TEMP}/version-bump/style.css" style.css
+          cp "${RUNNER_TEMP}/version-bump/package.json" package.json
+          cp "${RUNNER_TEMP}/version-bump/composer.json" composer.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add style.css package.json composer.json
+
+          if git diff --staged --quiet; then
+            echo "Version files already at ${VERSION}"
+            exit 0
+          fi
+
+          git commit -m ":bookmark: Bump version to ${VERSION}"
+          git push
