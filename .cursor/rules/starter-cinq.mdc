@@ -114,6 +114,7 @@ DO :
 - Afficher le fil d'Ariane via Yoast SEO et `views/components/breadcrumb.html.twig` (`yoast_breadcrumb()` Twig).
 - En TypeScript, privatiser champs et méthodes avec `#` (privé runtime), pas le mot-clé `private`. Un callback passé à `on` / `off` est un champ flèche (`#handleResize = () => {}`) pour garder la même référence.
 - Préférer les expressions inline dans les Twig de page plutôt que des `{% set %}` intermédiaires (voir `twig-components`).
+- Utiliser des entités HTML nommées (`&nbsp;`, `&hellip;`, …) dans les chaînes UI (voir le skill `html-entities`).
 
 DONT :
 
@@ -137,6 +138,7 @@ DONT :
 - Pas de dimension e-commerce (panier, fiches produit, featured collection, moyens de paiement). L'équivalent éditorial de la featured collection Shopify, c'est `LatestPosts`.
 - Ne pas modifier l'identité agence lors d'un renommage.
 - Pas d'emoji ni de tiret cadratin dans les contenus rédigés.
+- Pas d'espaces insécables ou points de suspension collés en Unicode brut : préférer `&nbsp;`, `&hellip;` (voir le skill `html-entities`).
 - Pas de `private` TypeScript sur les composants JS : utiliser `#`.
 - Pas de `mt-*` / `mb-*` conditionnels pour espacer des frères : utiliser `space-y-*` ou `gap-*` sur le conteneur (voir `tailwind-twig`).
 - Pas de titre, extrait ou blocs d'archive lus depuis `page_for_posts` : le contenu éditorial de l'archive vit dans la page d'options ACF du menu Articles ou du CPT (voir `archive-options`).
@@ -163,3 +165,4 @@ Règles dédiées existantes :
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
 - `archive-options` : page d'options ACF pour le contenu éditorial des archives (posts sous Articles, CPT sous son menu).
 - `acf-clones` : bibliothèque ACF clone pour les champs partagés entre blocs flexibles (layout, media, heading).
+- Skill `html-entities` (`.cursor/skills/html-entities/`) : entités HTML nommées dans les chaînes UI (`&nbsp;`, `&hellip;`, …).

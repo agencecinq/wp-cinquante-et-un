@@ -18,7 +18,7 @@ It ships a generic, reusable foundation (block library, components, helpers, too
 
 ## Workflows (AI-assisted)
 
-This repository carries Cursor rules in `.cursor/rules/` that document conventions and automate the two key flows. They are the operational reference for the team:
+This repository carries Cursor rules in `.cursor/rules/` and project skills in `.cursor/skills/` that document conventions and automate the two key flows. They are the operational reference for the team:
 
 - **`starter-cinq`** (always on): stack, conventions, coding standards (WPCS), language rules, and the living DO/DONT list. This is the base of truth and is meant to evolve over time.
 - **`init-nouveau-projet`**: step-by-step procedure to turn this starter into a new client project (detect and replace identifiers, reset tokens, fonts, icons and assets). Use it when starting a new project.
@@ -201,6 +201,7 @@ The project structure is organized as follows:
 ```
 wp-cinquante-et-un/
 ├── .cursor/rules/       # Cursor rules (conventions + init/back-port workflows)
+├── .cursor/skills/      # Cursor skills (e.g. html-entities)
 ├── .github/workflows/   # CI: release on tag v*
 ├── bin/                 # WP-CLI seed scripts (demo content)
 ├── includes/            # PHP classes (PSR-4, namespace WPCinquanteEtUn)
