@@ -40,13 +40,32 @@ Un composant dans `views/components/` encapsule son markup **et** ses précondit
 
 Réserver `{% set %}` aux cas où la même valeur coûteuse est réutilisée plusieurs fois ou allège une condition complexe.
 
+## Layout et comportement dans le parent
+
+Un composant ne décide **jamais** de son placement dans le parent (sticky, colonne de grille, `self-start`, visibilité responsive liée au layout). Soit le parent passe ces classes via `classes`, soit le parent les pose sur un wrapper autour de l'`include`. Jamais hardcodées dans le composant.
+
+```twig
+{# DO: le parent décide du sticky #}
+{{ include('components/toc.html.twig', {
+  items: items,
+  classes: ['lg:sticky', 'lg:top-32', 'lg:col-span-3']
+}) }}
+
+{# DONT: le composant s'auto-sticky #}
+<nav class="… lg:sticky lg:top-32">
+```
+
+Référence : `toc.html.twig` (`classes` pour colonne + sticky).
+
 ## DONT
 
 - Pas de `{%- if items -%}` autour d'un `{% include %}` quand le composant peut le faire lui-même.
 - Pas de préfixe redondant sur les params (`nav_label`, `button_title`) quand le contexte du composant est déjà explicite.
 - Pas de duplication de la même garde parent + enfant.
 - Pas de `{% set foo = … %}` pour un affichage unique quand l'expression peut rester inline dans le `if` et le contenu.
+- Pas de classes de layout/placement (`sticky`, `col-span-*`, `lg:top-*`, …) hardcodées dans un composant : passer par `classes` ou un wrapper parent.
 
 ## Références
 
 - `views/components/pagination.html.twig` : garde `pagination.pages|length` interne.
+- `views/components/toc.html.twig` : layout (sticky, colonne) passé via `classes`.
