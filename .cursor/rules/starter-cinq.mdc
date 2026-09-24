@@ -108,6 +108,8 @@ DO :
 - Espacer les filtres Twig via Prettier : `twigFollowOfficialCodingStandards: false` (voir `twig-wpcs`).
 - Styler header, footer, blocs et composants avec Tailwind directement dans les `.twig` (voir `tailwind-twig`).
 - Empiler des éléments frères avec `space-y-*` (ou `gap-*`) sur le parent, pas avec des `mt-*` / `mb-*` conditionnels (voir `tailwind-twig`).
+- Avec `before:*` / `after:*`, ne pas ajouter `content-['']` : Tailwind le pose déjà (voir `tailwind-twig`).
+- Décoration sans contenu (scrim, séparateur, overlay) : pseudo `before:` / `after:` plutôt qu'un tag HTML vide, quand c'est possible (voir `tailwind-twig` et skill `tailwind-pseudo-content`).
 - Enrichir le markup avec schema.org quand un type correspond (voir `schema-org`).
 - Préférer les points d’entrée natifs de la hiérarchie WordPress (`home.php`, `single.php`, `category.php`, `archive-<cpt>.php`, …) plutôt que des `if ( is_* )` dans `index.php`.
 - Configurer le contenu éditorial d'une archive via page d'options ACF + modèles Timber (`Home`, `CategoryArchive`, trait `ArchivePost`), voir `archive-options`. Pas de hook archive dans `Context.php`.
@@ -127,6 +129,8 @@ DONT :
 - Pas de `rounded-*` dans le starter (rayon 0).
 - Pas de paddings de section hors de l'échelle ACF `spacing_top` / `spacing_bottom` (`none` `sm` `md` `lg` `xl`).
 - Pas de `{%- if items -%}` autour d'un `{% include %}` quand le composant peut tester ses props lui-même (voir `twig-components`).
+- Pas de `before:content-['']` / `after:content-['']` redondants (voir `tailwind-twig` et skill `tailwind-pseudo-content`).
+- Pas de tag HTML vide purement décoratif quand un `before:` / `after:` suffit (voir `tailwind-twig` et skill `tailwind-pseudo-content`).
 - Pas de backgrounds décoratifs preset (dégradés, fills de section) dans les templates du starter.
 - Pas de valeurs dimensionnelles en px dans les classes Tailwind (`w-[46px]`, `gap-[26px]`, `text-[22px]`) ; utiliser l'échelle spacing ou rem (voir `design-tokens`).
 - Pas de valeurs `[…rem]` ou `[…px]` en arbitraire quand l'échelle Tailwind expose déjà l'utilitaire (`max-w-[26.25rem]` → `max-w-105`, etc.).
@@ -161,8 +165,9 @@ Règles dédiées existantes :
 - `design-tokens` : tokens `@theme` en anglais, sizes en rem, letter-spacing en em, couleurs Tailwind (`bg-white`, `text-black`, `text-gray-500`), rayon 0, pas de valeurs en dur ni de backgrounds preset dans le starter.
 - `twig-components` : gardes, nommage des params, et layout via `classes` (pas de sticky/placement hardcodé) dans les composants Twig.
 - `twig-wpcs` : espacement des filtres Twig compatible Prettier.
-- `tailwind-twig` : styling en Tailwind dans les `.twig` ; feuilles `components/` autorisées uniquement pour boutons et WYSIWYG.
+- `tailwind-twig` : styling en Tailwind dans les `.twig` ; feuilles `components/` autorisées uniquement pour boutons et WYSIWYG ; pseudos plutôt que tags vides ; pas de `content-['']` redondant sur `before:` / `after:`.
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
 - `archive-options` : page d'options ACF pour le contenu éditorial des archives (posts sous Articles, CPT sous son menu).
 - `acf-clones` : bibliothèque ACF clone pour les champs partagés entre blocs flexibles (layout, media, heading).
 - Skill `html-entities` (`.cursor/skills/html-entities/`) : entités HTML nommées dans les chaînes UI (`&nbsp;`, `&hellip;`, …).
+- Skill `tailwind-pseudo-content` (`.cursor/skills/tailwind-pseudo-content/`) : pseudos décoratifs plutôt que tags vides ; pas de `content-['']` redondant.
