@@ -53,6 +53,12 @@ Référence : [Timber v2 docs](https://timber.github.io/docs/v2/), [Functions](h
 {{ post.post_excerpt | default(post.excerpt({ words: 40, read_more: false }) | striptags) | trim }}
 ```
 
+- Intro ACF (ou équivalent) avec fallback extrait :
+
+```twig
+{{ post.meta('introduction') | default(post.post_excerpt | default(post.excerpt({ words: 40, read_more: false }) | striptags) | trim) }}
+```
+
 - Désactiver le « Read more » avec **`read_more: false`** (pas une chaîne vide).
 - Après une modif Twig en prod (`WP_DEBUG` false) : vider `vendor/timber/timber/cache/*` (sinon l’ancien bytecode peut encore appeler `preview`).
 

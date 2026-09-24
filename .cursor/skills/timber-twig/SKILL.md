@@ -1,15 +1,18 @@
 ---
 name: timber-twig
 description: >-
-  Timber 2 Twig conventions for CINQ WordPress themes (built-in get_posts /
-  get_post, excerpts, PostExcerpt API). Use when writing or editing Twig that
-  queries posts, shows excerpts/teasers/chapôs, or when fixing Timber
-  deprecation notices about post.preview.
+  MANDATORY for any Twig that mentions preview, excerpt, chapô, introduction
+  fallback, teaser text, or queries posts. Timber 2 CINQ conventions: use
+  get_posts/get_post (never function('Timber\\Timber::…')), use post.excerpt /
+  post.post_excerpt (NEVER post.preview — deprecated). Load this skill before
+  writing or editing views/**/*.twig that display post text or run queries.
 ---
 
 # Timber 2 Twig (CINQ)
 
 Always follow the official [Timber v2 documentation](https://timber.github.io/docs/v2/) and the project rule `timber-twig`.
+
+**Hard ban:** never write `post.preview` or `post.preview.…` in Twig. If you see it, replace it before anything else.
 
 ## Built-in content functions
 
@@ -57,6 +60,9 @@ Reserve `function()` / `fn()` for PHP that is **not** a Timber built-in (`wp_hea
 
 {# Manual WP excerpt with generated fallback #}
 {{ post.post_excerpt | default(post.excerpt({ words: 40, read_more: false }) | striptags) | trim }}
+
+{# ACF intro (or similar) with excerpt fallback #}
+{{ post.meta('introduction') | default(post.post_excerpt | default(post.excerpt({ words: 40, read_more: false }) | striptags) | trim) }}
 ```
 
 - `read_more: false` disables the link (do not use `''`).
