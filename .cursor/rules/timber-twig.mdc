@@ -1,14 +1,38 @@
 ---
-description: API Timber 2 pour les extraits de posts (post.excerpt, pas post.preview). À appliquer quand on écrit ou modifie des Twig qui affichent un excerpt.
+description: API Timber 2 en Twig (get_posts / get_post natifs, post.excerpt, pas post.preview). À appliquer quand on écrit ou modifie des Twig qui requêtent des posts ou affichent un excerpt.
 globs: views/**/*.twig
 alwaysApply: false
 ---
 
-# Timber 2 — excerpts
+# Timber 2 — Twig
 
-Référence : [Timber v2 docs](https://timber.github.io/docs/v2/), [PostExcerpt](https://timber.github.io/docs/v2/reference/timber-postexcerpt/), [Posts guide](https://timber.github.io/docs/v2/guides/posts/).
+Référence : [Timber v2 docs](https://timber.github.io/docs/v2/), [Functions](https://timber.github.io/docs/v2/guides/functions/), [Posts](https://timber.github.io/docs/v2/guides/posts/), [PostExcerpt](https://timber.github.io/docs/v2/reference/timber-postexcerpt/).
 
-## DO
+## Requêtes — DO
+
+- Utiliser les helpers Timber **déjà exposés en Twig** : `get_posts()`, `get_post()`, et la même famille (`get_image`, `get_term`, …).
+- Passer des args `WP_Query` (ou une liste d’IDs) :
+
+```twig
+{% set posts = get_posts({
+	post_type: 'sector',
+	posts_per_page: -1,
+	post_status: 'publish',
+	orderby: {
+		menu_order: 'ASC',
+		title: 'ASC'
+	}
+}) %}
+```
+
+- `{% set %}` est légitime quand la collection sert au moins deux fois (garde + boucle).
+
+## Requêtes — DONT
+
+- **Pas** `function('Timber\\Timber::get_posts', …)` ni `fn('Timber\\Timber::get_posts', …)` : redondant, Timber l’expose déjà.
+- Ne pas confondre avec `get_posts()` du core WP (defaults et type de retour différents) : en Twig CINQ, `get_posts` = Timber.
+
+## Excerpts — DO
 
 - Utiliser **`{{ post.excerpt }}`** (Timber 2). Objet chaînable `Timber\PostExcerpt`.
 - Passer les options en hash (forme préférée de la doc) :
@@ -32,7 +56,7 @@ Référence : [Timber v2 docs](https://timber.github.io/docs/v2/), [PostExcerpt]
 - Désactiver le « Read more » avec **`read_more: false`** (pas une chaîne vide).
 - Après une modif Twig en prod (`WP_DEBUG` false) : vider `vendor/timber/timber/cache/*` (sinon l’ancien bytecode peut encore appeler `preview`).
 
-## DONT
+## Excerpts — DONT
 
 - **Jamais `{{ post.preview }}`** ni `post.preview.length(…)` : deprecated depuis Timber 2.0 (`Helper.php`). Remplacer par `post.excerpt`.
 - Ne pas inventer d’API d’extrait hors doc Timber 2.

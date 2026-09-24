@@ -118,6 +118,7 @@ DO :
 - Préférer les expressions inline dans les Twig de page plutôt que des `{% set %}` intermédiaires (voir `twig-components`).
 - Utiliser des entités HTML nommées (`&nbsp;`, `&hellip;`, …) dans les chaînes UI (voir le skill `html-entities`).
 - Extraits Timber 2 : `post.excerpt` (hash ou chaînage), jamais `post.preview` (voir `timber-twig`).
+- Requêtes Timber en Twig : `get_posts({ … })` / `get_post(…)` natifs, pas `function('Timber\\Timber::get_posts', …)` (voir `timber-twig`).
 
 DONT :
 
@@ -150,6 +151,7 @@ DONT :
 - Pas de hook `add_archive_to_context` ni filtres d'archive construits en PHP : classmaps Timber + trait `ArchivePost` (voir `archive-options`).
 - Pas de fil d'Ariane construit en PHP : Yoast SEO + `components/breadcrumb.html.twig`.
 - Pas de `{{ post.preview }}` (deprecated Timber 2) : utiliser `{{ post.excerpt }}` (voir `timber-twig`).
+- Pas de `function('Timber\\Timber::get_posts', …)` en Twig : utiliser `get_posts({ … })` (voir `timber-twig`).
 
 ## Faire évoluer ces règles
 
@@ -171,7 +173,7 @@ Règles dédiées existantes :
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
 - `archive-options` : page d'options ACF pour le contenu éditorial des archives (posts sous Articles, CPT sous son menu).
 - `acf-clones` : bibliothèque ACF clone pour les champs partagés entre blocs flexibles (layout, media, heading).
-- `timber-twig` : extraits Timber 2 (`post.excerpt`, pas `post.preview`).
+- `timber-twig` : Timber 2 en Twig (`get_posts` / `get_post` natifs ; `post.excerpt`, pas `post.preview`).
 - Skill `html-entities` (`.cursor/skills/html-entities/`) : entités HTML nommées dans les chaînes UI (`&nbsp;`, `&hellip;`, …).
-- Skill `timber-twig` (`.cursor/skills/timber-twig/`) : API Timber 2 excerpts + anti-`preview`.
+- Skill `timber-twig` (`.cursor/skills/timber-twig/`) : requêtes Twig + excerpts Timber 2 + anti-`preview`.
 - Skill `tailwind-pseudo-content` (`.cursor/skills/tailwind-pseudo-content/`) : pseudos décoratifs plutôt que tags vides ; pas de `content-['']` redondant.
