@@ -44,3 +44,33 @@ Même logique horizontale : `space-x-*` ou `gap-*` plutôt que `ml-*` conditionn
 ## Échelle Tailwind avant valeurs arbitraires
 
 Préférer les utilitaires de l'échelle (`max-w-105`, `w-11.5`, `gap-6.5`) aux crochets `[…rem]` ou `[…px]`. Si le linter Tailwind propose une réécriture (ex. `max-w-[26.25rem]` → `max-w-105`), appliquer la variante scale. Voir `design-tokens`.
+
+## Pseudos `before:` / `after:`
+
+### Préférer un pseudo à un tag vide
+
+Décoration sans contenu (scrim, séparateur, ligne, overlay) : `before:` / `after:` sur le parent plutôt qu'un `<div>` / `<span>` vide, quand c'est possible. Garder un vrai tag s'il faut sémantique, focus, lien, image ou texte accessible. `::after` pour peindre au-dessus des enfants ; `::before` derrière ou en séparateur leading. Voir skill `tailwind-pseudo-content`.
+
+```twig
+{# DO #}
+<div class="absolute inset-0 after:absolute after:inset-0 after:bg-hero-overlay">
+
+{# DONT #}
+<div class="absolute inset-0">
+  <div class="absolute inset-0 bg-hero-overlay" aria-hidden="true"></div>
+</div>
+```
+
+### Pas de `content-['']` redondant
+
+Dès qu'une classe `before:*` ou `after:*` est présente, Tailwind v3.4+ / v4 pose déjà `content: ""` sur le pseudo. **Ne pas** ajouter `before:content-['']` / `after:content-['']`.
+
+```twig
+{# DO #}
+<div class="after:absolute after:inset-0 after:bg-hero-overlay">
+
+{# DONT #}
+<div class="after:absolute after:inset-0 after:bg-hero-overlay after:content-['']">
+```
+
+Réserver `before:content-['…']` / `after:content-['…']` aux cas où le pseudo doit afficher un caractère ou une chaîne non vide.
