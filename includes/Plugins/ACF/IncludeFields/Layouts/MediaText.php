@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * MediaText block layout.
  */
@@ -28,7 +26,7 @@ class MediaText {
 			'label'      => __( 'Media Text', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_media_text' ),
+				...cinq_acf_settings_group( $key . '_media_text' ),
 				array(
 					'key'        => 'field_' . $key . '_media_text_tab_media',
 					'label'      => __( 'Media', 'wp-cinquante-et-un' ),

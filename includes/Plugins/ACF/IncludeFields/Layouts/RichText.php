@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * RichText block layout (overline, title, WYSIWYG body, width, column alignment).
  */
@@ -28,7 +26,7 @@ class RichText {
 			'label'      => __( 'Rich Text', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_rich_text' ),
+				...cinq_acf_settings_group( $key . '_rich_text' ),
 				array(
 					'key'        => 'field_' . $key . '_rich_text_content_tab',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

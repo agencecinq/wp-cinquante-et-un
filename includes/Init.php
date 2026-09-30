@@ -52,7 +52,6 @@ class Init {
 			Plugins\ACF\SavePost::class,
 			Plugins\ACF\FormatValue::class,
 			Plugins\ACF\IncludeFields\BlocksFields::class,
-			Plugins\ACF\IncludeFields\ClonesFields::class,
 			Plugins\ACF\IncludeFields\PostFields::class,
 			Plugins\ACF\IncludeFields\PageFields::class,
 			Plugins\ACF\IncludeFields\ThemeFields::class,

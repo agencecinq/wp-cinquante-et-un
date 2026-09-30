@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Contact block layout.
  */
@@ -28,7 +26,7 @@ class Contact {
 			'label'      => __( 'Contact', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_contact' ),
+				...cinq_acf_settings_group( $key . '_contact' ),
 				array(
 					'key'        => 'field_' . $key . '_contact_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Cta block layout.
  */
@@ -28,7 +26,7 @@ class Cta {
 			'label'      => __( 'CTA', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_cta' ),
+				...cinq_acf_settings_group( $key . '_cta' ),
 				array(
 					'key'        => 'field_' . $key . '_cta_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

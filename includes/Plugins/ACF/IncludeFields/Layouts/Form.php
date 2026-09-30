@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Form block layout.
  */
@@ -29,7 +27,7 @@ class Form {
 			'display'    => 'block',
 			'max'        => 1,
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_form' ),
+				...cinq_acf_settings_group( $key . '_form' ),
 				array(
 					'key'        => 'field_' . $key . '_form_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

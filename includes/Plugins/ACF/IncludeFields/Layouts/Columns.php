@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Columns block layout (two-column text).
  */
@@ -28,7 +26,7 @@ class Columns {
 			'label'      => __( 'Columns', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_columns' ),
+				...cinq_acf_settings_group( $key . '_columns' ),
 				array(
 					'key'        => 'field_' . $key . '_columns_content_tab',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * CaseStudies block layout (WP_Query; wire the case_study CPT on a project).
  */
@@ -30,7 +28,7 @@ class CaseStudies {
 			'label'      => __( 'Case Studies', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_case_studies' ),
+				...cinq_acf_settings_group( $key . '_case_studies' ),
 				array(
 					'key'        => 'field_' . $key . '_case_studies_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

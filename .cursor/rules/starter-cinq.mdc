@@ -168,6 +168,6 @@ Règles dédiées existantes :
 - `tailwind-twig` : styling en Tailwind dans les `.twig` ; feuilles `components/` autorisées uniquement pour boutons et WYSIWYG ; pseudos plutôt que tags vides ; pas de `content-['']` redondant sur `before:` / `after:`.
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
 - `archive-options` : page d'options ACF pour le contenu éditorial des archives (posts sous Articles, CPT sous son menu).
-- `acf-clones` : bibliothèque ACF clone pour les champs partagés entre blocs flexibles (layout, media, heading).
+- `acf-shared-fields` : champs ACF partagés entre blocs flexibles via fonctions `cinq_acf_*` (layout, media, heading).
 - Skill `html-entities` (`.cursor/skills/html-entities/`) : entités HTML nommées dans les chaînes UI (`&nbsp;`, `&hellip;`, …).
 - Skill `tailwind-pseudo-content` (`.cursor/skills/tailwind-pseudo-content/`) : pseudos décoratifs plutôt que tags vides ; pas de `content-['']` redondant.
