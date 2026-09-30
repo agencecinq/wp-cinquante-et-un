@@ -28,8 +28,8 @@ Préférer **`space-y-*`** (ou `gap-*` en flex/grid) sur le conteneur parent plu
 <div class="space-y-5">
   {%- if breadcrumb -%}{{- breadcrumb | raw -}}{%- endif -%}
   <h1>{{ post.title }}</h1>
-  {%- if post.excerpt({ read_more: '' }) | striptags | trim -%}
-    <p>{{ post.excerpt({ read_more: '' }) }}</p>
+  {%- if post.excerpt({ read_more: false }) | striptags | trim -%}
+    <p>{{ post.excerpt({ read_more: false }) }}</p>
   {%- endif -%}
 </div>
 
