@@ -65,7 +65,7 @@ There is no `page.php` or `front-page.php`: content pages go through `index.php`
 2. **Native editor content**: WordPress `post_content`, output in a `.wysiwyg` wrapper (legal pages, simple editorial content).
 3. **ACF flexible blocks**: marketing layouts via `blocks/blocks.html.twig`.
 
-WYSIWYG content and blocks are independent: a page can use either, or both (editorial intro followed by blocks). Block definitions live in `includes/Plugins/ACF/IncludeFields/Layouts/` with matching Twig in `views/blocks/`. Shared fields (layout settings, media, heading level) use the ACF clone library documented in `.cursor/rules/acf-clones.mdc`. See the block list in `.cursor/rules/starter-cinq.mdc`.
+WYSIWYG content and blocks are independent: a page can use either, or both (editorial intro followed by blocks). Block definitions live in `includes/Plugins/ACF/IncludeFields/Layouts/` with matching Twig in `views/blocks/`. Shared fields (layout settings, media, heading level) use shared ACF helpers documented in `.cursor/rules/acf-shared-fields.mdc`. See the block list in `.cursor/rules/starter-cinq.mdc`.
 
 ### Journal and archives
 

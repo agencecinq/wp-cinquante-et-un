@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * CardsGrid block layout.
  */
@@ -28,7 +26,7 @@ class CardsGrid {
 			'label'      => __( 'Cards Grid', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_cards_grid' ),
+				...cinq_acf_settings_group( $key . '_cards_grid' ),
 				array(
 					'key'           => 'field_' . $key . '_cards_grid_columns',
 					'label'         => __( 'Columns', 'wp-cinquante-et-un' ),

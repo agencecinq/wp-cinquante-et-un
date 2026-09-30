@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * KeyFigures block layout.
  */
@@ -28,7 +26,7 @@ class KeyFigures {
 			'label'      => __( 'Key Figures', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_key_figures' ),
+				...cinq_acf_settings_group( $key . '_key_figures' ),
 				array(
 					'key'        => 'field_' . $key . '_key_figures_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

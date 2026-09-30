@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Logos block layout (logo strip).
  */
@@ -28,7 +26,7 @@ class Logos {
 			'label'      => __( 'Logos', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_logos' ),
+				...cinq_acf_settings_group( $key . '_logos' ),
 				array(
 					'key'        => 'field_' . $key . '_logos_content_tab',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

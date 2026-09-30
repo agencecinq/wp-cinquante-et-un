@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Hero block layout.
  */
@@ -28,8 +26,8 @@ class Hero {
 			'label'      => __( 'Hero', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_hero' ),
-				...AcfFieldHelpers::media(
+				...cinq_acf_settings_group( $key . '_hero' ),
+				...cinq_acf_media_group(
 					$key . '_hero',
 					array(
 						'instructions' => __(
@@ -112,16 +110,7 @@ class Hero {
 							'default_value' => '',
 							'instructions'  => __( 'Display/5xl. Use h1 on the homepage, h2 elsewhere (heading level below).', 'wp-cinquante-et-un' ),
 						),
-						array(
-							'key'        => 'field_' . $key . '_hero_content_heading',
-							'label'      => __( 'Heading', 'wp-cinquante-et-un' ),
-							'name'       => 'heading',
-							'aria-label' => __( 'Heading', 'wp-cinquante-et-un' ),
-							'type'       => 'clone',
-							'clone'      => array( 'field_clones_heading' ),
-							'display'    => 'seamless',
-							'layout'     => 'block',
-						),
+						cinq_acf_heading( $key . '_hero_content' ),
 						array(
 							'key'           => 'field_' . $key . '_hero_content_text',
 							'label'         => __( 'Text', 'wp-cinquante-et-un' ),

@@ -49,7 +49,7 @@ function cinq_seed_layout(
 }
 
 /**
- * Returns a media clone field value.
+ * Returns a media group field value.
  *
  * @param int $image_id Attachment ID.
  * @return array<string, mixed>

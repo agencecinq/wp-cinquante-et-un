@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Testimonials block layout.
  */
@@ -30,7 +28,7 @@ class Testimonials {
 			'label'      => __( 'Testimonials', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_testimonials' ),
+				...cinq_acf_settings_group( $key . '_testimonials' ),
 				array(
 					'key'        => 'field_' . $key . '_testimonials_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

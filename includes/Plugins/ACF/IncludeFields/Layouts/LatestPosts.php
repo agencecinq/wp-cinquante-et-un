@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * LatestPosts block layout.
  */
@@ -30,7 +28,7 @@ class LatestPosts {
 			'label'      => __( 'Latest Posts', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_latest_posts' ),
+				...cinq_acf_settings_group( $key . '_latest_posts' ),
 				array(
 					'key'        => 'field_' . $key . '_latest_posts_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),
