@@ -109,7 +109,7 @@ class BlocksFields implements Service {
 				'aria-label'   => __( 'Blocks', 'wp-cinquante-et-un' ),
 				'type'         => 'flexible_content',
 				'instructions' => __( 'Add and arrange blocks to build the page content.', 'wp-cinquante-et-un' ),
-				'layouts'      => AcfFieldHelpers::get_layouts_from( $key, self::$layouts ),
+				'layouts'      => cinq_acf_layouts_from( $key, self::$layouts ),
 				'button_label' => __( 'Add Block', 'wp-cinquante-et-un' ),
 			),
 		);

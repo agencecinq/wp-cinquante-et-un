@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * AccordionGroup block layout.
  */
@@ -28,7 +26,7 @@ class AccordionGroup {
 			'label'      => __( 'FAQ', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_accordion_group' ),
+				...cinq_acf_settings_group( $key . '_accordion_group' ),
 				array(
 					'key'        => 'field_' . $key . '_accordion_group_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),

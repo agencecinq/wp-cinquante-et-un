@@ -98,7 +98,7 @@ class StyleguideContext {
 	}
 
 	/**
-	 * Media clone with bundled placeholder video (desktop) and image fallback (mobile).
+	 * Media group with bundled placeholder video (desktop) and image fallback (mobile).
 	 *
 	 * @param array<string, mixed> $image Placeholder image.
 	 * @return array<string, mixed>
@@ -118,7 +118,7 @@ class StyleguideContext {
 	}
 
 	/**
-	 * Hero media clone with image only.
+	 * Hero media group with image only.
 	 *
 	 * @return array<string, mixed>
 	 */
@@ -159,7 +159,7 @@ class StyleguideContext {
 	 * Builds a hero block row merged with overrides.
 	 *
 	 * @param string               $block_id  Block anchor slug.
-	 * @param array<string, mixed> $media     Media clone value.
+	 * @param array<string, mixed> $media     Media group value.
 	 * @param array<string, mixed> $overrides Field overrides.
 	 * @return array<string, mixed>
 	 */

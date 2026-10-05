@@ -106,7 +106,7 @@ class ArchivePostsFields implements Service {
 						'aria-label'   => __( 'Blocks', 'wp-cinquante-et-un' ),
 						'type'         => 'flexible_content',
 						'instructions' => __( 'Blocks displayed below the posts list on the archive and category pages.', 'wp-cinquante-et-un' ),
-						'layouts'      => AcfFieldHelpers::get_layouts_from( $key, BlocksFields::get_layout_classes() ),
+						'layouts'      => cinq_acf_layouts_from( $key, BlocksFields::get_layout_classes() ),
 						'button_label' => __( 'Add Block', 'wp-cinquante-et-un' ),
 					),
 				),

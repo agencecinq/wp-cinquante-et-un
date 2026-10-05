@@ -1,0 +1,57 @@
+---
+description: Champs ACF partagés entre blocs flexibles via fonctions PHP (layout, media, heading). À appliquer quand on ajoute ou modifie un layout de bloc ou des settings communs.
+globs: includes/Plugins/ACF/**,views/blocks/**
+alwaysApply: false
+---
+
+# Champs ACF partagés (blocs)
+
+## Principe
+
+Les champs réutilisés par plusieurs layouts flexibles ne sont pas dupliqués dans chaque `Layouts/*.php`. Ils sont renvoyés par des fonctions PHP dans `includes/Plugins/ACF/helpers.php` (tableaux de champs ACF natifs : `group`, `select`, …), auto-chargées via `composer.json` → `autoload.files`. Pas de classe, pas de `type: clone`, pas de `use` dans les layouts.
+
+Modifier une fonction une fois met à jour tous les blocs qui l’utilisent. Préfixe `cinq_acf_*`, comme le reste des helpers du thème.
+
+## Fonctions (`includes/Plugins/ACF/helpers.php`)
+
+| Fonction | Contenu | Nommé côté bloc |
+| --- | --- | --- |
+| `cinq_acf_settings_group( $key, $args )` | tab Settings + group `layout` (`color_scheme`, spacing, `anchor`, `container`) | `layout` |
+| `cinq_acf_media_group( $key, $args )` | tab Media + group `media` | `media` |
+| `cinq_acf_heading( $key )` | select sémantique `h1` / `h2` / `h3` | `heading` |
+| `cinq_acf_text_alignment( $key )` | select `text-left` / `text-center` / `text-right` | `text_alignment` |
+| `cinq_acf_layouts_from( $key, $classes )` | map des layouts flexibles depuis les classes | — |
+| `cinq_acf_spacings()` | listes de choix spacing (`none` `sm` `md` `lg` `xl`) | — |
+
+Clés externes stables à préserver : `field_settings_{$key}_layout`, `field_{$key}_media`, `field_{$key}_heading`.
+
+Dans un layout :
+
+```php
+'sub_fields' => array(
+    ...cinq_acf_settings_group( $key . '_hero' ),
+    ...cinq_acf_media_group( $key . '_hero' ),
+    // champs spécifiques au bloc
+    cinq_acf_heading( $key . '_hero_content' ),
+),
+```
+
+Rich Text : champs propres au layout (`width`, `alignment` pour la position de colonne), pas `cinq_acf_text_alignment()`.
+
+## Front
+
+- `layout` : enrichi par `cinq_enrich_block()` (`classes`, `container_classes`, `color_scheme`, `id` depuis `anchor`).
+- `content.heading` : balise HTML sémantique dans le Twig ; **la typo visuelle est en Tailwind dans le template**, pas en champ ACF.
+- Rich Text : `width` et `alignment` (`start` / `center`, position dans la grille).
+
+## DO
+
+- Ajouter un champ partagé dans `includes/Plugins/ACF/helpers.php`, puis l’utiliser depuis les layouts.
+- Garder le fichier dans `composer.json` → `autoload.files` (avec `includes/helpers.php`).
+- Garder les clés externes stables (`field_settings_*_layout`, `field_*_media`, …) : les valeurs en base suivent surtout les **names** (`layout`, `media`, `heading`).
+
+## DONT
+
+- Pas de champ ACF pour la typo visuelle des titres de bloc : utiliser les utilitaires Tailwind dans `views/blocks/`.
+- Pas de duplication inline des champs `layout` ou `media` dans chaque layout : passer par les helpers.
+- Pas de `type: clone`, pas de classe helper, pas de `require` manuel du fichier.

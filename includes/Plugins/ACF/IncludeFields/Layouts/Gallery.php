@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Gallery block layout.
  */
@@ -28,7 +26,7 @@ class Gallery {
 			'label'      => __( 'Gallery', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_gallery' ),
+				...cinq_acf_settings_group( $key . '_gallery' ),
 				array(
 					'key'           => 'field_' . $key . '_gallery_images_per_row',
 					'label'         => __( 'Images per row', 'wp-cinquante-et-un' ),

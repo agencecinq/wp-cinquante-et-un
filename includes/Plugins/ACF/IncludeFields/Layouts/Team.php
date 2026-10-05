@@ -8,8 +8,6 @@
 
 namespace WPCinquanteEtUn\Plugins\ACF\IncludeFields\Layouts;
 
-use WPCinquanteEtUn\Plugins\ACF\IncludeFields\AcfFieldHelpers;
-
 /**
  * Team block layout (member CPT relationship).
  */
@@ -28,7 +26,7 @@ class Team {
 			'label'      => __( 'Team', 'wp-cinquante-et-un' ),
 			'display'    => 'block',
 			'sub_fields' => array(
-				...AcfFieldHelpers::settings( $key . '_team' ),
+				...cinq_acf_settings_group( $key . '_team' ),
 				array(
 					'key'        => 'field_' . $key . '_team_tab_content',
 					'label'      => __( 'Content', 'wp-cinquante-et-un' ),
