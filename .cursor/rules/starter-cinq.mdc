@@ -176,3 +176,4 @@ Règles dédiées existantes :
 - Skill `html-entities` (`.cursor/skills/html-entities/`) : entités HTML nommées dans les chaînes UI (`&nbsp;`, `&hellip;`, …).
 - Skill `timber-twig` (`.cursor/skills/timber-twig/`) : requêtes Twig + excerpts Timber 2 + anti-`preview`.
 - Skill `tailwind-pseudo-content` (`.cursor/skills/tailwind-pseudo-content/`) : pseudos décoratifs plutôt que tags vides ; pas de `content-['']` redondant.
+- Skills GSAP officielles (`.cursor/skills/gsap-*`, sans React/Vue) : `gsap-core`, `gsap-timeline`, `gsap-plugins` (Draggable, Observer, …), `gsap-utils`, `gsap-scrolltrigger`, `gsap-performance`. Source : https://github.com/greensock/gsap-skills
