@@ -39,7 +39,7 @@
 			{%- if posts | length -%}
 				<div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
 					{%- for item in posts -%}
-						{{- include('components/tease-post.html.twig', { post: item }, with_context = false) -}}
+						{{- include('components/tease-post.html.twig', { post: item, heading_tag: 'h2' }, with_context = false) -}}
 					{%- endfor -%}
 				</div>
 
