@@ -141,6 +141,7 @@ DONT :
 - Pas de nouvelle feuille `src/stylesheets/components/<nom>.css` pour un composant UI (BEM + `@apply`) ; utiliser Tailwind dans le Twig (voir `tailwind-twig`). Exception figée : `button.css`, `wysiwyg.css`.
 - Pas de `theme.json` ni de blocs Gutenberg pour le contenu : Classic Editor (plugin requis) + `use_widgets_block_editor` et `remove_theme_support` dans `WPSettings.php`, tokens front dans `theme.css`.
 - Pas d'intégration de plugin tiers (Yoast, Contact Form 7, …) dans le starter : ACF est la seule dépendance plugin du noyau. Les adapters se câblent sur le projet.
+- Pas de réimplémentation dans le thème d'une brique couverte par un mu-plugin agence (`cinq-wp-table-of-contents`, `cinq-wp-reading-time`) : appeler son API derrière `function_exists()` (voir `BlogPost`).
 - Pas de dimension e-commerce (panier, fiches produit, featured collection, moyens de paiement). L'équivalent éditorial de la featured collection Shopify, c'est `LatestPosts`.
 - Ne pas modifier l'identité agence lors d'un renommage.
 - Pas d'emoji ni de tiret cadratin dans les contenus rédigés.
