@@ -77,7 +77,7 @@ Nouveau bloc : trio layout (`IncludeFields/Layouts/`) + Twig (`views/blocks/`) +
 - Nouveau token de design (couleur, typo, radius) : seulement si l’échelle Tailwind ne suffit pas. Le déclarer dans `@theme` de `src/stylesheets/theme.css`, jamais en dur dans les classes utilitaires. Suffixe du token **en anglais** (voir `design-tokens`). L'ajouter au catalogue `views/components/styleguide.html.twig` (page template `styleguide-page`).
 - Nouveau template de page : le suffixer `-page` (`page-templates/<nom>-page.php` + `views/pages/<nom>-page.html.twig`). Le styleguide est `styleguide-page`. Les pages de contenu passent par `index.php` (blocs), pas par un template dédié. Pour une nouvelle vue (journal, single, archive CPT), préférer le fichier racine de la hiérarchie WP (`home.php`, `single.php`, `archive-<cpt>.php`, …) plutôt qu’un branchement conditionnel dans `index.php`.
 - Nouvelle icône : SVG 24×24, `viewBox="0 0 24 24"`, fills/strokes en `currentColor` (pas de fond de canvas). Ajouter le fichier dans `src/icons/`, puis `pnpm build` pour régénérer `public/sprite.svg`. L'utiliser via `views/svg/use.html.twig`. L'ajouter à la liste du catalogue styleguide.
-- Images responsive : composant `views/components/image.html.twig` (srcset, WebP, lazy). Images statiques : `asset('src/img/...')`.
+- Images responsive : composant `views/components/image.html.twig` (srcset, WebP, lazy). Images statiques : `asset('src/img/...')`. Image au-dessus de la ligne de flottaison (hero, une d'article) : `loading: 'eager'` + `attributes: { fetchpriority: 'high' }` ; toutes les autres restent en lazy.
 - Cache Twig : activé dès que `WP_DEBUG` est à false (défaut d'une install WordPress / Local fraîche). En `local` / `development`, une notice admin le rappelle. En prod, vider `vendor/timber/timber/cache/*` après une modif de `.twig`.
 
 ## Standards de code et langue
@@ -119,6 +119,7 @@ DO :
 - Utiliser des entités HTML nommées (`&nbsp;`, `&hellip;`, …) dans les chaînes UI (voir le skill `html-entities`).
 - Extraits Timber 2 : `post.excerpt` (hash ou chaînage), jamais `post.preview` (voir `timber-twig`).
 - Requêtes Timber en Twig : `get_posts({ … })` / `get_post(…)` natifs, pas `function('Timber\\Timber::get_posts', …)` (voir `timber-twig`).
+- Charger les Web Components et libs utilisés seulement par certains blocs via `load('<tag>', () => import('…'))` dans `app.js`, pas en import statique (seul ce qui sert sur toutes les pages, comme le drawer du header, reste importé directement).
 
 DONT :
 
@@ -146,6 +147,7 @@ DONT :
 - Pas d'emoji ni de tiret cadratin dans les contenus rédigés.
 - Pas d'espaces insécables ou points de suspension collés en Unicode brut : préférer `&nbsp;`, `&hellip;` (voir le skill `html-entities`).
 - Pas de `private` TypeScript sur les composants JS : utiliser `#`.
+- Pas de `fonts.googleapis.com` : héberger les polices dans le thème, Google Fonts comprises (voir `init-nouveau-projet`, étape 4).
 - Pas de `mt-*` / `mb-*` conditionnels pour espacer des frères : utiliser `space-y-*` ou `gap-*` sur le conteneur (voir `tailwind-twig`).
 - Pas de titre, extrait ou blocs d'archive lus depuis `page_for_posts` : le contenu éditorial de l'archive vit dans la page d'options ACF du menu Articles ou du CPT (voir `archive-options`).
 - Pas de hook `add_archive_to_context` ni filtres d'archive construits en PHP : classmaps Timber + trait `ArchivePost` (voir `archive-options`).

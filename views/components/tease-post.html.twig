@@ -6,6 +6,7 @@
  #
  # @param object post Timber post (or dummy with the same shape).
  # @param array classes Extra CSS classes.
+ # @param string [heading_tag] Title tag. Defaults to 'h3' (cards under a section h2); 'h2' directly under the page h1.
  #}
 
 {%- set excerpt =
@@ -67,9 +68,9 @@
 			</time>
 		</div>
 
-		<h3 class="text-xl font-semibold" itemprop="headline">
+		<{{ heading_tag | default('h3') }} class="text-xl font-semibold" itemprop="headline">
 			<a href="{{ post.link }}" itemprop="url">{{- post.title -}}</a>
-		</h3>
+		</{{ heading_tag | default('h3') }}>
 
 		{%- if excerpt | striptags | trim -%}
 			<p class="line-clamp-2 text-sm text-gray-600" itemprop="description">

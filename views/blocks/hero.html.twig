@@ -32,6 +32,8 @@
 					{
 						media: block.media,
 						image_size: 'hero',
+						loading: 'eager',
+						attributes: { fetchpriority: 'high' },
 						video_desktop_only: true,
 						classes: ['absolute inset-0 z-10 size-full object-cover object-center']
 					}

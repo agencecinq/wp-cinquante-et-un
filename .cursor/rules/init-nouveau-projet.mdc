@@ -64,9 +64,19 @@ Quand le projet a ses propres polices, aligne les sources : c'est un point qui d
 1. Les fichiers dans `src/fonts/` (un `.woff2` orphelin d'un ancien projet).
 2. Les `@font-face` dans `src/stylesheets/base/font-face.css`.
 3. `--default-font-family` (et `--font-heading` / `--font-mono` si besoin) dans `theme.css`.
-4. Le handle Google Fonts dans `Enqueue::enqueue_styles()` si la police vient de là.
+4. `Enqueue::PRELOAD_FONTS` : les fichiers peints au-dessus de la ligne de flottaison (texte courant, titres).
 
 Vérifie que la famille déclarée, le fichier réellement présent, et `--default-font-family` désignent bien la MÊME police.
+
+### Google Fonts : héberger dans le thème
+
+Une police Google Fonts s'héberge dans le thème, pas via `fonts.googleapis.com` : la feuille distante bloque le rendu (deux origines à joindre avant le premier texte) et transmet l'IP des visiteurs à Google (RGPD). Ne garde le CDN que si la licence interdit l'auto-hébergement.
+
+1. Récupère la feuille avec un User-Agent récent pour obtenir du woff2, en demandant la plage de graisses (`wght@400..800`) pour avoir la version variable quand elle existe :
+   `curl -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" "https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap"`
+2. Télécharge le fichier du bloc `/* latin */` (il couvre le français : accents, œ, €) dans `src/fonts/<famille>-variable.woff2` (ou `<famille>-<graisse>.woff2` pour une police statique).
+3. Déclare le `@font-face` dans `font-face.css` (`font-weight: 400 800` pour une variable, `font-display: swap`), puis ajoute le fichier à `Enqueue::PRELOAD_FONTS`.
+4. Chaque famille a son propre `@font-face` : une police variable et une police statique cohabitent sans problème. Le navigateur ne télécharge que les familles réellement utilisées par la page.
 
 ## Étape 5 : SVG et assets
 
@@ -92,6 +102,7 @@ Le PHP se nettoie au fur et à mesure, mais retire d'emblée ce qui est claireme
 - Dans `wp-config.php`, passe `WP_DEBUG` à `true` : une install WordPress fraîche (et Local) le laisse à `false`, ce qui active le cache Twig. Une notice admin le signale tant que c'est le cas.
 - `composer install` puis `pnpm install`.
 - Installe et active **Advanced Custom Fields** et **Classic Editor** (plugins requis du starter).
+- Avec **Yoast SEO** : Réglages > Avancé > Optimisation de l'exploration, active « Supprimer les scripts d'emoji ». Le thème ne les retire pas lui-même. Le réglage vit en base : à refaire sur chaque environnement (préprod, prod).
 - `pnpm dev` pour développer, `pnpm build` pour vérifier le build prod.
 - Lance phpcs (`composer` / config `phpcs.xml`) et corrige les avertissements introduits.
 
@@ -103,5 +114,5 @@ Avant de considérer l'init terminée, vérifie qu'il ne reste AUCUNE trace de l
 2. Recherche d'éventuels noms d'anciens clients (logos, icônes métier, packages Composer orphelins) : zéro résultat.
 3. `composer.json` `name` et `autoload.psr-4` cohérents avec le nouveau slug/namespace.
 4. `style.css`, `package.json` et le `.pot` portent bien le nouveau nom ; identité agence intacte.
-5. Police : soit les stacks Tailwind du starter, soit `@font-face` / Google Fonts + `--default-font-family` alignés sur la même famille.
+5. Police : soit les stacks Tailwind du starter, soit `@font-face` (Google Fonts hébergées dans le thème) + `--default-font-family` + `PRELOAD_FONTS` alignés sur la même famille. Aucun appel à `fonts.googleapis.com`.
 6. `pnpm build` passe et régénère `public/sprite.svg` ; phpcs ne remonte pas de nouvelle erreur.
