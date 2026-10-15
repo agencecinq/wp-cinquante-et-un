@@ -22,30 +22,24 @@ class BlogPost extends Post {
 	use ArchivePost;
 
 	/**
-	 * Estimated reading time in minutes (ACF value, else computed).
+	 * Estimated reading time in minutes, from the cinq-wp-reading-time mu-plugin.
 	 *
-	 * @return int
+	 * @return int 0 when the plugin is missing or the content is empty.
 	 */
 	public function reading_time(): int {
-		$stored = (int) $this->meta( 'reading_time' );
-
-		if ( $stored > 0 ) {
-			return $stored;
-		}
-
-		return cinq_estimate_reading_time( (string) $this->post_content );
+		return function_exists( 'cinq_reading_time' ) ? cinq_reading_time( $this->ID ) : 0;
 	}
 
 
 	/**
-	 * H2 entries for the single-post table of contents.
+	 * Table of contents tree from the cinq-wp-table-of-contents mu-plugin.
 	 *
-	 * @return array<int, array{title: string, id: string}>
+	 * Its the_content filter injects the heading ids the entries link to.
+	 *
+	 * @return array<int, array{title: string, id: string, level: int, children: array}>
 	 */
 	public function table_of_contents(): array {
-		$content = cinq_add_heading_ids( (string) $this->content );
-
-		return cinq_parse_toc_items( $content );
+		return function_exists( 'cinq_toc_items' ) ? cinq_toc_items( (string) $this->content ) : array();
 	}
 
 

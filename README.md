@@ -13,7 +13,7 @@ It ships a generic, reusable foundation (block library, components, helpers, too
 - **Performance**: optimized images (WebP, lazy‑loading), SVG sprite, minified assets in production.
 - **Extensibility**: class‑based PHP in `includes/`, Twig components in `views/`, front‑end sources in `src/`.
 - **ACF block library**: flexible page layouts (hero, cards grid, media + text, FAQ, …) with a styleguide catalogue.
-- **Journal**: posts index, category and tag archives, single post with server-side table of contents.
+- **Journal**: posts index, category and tag archives, single post with server-side table of contents and reading time (agency mu-plugins, see Installation).
 - **Demo seeds**: WP-CLI scripts in `bin/` to populate a local site for development.
 
 ## Workflows (AI-assisted)
@@ -74,7 +74,7 @@ The blog uses Timber models (`includes/Models/`) mapped in `includes/Setup/Conte
 - `Home`: posts index (`home.php`)
 - `CategoryArchive`: category archives (`category.php`)
 - `TagArchive`: tag archives (`tag.php`)
-- `BlogPost`: single post (server-side table of contents, reading time)
+- `BlogPost`: single post (table of contents and reading time from the agency mu-plugins, related posts)
 
 Archive editorial content (title, lead, hero) is stored in an **ACF options page** under the Posts menu, not on `page_for_posts`. See `.cursor/rules/archive-options.mdc`. Category and tag filters share `pages/archive-post.html.twig` via the `ArchivePost` trait.
 
@@ -272,6 +272,13 @@ composer install
 ```
 
 Don't forget to install and activate the required WordPress plugins: **Advanced Custom Fields** and **Classic Editor**. Project plugins (Contact Form 7, Yoast SEO, etc.) are added per site.
+
+The single post reads its table of contents and reading time from two agency mu-plugins. Copy their main file into `wp-content/mu-plugins/`:
+
+- [`cinq-wp-table-of-contents`](https://github.com/agencecinq/cinq-wp-table-of-contents): heading ids and the TOC tree (`cinq_toc_items()`).
+- [`cinq-wp-reading-time`](https://github.com/agencecinq/cinq-wp-reading-time): reading time stored on save (`cinq_reading_time()`).
+
+Without them the post renders without a table of contents or reading time.
 
 ### JavaScript Dependencies
 
