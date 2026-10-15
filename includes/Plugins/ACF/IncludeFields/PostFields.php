@@ -2,7 +2,8 @@
 /**
  * Post Fields
  *
- * ACF group on the native post type: reading time and related posts.
+ * ACF group on the native post type: related posts.
+ * Reading time comes from the cinq-wp-reading-time mu-plugin.
  * The body stays in the native editor (`post_content`). This is not a page-builder group.
  *
  * @package WordPress
@@ -49,18 +50,6 @@ class PostFields implements Service {
 		);
 
 		$fields = array(
-			array(
-				'key'           => 'field_' . $key . '_reading_time',
-				'label'         => __( 'Reading time', 'wp-cinquante-et-un' ),
-				'name'          => 'reading_time',
-				'aria-label'    => __( 'Reading time', 'wp-cinquante-et-un' ),
-				'type'          => 'number',
-				'append'        => __( 'min', 'wp-cinquante-et-un' ),
-				'min'           => 1,
-				'step'          => 1,
-				'readonly'      => 1,
-				'instructions'  => __( 'Estimated from the content and stored on save.', 'wp-cinquante-et-un' ),
-			),
 			array(
 				'key'           => 'field_' . $key . '_related',
 				'label'         => __( 'Related posts', 'wp-cinquante-et-un' ),
