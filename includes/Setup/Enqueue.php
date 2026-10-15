@@ -22,6 +22,14 @@ use WPCinquanteEtUn\{ Service, Vite };
 class Enqueue implements Service {
 
 	/**
+	 * Fonts painted above the fold (body, headings), as file names in src/fonts/
+	 * without extension. Preloaded so they are not discovered only once the CSS is parsed.
+	 *
+	 * @var string[]
+	 */
+	private const PRELOAD_FONTS = array();
+
+	/**
 	 * Runs initialization tasks.
 	 *
 	 * @return void
@@ -30,6 +38,7 @@ class Enqueue implements Service {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'dequeue_styles' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_filter( 'wp_preload_resources', array( $this, 'preload_resources' ) );
 
 		// Contact Form 7 scripts only on pages that render a form.
 		add_filter( 'wpcf7_load_js', '__return_false' );
@@ -38,10 +47,30 @@ class Enqueue implements Service {
 
 
 	/**
+	 * Preload resources
+	 *
+	 * @param array $resources Resources to preload.
+	 * @return array
+	 */
+	public function preload_resources( array $resources ): array {
+		foreach ( self::PRELOAD_FONTS as $font ) {
+			$resources[] = array(
+				'href'        => Vite::asset( 'src/fonts/' . $font . '.woff2' ),
+				'as'          => 'font',
+				'type'        => 'font/woff2',
+				'crossorigin' => 'anonymous',
+			);
+		}
+
+		return $resources;
+	}
+
+
+	/**
 	 * Enqueue styles.
 	 *
-	 * The starter ships no custom typeface. Add @font-face in font-face.css and/or
-	 * register Google Fonts here when the project defines its fonts.
+	 * Fonts are self-hosted: files in src/fonts/, @font-face in font-face.css,
+	 * above-the-fold files listed in PRELOAD_FONTS.
 	 *
 	 * @access public
 	 * @return void

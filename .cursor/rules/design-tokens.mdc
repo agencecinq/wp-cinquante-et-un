@@ -79,7 +79,7 @@ Use Tailwind type utilities in Twig: `text-xs` … `text-6xl`, plus `font-medium
 - **Meta / overline**: `.subtitle` (`text-xs font-medium uppercase`, letter-spacing 0.1em).
 - **Article body**: `.prose-base` / `.prose-lg` (line-height 1.7). Never mix with Body UI styles.
 
-The starter ships no custom typeface: system sans-serif stack via `--default-font-family`. Add `@font-face` / Google Fonts and update `--font-sans` on the project (see `init-nouveau-projet`).
+The starter ships no custom typeface: system sans-serif stack via `--default-font-family`. On the project, self-host the fonts (Google Fonts included) with `@font-face` in `font-face.css`, list the above-the-fold files in `Enqueue::PRELOAD_FONTS` and update `--font-sans` (see `init-nouveau-projet`).
 
 Container: `--container-max-width` (90rem = 1440px, or 110rem = 1760px). Editorial measure: `--max-width-prose` (45rem = 720px) via `max-w-prose`.
 

@@ -37,7 +37,7 @@ pnpm build      # also generates public/sprite.svg from src/icons/
 pnpm dev        # local dev server
 ```
 
-Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`). Colors use Tailwind utilities (`bg-white`, `text-black`, `text-gray-500`); override `--color-gray-*` in `src/stylesheets/theme.css` if the project palette differs. Type uses the system sans-serif stack; add project fonts via `src/fonts/` and/or Google Fonts. Corners are square.
+Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`). Colors use Tailwind utilities (`bg-white`, `text-black`, `text-gray-500`); override `--color-gray-*` in `src/stylesheets/theme.css` if the project palette differs. Type uses the system sans-serif stack; self-host project fonts, Google Fonts included, in `src/fonts/` with `@font-face` in `src/stylesheets/base/font-face.css`, and preload the above-the-fold files via `Enqueue::PRELOAD_FONTS`. Corners are square.
 
 ### Template hierarchy
 

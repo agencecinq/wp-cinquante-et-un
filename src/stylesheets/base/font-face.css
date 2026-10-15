@@ -1,3 +1,15 @@
 @layer base {
-	/* Add @font-face here when a project ships files in src/fonts/. */
+	/*
+	 * Add @font-face here for the files in src/fonts/, Google Fonts included (latin woff2,
+	 * one variable file per family when available), then list the above-the-fold files
+	 * in Enqueue::PRELOAD_FONTS. Example:
+	 *
+	 * @font-face {
+	 * 	font-family: 'Inter';
+	 * 	src: url('../../fonts/inter-variable.woff2') format('woff2');
+	 * 	font-weight: 100 900;
+	 * 	font-style: normal;
+	 * 	font-display: swap;
+	 * }
+	 */
 }
