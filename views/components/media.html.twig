@@ -5,6 +5,8 @@
  # @param array  classes             Classes applied to img/video elements.
  # @param string image_size          WordPress image size for attachments.
  # @param bool   video_desktop_only   Show video from lg up; images below lg.
+ # @param string [loading]           Loading attribute for the images. Defaults to 'lazy'; 'eager' above the fold.
+ # @param object [attributes]        Additional attributes for the images (e.g. { fetchpriority: 'high' }).
  #}
 
 {%- set image_size = image_size | default( 'large' ) -%}
@@ -18,6 +20,8 @@
 			{
 				image: media.images[0] ? media.images[0] : media.images[1],
 				size: image_size,
+				loading: loading,
+				attributes: attributes,
 				classes: [
 					'block lg:hidden',
 					media_classes | join( ' ' )
@@ -50,6 +54,8 @@
 		{
 			image: media.images[0],
 			size: image_size,
+			loading: loading,
+			attributes: attributes,
 			classes: [
 				media.images[1] ? 'block lg:hidden' : 'block',
 				media_classes | join( ' ' )
@@ -61,6 +67,8 @@
 		{
 			image: media.images[1],
 			size: image_size,
+			loading: loading,
+			attributes: attributes,
 			classes: [
 				media.images[0] ? 'hidden lg:block' : 'block',
 				media_classes | join( ' ' )
