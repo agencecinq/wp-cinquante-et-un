@@ -30,6 +30,10 @@ class Enqueue implements Service {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'dequeue_styles' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
+		// Contact Form 7 scripts only on pages that render a form.
+		add_filter( 'wpcf7_load_js', '__return_false' );
+		add_action( 'wpcf7_shortcode_callback', 'wpcf7_enqueue_scripts' );
 	}
 
 
@@ -46,7 +50,6 @@ class Enqueue implements Service {
 		$filename = Vite::asset( 'src/stylesheets/styles.css' );
 
 		wp_enqueue_style( get_theme_text_domain() . '-main', $filename, array(), null );
-		wp_enqueue_style( get_theme_text_domain() . '-style', get_stylesheet_uri(), array( get_theme_text_domain() . '-main' ), null );
 
 		if ( is_page_template( 'page-templates/styleguide-page.php' ) ) {
 			wp_enqueue_style(

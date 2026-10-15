@@ -92,6 +92,7 @@ Le PHP se nettoie au fur et à mesure, mais retire d'emblée ce qui est claireme
 - Dans `wp-config.php`, passe `WP_DEBUG` à `true` : une install WordPress fraîche (et Local) le laisse à `false`, ce qui active le cache Twig. Une notice admin le signale tant que c'est le cas.
 - `composer install` puis `pnpm install`.
 - Installe et active **Advanced Custom Fields** et **Classic Editor** (plugins requis du starter).
+- Avec **Yoast SEO** : Réglages > Avancé > Optimisation de l'exploration, active « Supprimer les scripts d'emoji ». Le thème ne les retire pas lui-même. Le réglage vit en base : à refaire sur chaque environnement (préprod, prod).
 - `pnpm dev` pour développer, `pnpm build` pour vérifier le build prod.
 - Lance phpcs (`composer` / config `phpcs.xml`) et corrige les avertissements introduits.
 
