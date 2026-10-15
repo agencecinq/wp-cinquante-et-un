@@ -221,6 +221,7 @@ wp-cinquante-et-un/
 ├── public/              # Production assets (sprite.svg, placeholder.svg, …)
 ├── *.php (root)         # WordPress template hierarchy entry points
 ├── deploy.sh            # Production build + dev-files purge (used by CI)
+├── .htaccess            # Long-lived cache headers for dist/ (Apache)
 ├── .env.sample          # Sample environment variables file
 ├── composer.json        # PHP dependencies
 ├── package.json         # JavaScript dependencies
@@ -297,6 +298,14 @@ To build the assets for production, run:
 ```bash
 pnpm build
 ```
+
+### Asset caching
+
+Vite puts a content hash in every file name under `dist/`, and a new build ships new names. The theme's `.htaccess` therefore serves `dist/` with `Cache-Control: public, max-age=31536000, immutable`, so browsers keep these files for a year without revalidating.
+
+- It needs Apache with `mod_headers` and `AllowOverride` enabled. Nginx ignores `.htaccess`: add the same header to the server config for the theme's `dist/` location.
+- The rule sits in the theme folder, so it only covers the theme's own `dist/`, not plugin assets.
+- Never drop a file by hand into `dist/`: without a hash in its name, a change would stay invisible to visitors for a year.
 
 ### Twig Cache
 
