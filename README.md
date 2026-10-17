@@ -314,6 +314,13 @@ Vite puts a content hash in every file name under `dist/`, and a new build ships
 - The rule sits in the theme folder, so it only covers the theme's own `dist/`, not plugin assets.
 - Never drop a file by hand into `dist/`: without a hash in its name, a change would stay invisible to visitors for a year.
 
+### Page navigation
+
+Both features rely on the platform, so the View Transitions and Speculative Loading plugins from the WordPress Performance Team are not needed.
+
+- **Cross-fade**: `src/stylesheets/utilities/view-transition.css` turns on the browser's cross-document view transition, skipped under `prefers-reduced-motion`. Browsers without support navigate as usual. Remove the file when the project wants no transition or uses a JavaScript page transition library.
+- **Speculative loading**: WordPress core (6.8+) prefetches a linked page on click for logged-out visitors. `Setup\Enqueue` starts it after a short hover instead (`prefetch`, `moderate`). Keep `prefetch`: `prerender` runs the target page's scripts before it is shown, so scroll animations would play out of sight. Add the `no-prefetch` class to an internal link whose visit changes something (logout, one-time link).
+
 ### Twig Cache
 
 A fresh WordPress install (including Local) leaves `WP_DEBUG` at `false`. The theme then caches Twig for performance, so template edits will not show until you turn debug on or clear the cache. On `local` and `development` environments, an admin notice reminds you of this.
