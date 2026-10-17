@@ -27,7 +27,7 @@ class BlogPost extends Post {
 	 * @return int 0 when the plugin is missing or the content is empty.
 	 */
 	public function reading_time(): int {
-		return function_exists( 'cinq_reading_time' ) ? cinq_reading_time( $this->ID ) : 0;
+		return function_exists( 'cinq_wp_reading_time' ) ? cinq_wp_reading_time( $this->ID ) : 0;
 	}
 
 
@@ -39,7 +39,7 @@ class BlogPost extends Post {
 	 * @return array<int, array{title: string, id: string, level: int, children: array}>
 	 */
 	public function table_of_contents(): array {
-		return function_exists( 'cinq_toc_items' ) ? cinq_toc_items( (string) $this->content ) : array();
+		return function_exists( 'cinq_wp_table_of_contents_items' ) ? cinq_wp_table_of_contents_items( (string) $this->content ) : array();
 	}
 
 
