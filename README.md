@@ -275,8 +275,8 @@ Don't forget to install and activate the required WordPress plugins: **Advanced 
 
 The single post reads its table of contents and reading time from two agency mu-plugins. Copy their main file into `wp-content/mu-plugins/`:
 
-- [`cinq-wp-table-of-contents`](https://github.com/agencecinq/cinq-wp-table-of-contents): heading ids and the TOC tree (`cinq_toc_items()`).
-- [`cinq-wp-reading-time`](https://github.com/agencecinq/cinq-wp-reading-time): reading time stored on save (`cinq_reading_time()`).
+- [`cinq-wp-table-of-contents`](https://github.com/agencecinq/cinq-wp-table-of-contents): heading ids and the TOC tree (`cinq_wp_table_of_contents_items()`).
+- [`cinq-wp-reading-time`](https://github.com/agencecinq/cinq-wp-reading-time): reading time stored on save (`cinq_wp_reading_time()`).
 
 Without them the post renders without a table of contents or reading time.
 
