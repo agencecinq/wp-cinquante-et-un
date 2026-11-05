@@ -1,7 +1,7 @@
 ---
-description: Conventions pour les tokens de design Tailwind v4 dans theme.css (noms en anglais, sizes en rem, pas de valeurs en dur dans les classes utilitaires).
-globs: src/stylesheets/theme.css,**/*.twig
-alwaysApply: false
+paths:
+  - "src/stylesheets/theme.css"
+  - "**/*.twig"
 ---
 
 # Design tokens (`theme.css`)

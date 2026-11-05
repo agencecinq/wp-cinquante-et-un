@@ -1,6 +1,6 @@
 ---
+name: init-nouveau-projet
 description: Procédure d'initialisation d'un nouveau projet WordPress à partir du thème CINQ. À déclencher quand on démarre un nouveau site, qu'on renomme le thème, ou qu'on repart d'une copie d'un projet précédent à nettoyer.
-alwaysApply: false
 ---
 
 # Initialiser un nouveau projet à partir du thème CINQ
@@ -48,7 +48,7 @@ Points de vigilance :
 
 ## Étape 3 : réinitialiser les tokens Tailwind
 
-`src/stylesheets/theme.css` ne reset aucune échelle Tailwind. Les Twig utilisent les classes par défaut (`bg-white`, `text-zinc-950`, `text-4xl`, `rounded-2xl`). C’est ici qu’on déclare les tokens custom si la maquette ne mappe pas.
+`src/stylesheets/theme.css` ne reset aucune échelle Tailwind. Les Twig utilisent les classes par défaut (`bg-white`, `text-zinc-950`, `text-4xl`, `rounded-2xl`). C’est ici qu’on déclare les tokens custom si le projet ne mappe pas sur l’échelle Tailwind.
 
 - **Couleurs** : overridde l’échelle (`--color-zinc-950: #08090a`) ou ajoute un token anglais si la palette ne mappe pas (`--color-accent`). Ne réintroduis pas de noms français (`--color-bleu-*`) ni `--color-*: initial` sauf si tu veux abandonner l’échelle Tailwind. Adapte les classes dans les `.twig` si tu changes d’échelle (zinc → autre).
 - **Typographies** : overridde `--text-xl` (etc.) ou change les classes dans les `.twig`. Ne réintroduis pas de composites (`title-xl`, `eyebrow`) ni `--text-*: initial` sauf si tu veux abandonner l’échelle Tailwind.
@@ -80,7 +80,7 @@ Une police Google Fonts s'héberge dans le thème, pas via `fonts.googleapis.com
 
 ## Étape 5 : SVG et assets
 
-- `src/icons/` : le set Figma vit sur une grille 24×24 (`arrow-*`, `bars`, `calendar`, `check`, `chevron-*`, `minus`, `plus`, `search`, `times`, `quote`, `mail`, `phone`, `map-pin`, réseaux). `mark` est le sigle agence (hors grille). `x` alias `twitter` et `vimeo` restent pour les socials. Supprime les icônes métier du projet précédent. Ajoute celles du nouveau projet au même format (24×24, `currentColor`).
+- `src/icons/` : le set d’icônes vit sur une grille 24×24 (`arrow-*`, `bars`, `calendar`, `check`, `chevron-*`, `minus`, `plus`, `search`, `times`, `quote`, `mail`, `phone`, `map-pin`, réseaux). `mark` est le sigle agence (hors grille). `x` alias `twitter` et `vimeo` restent pour les socials. Supprime les icônes métier du projet précédent. Ajoute celles du nouveau projet au même format (24×24, `currentColor`).
 - `public/` : supprime tout logo ou SVG nominatif d'un ancien client (ex constaté : `public/logo-agora-makers.svg`).
 - `src/img/` : supprime les images statiques de l'ancien projet, ajoute celles du nouveau.
 - `screenshot.png` : à remplacer par le visuel du nouveau thème (ou neutre).

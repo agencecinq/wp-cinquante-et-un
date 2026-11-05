@@ -18,17 +18,17 @@ It ships a generic, reusable foundation (block library, components, helpers, too
 
 ## Workflows (AI-assisted)
 
-This repository carries Cursor rules in `.cursor/rules/` and project skills in `.cursor/skills/` that document conventions and automate the two key flows. They are the operational reference for the team:
+This repository carries Claude Code instructions (`CLAUDE.md`, rules in `.claude/rules/`, skills in `.claude/skills/`) that document conventions and automate the two key flows. They are the operational reference for the team:
 
-- **`starter-cinq`** (always on): stack, conventions, coding standards (WPCS), language rules, and the living DO/DONT list. This is the base of truth and is meant to evolve over time.
+- **`CLAUDE.md`** (always loaded): stack, conventions, coding standards (WPCS), language rules, and the living DO/DONT list. This is the base of truth and is meant to evolve over time.
 - **`init-nouveau-projet`**: step-by-step procedure to turn this starter into a new client project (detect and replace identifiers, reset tokens, fonts, icons and assets). Use it when starting a new project.
 - **`remontee-vers-starter`**: the reverse flow. When something built on a project is reusable, this procedure brings it back into the starter (re-neutralize identifiers, strip client content, version bump).
 
-To add a new DO/DONT or a task-specific rule, follow the "Faire évoluer ces règles" section of `starter-cinq`.
+To add a new DO/DONT or a task-specific rule, follow the "Faire évoluer ces règles" section of `CLAUDE.md`.
 
 ## Getting started from the starter
 
-When creating a new project from this starter, follow the `init-nouveau-projet` rule, then:
+When creating a new project from this starter, follow the `init-nouveau-projet` skill, then:
 
 ```bash
 composer install
@@ -65,7 +65,7 @@ There is no `page.php` or `front-page.php`: content pages go through `index.php`
 2. **Native editor content**: WordPress `post_content`, output in a `.wysiwyg` wrapper (legal pages, simple editorial content).
 3. **ACF flexible blocks**: marketing layouts via `blocks/blocks.html.twig`.
 
-WYSIWYG content and blocks are independent: a page can use either, or both (editorial intro followed by blocks). Block definitions live in `includes/Plugins/ACF/IncludeFields/Layouts/` with matching Twig in `views/blocks/`. Shared fields (layout settings, media, heading level) use shared ACF helpers documented in `.cursor/rules/acf-shared-fields.mdc`. See the block list in `.cursor/rules/starter-cinq.mdc`.
+WYSIWYG content and blocks are independent: a page can use either, or both (editorial intro followed by blocks). Block definitions live in `includes/Plugins/ACF/IncludeFields/Layouts/` with matching Twig in `views/blocks/`. Shared fields (layout settings, media, heading level) use shared ACF helpers documented in `.claude/rules/acf-shared-fields.md`. See the block list in `CLAUDE.md`.
 
 ### Journal and archives
 
@@ -76,7 +76,7 @@ The blog uses Timber models (`includes/Models/`) mapped in `includes/Setup/Conte
 - `TagArchive`: tag archives (`tag.php`)
 - `BlogPost`: single post (table of contents and reading time from the agency mu-plugins, related posts)
 
-Archive editorial content (title, lead, hero) is stored in an **ACF options page** under the Posts menu, not on `page_for_posts`. See `.cursor/rules/archive-options.mdc`. Category and tag filters share `pages/archive-post.html.twig` via the `ArchivePost` trait.
+Archive editorial content (title, lead, hero) is stored in an **ACF options page** under the Posts menu, not on `page_for_posts`. See `.claude/rules/archive-options.md`. Category and tag filters share `pages/archive-post.html.twig` via the `ArchivePost` trait.
 
 ### Search and styleguide
 
@@ -200,8 +200,7 @@ The project structure is organized as follows:
 
 ```
 wp-cinquante-et-un/
-├── .cursor/rules/       # Cursor rules (conventions + init/back-port workflows)
-├── .cursor/skills/      # Cursor skills (e.g. html-entities)
+├── .claude/             # Claude Code rules and skills (conventions + init/back-port workflows)
 ├── .github/workflows/   # CI: release on tag v*
 ├── bin/                 # WP-CLI seed scripts (demo content)
 ├── includes/            # PHP classes (PSR-4, namespace WPCinquanteEtUn)

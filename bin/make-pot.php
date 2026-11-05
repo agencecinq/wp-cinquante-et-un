@@ -15,7 +15,7 @@ $pot_file  = $theme_dir . '/languages/wp-cinquante-et-un.pot';
 $domain    = 'wp-cinquante-et-un';
 $twig_pot  = sys_get_temp_dir() . '/wp-cinquante-et-un-twig.pot';
 
-$exclude = 'node_modules,vendor,dist,bin,acf-json,.cursor,public';
+$exclude = 'node_modules,vendor,dist,bin,acf-json,.claude,public';
 $command = sprintf(
 	'wp i18n make-pot %s %s --domain=%s --exclude=%s 2>/dev/null',
 	escapeshellarg( $theme_dir ),
