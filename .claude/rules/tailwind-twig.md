@@ -1,7 +1,7 @@
 ---
-description: Styler les composants en Tailwind dans les Twig. Feuilles CSS de composants limitées à boutons et WYSIWYG.
-globs: views/**/*.twig,src/stylesheets/**/*.css
-alwaysApply: false
+paths:
+  - "views/**/*.twig"
+  - "src/stylesheets/**/*.css"
 ---
 
 # Tailwind dans les Twig
@@ -49,7 +49,7 @@ Préférer les utilitaires de l'échelle (`max-w-105`, `w-11.5`, `gap-6.5`) aux 
 
 ### Préférer un pseudo à un tag vide
 
-Décoration sans contenu (scrim, séparateur, ligne, overlay) : `before:` / `after:` sur le parent plutôt qu'un `<div>` / `<span>` vide, quand c'est possible. Garder un vrai tag s'il faut sémantique, focus, lien, image ou texte accessible. `::after` pour peindre au-dessus des enfants ; `::before` derrière ou en séparateur leading. Voir skill `tailwind-pseudo-content`.
+Décoration sans contenu (scrim, séparateur, ligne, overlay) : `before:` / `after:` sur le parent plutôt qu'un `<div>` / `<span>` vide, quand c'est possible. Garder un vrai tag s'il faut sémantique, focus, lien, image ou texte accessible, ou si un pseudo ne peut pas exprimer la mise en page (plusieurs couches indépendantes qui ont chacune besoin de leur propre contexte d'empilement). `::after` pour peindre au-dessus des enfants ; `::before` derrière ou en séparateur leading.
 
 ```twig
 {# DO #}
@@ -59,6 +59,17 @@ Décoration sans contenu (scrim, séparateur, ligne, overlay) : `before:` / `aft
 <div class="absolute inset-0">
   <div class="absolute inset-0 bg-hero-overlay" aria-hidden="true"></div>
 </div>
+```
+
+```twig
+{# DO : séparateur de liste en ::before #}
+<li class="flex items-center gap-3.75 before:block before:h-3.5 before:w-px before:bg-ink first:before:hidden">
+
+{# DONT #}
+<li class="flex items-center gap-3.75">
+  {%- if not loop.first -%}
+    <span class="block h-3.5 w-px bg-ink" aria-hidden="true"></span>
+  {%- endif -%}
 ```
 
 ### Pas de `content-['']` redondant

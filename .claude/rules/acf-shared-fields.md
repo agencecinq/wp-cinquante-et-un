@@ -1,7 +1,7 @@
 ---
-description: Champs ACF partagés entre blocs flexibles via fonctions PHP (layout, media, heading). À appliquer quand on ajoute ou modifie un layout de bloc ou des settings communs.
-globs: includes/Plugins/ACF/**,views/blocks/**
-alwaysApply: false
+paths:
+  - "includes/Plugins/ACF/**"
+  - "views/blocks/**"
 ---
 
 # Champs ACF partagés (blocs)

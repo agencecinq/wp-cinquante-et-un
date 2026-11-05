@@ -1,13 +1,8 @@
----
-description: Contexte et conventions du thème WordPress CINQ (Timber/Twig + Vite + Tailwind v4 + TypeScript). À garder en tête sur tout projet basé sur ce thème.
-alwaysApply: true
----
-
 # Thème WordPress CINQ
 
 Ce dépôt est un thème WordPress de l'agence CINQ, basé sur le starter maison. Tout nouveau projet doit partir du starter de référence, jamais d'une simple copie du projet client précédent. Copier l'ancien projet traîne des identifiants, des tokens de design, des SVG, des polices et du PHP qui n'ont rien à voir avec le nouveau client, et oblige à un nettoyage manuel toujours incomplet (composer name jamais renommé, logos d'un autre client laissés dans `public/`, police déclarée qui ne correspond plus, etc.).
 
-Quand l'utilisateur démarre un nouveau projet, applique la règle `init-nouveau-projet` : elle détecte les identifiants du projet courant et liste exactement quoi remplacer et nettoyer.
+Quand l'utilisateur démarre un nouveau projet, applique la skill `init-nouveau-projet` : elle détecte les identifiants du projet courant et liste exactement quoi remplacer et nettoyer.
 
 ## Stack
 
@@ -48,7 +43,7 @@ Le starter n'est pas une bibliothèque de pages marketing. `index.php` rend touj
 
 Le starter ne livre que des **primitives**. Une composition de page (équipe, process, push, etc.) s'ajoute sur le projet, et ne rejoint le starter que si elle a été généralisée (voir `remontee-vers-starter`).
 
-Référence Figma d'accueil (ordre proposé, réordonnable dans ACF) : hero, logos, cards_grid, media_text, key_figures, case_studies, testimonials, accordion_group, cta.
+Référence d'accueil (ordre proposé, réordonnable dans ACF) : hero, logos, cards_grid, media_text, key_figures, case_studies, testimonials, accordion_group, cta.
 
 | Layout | Usage |
 |---|---|
@@ -103,20 +98,20 @@ DO :
 - Déclarer les tokens de design dans `@theme` de `theme.css` (noms en anglais, sizes en rem, letter-spacing en em, voir `design-tokens`).
 - Utiliser les classes typo Tailwind (`text-sm`, `text-4xl font-semibold`, `font-medium`) plutôt que des tailles en dur ou des composites (`title-xl`, `eyebrow`). Le sur-titre est `.subtitle` (`uppercase`, 0.1em). Le corps d'article est `.prose-base` / `.prose-lg` (line-height 1.7), pas `text-base`.
 - Passer les chaînes utilisateur par les fonctions i18n.
-- Commits en anglais avec gitmoji (voir la règle `git-commits`).
+- Commits en anglais avec gitmoji (voir la skill `git-commits`).
 - Encapsuler les gardes d'affichage dans les composants Twig inclus (voir `twig-components`).
 - Espacer les filtres Twig via Prettier : `twigFollowOfficialCodingStandards: false` (voir `twig-wpcs`).
 - Styler header, footer, blocs et composants avec Tailwind directement dans les `.twig` (voir `tailwind-twig`).
 - Empiler des éléments frères avec `space-y-*` (ou `gap-*`) sur le parent, pas avec des `mt-*` / `mb-*` conditionnels (voir `tailwind-twig`).
 - Avec `before:*` / `after:*`, ne pas ajouter `content-['']` : Tailwind le pose déjà (voir `tailwind-twig`).
-- Décoration sans contenu (scrim, séparateur, overlay) : pseudo `before:` / `after:` plutôt qu'un tag HTML vide, quand c'est possible (voir `tailwind-twig` et skill `tailwind-pseudo-content`).
+- Décoration sans contenu (scrim, séparateur, overlay) : pseudo `before:` / `after:` plutôt qu'un tag HTML vide, quand c'est possible (voir `tailwind-twig`).
 - Enrichir le markup avec schema.org quand un type correspond (voir `schema-org`).
 - Préférer les points d’entrée natifs de la hiérarchie WordPress (`home.php`, `single.php`, `category.php`, `archive-<cpt>.php`, …) plutôt que des `if ( is_* )` dans `index.php`.
 - Configurer le contenu éditorial d'une archive via page d'options ACF + modèles Timber (`Home`, `CategoryArchive`, trait `ArchivePost`), voir `archive-options`. Pas de hook archive dans `Context.php`.
 - Afficher le fil d'Ariane via Yoast SEO et `views/components/breadcrumb.html.twig` (`yoast_breadcrumb()` Twig).
 - En TypeScript, privatiser champs et méthodes avec `#` (privé runtime), pas le mot-clé `private`. Un callback passé à `on` / `off` est un champ flèche (`#handleResize = () => {}`) pour garder la même référence.
 - Préférer les expressions inline dans les Twig de page plutôt que des `{% set %}` intermédiaires (voir `twig-components`).
-- Utiliser des entités HTML nommées (`&nbsp;`, `&hellip;`, …) dans les chaînes UI (voir le skill `html-entities`).
+- Utiliser des entités HTML nommées (`&nbsp;`, `&hellip;`, …) dans les chaînes UI (voir la skill `html-entities`).
 - Extraits Timber 2 : `post.excerpt` (hash ou chaînage), jamais `post.preview` (voir `timber-twig`).
 - Requêtes Timber en Twig : `get_posts({ … })` / `get_post(…)` natifs, pas `function('Timber\\Timber::get_posts', …)` (voir `timber-twig`).
 - Charger les Web Components et libs utilisés seulement par certains blocs via `load('<tag>', () => import('…'))` dans `app.js`, pas en import statique (seul ce qui sert sur toutes les pages, comme le drawer du header, reste importé directement).
@@ -132,8 +127,8 @@ DONT :
 - Pas de `rounded-*` dans le starter (rayon 0).
 - Pas de paddings de section hors de l'échelle ACF `spacing_top` / `spacing_bottom` (`none` `sm` `md` `lg` `xl`).
 - Pas de `{%- if items -%}` autour d'un `{% include %}` quand le composant peut tester ses props lui-même (voir `twig-components`).
-- Pas de `before:content-['']` / `after:content-['']` redondants (voir `tailwind-twig` et skill `tailwind-pseudo-content`).
-- Pas de tag HTML vide purement décoratif quand un `before:` / `after:` suffit (voir `tailwind-twig` et skill `tailwind-pseudo-content`).
+- Pas de `before:content-['']` / `after:content-['']` redondants (voir `tailwind-twig`).
+- Pas de tag HTML vide purement décoratif quand un `before:` / `after:` suffit (voir `tailwind-twig`).
 - Pas de backgrounds décoratifs preset (dégradés, fills de section) dans les templates du starter.
 - Pas de valeurs dimensionnelles en px dans les classes Tailwind (`w-[46px]`, `gap-[26px]`, `text-[22px]`) ; utiliser l'échelle spacing ou rem (voir `design-tokens`).
 - Pas de valeurs `[…rem]` ou `[…px]` en arbitraire quand l'échelle Tailwind expose déjà l'utilitaire (`max-w-[26.25rem]` → `max-w-105`, etc.).
@@ -146,7 +141,7 @@ DONT :
 - Pas de dimension e-commerce (panier, fiches produit, featured collection, moyens de paiement). L'équivalent éditorial de la featured collection Shopify, c'est `LatestPosts`.
 - Ne pas modifier l'identité agence lors d'un renommage.
 - Pas d'emoji ni de tiret cadratin dans les contenus rédigés.
-- Pas d'espaces insécables ou points de suspension collés en Unicode brut : préférer `&nbsp;`, `&hellip;` (voir le skill `html-entities`).
+- Pas d'espaces insécables ou points de suspension collés en Unicode brut : préférer `&nbsp;`, `&hellip;` (voir la skill `html-entities`).
 - Pas de `private` TypeScript sur les composants JS : utiliser `#`.
 - Pas de `fonts.googleapis.com` : héberger les polices dans le thème, Google Fonts comprises (voir `init-nouveau-projet`, étape 4).
 - Pas de `mt-*` / `mb-*` conditionnels pour espacer des frères : utiliser `space-y-*` ou `gap-*` sur le conteneur (voir `tailwind-twig`).
@@ -161,14 +156,20 @@ DONT :
 Ce fichier est la base de vérité du thème et doit évoluer au fil des projets.
 
 - Quand Jérémy (ou un autre membre de l'équipe) demande d'ajouter un DO ou un DONT, mets ce fichier à jour : ajoute la règle dans la section DO / DONT si elle est générale et transverse, ou complète la section pertinente.
-- Si le DO ou le DONT concerne une tâche ou un workflow spécifique (ex : un type de bloc, une intégration, une procédure), ne surcharge pas ce fichier : crée un fichier de règle dédié dans `.cursor/rules/` (avec une `description` claire, et `globs` ou `alwaysApply` adaptés à la portée), puis ajoute ici un pointeur d'une ligne vers cette règle.
+- Si le DO ou le DONT concerne des fichiers précis (Twig, CSS, champs ACF, …), ne surcharge pas ce fichier : crée une règle dédiée dans `.claude/rules/<nom>.md`, avec en frontmatter `paths:` les globs des fichiers concernés (elle se charge quand on travaille sur ces fichiers), puis ajoute ici un pointeur d'une ligne vers cette règle.
+- Si c'est une procédure à déclencher à la demande (init, remontée, commit, …), crée une skill dans `.claude/skills/<nom>/SKILL.md`, avec une `description` qui dit quand l'appliquer.
 - Garde ce fichier concis : les détails longs vivent dans des règles dédiées, ce fichier reste la vue d'ensemble.
 
-Règles dédiées existantes :
+Skills (`.claude/skills/`) :
 
 - `init-nouveau-projet` : procédure d'initialisation d'un nouveau projet à partir du thème.
 - `remontee-vers-starter` : procédure pour faire remonter une brique d'un projet vers le starter (flux inverse de l'init).
 - `git-commits` : messages de commit en anglais avec gitmoji.
+- `html-entities` : entités HTML nommées dans les chaînes UI (`&nbsp;`, `&hellip;`, …).
+- Skills GSAP officielles (sans React/Vue) : `gsap-core`, `gsap-timeline`, `gsap-plugins` (Draggable, Observer, …), `gsap-utils`, `gsap-scrolltrigger`, `gsap-performance`. Source : https://github.com/greensock/gsap-skills
+
+Règles (`.claude/rules/`) :
+
 - `design-tokens` : tokens `@theme` en anglais, sizes en rem, letter-spacing en em, couleurs Tailwind (`bg-white`, `text-black`, `text-gray-500`), rayon 0, pas de valeurs en dur ni de backgrounds preset dans le starter.
 - `twig-components` : gardes, nommage des params, et layout via `classes` (pas de sticky/placement hardcodé) dans les composants Twig.
 - `twig-wpcs` : espacement des filtres Twig compatible Prettier.
@@ -176,7 +177,4 @@ Règles dédiées existantes :
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
 - `archive-options` : page d'options ACF pour le contenu éditorial des archives (posts sous Articles, CPT sous son menu).
 - `acf-shared-fields` : champs ACF partagés entre blocs flexibles via fonctions `cinq_acf_*` (layout, media, heading).
-- Skill `html-entities` (`.cursor/skills/html-entities/`) : entités HTML nommées dans les chaînes UI (`&nbsp;`, `&hellip;`, …).
-- Skill `timber-twig` (`.cursor/skills/timber-twig/`) : requêtes Twig + excerpts Timber 2 + anti-`preview`.
-- Skill `tailwind-pseudo-content` (`.cursor/skills/tailwind-pseudo-content/`) : pseudos décoratifs plutôt que tags vides ; pas de `content-['']` redondant.
-- Skills GSAP officielles (`.cursor/skills/gsap-*`, sans React/Vue) : `gsap-core`, `gsap-timeline`, `gsap-plugins` (Draggable, Observer, …), `gsap-utils`, `gsap-scrolltrigger`, `gsap-performance`. Source : https://github.com/greensock/gsap-skills
+- `timber-twig` : Timber 2 en Twig (`get_posts` / `get_post` natifs ; `post.excerpt`, pas `post.preview`).
