@@ -17,12 +17,14 @@ if ( ! class_exists( 'acf_field' ) ) {
 	return;
 }
 
+// phpcs:disable WordPress.WP.I18n.TextDomainMismatch -- Settings mirror the native ACF Select field and reuse its strings, translated by ACF.
 /**
  * Class MenuItemSelect
  *
  * Custom ACF field type to select one item from a WordPress menu.
  * Stored value: nav menu item post ID.
  * Return format: 'value' (ID), 'object' (WP_Post), or 'array' (id, title, url).
+ * Select2 and its strings come from the native ACF Select field, loaded on every ACF form.
  */
 class MenuItemSelect extends \acf_field {
 
@@ -42,44 +44,6 @@ class MenuItemSelect extends \acf_field {
 			'return_format' => 'object',
 			'placeholder'   => '',
 			'ui'            => 1,
-		);
-	}
-
-	/**
-	 * Enqueues admin scripts so the field uses the same Select2 UI as ACF Select.
-	 *
-	 * @return void
-	 */
-	public function input_admin_enqueue_scripts(): void {
-		if ( ! acf_get_setting( 'enqueue_select2' ) ) {
-			return;
-		}
-
-		$min     = defined( 'ACF_DEVELOPMENT_MODE' ) && ACF_DEVELOPMENT_MODE ? '' : '.min';
-		$version = '4.0.13';
-		$script  = acf_get_url( "assets/inc/select2/4/select2.full{$min}.js" );
-		$style   = acf_get_url( "assets/inc/select2/4/select2{$min}.css" );
-
-		wp_enqueue_script( 'select2', $script, array( 'jquery' ), $version );
-		wp_enqueue_style( 'select2', $style, '', $version );
-
-		acf_localize_data(
-			array(
-				'select2L10n' => array(
-					'matches_1'            => _x( 'One result is available, press enter to select it.', 'Select2 JS matches_1', 'acf' ),
-					'matches_n'            => _x( '%d results are available, use up and down arrow keys to navigate.', 'Select2 JS matches_n', 'acf' ),
-					'matches_0'            => _x( 'No matches found', 'Select2 JS matches_0', 'acf' ),
-					'input_too_short_1'    => _x( 'Please enter 1 or more characters', 'Select2 JS input_too_short_1', 'acf' ),
-					'input_too_short_n'    => _x( 'Please enter %d or more characters', 'Select2 JS input_too_short_n', 'acf' ),
-					'input_too_long_1'     => _x( 'Please delete 1 character', 'Select2 JS input_too_long_1', 'acf' ),
-					'input_too_long_n'     => _x( 'Please delete %d characters', 'Select2 JS input_too_long_n', 'acf' ),
-					'selection_too_long_1' => _x( 'You can only select 1 item', 'Select2 JS selection_too_long_1', 'acf' ),
-					'selection_too_long_n' => _x( 'You can only select %d items', 'Select2 JS selection_too_long_n', 'acf' ),
-					'load_more'            => _x( 'Loading more results&hellip;', 'Select2 JS load_more', 'acf' ),
-					'searching'            => _x( 'Searching&hellip;', 'Select2 JS searching', 'acf' ),
-					'load_fail'            => _x( 'Loading failed', 'Select2 JS load_fail', 'acf' ),
-				),
-			)
 		);
 	}
 
@@ -207,7 +171,7 @@ class MenuItemSelect extends \acf_field {
 		}
 
 		foreach ( $items as $item ) {
-			if ( (int) $item->menu_item_parent !== 0 ) {
+			if ( 0 !== (int) $item->menu_item_parent ) {
 				continue;
 			}
 			$field['choices'][ (string) $item->ID ] = $item->title;
@@ -309,11 +273,11 @@ class MenuItemSelect extends \acf_field {
 		$url   = get_post_meta( $item_id, '_menu_item_url', true );
 		$title = $item->post_title;
 
-		if ( $field['return_format'] === 'value' ) {
+		if ( 'value' === $field['return_format'] ) {
 			return $item_id;
 		}
 
-		if ( $field['return_format'] === 'array' ) {
+		if ( 'array' === $field['return_format'] ) {
 			return array(
 				'id'    => $item_id,
 				'title' => $title,
@@ -328,3 +292,4 @@ class MenuItemSelect extends \acf_field {
 		return $item;
 	}
 }
+// phpcs:enable WordPress.WP.I18n.TextDomainMismatch

@@ -79,10 +79,6 @@ if ( is_file( $fr_po ) ) {
 		exit( 1 );
 	}
 
-	if ( is_file( $theme_dir . '/languages/translations/fr_FR.php' ) ) {
-		exec( 'php ' . escapeshellarg( $theme_dir . '/bin/fill-fr-translations.php' ), $fill_output, $fill_exit );
-	}
-
 	$compile_cmd = sprintf(
 		'msgfmt -o %s %s 2>&1',
 		escapeshellarg( $theme_dir . '/languages/fr_FR.mo' ),
