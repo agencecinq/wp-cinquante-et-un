@@ -1,7 +1,12 @@
 ---
-description: Options ACF pour les archives (journal natif et CPT). À appliquer quand on configure l'en-tête, les blocs ou tout contenu éditorial d'une archive.
-globs: includes/Models/**,includes/Traits/**,includes/Plugins/ACF/**,views/pages/archive*.html.twig,home.php,category.php,archive*.php
-alwaysApply: false
+paths:
+  - "includes/Models/**"
+  - "includes/Traits/**"
+  - "includes/Plugins/ACF/**"
+  - "views/pages/archive*.html.twig"
+  - "home.php"
+  - "category.php"
+  - "archive*.php"
 ---
 
 # Options d'archive ACF

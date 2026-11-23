@@ -1,6 +1,6 @@
 ---
+name: remontee-vers-starter
 description: Procédure pour faire remonter une brique d'un projet vers le starter CINQ (flux inverse de l'init). À déclencher quand quelque chose créé sur un projet doit devenir réutilisable et rejoindre le starter (généraliser un bloc, une convention, une évolution d'outillage).
-alwaysApply: false
 ---
 
 # Remonter une brique vers le starter
@@ -47,9 +47,9 @@ Priorités actuelles de remontée : les **conventions/règles** et la **config/o
 
 ### Conventions / règles (priorité)
 
-- Nouveau DO/DONT général : l'ajouter à la section DO/DONT de `starter-cinq.mdc`.
-- Pattern lié à une tâche ou un workflow : créer un fichier dédié dans `.cursor/rules/` et ajouter un pointeur dans `starter-cinq.mdc`.
-- Les `.cursor/rules/` vivent dans le repo et sont copiées à chaque projet : remonter une règle revient à l'éditer dans le starter. Pense à la rediffuser aux projets actifs si elle leur est utile tout de suite.
+- Nouveau DO/DONT général : l'ajouter à la section DO/DONT de `CLAUDE.md`.
+- Pattern lié à des fichiers précis : créer une règle dans `.claude/rules/` (frontmatter `paths:`) ; procédure à la demande : créer une skill dans `.claude/skills/`. Dans les deux cas, ajouter un pointeur dans `CLAUDE.md`.
+- `CLAUDE.md`, `.claude/rules/` et `.claude/skills/` vivent dans le repo et sont copiés à chaque projet : remonter une règle revient à l'éditer dans le starter. Pense à la rediffuser aux projets actifs si elle leur est utile tout de suite.
 
 ### Config / outillage (priorité)
 

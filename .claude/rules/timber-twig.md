@@ -1,7 +1,6 @@
 ---
-description: API Timber 2 en Twig (get_posts / get_post natifs, post.excerpt, pas post.preview). À appliquer quand on écrit ou modifie des Twig qui requêtent des posts ou affichent un excerpt.
-globs: views/**/*.twig
-alwaysApply: false
+paths:
+  - "views/**/*.twig"
 ---
 
 # Timber 2 — Twig
@@ -23,8 +22,13 @@ Référence : [Timber v2 docs](https://timber.github.io/docs/v2/), [Functions](h
 		title: 'ASC'
 	}
 }) %}
+
+{# Depuis des IDs #}
+{% set posts = get_posts(post_ids) %}
+{% set post = get_post(post_id) %}
 ```
 
+- Même famille, à utiliser au besoin : `get_image`, `get_attachment`, `get_term`, `get_terms`, `get_user`, `get_users`, `get_comment`, `get_comments`. Réserver `function()` / `fn()` au PHP qui n’est pas un helper Timber (`wp_head`, helpers maison, …).
 - `{% set %}` est légitime quand la collection sert au moins deux fois (garde + boucle).
 
 ## Requêtes — DONT
