@@ -44,6 +44,7 @@
 {% endif %}
 
 <cinq-drawer class="{{ html_classes( 'contents', classes | default( '' ) ) }}">
+	{#- A popover gets a ::backdrop over the whole page too: only the modal drawer paints it, the non-modal one has its scrim below the header. -#}
 	<dialog
 		id="{{ id }}"
 		{{ html_attr( modal ? { closedby: 'any' } : { popover: true } ) }}
@@ -52,7 +53,9 @@
 			html_classes(
 				'peer fixed m-0 h-auto max-h-none max-w-full border-0 p-0',
 				'transition-[translate,opacity,overlay,display] transition-discrete duration-300 ease-drawer',
-				'backdrop:bg-overlay-scrim/30 backdrop:opacity-0 backdrop:transition-[opacity,overlay,display] backdrop:transition-discrete backdrop:duration-300 open:backdrop:opacity-100 starting:open:backdrop:opacity-0',
+				modal
+					? 'backdrop:bg-overlay-scrim/30 backdrop:opacity-0 backdrop:transition-[opacity,overlay,display] backdrop:transition-discrete backdrop:duration-300 open:backdrop:opacity-100 starting:open:backdrop:opacity-0'
+					: 'backdrop:bg-transparent',
 				translate,
 				'overflow-hidden bg-page text-primary',
 				panel_classes | default( '' )

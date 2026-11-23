@@ -19,8 +19,6 @@
 			{%- endif -%}
 		</div>
 
-		{{-
-			include( 'components/text-primary.html.twig', link | default( {} ), with_context: false )
-		-}}
+		{{- include( 'components/text-link.html.twig', link | default( {} ), with_context: false ) -}}
 	</div>
 {%- endif -%}
