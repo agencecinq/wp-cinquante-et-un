@@ -13,19 +13,19 @@ Référence : [Timber v2 docs](https://timber.github.io/docs/v2/), [Functions](h
 - Passer des args `WP_Query` (ou une liste d’IDs) :
 
 ```twig
-{% set posts = get_posts({
+{% set posts = get_posts( {
 	post_type: 'sector',
 	posts_per_page: -1,
 	post_status: 'publish',
 	orderby: {
 		menu_order: 'ASC',
-		title: 'ASC'
-	}
-}) %}
+		title: 'ASC',
+	},
+} ) %}
 
 {# Depuis des IDs #}
-{% set posts = get_posts(post_ids) %}
-{% set post = get_post(post_id) %}
+{% set posts = get_posts( post_ids ) %}
+{% set post = get_post( post_id ) %}
 ```
 
 - Même famille, à utiliser au besoin : `get_image`, `get_attachment`, `get_term`, `get_terms`, `get_user`, `get_users`, `get_comment`, `get_comments`. Réserver `function()` / `fn()` au PHP qui n’est pas un helper Timber (`wp_head`, helpers maison, …).
@@ -42,19 +42,25 @@ Référence : [Timber v2 docs](https://timber.github.io/docs/v2/), [Functions](h
 - Passer les options en hash (forme préférée de la doc) :
 
 ```twig
-{{ post.excerpt({ words: 40, read_more: false }) }}
+{{ post.excerpt( { words: 40, read_more: false } ) }}
 ```
 
 - Ou chaîner les méthodes :
 
 ```twig
-{{ post.excerpt.length(40).read_more(false) }}
+{{ post.excerpt.length( 40 ).read_more( false ) }}
 ```
 
 - Pour le chapô / lead d’une single quand l’éditeur a rempli l’extrait WP : préférer **`post.post_excerpt`**, avec fallback via `default` :
 
 ```twig
-{{ post.post_excerpt | default(post.excerpt({ words: 40, read_more: false }) | striptags) | trim }}
+{{ post.post_excerpt | default( post.excerpt( { words: 40, read_more: false } ) | striptags ) | trim }}
+```
+
+- Pour une intro ACF (ou équivalent), l'extrait sert de repli, avec la même chaîne :
+
+```twig
+{{ post.meta( 'introduction' ) | default( post.post_excerpt | default( post.excerpt( { words: 40, read_more: false } ) | striptags ) | trim ) }}
 ```
 
 - Désactiver le « Read more » avec **`read_more: false`** (pas une chaîne vide).
@@ -62,5 +68,5 @@ Référence : [Timber v2 docs](https://timber.github.io/docs/v2/), [Functions](h
 
 ## Excerpts — DONT
 
-- **Jamais `{{ post.preview }}`** ni `post.preview.length(…)` : deprecated depuis Timber 2.0 (`Helper.php`). Remplacer par `post.excerpt`.
+- **Jamais `{{ post.preview }}`** ni `post.preview.length(…)` : deprecated depuis Timber 2.0 (`Helper.php`). Un `post.preview` croisé dans un Twig se remplace par `post.excerpt` avant toute autre modification.
 - Ne pas inventer d’API d’extrait hors doc Timber 2.
