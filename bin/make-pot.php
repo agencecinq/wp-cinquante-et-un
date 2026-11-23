@@ -1,7 +1,7 @@
 <?php
 /**
  * Regenerate the theme POT file (PHP via WP-CLI + Twig scan).
- * Syncs fr_FR.po/.mo when the PO file exists.
+ * Syncs fr_FR.po/.mo when the PO file exists, keeping the PO in its Poedit layout.
  *
  * Usage: php bin/make-pot.php
  *
@@ -15,7 +15,7 @@ $pot_file  = $theme_dir . '/languages/wp-cinquante-et-un.pot';
 $domain    = 'wp-cinquante-et-un';
 $twig_pot  = sys_get_temp_dir() . '/wp-cinquante-et-un-twig.pot';
 
-$exclude = 'node_modules,vendor,dist,bin,acf-json,.cursor,public';
+$exclude = 'node_modules,vendor,dist,bin,acf-json,.claude,public';
 $command = sprintf(
 	'wp i18n make-pot %s %s --domain=%s --exclude=%s 2>/dev/null',
 	escapeshellarg( $theme_dir ),
@@ -61,16 +61,73 @@ unlink( $merged_pot );
 $fr_po = $theme_dir . '/languages/fr_FR.po';
 
 if ( is_file( $fr_po ) ) {
+	// Errors stay visible: a broken PO (e.g. duplicate entries) must stop the sync, not skip it silently.
 	$merge_po_cmd = sprintf(
-		'msgmerge --update --no-fuzzy-matching %s %s 2>/dev/null',
+		'msgmerge --quiet --update --backup=none --no-fuzzy-matching --no-wrap %s %s 2>&1',
 		escapeshellarg( $fr_po ),
 		escapeshellarg( $pot_file )
 	);
 	exec( $merge_po_cmd, $merge_po_output, $merge_po_exit );
 
-	if ( 0 === $merge_po_exit ) {
+	if ( 0 !== $merge_po_exit ) {
+		fwrite( STDERR, "msgmerge failed on languages/fr_FR.po:\n" . implode( "\n", $merge_po_output ) . "\n" );
+		exit( 1 );
+	}
+
+	if ( ! join_references( $fr_po ) ) {
+		fwrite( STDERR, "Could not read languages/fr_FR.po to join its references.\n" );
+		exit( 1 );
+	}
+
+	if ( is_file( $theme_dir . '/languages/translations/fr_FR.php' ) ) {
 		exec( 'php ' . escapeshellarg( $theme_dir . '/bin/fill-fr-translations.php' ), $fill_output, $fill_exit );
 	}
+
+	$compile_cmd = sprintf(
+		'msgfmt -o %s %s 2>&1',
+		escapeshellarg( $theme_dir . '/languages/fr_FR.mo' ),
+		escapeshellarg( $fr_po )
+	);
+	exec( $compile_cmd, $compile_output, $compile_exit );
+
+	if ( 0 !== $compile_exit ) {
+		fwrite( STDERR, "msgfmt failed:\n" . implode( "\n", $compile_output ) . "\n" );
+		exit( 1 );
+	}
+}
+
+/**
+ * Puts each entry's references on a single `#:` line, the Poedit layout the PO is
+ * saved in, since msgmerge --no-wrap writes one line per reference.
+ *
+ * @param string $po_file PO file path.
+ * @return bool False when the file cannot be read.
+ */
+function join_references( string $po_file ): bool {
+	$lines = file( $po_file, FILE_IGNORE_NEW_LINES );
+
+	if ( false === $lines ) {
+		return false;
+	}
+
+	$output     = array();
+	$references = array();
+
+	foreach ( $lines as $line ) {
+		if ( str_starts_with( $line, '#: ' ) ) {
+			$references[] = substr( $line, 3 );
+			continue;
+		}
+
+		if ( array() !== $references ) {
+			$output[]   = '#: ' . implode( ' ', $references );
+			$references = array();
+		}
+
+		$output[] = $line;
+	}
+
+	return false !== file_put_contents( $po_file, implode( "\n", $output ) . "\n" );
 }
 
 /**
@@ -105,9 +162,9 @@ function extract_twig_entries( string $views_dir, string $domain ): array {
 }
 
 /**
- * @param string               $content  File contents.
- * @param string               $relative Relative file path.
- * @param string               $domain   Text domain.
+ * @param string                           $content  File contents.
+ * @param string                           $relative Relative file path.
+ * @param string                           $domain   Text domain.
  * @param array<int, array<string, mixed>> $entries  Collected entries.
  * @return void
  */
@@ -196,9 +253,9 @@ function add_entry( array &$entries, string $msgid, string $file, int $line, ?st
 
 	if ( ! isset( $entries[ $key ] ) ) {
 		$entries[ $key ] = array(
-			'msgid'    => $msgid,
-			'plural'   => $plural,
-			'context'  => $context,
+			'msgid'      => $msgid,
+			'plural'     => $plural,
+			'context'    => $context,
 			'references' => array(),
 		);
 	}

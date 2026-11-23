@@ -13,6 +13,8 @@
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/dist/*</exclude-pattern>
+    <!-- Build tool run with the PHP CLI, outside WordPress (exec, fwrite). -->
+    <exclude-pattern>*/bin/make-pot.php</exclude-pattern>
 
     <rule ref="WordPress.Files.FileName">
         <properties>
