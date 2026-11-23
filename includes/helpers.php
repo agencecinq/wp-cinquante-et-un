@@ -560,6 +560,7 @@ function cinq_case_study_block_items( array $block ): array {
 			$term_id = is_array( $block['sector'] ) ? (int) ( $block['sector'][0] ?? 0 ) : (int) $block['sector'];
 
 			if ( $term_id > 0 ) {
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- One term on at most six posts.
 				$query['tax_query'] = array(
 					array(
 						'taxonomy' => 'sector',
