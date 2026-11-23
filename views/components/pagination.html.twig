@@ -7,24 +7,29 @@
  # @param {string} [label] Accessible name for the nav. Defaults to Pagination.
  #}
 
-{%- if (pagination.pages | length) > 1 -%}
+{%- if ( pagination.pages | length ) > 1 -%}
 	<nav
 		role="navigation"
-		aria-label="{{ label | default(__('Pagination', 'wp-cinquante-et-un')) }}"
-		class="{{ html_classes('inline-flex items-center gap-2.5 text-sm', classes | default([]) | join(' ')) }}"
+		aria-label="{{ label | default( __( 'Pagination', 'wp-cinquante-et-un' ) ) }}"
+		class="{{
+			html_classes(
+				'inline-flex items-center gap-2.5 text-sm',
+				classes | default( [] ) | join( ' ' )
+			)
+		}}"
 	>
 		{% if pagination.prev %}
 			<a
-				href="{{ pagination.prev.link }}{{ anchor | default('') }}"
+				href="{{ pagination.prev.link }}{{ anchor | default( '' ) }}"
 				class="hidden size-14 shrink-0 items-center justify-center lg:flex"
-				aria-label="{{ __('Previous', 'wp-cinquante-et-un') }}"
+				aria-label="{{ __( 'Previous', 'wp-cinquante-et-un' ) }}"
 			>
 				{{-
 					include(
 						'svg/use.html.twig',
 						{
 							icon: 'arrow-left',
-							classes: ['size-3.5']
+							classes: [ 'size-3.5' ],
 						}
 					)
 				-}}
@@ -39,7 +44,7 @@
 						'svg/use.html.twig',
 						{
 							icon: 'arrow-left',
-							classes: ['size-3.5']
+							classes: [ 'size-3.5' ],
 						}
 					)
 				-}}
@@ -51,7 +56,7 @@
 				<li>
 					{% if page.link %}
 						<a
-							href="{{ page.link }}{{ anchor | default('') }}"
+							href="{{ page.link }}{{ anchor | default( '' ) }}"
 							class="{{ page.class }} flex size-14 items-center justify-center"
 						>
 							{{- page.title -}}
@@ -59,13 +64,13 @@
 					{% else %}
 						<span
 							class="{{
-							html_classes(
-								'flex size-14 items-center justify-center',
-								page.class,
-								'current' in (page.class | split(' ')) ? 'bg-black text-white' : ''
-							)
+								html_classes(
+									'flex size-14 items-center justify-center',
+									page.class,
+									'current' in ( page.class | split( ' ' ) ) ? 'bg-inverse text-inverse' : ''
+								)
 							}}"
-							{{ 'current' in (page.class | split(' ')) ? 'aria-current="page"' : '' }}
+							{{ 'current' in ( page.class | split( ' ' ) ) ? 'aria-current="page"' : '' }}
 						>
 							{{- page.title -}}
 						</span>
@@ -76,16 +81,16 @@
 
 		{% if pagination.next %}
 			<a
-				href="{{ pagination.next.link }}{{ anchor | default('') }}"
+				href="{{ pagination.next.link }}{{ anchor | default( '' ) }}"
 				class="hidden size-14 shrink-0 items-center justify-center lg:flex"
-				aria-label="{{ __('Next', 'wp-cinquante-et-un') }}"
+				aria-label="{{ __( 'Next', 'wp-cinquante-et-un' ) }}"
 			>
 				{{-
 					include(
 						'svg/use.html.twig',
 						{
 							icon: 'arrow-right',
-							classes: ['size-3.5']
+							classes: [ 'size-3.5' ],
 						}
 					)
 				-}}
@@ -100,7 +105,7 @@
 						'svg/use.html.twig',
 						{
 							icon: 'arrow-right',
-							classes: ['size-3.5']
+							classes: [ 'size-3.5' ],
 						}
 					)
 				-}}

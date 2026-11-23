@@ -53,77 +53,6 @@ function html_class( string $c = '' ): string {
 
 
 /**
- * Allowed ACF section spacing steps (desktop / mobile).
- *
- * @return array<int, string>
- */
-function cinq_section_spacing_steps(): array {
-	return array( 'none', 'sm', 'md', 'lg', 'xl' );
-}
-
-
-/**
- * Sanitize a section spacing step.
- *
- * @param mixed $value Raw ACF value.
- * @return string
- */
-function cinq_sanitize_section_spacing( $value ): string {
-	$step = is_string( $value ) ? $value : '';
-
-	return in_array( $step, cinq_section_spacing_steps(), true ) ? $step : 'none';
-}
-
-
-/**
- * Allowed block container width modes.
- *
- * @return array<int, string>
- */
-function cinq_block_container_modes(): array {
-	return array( 'default', 'wide', 'full' );
-}
-
-
-/**
- * Sanitize a block container mode.
- *
- * @param mixed $value Raw ACF value.
- * @return string
- */
-function cinq_sanitize_block_container( $value ): string {
-	$mode = is_string( $value ) ? $value : '';
-
-	return in_array( $mode, cinq_block_container_modes(), true ) ? $mode : 'default';
-}
-
-
-/**
- * Container utility classes for a block layout group.
- *
- * @param mixed $layout ACF layout array.
- * @return string Space-separated classes, empty when full width.
- */
-function cinq_block_container_classes( $layout = array() ): string {
-	if ( ! is_array( $layout ) ) {
-		$layout = array();
-	}
-
-	$mode = cinq_sanitize_block_container( $layout['container'] ?? 'default' );
-
-	if ( 'wide' === $mode ) {
-		return 'container-wide';
-	}
-
-	if ( 'full' === $mode ) {
-		return '';
-	}
-
-	return 'container';
-}
-
-
-/**
  * Section anchor slug from a block layout group.
  *
  * @param mixed $layout ACF layout array.
@@ -141,48 +70,7 @@ function cinq_block_anchor( $layout = array() ): string {
 
 
 /**
- * Layout classes from a block layout group (color scheme + section spacing).
- *
- * @param mixed $layout ACF layout array.
- * @return string
- */
-function cinq_block_layout_classes( $layout = array() ): string {
-	if ( ! is_array( $layout ) ) {
-		$layout = array();
-	}
-
-	$top    = cinq_sanitize_section_spacing( $layout['spacing_top'] ?? 'none' );
-	$bottom = cinq_sanitize_section_spacing( $layout['spacing_bottom'] ?? 'none' );
-
-	return implode(
-		' ',
-		array(
-			'bg-background',
-			'text-foreground',
-			'pt-section-' . $top,
-			'pb-section-' . $bottom,
-		)
-	);
-}
-
-
-/**
- * Color scheme slug for data-color-scheme.
- *
- * @param mixed $layout ACF layout array.
- * @return string
- */
-function cinq_block_color_scheme( $layout = array() ): string {
-	if ( ! is_array( $layout ) ) {
-		return 'default';
-	}
-
-	return ( isset( $layout['color_scheme'] ) && 'inverse' === $layout['color_scheme'] ) ? 'inverse' : 'default';
-}
-
-
-/**
- * Enrich a flexible content block with computed layout and schema values.
+ * Enrich a flexible content block with its anchor and computed values.
  *
  * @param array<string, mixed> $block ACF layout row.
  * @return void
@@ -192,16 +80,13 @@ function cinq_enrich_block( array &$block ): void {
 		$block['layout'] = array();
 	}
 
-	$block['layout']['color_scheme']      = cinq_block_color_scheme( $block['layout'] );
-	$block['layout']['classes']           = cinq_block_layout_classes( $block['layout'] );
-	$block['layout']['container_classes'] = cinq_block_container_classes( $block['layout'] );
-
 	$anchor = cinq_block_anchor( $block['layout'] );
 
+	// null, not '': html_attr() leaves out null values, and prints id="" for ''.
 	if ( '' !== $anchor ) {
 		$block['id'] = $anchor;
-	} elseif ( ! isset( $block['id'] ) ) {
-		$block['id'] = '';
+	} elseif ( empty( $block['id'] ) ) {
+		$block['id'] = null;
 	}
 
 	if (

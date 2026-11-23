@@ -12,36 +12,31 @@
 	itemscope
 	itemtype="https://schema.org/WPHeader"
 	class="{{
-	html_classes(
-		'fixed top-0 z-40 w-full pt-4',
-		classes | default([]) | join(' ')
-	)
+		html_classes( 'fixed top-0 z-40 w-full pt-4', classes | default( [] ) | join( ' ' ) )
 	}}"
 >
 	<div class="container">
-		<div class="flex items-center gap-8 border border-black bg-white px-10 py-4">
+		<div class="flex items-center gap-8 border border-default bg-page px-10 py-4">
 			<a href="{{ site.link }}" class="shrink-0" aria-label="{{ site.name }}">
-				{%- if theme.header.logo | default(null) -%}
+				{%- if theme.header.logo | default( null ) -%}
 					{{-
 						include(
 							'components/image.html.twig',
 							{
 								image: theme.header.logo,
-								classes: ['block h-5 w-auto'],
-								loading: 'eager'
+								classes: [ 'block h-5 w-auto' ],
+								loading: 'eager',
 							}
 						)
 					-}}
 				{%- else -%}
-					<span class="text-sm font-semibold tracking-widest text-black">
-						{{- site.name -}}
-					</span>
+					<span class="text-sm font-semibold tracking-widest text-primary">{{- site.name -}}</span>
 				{%- endif -%}
 			</a>
 
 			{%- if nav_menus.main -%}
 				<nav
-					aria-label="{{ __('Main navigation', 'wp-cinquante-et-un') }}"
+					aria-label="{{ __( 'Main navigation', 'wp-cinquante-et-un' ) }}"
 					class="relative hidden min-w-0 flex-1 lg:block"
 				>
 					<ul class="flex items-center justify-end gap-9">
@@ -55,21 +50,19 @@
 									href="{{ item.url }}"
 									itemprop="url"
 									class="{{
-									html_classes(
-										'inline-flex items-center gap-2 text-xs font-medium text-black hover:text-gray-500',
-										item.current
-											or 'current-menu-parent' in item.classes
-											or 'current-page-ancestor' in item.classes
-											? 'text-black'
-											: '',
-										item.classes | default([]) | join(' ')
-									)
+										html_classes(
+											'inline-flex items-center gap-2 text-xs font-medium text-primary hover:text-secondary',
+											item.current
+												or 'current-menu-parent' in item.classes
+												or 'current-page-ancestor' in item.classes
+												? 'text-primary'
+												: '',
+											item.classes | default( [] ) | join( ' ' )
+										)
 									}}"
 									{{ item.children | length ? 'aria-haspopup="true"' }}
-									{{
-									item.is_target_blank or item.is_external
-										? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
-									}}
+									{{ item.is_target_blank or item.is_external
+										? 'target="' ~ item.target ~ '" rel="noopener noreferrer"' }}
 								>
 									<span itemprop="name">{{- item.title -}}</span>
 									{%- if item.children | length -%}
@@ -78,9 +71,9 @@
 												'svg/use.html.twig',
 												{
 													icon: 'chevron-down',
-													classes: ['size-2 shrink-0']
+													classes: [ 'size-2 shrink-0' ],
 												},
-												with_context = false
+												with_context: false
 											)
 										-}}
 									{%- endif -%}
@@ -94,9 +87,9 @@
 												items: item.children,
 												title: item.title,
 												url: item.url,
-												id: item.id
+												id: item.id,
 											},
-											with_context = false
+											with_context: false
 										)
 									-}}
 								{%- endif -%}
@@ -108,22 +101,22 @@
 
 			<div class="flex shrink-0 items-center gap-4">
 				{%- if search_url -%}
-				<a
-					href="{{ search_url }}"
-					class="flex size-5 items-center justify-center text-black hover:text-gray-500"
-					aria-label="{{ __('Search', 'wp-cinquante-et-un') }}"
-				>
-					{{-
-						include(
-							'svg/use.html.twig',
-							{
-								icon: 'search',
-								classes: ['size-5']
-							},
-							with_context = false
-						)
-					-}}
-				</a>
+					<a
+						href="{{ search_url }}"
+						class="flex size-5 items-center justify-center text-primary hover:text-secondary"
+						aria-label="{{ __( 'Search', 'wp-cinquante-et-un' ) }}"
+					>
+						{{-
+							include(
+								'svg/use.html.twig',
+								{
+									icon: 'search',
+									classes: [ 'size-5' ],
+								},
+								with_context: false
+							)
+						-}}
+					</a>
 				{%- endif -%}
 
 				{%- if theme.contact.link.url -%}
@@ -131,46 +124,46 @@
 						{{-
 							include(
 								'components/button.html.twig',
-								theme.contact.link | merge({
-									variant: 'primary'
-								})
+								theme.contact.link | merge( { variant: 'primary' } )
 							)
 						-}}
 					</div>
 				{%- endif -%}
 
 				{%- if nav_menus.main -%}
-					<cinq-drawer-button class="lg:hidden">
-						<button
-							type="button"
-							class="group/drawer-button flex size-10 items-center justify-center border border-black text-black"
-							aria-controls="menu-drawer"
-							aria-label="{{ __('Menu', 'wp-cinquante-et-un') }}"
-						>
-							<span class="group-aria-expanded/drawer-button:hidden">
-								{{-
-									include(
-										'svg/use.html.twig',
-										{
-											icon: 'bars',
-											classes: ['size-5']
-										},
-										with_context = false
-									)
-								-}}
-							</span>
+					<button
+						type="button"
+						class="flex size-10 items-center justify-center border border-default text-primary lg:hidden"
+						commandfor="menu-drawer"
+						command="toggle-popover"
+						aria-label="{{ __( 'Menu', 'wp-cinquante-et-un' ) }}"
+					>
+						{#- The browser exposes the expanded state of a popover invoker without an attribute: the icons read the popover itself. -#}
+						<span class="[html:has(#menu-drawer:popover-open)_&]:hidden">
 							{{-
 								include(
 									'svg/use.html.twig',
 									{
-										classes: ['size-5 hidden group-aria-expanded/drawer-button:block'],
-										icon: 'times'
+										icon: 'bars',
+										classes: [ 'size-5' ],
 									},
-									with_context = false
+									with_context: false
 								)
 							-}}
-						</button>
-					</cinq-drawer-button>
+						</span>
+						<span class="hidden [html:has(#menu-drawer:popover-open)_&]:block">
+							{{-
+								include(
+									'svg/use.html.twig',
+									{
+										icon: 'times',
+										classes: [ 'size-5' ],
+									},
+									with_context: false
+								)
+							-}}
+						</span>
+					</button>
 				{%- endif -%}
 			</div>
 		</div>
@@ -182,20 +175,14 @@
 		with {
 			id: 'menu-drawer',
 			margin_top: '5.5rem',
-			panel_classes: 'bg-white inset-x-0 top-0 border border-black mx-5',
-			aria_label: __('Menu', 'wp-cinquante-et-un')
+			modal: false,
+			panel_classes: 'mx-5 border border-default',
+			aria_label: __( 'Menu', 'wp-cinquante-et-un' ),
 		}
 	%}
 		{% block content %}
 			<cinq-mobile-menu class="relative block h-full">
-				{{-
-					include(
-						'components/mobile-menu.html.twig',
-						{
-							items: nav_menus.main.get_items()
-						}
-					)
-				-}}
+				{{- include( 'components/mobile-menu.html.twig', { items: nav_menus.main.get_items() } ) -}}
 			</cinq-mobile-menu>
 		{% endblock %}
 	{% endembed %}

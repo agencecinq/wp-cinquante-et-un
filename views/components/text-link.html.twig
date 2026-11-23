@@ -12,14 +12,18 @@
 	<a
 		href="{{ url }}"
 		class="{{
-		html_classes(
-			'text-sm underline-offset-2 hover:underline',
-			classes | default([]) | join(' ')
-		)
+			html_classes(
+				'text-sm underline-offset-2 hover:underline',
+				classes | default( [] ) | join( ' ' )
+			)
 		}}"
-		{{ target ? "target=\"#{target}\"" : '' }}
+		{{ target ? "target=\"#{ target }\"" : '' }}
 		{{ target == '_blank' ? 'rel="noopener noreferrer"' : '' }}
-		{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
+		{{ attributes
+			? attributes
+				| map( ( value, key ) => value == '' ? key : "#{ key }=\"#{ value }\"" )
+				| join( ' ' )
+				| raw }}
 	>
 		{{- title -}}
 	</a>

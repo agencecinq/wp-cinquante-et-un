@@ -7,51 +7,54 @@
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  #}
 
-{%- set newsletter = theme.footer.newsletter | default({}) -%}
-{%- set contact_locations = theme.contact.locations | default('') -%}
-{%- set footer_menu_keys = ['footer_1', 'footer_2', 'footer_3'] -%}
+{%- set newsletter = theme.footer.newsletter | default( {} ) -%}
+{%- set contact_locations = theme.contact.locations | default( '' ) -%}
+{%- set footer_menu_keys = [ 'footer_1', 'footer_2', 'footer_3' ] -%}
 {%- set footer_menus = [] -%}
 
 {%- for key in footer_menu_keys -%}
-	{%- if nav_menus[key] and nav_menus[key].items | length -%}
-		{%- set footer_menus = footer_menus
-			|merge([
-				{
-					title: nav_menus[key].name,
-					items: nav_menus[key].get_items()
-				}
-			])
+	{%- if nav_menus[ key ] and ( nav_menus[ key ].items | length ) -%}
+		{%- set footer_menus =
+			footer_menus | merge(
+				[
+					{
+						title: nav_menus[ key ].name,
+						items: nav_menus[ key ].get_items(),
+					},
+				]
+			)
 		-%}
 	{%- endif -%}
 {%- endfor -%}
 
 {%- if footer_menus is empty and nav_menus.footer -%}
 	{%- for item in nav_menus.footer.get_items() -%}
-		{%- set footer_menus = footer_menus
-			|merge([
-				{
-					title: item.title,
-					items: item.children | length ? item.children : [item]
-				}
-			])
+		{%- set footer_menus =
+			footer_menus | merge(
+				[
+					{
+						title: item.title,
+						items: item.children | length ? item.children : [ item ],
+					},
+				]
+			)
 		-%}
 	{%- endfor -%}
 {%- endif -%}
 
-{%- set has_contact_column = theme.contact.email
-	or theme.contact.phone
-	or contact_locations
--%}
+{%- set has_contact_column = theme.contact.email or theme.contact.phone or contact_locations -%}
 
-{%- if has_contact_column and footer_menus | length < 3 -%}
-	{%- set footer_menus = footer_menus
-		|merge([
-			{
-				title: __('Contact', 'wp-cinquante-et-un'),
-				items: [],
-				contact: true
-			}
-		])
+{%- if has_contact_column and ( footer_menus | length ) < 3 -%}
+	{%- set footer_menus =
+		footer_menus | merge(
+			[
+				{
+					title: __( 'Contact', 'wp-cinquante-et-un' ),
+					items: [],
+					contact: true,
+				},
+			]
+		)
 	-%}
 {%- endif -%}
 
@@ -59,30 +62,24 @@
 	role="contentinfo"
 	itemscope
 	itemtype="https://schema.org/WPFooter"
-	class="border border-black bg-white py-14"
+	class="border border-default bg-page py-14"
 >
 	<div class="container flex flex-col gap-10">
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-8">
 			{%- if newsletter.title or newsletter.text or newsletter.form -%}
 				<div class="flex w-full shrink-0 flex-col gap-4 lg:max-w-105">
 					{%- if newsletter.title -%}
-						<p class="text-sm font-semibold text-black">
-							{{- newsletter.title -}}
-						</p>
+						<p class="text-sm font-semibold text-primary">{{- newsletter.title -}}</p>
 					{%- endif -%}
 
 					{%- if newsletter.text -%}
-						<p class="text-sm text-black/70">
-							{{- newsletter.text -}}
-						</p>
+						<p class="text-sm text-primary/70">{{- newsletter.text -}}</p>
 					{%- endif -%}
 
 					{{-
 						include(
 							'components/newsletter-form.html.twig',
-							{
-								form_id: newsletter.form | default(null)
-							}
+							{ form_id: newsletter.form | default( null ) }
 						)
 					-}}
 				</div>
@@ -90,29 +87,22 @@
 
 			{%- if footer_menus | length -%}
 				<nav
-					aria-label="{{ __('Footer navigation', 'wp-cinquante-et-un') }}"
+					aria-label="{{ __( 'Footer navigation', 'wp-cinquante-et-un' ) }}"
 					class="grid min-w-0 flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
 				>
 					{%- for column in footer_menus -%}
-						{%- if column.contact | default(false) -%}
+						{%- if column.contact | default( false ) -%}
 							<div class="flex min-w-0 flex-1 flex-col gap-3">
-								<p class="text-sm font-semibold text-black">
-									{{- column.title -}}
-								</p>
+								<p class="text-sm font-semibold text-primary">{{- column.title -}}</p>
 
-								<ul class="flex flex-col gap-2 text-sm text-black">
+								<ul class="flex flex-col gap-2 text-sm text-primary">
 									{%- if theme.contact.email -%}
 										<li>
 											<a
-												href="mailto:{{ theme.contact.email | e('html_attr') }}"
-												class="hover:text-gray-500"
+												href="mailto:{{ theme.contact.email | e( 'html_attr' ) }}"
+												class="hover:text-secondary"
 											>
-												{{-
-													__(
-														'Write to us',
-														'wp-cinquante-et-un'
-													)
-												-}}
+												{{- __( 'Write to us', 'wp-cinquante-et-un' ) -}}
 											</a>
 										</li>
 									{%- endif -%}
@@ -120,14 +110,16 @@
 									{%- if theme.contact.phone -%}
 										<li>
 											<a
-												href="tel:{{ theme.contact.phone
-													| replace({
-														' ': '',
-														'.': '',
-														'-': ''
-													})
-													| e('html_attr') }}"
-												class="hover:text-gray-500"
+												href="tel:{{
+													theme.contact.phone
+														| replace( {
+															' ': '',
+															'.': '',
+															'-': '',
+														} )
+														| e( 'html_attr' )
+												}}"
+												class="hover:text-secondary"
 											>
 												{{- theme.contact.phone -}}
 											</a>
@@ -135,19 +127,13 @@
 									{%- endif -%}
 
 									{%- if contact_locations -%}
-										<li>
-											{{- contact_locations -}}
-										</li>
+										<li>{{- contact_locations -}}</li>
 									{%- endif -%}
 								</ul>
 							</div>
 						{%- else -%}
 							{{-
-								include(
-									'components/footer-nav-column.html.twig',
-									column,
-									with_context = false
-								)
+								include( 'components/footer-nav-column.html.twig', column, with_context: false )
 							-}}
 						{%- endif -%}
 					{%- endfor -%}
@@ -155,19 +141,17 @@
 			{%- endif -%}
 		</div>
 
-		{{-
-			include(
-				'components/social-links.html.twig'
-			)
-		-}}
+		{{- include( 'components/social-links.html.twig' ) -}}
 
 		<div
-			class="flex flex-col gap-4 border-t border-black pt-6 text-xs text-black lg:flex-row lg:items-center lg:justify-between"
+			class="flex flex-col gap-4 border-t border-default pt-6 text-xs text-primary lg:flex-row lg:items-center lg:justify-between"
 		>
 			<p>
 				{{-
-					__('© %1$s %2$s. All rights reserved.', 'wp-cinquante-et-un')
-						| format('now' | date('Y'), site.name)
+					__( '© %1$s %2$s. All rights reserved.', 'wp-cinquante-et-un' ) | format(
+						'now' | date( 'Y' ),
+						site.name
+					)
 				-}}
 			</p>
 
@@ -178,11 +162,9 @@
 							<a
 								href="{{ item.url }}"
 								itemprop="url"
-								class="hover:text-gray-500"
-								{{
-								item.is_target_blank or item.is_external
-									? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
-								}}
+								class="hover:text-secondary"
+								{{ item.is_target_blank or item.is_external
+									? 'target="' ~ item.target ~ '" rel="noopener noreferrer"' }}
 							>
 								<span itemprop="name">{{- item.title -}}</span>
 							</a>

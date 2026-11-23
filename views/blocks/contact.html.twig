@@ -4,8 +4,8 @@
  # Coordinates and static map. 5 cols info + 6 cols map.
  #}
 
-{%- set layout = block.layout | default({}) -%}
-{%- set hours = block.hours | default([]) -%}
+{%- set layout = block.layout | default( {} ) -%}
+{%- set hours = block.hours | default( [] ) -%}
 {%- set has_hours = false -%}
 
 {%- for row in hours -%}
@@ -19,16 +19,18 @@
 
 {%- if block.title or has_details or has_map -%}
 	<section
-		{% if block.id %}id="{{ block.id }}"{% endif %}
-		class="{{ html_classes( layout.classes | default('') ) }}"
-		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		{{ html_attr( { id: block.id } ) }}
+		class="{{
+			html_classes( layout.spacing_top | default( '' ), layout.spacing_bottom | default( '' ) )
+		}}"
+		data-scheme="{{ layout.color_scheme | default( '' ) }}"
 	>
-		<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 items-start gap-x-8 gap-y-10' ) }}">
+		<div
+			class="{{ html_classes( 'container', 'grid grid-cols-12 items-start gap-x-8 gap-y-10' ) }}"
+		>
 			<div class="col-span-full space-y-6 lg:col-span-5">
 				{%- if block.title -%}
-					<h2 class="text-2xl font-semibold">
-						{{- block.title -}}
-					</h2>
+					<h2 class="text-2xl font-semibold">{{- block.title -}}</h2>
 				{%- endif -%}
 
 				{{-
@@ -38,7 +40,7 @@
 							address: block.address,
 							phone: block.phone,
 							email: block.email,
-							hours: hours
+							hours: hours,
 						}
 					)
 				-}}
@@ -46,38 +48,35 @@
 
 			{%- if has_map -%}
 				<div class="col-span-full lg:col-span-6 lg:col-start-7">
-					{%- if block.map_link -%}
-						<a
-							href="{{ block.map_link | e('html_attr') }}"
-							class="block border border-black"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-					{%- else -%}
-						<div class="border border-black">
-					{%- endif -%}
-
-					{{-
-						include(
-							'components/image.html.twig',
-							{
-								image: block.map_image,
-								classes: ['block', 'aspect-3/2', 'size-full', 'object-cover'],
-								alt: block.title | default('')
-							}
-						)
-					-}}
-
-					{%- if block.map_link -%}
-						</a>
-					{%- else -%}
-						</div>
-					{%- endif -%}
+					<{{ block.map_link ? 'a' : 'div' }}
+						{{
+							html_attr(
+								block.map_link
+									? {
+										href: block.map_link,
+										target: '_blank',
+										rel: 'noopener noreferrer',
+									}
+							)
+						}}
+						class="{{ html_classes( 'border border-default', { block: block.map_link } ) }}"
+					>
+						{{-
+							include(
+								'components/image.html.twig',
+								{
+									image: block.map_image,
+									classes: [ 'block', 'aspect-3/2', 'size-full', 'object-cover' ],
+									alt: block.title | default( '' ),
+								}
+							)
+						-}}
+					</{{ block.map_link ? 'a' : 'div' }}>
 				</div>
 			{%- endif -%}
 		</div>
 
-		{%- if block.local_business_schema_json | default('') -%}
+		{%- if block.local_business_schema_json | default( '' ) -%}
 			<script type="application/ld+json">
 				{{- block.local_business_schema_json | raw -}}
 			</script>

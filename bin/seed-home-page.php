@@ -36,7 +36,7 @@ function cinq_seed_home_blocks(
 ): array {
 	$layout      = cinq_seed_layout();
 	$layout_none = cinq_seed_layout( 'none', 'none' );
-	$layout_cta  = cinq_seed_layout( 'xl', 'xl', 'inverse' );
+	$layout_cta  = cinq_seed_layout( 'xl', 'xl', 'dark' );
 
 	return array(
 		array(

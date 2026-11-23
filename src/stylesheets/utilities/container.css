@@ -3,9 +3,3 @@
 
 	max-width: var(--container-max-width);
 }
-
-@utility container-wide {
-	@apply mx-auto w-full px-5;
-
-	max-width: 110rem;
-}

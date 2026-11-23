@@ -6,14 +6,7 @@
  #}
 
 {%- if title -%}
-	<p
-		class="{{
-		html_classes(
-			'subtitle text-gray-500',
-			classes | default([]) | join(' ')
-		)
-		}}"
-	>
+	<p class="{{ html_classes( 'subtitle text-secondary', classes | default( [] ) | join( ' ' ) ) }}">
 		{{- title -}}
 	</p>
 {%- endif -%}

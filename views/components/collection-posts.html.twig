@@ -1,7 +1,7 @@
 {#
  # Components: Collection Posts
  #
- # Editorial post grid. Renders nothing when the posts list is empty.
+ # Editorial posts: a carousel below md, a grid from md. Renders nothing when the posts list is empty.
  #
  # @param array content Overline, title, and optional link.
  # @param array posts Posts to display.
@@ -9,26 +9,22 @@
  # @param bool allow_empty Render the section header when posts is empty.
  # @param array attributes Extra HTML attributes on the section.
  # @param array classes Extra CSS classes.
- # @param string container_classes Container utility classes for the inner wrapper.
  #}
 
-{%- set columns = columns | default(3) -%}
+{%- set columns = columns | default( 3 ) -%}
 {%- set grid_classes =
-	columns == 4
-		? 'grid-cols-2 gap-4 lg:grid-cols-4'
-		: (
-			columns == 2
-				? 'grid-cols-1 gap-8 md:grid-cols-2'
-				: 'grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'
-		)
+	{
+		2: 'md:grid-cols-2',
+		4: 'md:grid-cols-2 lg:grid-cols-4',
+	}[ columns ] | default( 'md:grid-cols-2 lg:grid-cols-3' )
 -%}
 
-{%- if posts | length or allow_empty | default(false) -%}
+{%- if ( posts | length ) or ( allow_empty | default( false ) ) -%}
 	<section
-		{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
-		class="{{ html_classes( classes | default([]) | join( ' ' ) ) }}"
+		{{ html_attr( attributes ) }}
+		class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}"
 	>
-		<div class="{{ html_classes( container_classes | default('container'), 'space-y-10' ) }}">
+		<div class="{{ html_classes( 'container', 'space-y-10' ) }}">
 			{{-
 				include(
 					'components/section-header.html.twig',
@@ -36,19 +32,33 @@
 						overline: content.overline,
 						title: content.title,
 						link: {
-							title: content.link.title | default(__('View all posts', 'wp-cinquante-et-un')),
+							title: content.link.title | default( __( 'View all posts', 'wp-cinquante-et-un' ) ),
 							url: content.link.url,
-							target: content.link.target | default('')
-						}
+							target: content.link.target | default( '' ),
+						},
 					}
 				)
 			-}}
 
-			<div class="grid {{ grid_classes }}">
+			{#- Below md: a scroll-snap carousel peeking past the container (Blossom adds the drag). From md: a grid. -#}
+			<blossom-carousel
+				class="{{
+					html_classes(
+						'-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-4 px-5 md:mx-0 md:grid md:gap-8 md:px-0',
+						grid_classes
+					)
+				}}"
+				role="region"
+				aria-label="{{ content.title | default( __( 'Posts', 'wp-cinquante-et-un' ) ) }}"
+			>
 				{%- for post in posts -%}
-					{{- include('components/tease-post.html.twig', { post: post }, with_context = false) -}}
+					<div data-blossom-slide class="w-70 flex-none snap-start md:w-auto">
+						{{-
+							include( 'components/tease-post.html.twig', { post: post }, with_context: false )
+						-}}
+					</div>
 				{%- endfor -%}
-			</div>
+			</blossom-carousel>
 		</div>
 	</section>
 {%- endif -%}

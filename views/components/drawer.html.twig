@@ -1,72 +1,78 @@
 {#
  # Components: Drawer
  #
- # @param {string} id - The drawer ID. Required.
- # @param {string} content - The drawer content. Required.
- # @param {string} [direction] - The direction the drawer will open from. Possible values are 'from-left' and 'from-right'. Default is ''.
- # @param {string} [classes] - Additional classes to apply to the drawer. Optional.
- # @param {string} [panel_classes] - Classes for the dialog panel. Optional.
- # @param {string} [margin_top] - The top margin of the drawer. Optional. Default is '0rem'.
+ # Native <dialog> in `cinq-drawer` (@agencecinq/drawer 9). Open it with a
+ # `commandfor="{id}" command="show-modal"` button (modal), or
+ # `command="toggle-popover"` (non-modal); close buttons inside take
+ # `command="request-close"` (modal) or `command="hide-popover"`.
+ #
+ # @param {string} id - The dialog ID. Required.
+ # @param {string} [direction] - 'from-left', 'from-right' or 'from-bottom'. Default is '' (fade).
+ # @param {string} [classes] - Additional classes on the `cinq-drawer` host. Optional.
+ # @param {string} [panel_classes] - Extra classes for the dialog panel. Optional.
+ # @param {string} [margin_top] - Top offset of the drawer, e.g. to leave a header visible. Default is '0rem'.
  # @param {string} [aria_label] - Accessible name for the dialog (required for accessibility). Optional.
+ # @param {boolean} [modal] - false keeps the page (header included) usable: the dialog is a popover and a scrim dims the page. Default is true.
  #
  # @example
- # {{ include( 'components/drawer.html.twig', { id: 'drawer1', direction: 'from-left', aria_label: 'Menu' } ) }}
-#}
+ # {% embed 'components/drawer.html.twig' with { id: 'drawer1', direction: 'from-left', aria_label: 'Menu' } %}
+ # 	{% block content %}…{% endblock %}
+ # {% endembed %}
+ #}
 
-{% set direction = direction | default('') %}
-{% set aria_label = aria_label | default('') %}
-{% set translate =
-	'inset-0 max-w-full group-open:opacity-100 opacity-0 duration-300 ease-out transition-opacity'
-%}
-{% set margin_top = margin_top | default('0rem') %}
-{% set panel_classes = panel_classes | default('bg-white mx-2.5 mb-2.5 mt-22.5 rounded-2xl') %}
+{% set direction = direction | default( '' ) %}
+{% set margin_top = margin_top | default( '0rem' ) %}
+{% set modal = modal ?? true %}
+{% set translate = 'inset-x-0 bottom-0 w-auto opacity-0 open:opacity-100 starting:open:opacity-0' %}
 
 {% if direction == 'from-left' %}
 	{% set translate =
-		'-translate-x-full left-0 group-open:translate-x-0 w-148.75 max-w-full inset-y-0'
+		'bottom-0 left-0 right-auto w-148.75 -translate-x-full open:translate-x-0 starting:open:-translate-x-full'
 	%}
 {% endif %}
 
 {% if direction == 'from-bottom' %}
-	{% set translate = 'translate-y-full bottom-0 group-open:translate-y-0 inset-x-0' %}
+	{% set translate =
+		'inset-x-0 bottom-0 top-auto w-auto translate-y-full open:translate-y-0 starting:open:translate-y-full'
+	%}
 {% endif %}
 
 {% if direction == 'from-right' %}
 	{% set translate =
-		'translate-x-full right-0 group-open:translate-x-0 w-97.5 max-w-full transition-transform duration-300 ease-out'
+		'bottom-0 right-0 left-auto w-97.5 translate-x-full open:translate-x-0 starting:open:translate-x-full'
 	%}
 {% endif %}
 
-<cinq-drawer
-	id="{{ id }}"
-	cid="{{ id }}"
-	class="{{ html_classes('group fixed inset-0 z-40 block w-full', classes | default('')) }}"
-	style="opacity: 0; visibility: hidden; height: calc(100% - {{ margin_top }}); margin-top: {{
-	margin_top
-	}};"
->
-	<div
-		data-dom="overlay"
-		class="absolute inset-0 z-1 size-full bg-black/30 opacity-0 transition-opacity duration-300 ease-out group-open:opacity-100"
-	></div>
-	<div
-		role="dialog"
-		aria-modal="true"
-		{{ aria_label ? 'aria-label="' ~ aria_label ~ '"' : '' }}
+<cinq-drawer class="{{ html_classes( 'contents', classes | default( '' ) ) }}">
+	<dialog
+		id="{{ id }}"
+		{{ html_attr( modal ? { closedby: 'any' } : { popover: true } ) }}
+		{{ html_attr( aria_label ? { 'aria-label': aria_label } ) }}
 		class="{{
-		html_classes(
-			panel_classes,
-			'transition-transform duration-300 ease-out',
-			translate,
-			'max-h-full',
-			'absolute z-2'
-		)
+			html_classes(
+				'peer fixed m-0 h-auto max-h-none max-w-full border-0 p-0',
+				'transition-[translate,opacity,overlay,display] transition-discrete duration-300 ease-drawer',
+				'backdrop:bg-overlay-scrim/30 backdrop:opacity-0 backdrop:transition-[opacity,overlay,display] backdrop:transition-discrete backdrop:duration-300 open:backdrop:opacity-100 starting:open:backdrop:opacity-0',
+				translate,
+				'overflow-hidden bg-page text-primary',
+				panel_classes | default( '' )
+			)
 		}}"
+		style="{{ direction == 'from-bottom'
+			? 'max-height: calc(100% - ' ~ margin_top ~ ');'
+			: 'top: ' ~ margin_top ~ ';' }}"
 	>
 		<div class="scrollbar-hidden h-full overflow-y-auto scroll-smooth">
-			{%- block content -%}
-
-			{%- endblock -%}
+			{%- block content -%}{%- endblock -%}
 		</div>
-	</div>
+	</dialog>
+
+	{%- if not modal -%}
+		{#- A popover has no ::backdrop below the header: this scrim dims the page, and a press on it closes the drawer (light dismiss). -#}
+		<div
+			class="pointer-events-none fixed inset-x-0 bottom-0 z-30 bg-overlay-scrim/30 opacity-0 transition-opacity duration-300 ease-drawer peer-open:pointer-events-auto peer-open:opacity-100"
+			style="top: {{ margin_top }};"
+			aria-hidden="true"
+		></div>
+	{%- endif -%}
 </cinq-drawer>

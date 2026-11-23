@@ -1,12 +1,12 @@
-import '@agencecinq/combobox';
-import '@agencecinq/disclosure-button';
-import '@agencecinq/spinbutton';
-import '@agencecinq/switch';
-import '@agencecinq/tabs';
+import "@agencecinq/combobox";
+import "@agencecinq/disclosure-button";
+import "@agencecinq/spinbutton";
+import "@agencecinq/switch";
+import "@agencecinq/tabs";
 
-import type { Combobox } from '@agencecinq/combobox';
+import type { Combobox } from "@agencecinq/combobox";
 
-const cities = ['Paris', 'Tours', 'Marseille', 'Lyon', 'Nantes'];
+const cities = ["Paris", "Tours", "Marseille", "Lyon", "Nantes"];
 
 function wireCombobox($combobox: Combobox) {
 	$combobox.search = (value) => {
@@ -19,19 +19,19 @@ function wireCombobox($combobox: Combobox) {
 		return cities.filter((name) => name.toLowerCase().startsWith(query));
 	};
 
-	const $button = $combobox.querySelector<HTMLButtonElement>('button[aria-controls]');
+	const $button = $combobox.querySelector<HTMLButtonElement>("button[aria-controls]");
 
 	if (!$button) {
 		return;
 	}
 
 	const syncButton = () => {
-		$button.setAttribute('aria-expanded', $combobox.expanded ? 'true' : 'false');
+		$button.setAttribute("aria-expanded", $combobox.expanded ? "true" : "false");
 		$button.disabled = $combobox.disabled;
 	};
 
-	$button.addEventListener('mousedown', (event) => event.preventDefault());
-	$button.addEventListener('click', (event) => {
+	$button.addEventListener("mousedown", (event) => event.preventDefault());
+	$button.addEventListener("click", (event) => {
 		event.stopPropagation();
 
 		if ($combobox.disabled) {
@@ -48,14 +48,14 @@ function wireCombobox($combobox: Combobox) {
 
 	new MutationObserver(syncButton).observe($combobox, {
 		attributes: true,
-		attributeFilter: ['expanded', 'disabled'],
+		attributeFilter: ["expanded", "disabled"],
 	});
 
 	syncButton();
 }
 
-void customElements.whenDefined('cinq-combobox').then(() => {
-	const $combobox = document.querySelector<Combobox>('#styleguide-city-combobox');
+void customElements.whenDefined("cinq-combobox").then(() => {
+	const $combobox = document.querySelector<Combobox>("#styleguide-city-combobox");
 
 	if ($combobox) {
 		wireCombobox($combobox);
@@ -63,18 +63,18 @@ void customElements.whenDefined('cinq-combobox').then(() => {
 });
 
 function wireStyleguidePlaygrounds() {
-	document.querySelectorAll<HTMLElement>('[data-styleguide-playground]').forEach(($playground) => {
+	document.querySelectorAll<HTMLElement>("[data-styleguide-playground]").forEach(($playground) => {
 		const $select = $playground.parentElement?.querySelector<HTMLSelectElement>(
-			'[data-styleguide-variant-select]',
+			"[data-styleguide-variant-select]",
 		);
 
 		if (!$select) {
 			return;
 		}
 
-		const $panels = $playground.querySelectorAll<HTMLElement>('[data-styleguide-variant]');
+		const $panels = $playground.querySelectorAll<HTMLElement>("[data-styleguide-variant]");
 
-		$select.addEventListener('change', () => {
+		$select.addEventListener("change", () => {
 			const value = $select.value;
 
 			$panels.forEach(($panel) => {

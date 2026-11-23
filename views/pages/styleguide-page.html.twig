@@ -11,15 +11,13 @@
 
 {%- block content -%}
 	<main id="content" role="main">
-		<div class="container space-y-20 pt-40 pb-section-lg lg:space-y-30">
+		<div class="container space-y-20 pt-40 pb-14 lg:space-y-30 lg:pb-24">
 			<header class="space-y-3">
-				<p class="subtitle">
-					{{- __('Foundations', 'wp-cinquante-et-un') -}}
-				</p>
+				<p class="subtitle">{{- __( 'Foundations', 'wp-cinquante-et-un' ) -}}</p>
 				<h1 class="text-4xl font-semibold">
-					{{- post.title | default(__('Styleguide', 'wp-cinquante-et-un')) -}}
+					{{- post.title | default( __( 'Styleguide', 'wp-cinquante-et-un' ) ) -}}
 				</h1>
-				<p class="text-gray-500 max-w-prose text-lg">
+				<p class="max-w-prose text-lg text-secondary">
 					{{-
 						__(
 							'Tokens, UI components, and kernel blocks shipped with the starter. Assign this page template; the catalog is rendered from Twig, not from ACF.',
@@ -29,12 +27,10 @@
 				</p>
 			</header>
 
-			<nav aria-label="{{ __('Styleguide', 'wp-cinquante-et-un') }}" class="space-y-6">
+			<nav aria-label="{{ __( 'Styleguide', 'wp-cinquante-et-un' ) }}" class="space-y-6">
 				{%- for group in post.toc -%}
 					<div class="space-y-3">
-						<p class="subtitle">
-							{{ group.title }}
-						</p>
+						<p class="subtitle">{{ group.title }}</p>
 						<ul class="flex flex-wrap gap-x-5 gap-y-2">
 							{%- for item in group.items -%}
 								<li itemscope itemtype="https://schema.org/SiteNavigationElement">
@@ -52,18 +48,19 @@
 				{%- endfor -%}
 			</nav>
 
-			{{- include('components/styleguide.html.twig') -}}
+			{{- include( 'components/styleguide.html.twig' ) -}}
 		</div>
 
-		<section class="space-y-20 pb-section-xl pt-section-lg lg:space-y-30" aria-labelledby="styleguide-blocks">
+		<section
+			class="space-y-20 pt-14 pb-18 lg:space-y-30 lg:pt-24 lg:pb-32"
+			aria-labelledby="styleguide-blocks"
+		>
 			<header class="container space-y-3">
-				<p class="subtitle">
-					{{- __('Blocks', 'wp-cinquante-et-un') -}}
-				</p>
+				<p class="subtitle">{{- __( 'Blocks', 'wp-cinquante-et-un' ) -}}</p>
 				<h2 id="styleguide-blocks" class="text-4xl font-semibold">
-					{{- __('Kernel layouts', 'wp-cinquante-et-un') -}}
+					{{- __( 'Kernel layouts', 'wp-cinquante-et-un' ) -}}
 				</h2>
-				<p class="text-gray-500 max-w-prose text-lg">
+				<p class="max-w-prose text-lg text-secondary">
 					{{-
 						__(
 							'Kernel ACF layouts rendered with the same Twig as production. Blocks with variants expose a switcher; dummy data lives in includes/Models/Styleguide/.',
@@ -74,7 +71,7 @@
 			</header>
 
 			{%- for item in post.blocks -%}
-				{{- include('components/styleguide-layout-block.html.twig', { item: item }) -}}
+				{{- include( 'components/styleguide-layout-block.html.twig', { item: item } ) -}}
 			{%- endfor -%}
 		</section>
 	</main>

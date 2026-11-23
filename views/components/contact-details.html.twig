@@ -9,7 +9,7 @@
  # @param array hours Repeater rows with days and hours.
  #}
 
-{%- set hours = hours | default([]) -%}
+{%- set hours = hours | default( [] ) -%}
 {%- set has_hours = false -%}
 
 {%- for row in hours -%}
@@ -19,15 +19,23 @@
 {%- endfor -%}
 
 {%- if address or phone or email or has_hours -%}
-	<div class="{{ html_classes( classes | default([]) | join(' '), 'space-y-6' ) }}">
+	<div class="{{ html_classes( classes | default( [] ) | join( ' ' ), 'space-y-6' ) }}">
 		{%- if address -%}
 			<div class="flex items-start gap-3">
-				<span class="mt-0.5 shrink-0 text-black" aria-hidden="true">
-					{{- include('svg/use.html.twig', { classes: ['size-4'], icon: 'map-pin' }) -}}
+				<span class="mt-0.5 shrink-0 text-primary" aria-hidden="true">
+					{{-
+						include(
+							'svg/use.html.twig',
+							{
+								classes: [ 'size-4' ],
+								icon: 'map-pin',
+							}
+						)
+					-}}
 				</span>
 				<div class="min-w-0 space-y-1">
-					<p class="text-xs font-medium text-gray-500">
-						{{- __('Address', 'wp-cinquante-et-un') -}}
+					<p class="text-xs font-medium text-secondary">
+						{{- __( 'Address', 'wp-cinquante-et-un' ) -}}
 					</p>
 					<address class="text-sm not-italic">
 						{{- address | raw -}}
@@ -38,17 +46,23 @@
 
 		{%- if phone -%}
 			<div class="flex items-start gap-3">
-				<span class="mt-0.5 shrink-0 text-black" aria-hidden="true">
-					{{- include('svg/use.html.twig', { classes: ['size-4'], icon: 'phone' }) -}}
+				<span class="mt-0.5 shrink-0 text-primary" aria-hidden="true">
+					{{-
+						include(
+							'svg/use.html.twig',
+							{
+								classes: [ 'size-4' ],
+								icon: 'phone',
+							}
+						)
+					-}}
 				</span>
 				<div class="min-w-0 space-y-1">
-					<p class="text-xs font-medium text-gray-500">
-						{{- __('Phone', 'wp-cinquante-et-un') -}}
+					<p class="text-xs font-medium text-secondary">
+						{{- __( 'Phone', 'wp-cinquante-et-un' ) -}}
 					</p>
 					<p class="text-sm">
-						<a href="tel:{{ phone | replace({' ': ''}) | e('html_attr') }}">
-							{{- phone -}}
-						</a>
+						<a href="tel:{{ phone | replace( { ' ': '' } ) | e( 'html_attr' ) }}">{{- phone -}}</a>
 					</p>
 				</div>
 			</div>
@@ -56,30 +70,42 @@
 
 		{%- if email -%}
 			<div class="flex items-start gap-3">
-				<span class="mt-0.5 shrink-0 text-black" aria-hidden="true">
-					{{- include('svg/use.html.twig', { classes: ['size-4'], icon: 'mail' }) -}}
+				<span class="mt-0.5 shrink-0 text-primary" aria-hidden="true">
+					{{-
+						include(
+							'svg/use.html.twig',
+							{
+								classes: [ 'size-4' ],
+								icon: 'mail',
+							}
+						)
+					-}}
 				</span>
 				<div class="min-w-0 space-y-1">
-					<p class="text-xs font-medium text-gray-500">
-						{{- __('Email', 'wp-cinquante-et-un') -}}
+					<p class="text-xs font-medium text-secondary">
+						{{- __( 'Email', 'wp-cinquante-et-un' ) -}}
 					</p>
-					<p class="text-sm">
-						<a href="mailto:{{ email | e('html_attr') }}">
-							{{- email -}}
-						</a>
-					</p>
+					<p class="text-sm"><a href="mailto:{{ email | e( 'html_attr' ) }}">{{- email -}}</a></p>
 				</div>
 			</div>
 		{%- endif -%}
 
 		{%- if has_hours -%}
 			<div class="flex items-start gap-3">
-				<span class="mt-0.5 shrink-0 text-black" aria-hidden="true">
-					{{- include('svg/use.html.twig', { classes: ['size-4'], icon: 'calendar' }) -}}
+				<span class="mt-0.5 shrink-0 text-primary" aria-hidden="true">
+					{{-
+						include(
+							'svg/use.html.twig',
+							{
+								classes: [ 'size-4' ],
+								icon: 'calendar',
+							}
+						)
+					-}}
 				</span>
 				<div class="min-w-0 space-y-1">
-					<p class="text-xs font-medium text-gray-500">
-						{{- __('Hours', 'wp-cinquante-et-un') -}}
+					<p class="text-xs font-medium text-secondary">
+						{{- __( 'Hours', 'wp-cinquante-et-un' ) -}}
 					</p>
 					<div class="space-y-1 text-sm">
 						{%- for row in hours -%}

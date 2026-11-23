@@ -11,8 +11,10 @@
 
 {%- if breadcrumb -%}
 	<nav
-		aria-label="{{ label | default(__('Breadcrumb', 'wp-cinquante-et-un')) }}"
-		class="{{ html_classes('text-xs text-black opacity-60', classes | default([]) | join(' ')) }}"
+		aria-label="{{ label | default( __( 'Breadcrumb', 'wp-cinquante-et-un' ) ) }}"
+		class="{{
+			html_classes( 'text-xs text-primary opacity-60', classes | default( [] ) | join( ' ' ) )
+		}}"
 	>
 		{{- breadcrumb | raw -}}
 	</nav>

@@ -10,36 +10,34 @@
  #}
 
 {%- set excerpt =
-	post.excerpt({
+	post.excerpt( {
 		words: 24,
-		read_more: false
-	})
+		read_more: false,
+	} )
 -%}
 
 <article
 	itemscope
 	itemtype="https://schema.org/BlogPosting"
-	class="{{ html_classes('flex flex-col gap-4', classes | default([]) | join(' ')) }}"
+	class="{{ html_classes( 'flex flex-col gap-4', classes | default( [] ) | join( ' ' ) ) }}"
 >
-	<div class="relative aspect-3/2 overflow-hidden border border-black bg-gray-100">
+	<div class="relative aspect-3/2 overflow-hidden border border-default bg-surface">
 		<a
 			href="{{- post.link -}}"
 			itemprop="url"
 			class="absolute inset-0 z-2 size-full"
-			aria-label="{{ __('Read: %s', 'wp-cinquante-et-un') | format(post.title) }}"
+			aria-label="{{ __( 'Read: %s', 'wp-cinquante-et-un' ) | format( post.title ) }}"
 			tabindex="-1"
 		>
-			<span class="sr-only">{{- __('Read', 'wp-cinquante-et-un') -}}</span>
+			<span class="sr-only">{{- __( 'Read', 'wp-cinquante-et-un' ) -}}</span>
 		</a>
 		{{-
 			include(
 				'components/image.html.twig',
 				{
 					image: post.thumbnail,
-					classes: ['relative z-1 size-full object-cover object-center'],
-					attributes: {
-						itemprop: 'image'
-					}
+					classes: [ 'relative z-1 size-full object-cover object-center' ],
+					attributes: { itemprop: 'image' },
 				}
 			)
 		-}}
@@ -47,49 +45,52 @@
 
 	<div class="flex flex-col gap-3">
 		<div class="flex items-center gap-3">
-			{%- if (post.categories | length) > 0 -%}
-				{%- for category in post.categories | slice(0, 1) -%}
+			{%- if ( post.categories | length ) > 0 -%}
+				{%- for category in post.categories | slice( 0, 1 ) -%}
 					{{-
 						include(
 							'components/tag.html.twig',
 							{
 								title: category.name,
-								attributes: {
-									itemprop: 'articleSection'
-								}
+								attributes: { itemprop: 'articleSection' },
 							}
 						)
 					-}}
 				{%- endfor -%}
 			{%- endif -%}
 
-			<time class="text-xs text-gray-500" datetime="{{ post.date('c') }}" itemprop="datePublished">
+			<time
+				class="text-xs text-secondary"
+				datetime="{{ post.date( 'c' ) }}"
+				itemprop="datePublished"
+			>
 				{{- post.date -}}
 			</time>
 		</div>
 
-		<{{ heading_tag | default('h3') }} class="text-xl font-semibold" itemprop="headline">
+		<{{ heading_tag | default( 'h3' ) }} class="text-xl font-semibold" itemprop="headline">
 			<a href="{{ post.link }}" itemprop="url">{{- post.title -}}</a>
-		</{{ heading_tag | default('h3') }}>
+		</{{ heading_tag | default( 'h3' ) }}>
 
 		{%- if excerpt | striptags | trim -%}
-			<p class="line-clamp-2 text-sm text-gray-600" itemprop="description">
-				{{- excerpt -}}
-			</p>
+			<p class="line-clamp-2 text-sm text-secondary" itemprop="description">{{- excerpt -}}</p>
 		{%- endif -%}
 
 		{{-
 			include(
-				'components/text-link.html.twig',
+				'components/text-primary.html.twig',
 				{
-					title: __('Read more', 'wp-cinquante-et-un'),
-					url: post.link
+					title: __( 'Read more', 'wp-cinquante-et-un' ),
+					url: post.link,
 				},
-				with_context = false
+				with_context: false
 			)
 		-}}
 	</div>
 
-	<meta itemprop="dateModified" content="{{ post.modified('c') }}" />
-	<meta itemprop="author" content="{{ post.author.name | default('WPCinquanteEtUn') | e('html_attr') }}" />
+	<meta itemprop="dateModified" content="{{ post.modified( 'c' ) }}" />
+	<meta
+		itemprop="author"
+		content="{{ post.author.name | default( 'WPCinquanteEtUn' ) | e( 'html_attr' ) }}"
+	/>
 </article>

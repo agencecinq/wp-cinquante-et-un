@@ -10,21 +10,17 @@
 {%- if overline or title or link.url -%}
 	<div class="flex flex-wrap items-end justify-between gap-4">
 		<div class="space-y-3">
-			{{- include('components/subtitle.html.twig', { title: overline }) -}}
+			{{- include( 'components/subtitle.html.twig', { title: overline } ) -}}
 
 			{%- if title -%}
-				<{{ heading | default('h2') }} class="text-2xl font-semibold">
+				<{{ heading | default( 'h2' ) }} class="text-2xl font-semibold">
 					{{- title -}}
-				</{{ heading | default('h2') }}>
+				</{{ heading | default( 'h2' ) }}>
 			{%- endif -%}
 		</div>
 
 		{{-
-			include(
-				'components/text-link.html.twig',
-				link | default({}),
-				with_context = false
-			)
+			include( 'components/text-primary.html.twig', link | default( {} ), with_context: false )
 		-}}
 	</div>
 {%- endif -%}

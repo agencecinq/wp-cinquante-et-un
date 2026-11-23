@@ -12,39 +12,35 @@
 	{%- set classes =
 		[
 			'inline-flex items-center whitespace-nowrap',
-			'border border-black px-2 py-1',
-			'text-xs font-normal leading-none text-black no-underline'
+			'border border-default px-2 py-1',
+			'text-xs font-normal leading-none text-primary no-underline',
 		]
-			| merge(classes | default([]))
-			| join(' ')
+			| merge( classes | default( [] ) )
+			| join( ' ' )
 	-%}
 
 	{%- if url -%}
 		<a
 			href="{{ url }}"
-			class="{{ html_classes(classes) }}"
+			class="{{ html_classes( classes ) }}"
 			{{ target ? 'target="' ~ target ~ '"' : '' }}
 			{{ target == '_blank' ? 'rel="noopener noreferrer"' : '' }}
-			{{
-			attributes
+			{{ attributes
 				? attributes
-					| map((value, key) => value == '' ? key : key ~ '="' ~ value ~ '"')
-					| join(' ')
-					| raw
-			}}
+					| map( ( value, key ) => value == '' ? key : key ~ '="' ~ value ~ '"' )
+					| join( ' ' )
+					| raw }}
 		>
 			{{- title -}}
 		</a>
 	{%- else -%}
 		<span
-			class="{{ html_classes(classes) }}"
-			{{
-			attributes
+			class="{{ html_classes( classes ) }}"
+			{{ attributes
 				? attributes
-					| map((value, key) => value == '' ? key : key ~ '="' ~ value ~ '"')
-					| join(' ')
-					| raw
-			}}
+					| map( ( value, key ) => value == '' ? key : key ~ '="' ~ value ~ '"' )
+					| join( ' ' )
+					| raw }}
 		>
 			{{- title -}}
 		</span>

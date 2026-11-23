@@ -28,7 +28,7 @@ require_once __DIR__ . '/seed-helpers.php';
  */
 function cinq_seed_flexible_page_blocks( int $media_image_id, int $form_id = 0 ): array {
 	$layout     = cinq_seed_layout();
-	$layout_cta = cinq_seed_layout( 'xl', 'xl', 'inverse' );
+	$layout_cta = cinq_seed_layout( 'xl', 'xl', 'dark' );
 
 	$richtext_body = <<<'HTML'
 <p>Elementor et Divi promettent l'autonomie et livrent de la dette. Le HTML généré est illisible, les performances s'effondrent, et le jour où vous voulez changer d'outil, le contenu ne suit pas.</p>
@@ -121,7 +121,7 @@ HTML;
 		),
 		array(
 			'acf_fc_layout' => 'form',
-			'layout'        => cinq_seed_layout( 'md', 'md', 'default', 'contact' ),
+			'layout'        => cinq_seed_layout( 'md', 'md', '', 'contact' ),
 			'form_layout'   => 'split',
 			'overline'      => 'Contact',
 			'title'         => 'Parlons de votre projet',

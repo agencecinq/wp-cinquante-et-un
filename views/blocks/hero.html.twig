@@ -4,25 +4,34 @@
  # Full-bleed media, overline, title, text, primary + secondary buttons.
  #}
 
-{%- set layout = block.layout | default({}) -%}
-{%- set content = block.content | default({}) -%}
-{%- set alignment = block.alignment | default('left') -%}
-{%- set height = block.height | default('standard') -%}
+{%- set layout = block.layout | default( {} ) -%}
+{%- set content = block.content | default( {} ) -%}
+{%- set alignment = block.alignment | default( 'left' ) -%}
+{%- set height = block.height | default( 'standard' ) -%}
 {%- set has_media = block.media.images[0] or block.media.images[1] or block.media.video.file -%}
-{%- set height_class = {
-	'compact': 'h-120',
-	'standard': 'h-160',
-	'full': 'min-h-dvh h-dvh'
-}[height] | default('h-160') -%}
+{%- set height_class =
+	{
+		compact: 'h-120',
+		standard: 'h-160',
+		full: 'min-h-dvh h-dvh',
+	}[ height ] | default( 'h-160' )
+-%}
 {%- set content_column_classes = alignment == 'center'
 	? 'col-span-full flex flex-col items-center space-y-6 text-center lg:col-span-8 lg:col-start-3'
 	: 'col-span-full space-y-6 lg:col-span-6'
 -%}
 
 <section
-	{% if block.id %}id="{{ block.id }}"{% endif %}
-	class="{{ html_classes( layout.classes | default(''), 'relative overflow-hidden', height_class ) }}"
-	data-color-scheme="{{ has_media ? 'inverse' : layout.color_scheme | default('default') }}"
+	{{ html_attr( { id: block.id } ) }}
+	class="{{
+		html_classes(
+			layout.spacing_top | default( '' ),
+			layout.spacing_bottom | default( '' ),
+			'relative overflow-hidden',
+			height_class
+		)
+	}}"
+	data-scheme="{{ has_media ? 'dark' : layout.color_scheme | default( '' ) }}"
 >
 	{%- if has_media -%}
 		<div class="absolute inset-0 z-10">
@@ -35,53 +44,66 @@
 						loading: 'eager',
 						attributes: { fetchpriority: 'high' },
 						video_desktop_only: true,
-						classes: ['absolute inset-0 z-10 size-full object-cover object-center']
+						classes: [ 'absolute inset-0 z-10 size-full object-cover object-center' ],
 					}
 				)
 			-}}
 			{%- if block.show_media_overlay -%}
-				<div class="absolute inset-0 z-20 bg-linear-to-b from-black/0 to-black/45" aria-hidden="true"></div>
+				<div
+					class="absolute inset-0 z-20 bg-linear-to-b from-overlay-scrim/0 to-overlay-scrim/45"
+					aria-hidden="true"
+				></div>
 			{%- endif -%}
 		</div>
 	{%- endif -%}
 
-	<div class="{{ html_classes( 'relative z-30', layout.container_classes | default('container'), 'grid h-full grid-cols-12 items-center gap-5', has_media ? 'text-white' : '' ) }}">
+	<div
+		class="{{
+			html_classes( 'relative z-30', 'container', 'grid h-full grid-cols-12 items-center gap-5' )
+		}}"
+	>
 		<div class="{{ content_column_classes }}">
-			{{- include(
-				'components/subtitle.html.twig',
-				{
-					title: content.overline,
-					classes: has_media ? ['text-white/70'] : []
-				}
-			) -}}
+			{{-
+				include(
+					'components/subtitle.html.twig',
+					{
+						title: content.overline,
+						classes: has_media ? [ 'text-primary/70' ] : [],
+					}
+				)
+			-}}
 
 			{%- if content.title -%}
-				<{{ content.heading | default('h1') }} class="text-5xl font-semibold">
+				<{{ content.heading | default( 'h1' ) }} class="text-5xl font-semibold">
 					{{- content.title | e -}}
-				</{{ content.heading | default('h1') }}>
+				</{{ content.heading | default( 'h1' ) }}>
 			{%- endif -%}
 
 			{%- if content.text -%}
-				<p class="{{ html_classes('text-lg', has_media ? 'text-white/90' : '') }}">
+				<p class="{{ html_classes( 'text-lg', has_media ? 'text-primary/90' : '' ) }}">
 					{{- content.text | raw -}}
 				</p>
 			{%- endif -%}
 
 			{%- if content.link.url -%}
-				<div class="{{ html_classes('flex flex-wrap gap-3', alignment == 'center' ? 'justify-center' : '') }}">
+				<div
+					class="{{
+						html_classes( 'flex flex-wrap gap-3', alignment == 'center' ? 'justify-center' : '' )
+					}}"
+				>
 					{{-
 						include(
 							'components/button.html.twig',
-							content.link | default({}) | merge({ variant: 'primary' }),
-							with_context = false
+							content.link | default( {} ) | merge( { variant: 'primary' } ),
+							with_context: false
 						)
 					-}}
 					{%- if content.secondary_link.url -%}
 						{{-
 							include(
 								'components/button.html.twig',
-								content.secondary_link | default({}) | merge({ variant: 'secondary' }),
-								with_context = false
+								content.secondary_link | default( {} ) | merge( { variant: 'secondary' } ),
+								with_context: false
 							)
 						-}}
 					{%- endif -%}

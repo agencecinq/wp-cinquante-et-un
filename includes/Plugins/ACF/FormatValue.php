@@ -45,6 +45,8 @@ class FormatValue implements Service {
 			cinq_enrich_block( $layout );
 		}
 
+		unset( $layout );
+
 		return $value;
 	}
 }

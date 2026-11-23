@@ -12,25 +12,20 @@
 
 {%- if items | length -%}
 	<nav
-		class="{{ html_classes(classes | default([]) | join(' ')) }}"
-		aria-label="{{ label | default(__('Table of contents', 'wp-cinquante-et-un')) }}"
+		class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}"
+		aria-label="{{ label | default( __( 'Table of contents', 'wp-cinquante-et-un' ) ) }}"
 	>
 		<div class="space-y-4">
 			{{-
 				include(
 					'components/subtitle.html.twig',
-					{
-						title: title | default(__('Contents', 'wp-cinquante-et-un'))
-					}
+					{ title: title | default( __( 'Contents', 'wp-cinquante-et-un' ) ) }
 				)
 			-}}
 			<ul class="flex flex-col gap-3 text-sm">
 				{%- for item in items -%}
 					<li>
-						<a
-							href="#{{ item.id | e('html_attr') }}"
-							class="text-gray-500 hover:text-black"
-						>
+						<a href="#{{ item.id | e( 'html_attr' ) }}" class="text-secondary hover:text-primary">
 							{{- item.title -}}
 						</a>
 					</li>

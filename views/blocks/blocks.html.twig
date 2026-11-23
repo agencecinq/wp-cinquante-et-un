@@ -1,37 +1,61 @@
 {#
  # Blocks
  #
- # This template can be embedded with Twig embed function like this:
+ # Renders ACF flexible layouts, each through blocks/block.html.twig.
+ # Optional `classes` wraps the stack in a div (layout hook only — omit when
+ # blocks can stay direct siblings).
+ #
+ # Its container carries `data-field="blocks"`, the name of the field it
+ # renders: the classes div, or, in CINQ WP Editor's preview
+ # (`cinq_wp_editor`), a `display: contents` one. In the preview, the stack is
+ # rendered even with no block, so a first one can be added.
+ #
+ # Embed:
  # {% embed 'blocks/blocks.html.twig' with { blocks: post.meta('blocks') } %}
  #     {% block prepend %}...{% endblock %}
  #     {% block body %}...{% endblock %}
  #     {% block append %}...{% endblock %}
  # {% endembed %}
  #
+ # @param array blocks  Flexible content rows.
+ # @param array classes Optional CSS classes on a wrapper div.
+ #
  # @package WPCinquanteEtUn
  # @author CINQ <contact@agencecinq.com> (https://agencecinq.com)
  #}
 
-{%- if blocks -%}
-	<div class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) | trim }}">
+{%- set editor = cinq_wp_editor | default( false ) -%}
+
+{%- if blocks or editor -%}
+	{%- set stack -%}
 		{%- block prepend -%}{%- endblock -%}
 
 		{%- block body -%}
-			{%- for block in blocks -%}
+			{%- for block in blocks | default( [] ) -%}
 				{{-
 					include(
-						"blocks/#{ block.acf_fc_layout | lower | replace( { '_' : '-' } ) }.html.twig",
+						'blocks/block.html.twig',
 						{
 							block: block,
 							loop: loop.index0,
-							classes: [ 'block-index-' ~ loop.index0 ]
-						},
-						ignore_missing = true
+						}
 					)
 				-}}
 			{%- endfor -%}
 		{%- endblock -%}
 
 		{%- block append -%}{%- endblock -%}
-	</div>
+	{%- endset -%}
+
+	{%- if classes -%}
+		<div class="{{ html_classes( classes | join( ' ' ) ) }}" data-field="blocks">
+			{{- stack -}}
+		</div>
+	{%- elseif editor -%}
+		<div data-field="blocks" style="display: contents">
+			{{- stack -}}
+		</div>
+	{%- else -%}
+		{{- stack -}}
+	{%- endif -%}
 {%- endif -%}

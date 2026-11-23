@@ -36,26 +36,23 @@ class Init {
 			Setup\Context::class,
 			Setup\Twig::class,
 			// WordPress integration.
-			WPImageEditor::class,
 			WPSettings::class,
 			Post\Post::class,
 			GeneralTemplate::class,
-			// Post & template.
-			PostTemplate\BodyClass::class,
-			PostTemplate\PostClass::class,
+			// Template.
 			Template\PostStates::class,
 			// Build & assets.
 			Vite::class,
 			// ACF.
 			Plugins\ACF\Init::class,
-			Plugins\ACF\LoadField::class,
-			Plugins\ACF\SavePost::class,
+			Plugins\ACF\Input\AdminEnqueueScripts::class,
 			Plugins\ACF\FormatValue::class,
 			Plugins\ACF\IncludeFields\BlocksFields::class,
 			Plugins\ACF\IncludeFields\PostFields::class,
 			Plugins\ACF\IncludeFields\PageFields::class,
 			Plugins\ACF\IncludeFields\ThemeFields::class,
 			Plugins\ACF\IncludeFields\ArchivePostsFields::class,
+			Plugins\ACF\IncludeFields\AttachmentFields::class,
 		);
 	}
 
