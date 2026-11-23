@@ -8,7 +8,7 @@ It ships a generic, reusable foundation (block library, components, helpers, too
 
 - **Timber & Twig**: clean, reusable template components.
 - **Modern tooling**: Composer, pnpm, Vite, TypeScript, PHP CodeSniffer (WPCS) and a GitHub release workflow.
-- **Tailwind CSS v4**: design tokens declared in `@theme` (`src/stylesheets/theme.css`), no `tailwind.config.js`.
+- **Tailwind CSS v4**: design tokens declared in `@theme` (`src/stylesheets/theme.css`), color roles in `includes/schemes.php`, no `tailwind.config.js`.
 - **Accessibility**: semantic HTML, clear structure, ARIA best practices where relevant.
 - **Performance**: optimized images (WebP, lazy‑loading), SVG sprite, minified assets in production.
 - **Extensibility**: class‑based PHP in `includes/`, Twig components in `views/`, front‑end sources in `src/`.
@@ -37,7 +37,7 @@ pnpm build      # also generates public/sprite.svg from src/icons/
 pnpm dev        # local dev server
 ```
 
-Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`). Colors use Tailwind utilities (`bg-white`, `text-black`, `text-gray-500`); override `--color-gray-*` in `src/stylesheets/theme.css` if the project palette differs. Type uses the system sans-serif stack; self-host project fonts, Google Fonts included, in `src/fonts/` with `@font-face` in `src/stylesheets/base/font-face.css`, and preload the above-the-fold files via `Enqueue::PRELOAD_FONTS`. Corners are square.
+Replace the placeholder assets (`screenshot.png`, `src/img/svg/logo.svg`). Colors are Figma roles (`text-primary`, `bg-page`, `border-default`): replace the wireframe values in `includes/schemes.php` with the project's Figma variables, the role names stay. Type uses the system sans-serif stack; self-host project fonts, Google Fonts included, in `src/fonts/` with `@font-face` in `src/stylesheets/base/font-face.css`, and preload the above-the-fold files via `Enqueue::PRELOAD_FONTS`. Corners are square.
 
 ### Template hierarchy
 

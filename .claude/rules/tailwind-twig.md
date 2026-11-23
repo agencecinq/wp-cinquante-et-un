@@ -37,7 +37,7 @@ Préférer **`space-y-*`** (ou `gap-*` en flex/grid) sur le conteneur parent plu
 <h1 class="{{ breadcrumb ? 'mt-5' : '' }}">{{ post.title }}</h1>
 ```
 
-**Exceptions légitimes** : `mt-*` / `mb-*` pour séparer une section d'un autre bloc parent (ex. `mt-10` après une zone `.wysiwyg`), paddings de section (`pt-section-*`, `pb-section-*`), ou cas où les enfants ne sont pas des frères directs (grid item isolé, positionnement absolu).
+**Exceptions légitimes** : `mt-*` / `mb-*` pour séparer une section d'un autre bloc parent (ex. `mt-10` après une zone `.wysiwyg`), paddings de section (`spacing_top` / `spacing_bottom` du bloc), ou cas où les enfants ne sont pas des frères directs (grid item isolé, positionnement absolu).
 
 Même logique horizontale : `space-x-*` ou `gap-*` plutôt que `ml-*` conditionnel entre items inline.
 
