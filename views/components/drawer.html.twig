@@ -44,7 +44,7 @@
 {% endif %}
 
 <cinq-drawer class="{{ html_classes( 'contents', classes | default( '' ) ) }}">
-	{#- A popover gets a ::backdrop over the whole page too: only the modal drawer paints it, the non-modal one has its scrim below the header. -#}
+	{#- A popover gets a ::backdrop over the whole page too: only the modal drawer paints it, the non-modal one has its own scrim, over the whole page but under the fixed header, which stays bright and usable. -#}
 	<dialog
 		id="{{ id }}"
 		{{ html_attr( modal ? { closedby: 'any' } : { popover: true } ) }}
@@ -71,10 +71,9 @@
 	</dialog>
 
 	{%- if not modal -%}
-		{#- A popover has no ::backdrop below the header: this scrim dims the page, and a press on it closes the drawer (light dismiss). -#}
+		{#- The scrim dims the whole page under the fixed header (z-40), which stays bright and usable; a press on it closes the drawer (light dismiss). -#}
 		<div
-			class="pointer-events-none fixed inset-x-0 bottom-0 z-30 bg-overlay-scrim/30 opacity-0 transition-opacity duration-300 ease-drawer peer-open:pointer-events-auto peer-open:opacity-100"
-			style="top: {{ margin_top }};"
+			class="pointer-events-none fixed inset-0 z-30 bg-overlay-scrim/30 opacity-0 transition-opacity duration-300 ease-drawer peer-open:pointer-events-auto peer-open:opacity-100"
 			aria-hidden="true"
 		></div>
 	{%- endif -%}
