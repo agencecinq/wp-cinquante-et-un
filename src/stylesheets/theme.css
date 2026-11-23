@@ -1,19 +1,51 @@
+/*
+ * Design tokens.
+ *
+ * Colors are the Figma roles (collection Couleurs), in the Tailwind namespace
+ * of their Figma group (`text/primary` → `text-primary`, `bg/page` →
+ * `bg-page`, `icon/default` → `text-icon`). Tailwind only knows their names:
+ * values come from includes/schemes.php, printed in the head for :root and
+ * each [data-scheme] by cinq_colors_css().
+ */
+@theme reference {
+	--color-*: initial;
+
+	--text-color-primary: var(--text-color-primary); /* text/primary */
+	--text-color-secondary: var(--text-color-secondary); /* text/secondary */
+	--text-color-inverse: var(--text-color-inverse); /* text/inverse */
+	--text-color-accent-inverse: var(--text-color-accent-inverse); /* text/accent-inverse */
+	--text-color-error: var(--text-color-error); /* text/error */
+	--text-color-success: var(--text-color-success); /* text/success */
+	--background-color-page: var(--background-color-page); /* bg/page */
+	--background-color-surface: var(--background-color-surface); /* bg/surface */
+	--background-color-white: var(--background-color-white); /* bg/white */
+	--background-color-inverse: var(--background-color-inverse); /* bg/inverse */
+	--background-color-media: var(--background-color-media); /* bg/media */
+	--background-color-accent: var(--background-color-accent); /* bg/accent */
+	--border-color-default: var(--border-color-default); /* border/default */
+	--border-color-field: var(--border-color-field); /* border/field */
+	--border-color-inverse: var(--border-color-inverse); /* border/inverse */
+	--border-color-error: var(--border-color-error); /* border/error */
+	--background-color-button-primary: var(--background-color-button-primary); /* button/primary-bg */
+	--text-color-button-primary: var(--text-color-button-primary); /* button/primary-text */
+	--background-color-button-primary-hover: var(
+		--background-color-button-primary-hover
+	); /* button/primary-bg-hover */
+	--text-color-button-primary-hover: var(
+		--text-color-button-primary-hover
+	); /* button/primary-text-hover */
+	--color-icon: var(--color-icon); /* icon/default */
+	--color-icon-inverse: var(--color-icon-inverse); /* icon/inverse */
+	--color-accent: var(--color-accent); /* accent */
+	--color-ornament: var(--color-ornament); /* ornament */
+	--color-focus-ring: var(--color-focus-ring); /* focus/ring */
+	--color-focus-ring-inverse: var(--color-focus-ring-inverse); /* focus/ring-inverse */
+	--color-overlay-scrim: var(--color-overlay-scrim); /* overlay/scrim */
+}
+
 @theme {
 	--font-sans: ui-sans-serif, system-ui, sans-serif;
 	--default-font-family: var(--font-sans);
-
-	--color-ink: #2a343a;
-
-	--color-background: var(--color-white);
-	--color-foreground: var(--color-ink);
-	--color-button: var(--color-ink);
-	--color-button-text: var(--color-white);
-	--color-secondary-button: var(--color-white);
-	--color-secondary-button-text: var(--color-ink);
-	--color-link: var(--color-ink);
-	--color-badge-background: var(--color-white);
-	--color-badge-foreground: var(--color-ink);
-	--color-badge-border: var(--color-ink);
 
 	/*
 	 * Default 90rem (1440px). Set 110rem for the 1760px mode.
@@ -25,17 +57,14 @@
 
 	/* Wide editorial measure: 960px. */
 	--max-width-prose-wide: 60rem;
+
+	/* Easing: strong curves. */
+	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+	--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+	--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-[data-color-scheme="inverse"] {
-	--color-background: var(--color-ink);
-	--color-foreground: var(--color-white);
-	--color-button: var(--color-white);
-	--color-button-text: var(--color-ink);
-	--color-secondary-button: var(--color-ink);
-	--color-secondary-button-text: var(--color-white);
-	--color-link: var(--color-white);
-	--color-badge-background: var(--color-ink);
-	--color-badge-foreground: var(--color-white);
-	--color-badge-border: var(--color-white);
+[data-scheme] {
+	background-color: var(--background-color-page);
+	color: var(--text-color-primary);
 }

@@ -13,7 +13,7 @@
 	}
 
 	.wpcf7-form-control.cinq-field {
-		@apply w-full border border-black p-3 text-sm placeholder:text-black/40;
+		@apply w-full border border-default p-3 text-sm placeholder:text-primary/40;
 	}
 
 	.wpcf7 form textarea.cinq-field {
@@ -42,7 +42,7 @@
 	}
 
 	.wpcf7 form.sent .wpcf7-response-output {
-		@apply border-black text-black;
+		@apply border-default text-primary;
 	}
 
 	.wpcf7 form.failed .wpcf7-response-output,
@@ -51,15 +51,15 @@
 	.wpcf7 form.invalid .wpcf7-response-output,
 	.wpcf7 form.unaccepted .wpcf7-response-output,
 	.wpcf7 form.payment-required .wpcf7-response-output {
-		@apply border-red-700 text-red-700;
+		@apply border-error text-error;
 	}
 
 	.wpcf7-not-valid-tip {
-		@apply mt-2 block text-xs text-red-700;
+		@apply mt-2 block text-xs text-error;
 	}
 
 	.wpcf7-form-control.wpcf7-not-valid {
-		@apply border-red-700;
+		@apply border-error;
 	}
 
 	.wpcf7-acceptance .wpcf7-list-item {
@@ -70,16 +70,14 @@
 		@apply flex items-center gap-2;
 	}
 
-	.wpcf7-acceptance input[type='checkbox'] {
-		@apply size-4.5 shrink-0 appearance-none border border-black bg-white;
+	.wpcf7-acceptance input[type="checkbox"] {
+		@apply size-4.5 shrink-0 appearance-none border border-default bg-page;
 	}
 
-	.wpcf7-acceptance input[type='checkbox']:checked {
-		background-color: var(--color-black);
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M9.5 16.2L5.3 12L4 13.3L9.5 18.8L20 8.3L18.7 7L9.5 16.2Z' fill='%23fff'/%3E%3C/svg%3E");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: 0.75rem;
+	/* Inset square in the scheme colors: reads in every color scheme. */
+	.wpcf7-acceptance input[type="checkbox"]:checked {
+		background-color: var(--background-color-inverse);
+		box-shadow: inset 0 0 0 0.1875rem var(--background-color-page);
 	}
 
 	.wpcf7-spinner {
@@ -87,6 +85,6 @@
 	}
 
 	.wpcf7 form.submitting .wpcf7-spinner {
-		@apply ml-2 inline-block size-4 animate-spin rounded-full border-2 border-black/20 border-t-black;
+		@apply ml-2 inline-block size-4 animate-spin rounded-full border-2 border-default/20 border-t-default;
 	}
 }

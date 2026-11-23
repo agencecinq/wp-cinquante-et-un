@@ -7,32 +7,28 @@
  #}
 
 {%- set excerpt =
-	post.excerpt({
+	post.excerpt( {
 		chars: 140,
-		read_more: false
-	}) | trim
+		read_more: false,
+	} ) | trim
 -%}
 
-<article class="space-y-2 border-t border-gray-200 py-6 last:border-b">
+<article class="space-y-2 border-t border-field py-6 last:border-b">
 	{{-
 		include(
 			'components/tag.html.twig',
-			{
-				title: __('Post', 'wp-cinquante-et-un')
-			},
-			with_context = false
+			{ title: __( 'Post', 'wp-cinquante-et-un' ) },
+			with_context: false
 		)
 	-}}
 
 	<h2 class="text-xl font-semibold">
-		<a href="{{ post.link }}" class="text-black no-underline hover:underline">
+		<a href="{{ post.link }}" class="text-primary no-underline hover:underline">
 			{{- post.title -}}
 		</a>
 	</h2>
 
 	{%- if excerpt -%}
-		<p class="max-w-prose text-sm text-gray-600">
-			{{- excerpt -}}
-		</p>
+		<p class="max-w-prose text-sm text-secondary">{{- excerpt -}}</p>
 	{%- endif -%}
 </article>

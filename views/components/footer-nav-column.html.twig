@@ -5,15 +5,13 @@
  # @param array items MenuItem[].
  #}
 
-{%- set title = title | default('') -%}
-{%- set items = items | default([]) -%}
+{%- set title = title | default( '' ) -%}
+{%- set items = items | default( [] ) -%}
 
-{%- if title or items | length -%}
+{%- if title or ( items | length ) -%}
 	<div class="flex min-w-0 flex-1 flex-col gap-3">
 		{%- if title -%}
-			<p class="text-sm font-semibold text-black">
-				{{- title -}}
-			</p>
+			<p class="text-sm font-semibold text-primary">{{- title -}}</p>
 		{%- endif -%}
 
 		{%- if items | length -%}
@@ -23,11 +21,9 @@
 						<a
 							href="{{ item.url }}"
 							itemprop="url"
-							class="text-sm text-black hover:text-gray-500"
-							{{
-							item.is_target_blank or item.is_external
-								? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
-							}}
+							class="text-sm text-primary hover:text-secondary"
+							{{ item.is_target_blank or item.is_external
+								? 'target="' ~ item.target ~ '" rel="noopener noreferrer"' }}
 						>
 							<span itemprop="name">{{- item.title -}}</span>
 						</a>

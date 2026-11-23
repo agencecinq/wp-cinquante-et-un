@@ -1,37 +1,37 @@
-{%- set layout = block.layout | default({}) -%}
-{%- set overline = block.overline | default(block.content.overline | default('')) -%}
-{%- set title = block.title | default(block.content.title | default('')) -%}
-{%- set link = block.link | default(block.content.link | default({})) -%}
-{%- set columns = block.columns | default(3) -%}
-{%- set posts = block.posts | default([]) -%}
+{%- set layout = block.layout | default( {} ) -%}
+{%- set overline = block.overline | default( block.content.overline | default( '' ) ) -%}
+{%- set title = block.title | default( block.content.title | default( '' ) ) -%}
+{%- set link = block.link | default( block.content.link | default( {} ) ) -%}
+{%- set columns = block.columns | default( 3 ) -%}
+{%- set posts = block.posts | default( [] ) -%}
 {%- set hide_if_empty = block.hide_if_empty is defined ? block.hide_if_empty : true -%}
 {%- set view_all = link -%}
 
 {%- if not view_all.url and posts_url -%}
 	{%- set view_all = {
-		title: __('View all posts', 'wp-cinquante-et-un'),
-		url: posts_url
+		title: __( 'View all posts', 'wp-cinquante-et-un' ),
+		url: posts_url,
 	} -%}
 {%- endif -%}
 
-{%- if posts | length or not hide_if_empty -%}
+{%- if ( posts | length ) or not hide_if_empty -%}
 	{{-
 		include(
 			'components/collection-posts.html.twig',
 			{
 				attributes: {
-					'data-color-scheme': layout.color_scheme | default('default')
-				} | merge(block.id ? { id: block.id } : {}),
-				classes: [ layout.classes | default('') ],
-				container_classes: layout.container_classes | default('container'),
+					id: block.id,
+					'data-scheme': layout.color_scheme | default( '' ),
+				},
+				classes: [ layout.spacing_top | default( '' ), layout.spacing_bottom | default( '' ) ],
 				columns: columns,
 				allow_empty: not hide_if_empty,
 				content: {
 					overline: overline,
 					title: title,
-					link: view_all
+					link: view_all,
 				},
-				posts: posts
+				posts: posts,
 			}
 		)
 	-}}

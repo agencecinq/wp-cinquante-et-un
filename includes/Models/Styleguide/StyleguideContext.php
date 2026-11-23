@@ -39,9 +39,9 @@ class StyleguideContext {
 	 */
 	public function layout(): array {
 		return array(
-			'color_scheme'   => 'default',
-			'spacing_top'    => 'md',
-			'spacing_bottom' => 'md',
+			'color_scheme'   => '',
+			'spacing_top'    => 'pt-10 lg:pt-16',
+			'spacing_bottom' => 'pb-10 lg:pb-16',
 		);
 	}
 
@@ -52,22 +52,22 @@ class StyleguideContext {
 	 */
 	public function layout_flush(): array {
 		return array(
-			'color_scheme'   => 'default',
-			'spacing_top'    => 'none',
-			'spacing_bottom' => 'none',
+			'color_scheme'   => '',
+			'spacing_top'    => 'pt-0',
+			'spacing_bottom' => 'pb-0',
 		);
 	}
 
 	/**
-	 * Inverse CTA section layout.
+	 * Dark CTA section layout.
 	 *
 	 * @return array<string, string>
 	 */
 	public function layout_cta(): array {
 		return array(
-			'color_scheme'   => 'inverse',
-			'spacing_top'    => 'xl',
-			'spacing_bottom' => 'xl',
+			'color_scheme'   => 'dark',
+			'spacing_top'    => 'pt-18 lg:pt-32',
+			'spacing_bottom' => 'pb-18 lg:pb-32',
 		);
 	}
 

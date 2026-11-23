@@ -15,19 +15,18 @@
 
 {%- if media.video.file and video_desktop_only -%}
 	{%- if media.images[0] or media.images[1] -%}
-		{{- include(
-			'components/image.html.twig',
-			{
-				image: media.images[0] ? media.images[0] : media.images[1],
-				size: image_size,
-				loading: loading,
-				attributes: attributes,
-				classes: [
-					'block lg:hidden',
-					media_classes | join( ' ' )
-				]
-			}
-		) -}}
+		{{-
+			include(
+				'components/image.html.twig',
+				{
+					image: media.images[0] ? media.images[0] : media.images[1],
+					size: image_size,
+					loading: loading,
+					attributes: attributes,
+					classes: [ 'block lg:hidden', media_classes | join( ' ' ) ],
+				}
+			)
+		-}}
 	{%- endif -%}
 	<video
 		class="{{ html_classes( 'hidden lg:block', media_classes | join( ' ' ) ) }}"
@@ -49,30 +48,28 @@
 		playsinline
 	></video>
 {%- elseif media.images[0] or media.images[1] -%}
-	{{- include(
-		'components/image.html.twig',
-		{
-			image: media.images[0],
-			size: image_size,
-			loading: loading,
-			attributes: attributes,
-			classes: [
-				media.images[1] ? 'block lg:hidden' : 'block',
-				media_classes | join( ' ' )
-			]
-		}
-	) -}}
-	{{- include(
-		'components/image.html.twig',
-		{
-			image: media.images[1],
-			size: image_size,
-			loading: loading,
-			attributes: attributes,
-			classes: [
-				media.images[0] ? 'hidden lg:block' : 'block',
-				media_classes | join( ' ' )
-			]
-		}
-	) -}}
+	{{-
+		include(
+			'components/image.html.twig',
+			{
+				image: media.images[0],
+				size: image_size,
+				loading: loading,
+				attributes: attributes,
+				classes: [ media.images[1] ? 'block lg:hidden' : 'block', media_classes | join( ' ' ) ],
+			}
+		)
+	-}}
+	{{-
+		include(
+			'components/image.html.twig',
+			{
+				image: media.images[1],
+				size: image_size,
+				loading: loading,
+				attributes: attributes,
+				classes: [ media.images[0] ? 'hidden lg:block' : 'block', media_classes | join( ' ' ) ],
+			}
+		)
+	-}}
 {%- endif -%}

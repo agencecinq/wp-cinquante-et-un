@@ -27,26 +27,25 @@ function cinq_seed_link( string $title, string $url = '#' ): array {
 /**
  * Returns block layout settings.
  *
- * @param string $spacing_top    Spacing top token.
- * @param string $spacing_bottom Spacing bottom token.
- * @param string $color_scheme   Color scheme token.
+ * @param string $spacing_top    Spacing step: none, sm, md, lg or xl.
+ * @param string $spacing_bottom Spacing step: none, sm, md, lg or xl.
+ * @param string $color_scheme   Color scheme slug from cinq_schemes() ('' is the default).
  * @param string $anchor         Section ID slug for in-page links.
- * @param string $container      Container token: default, wide or full.
  * @return array<string, string>
  */
 function cinq_seed_layout(
 	string $spacing_top = 'md',
 	string $spacing_bottom = 'md',
-	string $color_scheme = 'default',
-	string $anchor = '',
-	string $container = 'default'
+	string $color_scheme = '',
+	string $anchor = ''
 ): array {
+	$steps = array_flip( array( 'none', 'sm', 'md', 'lg', 'xl' ) );
+
 	return array(
 		'color_scheme'   => $color_scheme,
-		'spacing_top'    => $spacing_top,
-		'spacing_bottom' => $spacing_bottom,
+		'spacing_top'    => array_keys( cinq_acf_spacings_top() )[ $steps[ $spacing_top ] ],
+		'spacing_bottom' => array_keys( cinq_acf_spacings_bottom() )[ $steps[ $spacing_bottom ] ],
 		'anchor'         => $anchor,
-		'container'      => $container,
 	);
 }
 
@@ -543,9 +542,9 @@ function cinq_seed_agence_page_blocks(
 ): array {
 	$layout       = cinq_seed_layout();
 	$layout_none  = cinq_seed_layout( 'none', 'none' );
-	$layout_cta   = cinq_seed_layout( 'xl', 'xl', 'inverse' );
-	$layout_team  = cinq_seed_layout( 'md', 'md', 'default', 'equipe' );
-	$layout_story = cinq_seed_layout( 'md', 'md', 'default', 'methode' );
+	$layout_cta   = cinq_seed_layout( 'xl', 'xl', 'dark' );
+	$layout_team  = cinq_seed_layout( 'md', 'md', '', 'equipe' );
+	$layout_story = cinq_seed_layout( 'md', 'md', '', 'methode' );
 
 	$story_body = <<<'HTML'
 <p>CINQ est une agence WordPress indépendante, fondée en 2011 à Tours. Nous concevons des sites éditoriaux que les équipes marketing tiennent au quotidien, sans dépendre d’un intégrateur à chaque modification de contenu.</p>

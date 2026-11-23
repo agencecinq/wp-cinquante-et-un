@@ -49,6 +49,7 @@ class Init implements Service {
 				'parent_slug' => 'options-general.php',
 				'position'    => '',
 				'redirect'    => false,
+				'autoload'    => true,
 			)
 		);
 

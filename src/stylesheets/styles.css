@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import "@splidejs/splide/dist/css/splide-core.min.css";
+/* Blossom carousel defaults, in the base layer so the Tailwind utilities on its markup win. */
+@import "@blossom-carousel/web/style.css" layer(base);
 
 @import "./theme.css";
 
@@ -10,7 +11,6 @@
 /* Utilities */
 @import "./utilities/container.css";
 @import "./utilities/subtitle.css";
-@import "./utilities/section-spacing.css";
 @import "./utilities/prose.css";
 @import "./utilities/scrollbar-hidden.css";
 @import "./utilities/cf7-form.css";
@@ -19,4 +19,3 @@
 /* Components */
 @import "./components/button.css";
 @import "./components/wysiwyg.css";
-

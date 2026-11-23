@@ -46,11 +46,11 @@ Points de vigilance :
 - Le dossier du thème lui-même -> `<slug>` (dans `wp-content/themes/`).
 - Remets `style.css` `Version` à `1.0.0` (ou la convention en vigueur) pour le nouveau projet.
 
-## Étape 3 : réinitialiser les tokens Tailwind
+## Étape 3 : réinitialiser les tokens
 
-`src/stylesheets/theme.css` ne reset aucune échelle Tailwind. Les Twig utilisent les classes par défaut (`bg-white`, `text-zinc-950`, `text-4xl`, `rounded-2xl`). C’est ici qu’on déclare les tokens custom si le projet ne mappe pas sur l’échelle Tailwind.
+Les couleurs sont des rôles Figma (`text-primary`, `bg-page`, `border-default`…) : `theme.css` n'en déclare que les noms (`@theme reference`), les valeurs vivent dans `includes/schemes.php` (voir la règle `design-tokens`). Les échelles typo et radius restent celles de Tailwind.
 
-- **Couleurs** : overridde l’échelle (`--color-zinc-950: #08090a`) ou ajoute un token anglais si la palette ne mappe pas (`--color-accent`). Ne réintroduis pas de noms français (`--color-bleu-*`) ni `--color-*: initial` sauf si tu veux abandonner l’échelle Tailwind. Adapte les classes dans les `.twig` si tu changes d’échelle (zinc → autre).
+- **Couleurs** : remplace les primitives de `cinq_palette()` par celles du Figma du projet (collection Primitives), puis la valeur de chaque rôle dans `cinq_schemes()` (un schéma par mode Figma, `''` = Clair, `dark` = Sombre). Garde les noms de rôles : ils sont la code syntax des variables Figma. Un rôle qui manque s'ajoute dans `cinq_scheme_roles()` et dans `@theme reference` sous le même nom, en anglais. Les Twig ne changent pas.
 - **Typographies** : overridde `--text-xl` (etc.) ou change les classes dans les `.twig`. Ne réintroduis pas de composites (`title-xl`, `eyebrow`) ni `--text-*: initial` sauf si tu veux abandonner l’échelle Tailwind.
 - **Radius** : overridde `--radius-xl` (etc.) ou change les classes (`rounded-md`, `rounded-2xl`). Ne réintroduis pas `--radius-*: initial` ni une échelle numérique custom (`rounded-25`) sauf besoin projet.
 - Tout token custom utilisé dans les `.twig`/`.ts` doit exister dans `@theme`.

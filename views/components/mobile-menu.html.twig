@@ -1,11 +1,11 @@
 {#
  # Mobile menu content: main panel (nav list) and sub panels (back + title + list).
- # Used inside the drawer. JS (cinq-mobile-menu) toggles [data-panel="main"] vs [data-panel="sub"].
+ # Used inside the menu drawer. JS (cinq-mobile-menu) shows one [data-panel] at a time with `hidden`.
  #
  # @param array items Main menu items (from nav_menus.main.get_items()).
  #}
 
-{% set main_items = items | default([]) %}
+{% set main_items = items | default( [] ) %}
 
 <div
 	data-dom="main"
@@ -14,18 +14,17 @@
 >
 	{%- if main_items | length -%}
 		<nav
-			aria-label="{{ __('Mobile navigation', 'wp-cinquante-et-un') }}"
+			aria-label="{{ __( 'Mobile navigation', 'wp-cinquante-et-un' ) }}"
 			class="w-full flex-1 overflow-y-auto"
 		>
-			<ul class="divide-y divide-black text-xs font-medium">
+			<ul class="divide-y divide-default text-xs font-medium">
 				{%- for item in main_items -%}
 					<li itemscope itemtype="https://schema.org/SiteNavigationElement">
 						{%- if item.children | length -%}
 							<button
 								type="button"
 								data-dom="open-sub"
-								data-open-sub="{{ item.id }}"
-								class="flex w-full items-center justify-between py-5 text-left text-black"
+								class="flex w-full items-center justify-between py-5 text-left text-primary"
 								aria-expanded="false"
 								aria-controls="mobile-sub-{{ item.id }}"
 							>
@@ -34,22 +33,20 @@
 									include(
 										'svg/use.html.twig',
 										{
-											classes: ['size-2.5 shrink-0'],
-											icon: 'chevron-right'
+											classes: [ 'size-2.5 shrink-0' ],
+											icon: 'chevron-right',
 										},
-										with_context = false
+										with_context: false
 									)
 								-}}
 							</button>
 						{%- else -%}
 							<a
-								class="block py-5 text-black hover:text-gray-500"
+								class="block py-5 text-primary hover:text-secondary"
 								href="{{ item.url }}"
 								itemprop="url"
-								{{
-								item.is_target_blank or item.is_external
-									? 'target="' ~ item.target ~ '" rel="noopener noreferrer"'
-								}}
+								{{ item.is_target_blank or item.is_external
+									? 'target="' ~ item.target ~ '" rel="noopener noreferrer"' }}
 							>
 								<span itemprop="name">{{- item.title -}}</span>
 							</a>
@@ -65,10 +62,10 @@
 			{{-
 				include(
 					'components/button.html.twig',
-					theme.contact.link | merge({
-						classes: ['w-full'],
-						variant: 'primary'
-					})
+					theme.contact.link | merge( {
+						classes: [ 'w-full' ],
+						variant: 'primary',
+					} )
 				)
 			-}}
 		</div>
@@ -80,30 +77,28 @@
 		<div
 			data-dom="sub"
 			data-panel="sub"
-			data-sub-id="{{ item.id }}"
 			id="mobile-sub-{{ item.id }}"
 			class="absolute inset-x-0 top-0 flex min-h-full flex-col gap-5 px-6 py-5"
-			aria-hidden="true"
-			style="display: none;"
+			hidden
 		>
-			<div class="relative space-y-2.5 border-b border-black pb-6 pt-5">
+			<div class="relative space-y-2.5 border-b border-default pt-5 pb-6">
 				<button
 					type="button"
 					data-dom="back-to-main"
-					class="inline-flex items-center gap-1 text-xs font-medium text-black hover:text-gray-500"
-					aria-label="{{ __('Back to menu', 'wp-cinquante-et-un') }}"
+					class="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-secondary"
+					aria-label="{{ __( 'Back to menu', 'wp-cinquante-et-un' ) }}"
 				>
 					{{-
 						include(
 							'svg/use.html.twig',
 							{
-								classes: ['size-2.5'],
-								icon: 'chevron-left'
+								classes: [ 'size-2.5' ],
+								icon: 'chevron-left',
 							},
-							with_context = false
+							with_context: false
 						)
 					-}}
-					{{- __('Back', 'wp-cinquante-et-un') -}}
+					{{- __( 'Back', 'wp-cinquante-et-un' ) -}}
 				</button>
 
 				<h2 class="text-sm font-semibold">{{- item.title -}}</h2>
@@ -116,11 +111,9 @@
 							<a
 								href="{{ child.url }}"
 								itemprop="url"
-								class="block text-sm text-black hover:text-gray-500"
-								{{
-								child.is_target_blank or child.is_external
-									? 'target="' ~ child.target ~ '" rel="noopener noreferrer"'
-								}}
+								class="block text-sm text-primary hover:text-secondary"
+								{{ child.is_target_blank or child.is_external
+									? 'target="' ~ child.target ~ '" rel="noopener noreferrer"' }}
 							>
 								<span itemprop="name">{{- child.title -}}</span>
 							</a>

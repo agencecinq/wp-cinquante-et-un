@@ -6,16 +6,12 @@
  # @param object post Timber post.
  #}
 
-<header class="container space-y-5 pb-section-md pt-40">
-	{{- include('components/breadcrumb.html.twig') -}}
+<header class="container space-y-5 pt-40 pb-10 lg:pb-16">
+	{{- include( 'components/breadcrumb.html.twig' ) -}}
 
-	<h1 class="text-4xl font-semibold">
-		{{- post.title -}}
-	</h1>
+	<h1 class="text-4xl font-semibold">{{- post.title -}}</h1>
 
-	{%- if post.meta('page_lead') -%}
-		<p class="prose-lg max-w-prose text-gray-600">
-			{{- post.meta('page_lead') | raw -}}
-		</p>
+	{%- if post.meta( 'page_lead' ) -%}
+		<p class="max-w-prose prose-lg text-secondary">{{- post.meta( 'page_lead' ) | raw -}}</p>
 	{%- endif -%}
 </header>

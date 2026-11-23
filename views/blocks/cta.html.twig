@@ -4,28 +4,26 @@
  # Centered closing call to action. Use the inverse color scheme on most pages.
  #}
 
-{%- set layout = block.layout | default({}) -%}
-{%- set cta_primary = block.cta_primary | default({}) -%}
-{%- set cta_secondary = block.cta_secondary | default({}) -%}
+{%- set layout = block.layout | default( {} ) -%}
+{%- set cta_primary = block.cta_primary | default( {} ) -%}
+{%- set cta_secondary = block.cta_secondary | default( {} ) -%}
 
 {%- if block.title or block.text or cta_primary.url -%}
 	<section
-		{% if block.id %}id="{{ block.id }}"{% endif %}
-		class="{{ html_classes( layout.classes | default('') ) }}"
-		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		{{ html_attr( { id: block.id } ) }}
+		class="{{
+			html_classes( layout.spacing_top | default( '' ), layout.spacing_bottom | default( '' ) )
+		}}"
+		data-scheme="{{ layout.color_scheme | default( '' ) }}"
 	>
-		<div class="{{ html_classes( layout.container_classes | default('container') ) }}">
+		<div class="{{ html_classes( 'container' ) }}">
 			<div class="mx-auto max-w-prose space-y-6 text-center">
 				{%- if block.title -%}
-					<h2 class="text-3xl font-semibold">
-						{{- block.title -}}
-					</h2>
+					<h2 class="text-3xl font-semibold">{{- block.title -}}</h2>
 				{%- endif -%}
 
 				{%- if block.text -%}
-					<p class="text-lg opacity-80">
-						{{- block.text | raw -}}
-					</p>
+					<p class="text-lg opacity-80">{{- block.text | raw -}}</p>
 				{%- endif -%}
 
 				{%- if cta_primary.url or cta_secondary.url -%}
@@ -33,16 +31,16 @@
 						{{-
 							include(
 								'components/button.html.twig',
-								cta_primary | merge({ variant: 'primary' }),
-								with_context = false
+								cta_primary | merge( { variant: 'primary' } ),
+								with_context: false
 							)
 						-}}
 
 						{{-
 							include(
 								'components/button.html.twig',
-								cta_secondary | merge({ variant: 'secondary' }),
-								with_context = false
+								cta_secondary | merge( { variant: 'secondary' } ),
+								with_context: false
 							)
 						-}}
 					</div>

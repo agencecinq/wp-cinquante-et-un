@@ -31,7 +31,7 @@ Priorités actuelles de remontée : les **conventions/règles** et la **config/o
 ### Étape 2 : copier dans le starter et re-neutraliser
 
 - Copier les fichiers dans le starter aux mêmes emplacements.
-- Inverser les identifiants : namespace projet vers `WPCinquanteEtUn`, text domain projet vers `wp-cinquante-et-un`, objet/préfixe JS projet vers `cinq`/`cinq_`, tokens couleur projet vers des tokens neutres.
+- Inverser les identifiants : namespace projet vers `WPCinquanteEtUn`, text domain projet vers `wp-cinquante-et-un`, préfixe PHP projet vers `cinq_`, valeurs de couleur projet vers les valeurs wireframe de `includes/schemes.php` (les noms de rôles restent).
 - Retirer tout reliquat client et le remplacer par des valeurs neutres ou d'exemple.
 
 ### Étape 3 : câbler dans le starter

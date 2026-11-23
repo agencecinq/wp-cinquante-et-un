@@ -4,35 +4,37 @@
  # Overline, h2 title, Prose body. Column width and grid position from ACF.
  #}
 
-{%- set layout = block.layout | default({}) -%}
-{%- set width = block.width | default('prose') -%}
-{%- set alignment = block.alignment | default('start') -%}
-{%- set width_class = {
-	'prose': 'max-w-prose',
-	'wide': 'max-w-prose-wide',
-	'full': ''
-}[width] | default('max-w-prose') -%}
+{%- set layout = block.layout | default( {} ) -%}
+{%- set width = block.width | default( 'prose' ) -%}
+{%- set alignment = block.alignment | default( 'start' ) -%}
+{%- set width_class =
+	{
+		prose: 'max-w-prose',
+		wide: 'max-w-prose-wide',
+		full: '',
+	}[ width ] | default( 'max-w-prose' )
+-%}
 {%- set column_classes = width == 'full'
 	? 'col-span-full'
-	: (alignment == 'center'
+	: alignment == 'center'
 		? 'col-span-full lg:col-span-8 lg:col-start-3'
-		: 'col-span-full lg:col-span-8')
+		: 'col-span-full lg:col-span-8'
 -%}
 
 {%- if block.content or block.overline or block.title -%}
 	<section
-		{% if block.id %}id="{{ block.id }}"{% endif %}
-		class="{{ html_classes( layout.classes | default('') ) }}"
-		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		{{ html_attr( { id: block.id } ) }}
+		class="{{
+			html_classes( layout.spacing_top | default( '' ), layout.spacing_bottom | default( '' ) )
+		}}"
+		data-scheme="{{ layout.color_scheme | default( '' ) }}"
 	>
-		<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 gap-2 lg:gap-4' ) }}">
+		<div class="{{ html_classes( 'container', 'grid grid-cols-12 gap-2 lg:gap-4' ) }}">
 			<div class="{{ html_classes( column_classes, width_class, 'space-y-4' ) }}">
-				{{- include('components/subtitle.html.twig', { title: block.overline }) -}}
+				{{- include( 'components/subtitle.html.twig', { title: block.overline } ) -}}
 
 				{%- if block.title -%}
-					<h2 class="text-2xl font-semibold">
-						{{- block.title | e -}}
-					</h2>
+					<h2 class="text-2xl font-semibold">{{- block.title | e -}}</h2>
 				{%- endif -%}
 
 				{%- if block.content -%}

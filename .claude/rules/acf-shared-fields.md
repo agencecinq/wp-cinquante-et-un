@@ -16,12 +16,13 @@ Modifier une fonction une fois met à jour tous les blocs qui l’utilisent. Pr�
 
 | Fonction | Contenu | Nommé côté bloc |
 | --- | --- | --- |
-| `cinq_acf_settings_group( $key, $args )` | tab Settings + group `layout` (`color_scheme`, spacing, `anchor`, `container`) | `layout` |
+| `cinq_acf_settings_group( $key, $args )` | tab Settings + group `layout` (`color_scheme`, spacing, `anchor`) | `layout` |
 | `cinq_acf_media_group( $key, $args )` | tab Media + group `media` | `media` |
 | `cinq_acf_heading( $key )` | select sémantique `h1` / `h2` / `h3` | `heading` |
 | `cinq_acf_text_alignment( $key )` | select `text-left` / `text-center` / `text-right` | `text_alignment` |
 | `cinq_acf_layouts_from( $key, $classes )` | map des layouts flexibles depuis les classes | — |
-| `cinq_acf_spacings()` | listes de choix spacing (`none` `sm` `md` `lg` `xl`) | — |
+| `cinq_acf_color_scheme_field( $key, $args )` | button_group `color_scheme`, choix depuis `cinq_schemes()` (pastilles admin via `Input/AdminEnqueueScripts`) | `color_scheme` |
+| `cinq_acf_spacings_top()` / `cinq_acf_spacings_bottom()` | choix de spacing, valeurs en classes Tailwind (`pt-10 lg:pt-16`) | — |
 
 Clés externes stables à préserver : `field_settings_{$key}_layout`, `field_{$key}_media`, `field_{$key}_heading`.
 
@@ -40,7 +41,7 @@ Rich Text : champs propres au layout (`width`, `alignment` pour la position de c
 
 ## Front
 
-- `layout` : enrichi par `cinq_enrich_block()` (`classes`, `container_classes`, `color_scheme`, `id` depuis `anchor`).
+- `layout` : `cinq_enrich_block()` pose seulement `id` depuis `anchor`. La section reçoit `class="{{ html_classes( layout.spacing_top | default(''), layout.spacing_bottom | default('') ) }}"` et `data-scheme="{{ layout.color_scheme | default('') }}"` ; fond et texte viennent de `[data-scheme]` dans `theme.css`. Le conteneur intérieur est toujours `container`.
 - `content.heading` : balise HTML sémantique dans le Twig ; **la typo visuelle est en Tailwind dans le template**, pas en champ ACF.
 - Rich Text : `width` et `alignment` (`start` / `center`, position dans la grille).
 

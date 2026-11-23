@@ -1,60 +1,39 @@
 ---
 paths:
   - "views/**/*.twig"
+  - ".prettierrc.json"
 ---
 
 # Twig et WordPress Coding Standards
 
 ## Principe
 
-Les templates Twig suivent la même logique d'espacement que le PHP WPCS, **en compatibilité avec Prettier** (`@zackad/prettier-plugin-twig`).
+Les templates Twig suivent le même style que le PHP WPCS, appliqué par Prettier avec le fork agence du plugin Twig : [`@agencecinq/prettier-plugin-twig`](https://github.com/agencecinq/prettier-plugin-twig), installé sous le nom `@zackad/prettier-plugin-twig` (`package.json` : `"github:agencecinq/prettier-plugin-twig#v1.2.1"`).
 
-## Prettier
+Son option `twigFollowWordPressCodingStandards` est active par défaut : rien à régler dans `.prettierrc.json`. L'ancienne option `twigFollowOfficialCodingStandards: false` du plugin upstream n'existe plus.
 
-Le plugin Twig de Prettier applique par défaut les [coding standards officiels Twig](https://twig.symfony.com/doc/3.x/coding_standards.html) (`foo|bar` sans espaces). Pour rapprocher du WPCS, activer dans `.prettierrc.json` :
+## Ce que Prettier écrit
 
-```json
-{
-	"twigFollowOfficialCodingStandards": false
-}
+- Espaces à l'intérieur des parenthèses d'appels, filtres et tests, sauf vides : `default( 'h2' )`, `foo()`.
+- Espaces dans les parenthèses de regroupement et les séquences : `( a or b )`, `[ 1, 2 ]`, `[]`.
+- Espaces autour de `|` et dans les interpolations : `name | upper`, `"#{ name }"`.
+- Une propriété de mapping reste sur une ligne ; plusieurs vont chacune sur la leur, avec une virgule après la dernière.
+- Arguments nommés en `:` : `with_context: false`.
+- Le ternaire teste le cas vrai : `active ? 'on' : 'off'`.
+
+```twig
+{{ post.title | default( 'Untitled' ) }}
+{%- if not post.password_required and ( is_single or is_page ) -%}
+{{- include( 'components/button.html.twig', link, with_context: false ) -}}
 ```
-
-Effet : espaces autour des `|` (`foo | bar`). Les parenthèses des filtres restent compactes (`split(' ', 2)`), le plugin ne gère pas les espaces intérieurs type PHP (`split( ' ', 2 )`).
-
-Pour conserver un formatage 100 % manuel sur les Twig, les exclure via `.prettierignore` :
-
-```
-views/**/*.twig
-```
-
-(au prix du tri Tailwind automatique dans les classes des templates).
 
 ## DO
 
-- Espacer les filtres avec ` | ` (format Prettier avec `twigFollowOfficialCodingStandards: false`) :
-
-```twig
-{{- site.name | split(' ', 2) | join('<br>') | raw -}}
-```
-
-- Chaîner les filtres avec ` | ` entre chaque étape.
-- Laisser Prettier formater les `.twig` au save plutôt que lutter contre lui.
+- Laisser Prettier formater les `.twig` au save (`.vscode/settings.json`) et lancer `pnpm format` avant de pousser : la CI lance `pnpm format:check`.
+- Écrire un élément entier dans un même template. Un tag ouvert dans une branche et fermé dans une autre (`{% if %}<a …>{% else %}<div …>{% endif %}`) ne se parse pas : utiliser un nom de tag dynamique (`<{{ url ? 'a' : 'div' }}>`), comme `components/button.html.twig`.
+- Un attribut conditionnel passe par `html_attr()` (`{{ html_attr( { hidden: not loop.first } ) }}`), pas par un `{% if %}` dans la balise.
 
 ## DONT
 
-- Pas de chaînes compactes du type `foo|bar('x')|baz` sans espaces autour des `|`.
-- Pas de format WPCS PHP strict (`split( ' ', 2 )`) si Prettier est actif sur les Twig : il sera écrasé au save.
-
-## Exemples
-
-```twig
-{# DO: compatible Prettier #}
-{%- set items = nav_menus.footer.get_items() | default([]) -%}
-{%- if items | length -%}
-{{ post.title | default(post.hero.title) }}
-{{ __('Published on: %s', 'text-domain') | format(post.date) }}
-
-{# DONT #}
-{%- set items = nav_menus.footer.get_items()|default([]) -%}
-{{- site.name|split(' ', 2)|join('<br>')|raw -}}
-```
+- Pas de format compact Twig officiel (`foo|bar('x')`) : il est réécrit au save.
+- Pas de `.twig` exclu de Prettier pour garder un formatage manuel : seul un template qui ouvre un élément fermé par un autre template va dans `.prettierignore`, avec la raison en commentaire.

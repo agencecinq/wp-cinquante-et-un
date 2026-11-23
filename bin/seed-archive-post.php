@@ -25,7 +25,7 @@ if ( ! function_exists( 'update_field' ) ) {
  * @return array<string, mixed>
  */
 function cinq_seed_archive_posts_options(): array {
-	$layout_cta = cinq_seed_layout( 'xl', 'xl', 'inverse' );
+	$layout_cta = cinq_seed_layout( 'xl', 'xl', 'dark' );
 
 	return array(
 		'hero'   => array(

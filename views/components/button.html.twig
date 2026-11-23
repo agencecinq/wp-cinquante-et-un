@@ -2,7 +2,8 @@
  # Components: Button
  #
  # @param string title The button text.
- # @param string url Optional. Renders an <a> when set.
+ # @param string url Optional. Renders an <a> when set. A mailto: address and
+ #   the button text are obfuscated against harvesters (antispambot).
  # @param string target '_self' or '_blank'. Links only.
  # @param string variant 'primary', 'secondary' or 'tertiary'.
  # @param bool disabled
@@ -15,35 +16,26 @@
 {%- set variant = variant | default( 'primary' ) -%}
 {%- set disabled = disabled | default( false ) -%}
 {%- set icon = icon | default( '' ) -%}
+{%- set mailto = url starts with 'mailto:' -%}
 
-{%- set base_classes = [
-	classes | default( [] ) | join( ' ' ),
-	'button',
-	'button--' ~ variant,
-] -%}
-
-{%- if icon_html is defined -%}
-	{% set icon_html = icon_html %}
-{%- elseif icon is defined and icon is not empty -%}
-	{%- set icon_html -%}
-		{{- include( 'svg/use.html.twig', { classes: [ 'size-4' ], icon: icon } ) -}}
-	{%- endset -%}
-{%- endif -%}
+{%- set base_classes = [ classes | default( [] ) | join( ' ' ), 'button', 'button--' ~ variant ] -%}
 
 {%- if title -%}
 	<{{ url ? 'a' : 'button' }}
-		{{ url ? "href=\"#{url}\"" : "type=\"#{ type | default( 'button' ) }\"" }}
-		{{ url and target ? "target=\"#{target}\"" : '' }}
-		{{ url and target == '_blank' ? 'rel="noopener noreferrer"' : '' }}
+		{{ html_attr( url and not mailto ? { href: url } ) }}
+		{{ url | mailto_href }}
+		{{ html_attr( not url ? { type: type | default( 'button' ) } ) }}
+		{{ html_attr( url and target ? { target: target } ) }}
+		{{ html_attr( url and target == '_blank' ? { rel: 'noopener noreferrer' } ) }}
 		class="{{ html_classes( base_classes | join( ' ' ) ) }}"
-		{{ disabled ? 'disabled' }}
-		{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
+		{{ html_attr( disabled ? { disabled: true } ) }}
+		{{ html_attr( attributes ) }}
 	>
-		{%- if icon_html is not empty -%}
-			<span class="size-4 shrink-0" aria-hidden="true">
-				{{- icon_html -}}
+		{%- if icon -%}
+			<span class="button__icon" aria-hidden="true">
+				{{- include( 'svg/use.html.twig', { icon: icon }, with_context: false ) -}}
 			</span>
 		{%- endif -%}
-		<span>{{- title -}}</span>
+		<span class="button__label">{{- mailto ? title | antispambot : title -}}</span>
 	</{{ url ? 'a' : 'button' }}>
 {%- endif -%}

@@ -11,15 +11,13 @@
 	<main id="content" role="main">
 		<div class="container py-50">
 			<div class="mx-auto flex max-w-120 flex-col items-center space-y-6 text-center">
-				<p class="text-6xl font-semibold" aria-hidden="true">
-					404
-				</p>
+				<p class="text-6xl font-semibold" aria-hidden="true">404</p>
 
 				<h1 class="text-3xl font-semibold">
-					{{- __('This page does not exist', 'wp-cinquante-et-un') -}}
+					{{- __( 'This page does not exist', 'wp-cinquante-et-un' ) -}}
 				</h1>
 
-				<p class="prose-lg text-gray-600">
+				<p class="prose-lg text-secondary">
 					{{-
 						__(
 							'The link may be outdated, or the address contains an error. You can search, or go back to the homepage.',
@@ -28,19 +26,15 @@
 					-}}
 				</p>
 
-				{{-
-					get_search_form({
-						classes: ['max-w-120']
-					})
-				-}}
+				{{- get_search_form( { classes: [ 'max-w-120' ] } ) -}}
 
 				{{-
 					include(
 						'components/button.html.twig',
 						{
-							title: __('Back to home', 'wp-cinquante-et-un'),
+							title: __( 'Back to home', 'wp-cinquante-et-un' ),
 							url: site.link,
-							variant: 'secondary'
+							variant: 'secondary',
 						}
 					)
 				-}}

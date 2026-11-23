@@ -1,51 +1,61 @@
 @layer components {
 	.button {
-		@apply inline-flex items-center justify-center gap-2 rounded-none text-center text-xs font-medium leading-4 transition-colors;
+		@apply inline-flex items-center justify-center gap-2 rounded-none text-center text-xs leading-4 font-medium;
 
 		padding-block: calc(var(--spacing) * 3);
 		padding-inline: calc(var(--spacing) * 4);
+		transition:
+			color 200ms ease,
+			background-color 200ms ease,
+			border-color 200ms ease,
+			scale 160ms var(--ease-out);
+
+		&:is([disabled], [aria-disabled="true"]) {
+			@apply cursor-not-allowed opacity-40;
+		}
+
+		/* Press feedback: the button gives under the finger. */
+		&:not([disabled]):active {
+			scale: 0.97;
+		}
 	}
 
-	.button[disabled],
-	.button[aria-disabled='true'] {
-		@apply cursor-not-allowed opacity-40;
+	.button__icon {
+		@apply flex size-4 shrink-0 items-center justify-center;
+
+		& > svg {
+			@apply size-4;
+		}
 	}
 
 	.button--primary {
 		@apply border;
 
-		border-color: var(--color-button);
-		background-color: var(--color-button);
-		color: var(--color-button-text);
+		border-color: var(--background-color-button-primary);
+		background-color: var(--background-color-button-primary);
+		color: var(--text-color-button-primary);
+
+		&:not([disabled]):is(:hover, :focus-visible) {
+			border-color: var(--background-color-button-primary-hover);
+			background-color: var(--background-color-button-primary-hover);
+			color: var(--text-color-button-primary-hover);
+		}
 	}
 
-	.button--primary:not([disabled]):hover,
-	.button--primary:not([disabled]):focus-visible {
-		background-color: var(--color-button-text);
-		color: var(--color-button);
-	}
-
+	/* Outlined, filled with bg/inverse on hover. */
 	.button--secondary {
-		@apply border bg-transparent;
+		@apply border border-default bg-transparent text-primary;
 
-		border-color: var(--color-foreground);
-		color: var(--color-foreground);
-	}
-
-	.button--secondary:not([disabled]):hover,
-	.button--secondary:not([disabled]):focus-visible {
-		background-color: var(--color-foreground);
-		color: var(--color-background);
+		&:not([disabled]):is(:hover, :focus-visible) {
+			@apply bg-inverse text-inverse;
+		}
 	}
 
 	.button--tertiary {
-		@apply border-0 bg-transparent px-1 underline;
+		@apply border-0 bg-transparent px-1 text-primary underline;
 
-		color: var(--color-link);
-	}
-
-	.button--tertiary:not([disabled]):hover,
-	.button--tertiary:not([disabled]):focus-visible {
-		@apply text-gray-500;
+		&:not([disabled]):is(:hover, :focus-visible) {
+			@apply text-secondary;
+		}
 	}
 }

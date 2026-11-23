@@ -4,30 +4,40 @@
  # Image on 6 cols, gutter, copy on 5. Media stacks first below md; position ignored on small screens.
  #}
 
-{%- set layout = block.layout | default({}) -%}
-{%- set media_first = block.media_position | default('left') != 'right' -%}
-{%- set aspect_class = {
-	'4:3': 'aspect-4/3',
-	'1:1': 'aspect-square',
-	'3:2': 'aspect-3/2'
-}[block.media_ratio | default('4:3')] | default('aspect-4/3') -%}
-{%- set media_column_classes = html_classes(
-	'col-span-full overflow-hidden lg:col-span-6',
-	aspect_class,
-	media_first ? '' : 'lg:col-start-7'
-) -%}
-{%- set text_column_classes = html_classes(
-	'col-span-full space-y-5 lg:col-span-5',
-	media_first ? 'lg:col-start-8' : 'lg:col-start-1 lg:row-start-1'
-) -%}
+{%- set layout = block.layout | default( {} ) -%}
+{%- set media_first = ( block.media_position | default( 'left' ) ) != 'right' -%}
+{%- set aspect_class =
+	{
+		'4:3': 'aspect-4/3',
+		'1:1': 'aspect-square',
+		'3:2': 'aspect-3/2',
+	}[ block.media_ratio | default( '4:3' ) ] | default( 'aspect-4/3' )
+-%}
+{%- set media_column_classes =
+	html_classes(
+		'col-span-full overflow-hidden lg:col-span-6',
+		aspect_class,
+		media_first ? '' : 'lg:col-start-7'
+	)
+-%}
+{%- set text_column_classes =
+	html_classes(
+		'col-span-full space-y-5 lg:col-span-5',
+		media_first ? 'lg:col-start-8' : 'lg:col-start-1 lg:row-start-1'
+	)
+-%}
 
 {%- if block.media and block.title and block.content -%}
 	<section
-		{% if block.id %}id="{{ block.id }}"{% endif %}
-		class="{{ html_classes( layout.classes | default('') ) }}"
-		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		{{ html_attr( { id: block.id } ) }}
+		class="{{
+			html_classes( layout.spacing_top | default( '' ), layout.spacing_bottom | default( '' ) )
+		}}"
+		data-scheme="{{ layout.color_scheme | default( '' ) }}"
 	>
-		<div class="{{ html_classes( layout.container_classes | default('container'), 'grid grid-cols-12 items-center gap-x-8 gap-y-8' ) }}">
+		<div
+			class="{{ html_classes( 'container', 'grid grid-cols-12 items-center gap-x-8 gap-y-8' ) }}"
+		>
 			<div class="{{ media_column_classes }}">
 				{{-
 					include(
@@ -35,18 +45,16 @@
 						{
 							image: block.media,
 							size: 'content',
-							classes: ['block size-full object-cover object-center']
+							classes: [ 'block size-full object-cover object-center' ],
 						}
 					)
 				-}}
 			</div>
 
 			<div class="{{ text_column_classes }}">
-				{{- include('components/subtitle.html.twig', { title: block.overline }) -}}
+				{{- include( 'components/subtitle.html.twig', { title: block.overline } ) -}}
 
-				<h2 class="text-2xl font-semibold">
-					{{- block.title | e -}}
-				</h2>
+				<h2 class="text-2xl font-semibold">{{- block.title | e -}}</h2>
 
 				<div class="wysiwyg">
 					{{- block.content | raw -}}
@@ -56,8 +64,8 @@
 					{{-
 						include(
 							'components/button.html.twig',
-							block.cta | default({}) | merge({ variant: 'secondary' }),
-							with_context = false
+							block.cta | default( {} ) | merge( { variant: 'secondary' } ),
+							with_context: false
 						)
 					-}}
 				{%- endif -%}

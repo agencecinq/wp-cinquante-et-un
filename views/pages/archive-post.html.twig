@@ -9,18 +9,18 @@
 
 {%- block content -%}
 	<main id="content" role="main" itemscope itemtype="https://schema.org/Blog">
-		<header class="container space-y-6 pt-40 pb-section-md">
-			{{- include('components/breadcrumb.html.twig') -}}
+		<header class="container space-y-6 pt-40 pb-10 lg:pb-16">
+			{{- include( 'components/breadcrumb.html.twig' ) -}}
 
-			{%- if post.hero.title | default(post.title) -%}
+			{%- if post.hero.title | default( post.title ) -%}
 				<h1 class="text-4xl font-semibold" itemprop="name">
-					{{- post.hero.title | default(post.title) -}}
+					{{- post.hero.title | default( post.title ) -}}
 				</h1>
 			{%- endif -%}
 
-			{%- if post.description | default(post.hero.text) -%}
-				<p class="max-w-prose text-lg text-gray-600">
-					{{- post.description | default(post.hero.text) -}}
+			{%- if post.description | default( post.hero.text ) -%}
+				<p class="max-w-prose text-lg text-secondary">
+					{{- post.description | default( post.hero.text ) -}}
 				</p>
 			{%- endif -%}
 
@@ -29,17 +29,26 @@
 					'components/taxonomy-filters.html.twig',
 					{
 						items: post.filters,
-						label: __('Categories', 'wp-cinquante-et-un')
+						label: __( 'Categories', 'wp-cinquante-et-un' ),
 					}
 				)
 			-}}
 		</header>
 
-		<div class="container space-y-12 pb-section-lg">
+		<div class="container space-y-12 pb-14 lg:pb-24">
 			{%- if posts | length -%}
 				<div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
 					{%- for item in posts -%}
-						{{- include('components/tease-post.html.twig', { post: item, heading_tag: 'h2' }, with_context = false) -}}
+						{{-
+							include(
+								'components/tease-post.html.twig',
+								{
+									post: item,
+									heading_tag: 'h2',
+								},
+								with_context: false
+							)
+						-}}
 					{%- endfor -%}
 				</div>
 
@@ -48,28 +57,19 @@
 						include(
 							'components/pagination.html.twig',
 							{
-								pagination: posts.pagination({
+								pagination: posts.pagination( {
 									mid_size: 1,
-									end_size: 1
-								})
+									end_size: 1,
+								} ),
 							}
 						)
 					-}}
 				</div>
 			{%- else -%}
-				<p class="text-gray-600">
-					{{- __('No posts found.', 'wp-cinquante-et-un') -}}
-				</p>
+				<p class="text-secondary">{{- __( 'No posts found.', 'wp-cinquante-et-un' ) -}}</p>
 			{%- endif -%}
 		</div>
 
-		{{-
-			include(
-				'blocks/blocks.html.twig',
-				{
-					blocks: post.blocks
-				}
-			)
-		-}}
+		{{- include( 'blocks/blocks.html.twig', { blocks: post.blocks } ) -}}
 	</main>
 {%- endblock -%}

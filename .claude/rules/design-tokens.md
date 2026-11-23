@@ -1,41 +1,36 @@
 ---
 paths:
-  - "src/stylesheets/theme.css"
+  - "src/stylesheets/**/*.css"
+  - "includes/schemes.php"
   - "**/*.twig"
 ---
 
-# Design tokens (`theme.css`)
+# Design tokens
 
-## Declare in `@theme` only when needed
+## Colors: Figma roles, in the Tailwind namespace of their group
 
-- The starter uses Tailwind defaults in Twig: `bg-white`, `text-black`, `text-gray-500`, `text-4xl font-semibold`, `rounded-none`. Scheme roles (`bg-background`, `text-foreground`) are for block sections. Do not invent semantic aliases (`page`, `title-xl`, `rounded-25`) except `.subtitle`, `.prose-base`, `.prose-lg`.
-- Custom colors, type, radius, or background images belong in `src/stylesheets/theme.css` inside `@theme` when the project does not map to the Tailwind scale.
-- Do not use arbitrary Tailwind values in Twig or CSS for design tokens: no `bg-[#102345]`, no `bg-[linear-gradient(...)]`, no `[background:...]`.
-- Use the generated utilities (`bg-zinc-50`, `rounded-xl`, etc.).
+Templates paint with **roles** only. The Figma group picks the Tailwind namespace:
+
+| Figma (collection Couleurs) | CSS property | Class |
+| --- | --- | --- |
+| `text/primary`, `text/secondary`, `text/inverse`, `text/accent-inverse`, `text/error`, `text/success` | `--text-color-*` | `text-primary`, `text-secondary`… |
+| `bg/page`, `bg/surface`, `bg/white`, `bg/inverse`, `bg/media`, `bg/accent` | `--background-color-*` | `bg-page`, `bg-surface`… |
+| `border/default`, `border/field`, `border/inverse`, `border/error` | `--border-color-*` | `border-default`, `divide-field`… |
+| `button/primary-bg`, `button/primary-bg-hover` | `--background-color-button-primary(-hover)` | `bg-button-primary`… |
+| `button/primary-text`, `button/primary-text-hover` | `--text-color-button-primary(-hover)` | `text-button-primary`… |
+| `icon/default`, `icon/inverse`, `accent`, `ornament`, `focus/ring`, `focus/ring-inverse`, `overlay/scrim` | `--color-*` | `text-icon`, `fill-icon`, `outline-focus-ring`, `bg-overlay-scrim/50` |
+
+- Values live in `includes/schemes.php`: primitives `cinq_palette()`, roles `cinq_scheme_roles()`, schemes `cinq_schemes()`, printed in the `<head>` by `cinq_colors_css()`. `theme.css` only declares the names (`@theme reference`, `--color-*: initial`): the Tailwind palette (`bg-white`, `text-gray-500`, `border-black`) no longer exists.
+- The CSS property is also the **code syntax** of the Figma variable (`var(--text-color-primary)`); primitives are `var(--palette-*)` and never classes.
+- Schemes are Figma modes: `''` (Clair, the default) and `dark` (Sombre). `surface` and `white` are Clair sections painted with `bg/surface` or `bg/white`. A block sets `data-scheme` from its ACF `color_scheme`; `[data-scheme]` paints its background and text, every role inside follows. `*-inverse` roles are for an element inverted within its section.
+- The starter values are a wireframe (ink `#2a343a` and grays). A project replaces the values with its Figma variables; role names stay.
+- A role that paints another property than its own goes through the variable: `before:bg-(--border-color-default)`.
+- Prefer a role to an opacity (`text-secondary`, not `text-primary/60`).
+- Never `bg-[#2a343a]`, never a gradient or color in an arbitrary value.
 
 ## Token names in English
 
-All custom property **suffixes** in `@theme` must be in **English**, kebab-case:
-
-```css
-/* GOOD: project overrides the Tailwind scale */
---color-zinc-950: #08090a;
-
-/* GOOD: project token when the palette / scale does not map */
---color-accent: #b3fca4;
---radius-4xl: 2.5rem;
-
-/* BAD */
---color-fond-page: #08090a;
---color-vert: #b3fca4;
---color-bleu-profond: #102345;
---background-image-gradient-bleu: linear-gradient(...);
-```
-
-- The Tailwind class mirrors the token suffix: `--color-accent` → `text-accent`, `bg-accent`, `border-accent`.
-- Do not add `--color-*: initial`, `--text-*: initial`, or `--radius-*: initial` unless you intentionally drop the Tailwind scale.
-- Legacy French token names may still exist in old client databases (ACF class values); **never add new French token names**.
-- When initializing a new project, override `--color-gray-*` / `--color-black` (or add English tokens) to match the client palette.
+All custom property **suffixes** in `@theme` and `schemes.php` must be in **English**, kebab-case (`--color-accent`, not `--color-vert`). Never add French token names.
 
 ## No preset section backgrounds in the starter
 
@@ -81,11 +76,12 @@ Use Tailwind type utilities in Twig: `text-xs` … `text-6xl`, plus `font-medium
 
 The starter ships no custom typeface: system sans-serif stack via `--default-font-family`. On the project, self-host the fonts (Google Fonts included) with `@font-face` in `font-face.css`, list the above-the-fold files in `Enqueue::PRELOAD_FONTS` and update `--font-sans` (see `init-nouveau-projet`).
 
-Container: `--container-max-width` (90rem = 1440px, or 110rem = 1760px). Editorial measure: `--max-width-prose` (45rem = 720px) via `max-w-prose`.
+Container: `--container-max-width` (90rem = 1440px, or 110rem = 1760px). Editorial measure: `--max-width-prose` (45rem = 720px) via `max-w-prose`. Easing: `--ease-out`, `--ease-in-out`, `--ease-drawer` (`ease-drawer`).
 
 ## Checklist when adding a token
 
-1. English kebab-case suffix in `@theme`.
+1. In Figma first (variable + code syntax), then under the same English kebab-case name in `@theme` or `schemes.php`.
 2. Used via a utility class in Twig/CSS, not an arbitrary value.
 3. Sizes in rem or spacing scale, letter-spacing in em (see above).
-4. `pnpm build` passes.
+4. Added to the styleguide (`views/components/styleguide.html.twig`).
+5. `pnpm build` passes.

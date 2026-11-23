@@ -9,37 +9,31 @@
 
 {%- block content -%}
 	<main id="content" role="main">
-		<div class="container space-y-10 pb-section-lg pt-40">
+		<div class="container space-y-10 pt-40 pb-14 lg:pb-24">
 			<header class="max-w-prose space-y-5">
 				<h1 class="text-4xl font-semibold">
-					{{- search_query is defined ? __('Search', 'wp-cinquante-et-un') : post.title -}}
+					{{- search_query is defined ? __( 'Search', 'wp-cinquante-et-un' ) : post.title -}}
 				</h1>
 
-				{{-
-					get_search_form({
-						classes: ['max-w-prose']
-					})
-				-}}
+				{{- get_search_form( { classes: [ 'max-w-prose' ] } ) -}}
 
 				{%- if search_query -%}
 					{%- if results_count -%}
-						<p class="text-sm text-gray-500">
+						<p class="text-sm text-secondary">
 							{{-
 								_n(
 									'%1$s result for “%2$s”',
 									'%1$s results for “%2$s”',
 									results_count,
 									'wp-cinquante-et-un'
-								) | format(results_count, search_query)
+								) | format( results_count, search_query )
 							-}}
 						</p>
 					{%- else -%}
 						<p class="text-xl font-semibold">
-							{{-
-								__('No results for “%s”', 'wp-cinquante-et-un') | format(search_query)
-							-}}
+							{{- __( 'No results for “%s”', 'wp-cinquante-et-un' ) | format( search_query ) -}}
 						</p>
-						<p class="prose-base text-gray-600">
+						<p class="prose-base text-secondary">
 							{{-
 								__(
 									'Try fewer words, or browse the most visited pages below.',
@@ -57,10 +51,8 @@
 						{{-
 							include(
 								'components/tease-search-result.html.twig',
-								{
-									post: item
-								},
-								with_context = false
+								{ post: item },
+								with_context: false
 							)
 						-}}
 					{%- endfor -%}
@@ -71,30 +63,22 @@
 						include(
 							'components/pagination.html.twig',
 							{
-								pagination: posts.pagination({
+								pagination: posts.pagination( {
 									mid_size: 1,
-									end_size: 1
-								})
+									end_size: 1,
+								} ),
 							}
 						)
 					-}}
 				</div>
-			{%- elseif search_query and suggested_pages | length -%}
+			{%- elseif search_query and ( suggested_pages | length ) -%}
 				<div class="space-y-3">
-					<p class="subtitle">
-						{{- __('Most visited pages', 'wp-cinquante-et-un') -}}
-					</p>
+					<p class="subtitle">{{- __( 'Most visited pages', 'wp-cinquante-et-un' ) -}}</p>
 
 					<ul class="space-y-3">
 						{%- for item in suggested_pages -%}
 							<li>
-								{{-
-									include(
-										'components/text-link.html.twig',
-										item,
-										with_context = false
-									)
-								-}}
+								{{- include( 'components/text-link.html.twig', item, with_context: false ) -}}
 							</li>
 						{%- endfor -%}
 					</ul>

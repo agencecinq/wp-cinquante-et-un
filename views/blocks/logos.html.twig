@@ -2,27 +2,32 @@
  # Blocks: Logos
  #}
 
-{%- set layout = block.layout | default({}) -%}
-{%- set logos = block.logos | default([]) -%}
-{%- set link_logos = block.link_logos | default(false) -%}
+{%- set layout = block.layout | default( {} ) -%}
+{%- set logos = block.logos | default( [] ) -%}
+{%- set link_logos = block.link_logos | default( false ) -%}
 
 {%- if logos | length -%}
 	<section
-		{% if block.id %}id="{{ block.id }}"{% endif %}
-		class="{{ html_classes( layout.classes | default('') ) }}"
-		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		{{ html_attr( { id: block.id } ) }}
+		class="{{
+			html_classes( layout.spacing_top | default( '' ), layout.spacing_bottom | default( '' ) )
+		}}"
+		data-scheme="{{ layout.color_scheme | default( '' ) }}"
 	>
-		<div class="{{ html_classes( layout.container_classes | default('container'), 'space-y-8 text-center' ) }}">
+		<div class="{{ html_classes( 'container', 'space-y-8 text-center' ) }}">
 			{%- if block.title -%}
-				<p class="text-sm font-medium text-gray-500">{{- block.title -}}</p>
+				<p class="text-sm font-medium text-secondary">{{- block.title -}}</p>
 			{%- endif -%}
 
 			<ul class="flex flex-wrap items-center justify-between gap-y-8">
 				{%- for logo in logos -%}
-					{%- set logo_url = link_logos ? fn('cinq_logos_case_study_url', logo) : '' -%}
+					{%- set logo_url = link_logos ? fn( 'cinq_logos_case_study_url', logo ) : '' -%}
 					<li class="flex h-8 w-37.5 items-center justify-center">
 						{%- if logo_url -%}
-							<a href="{{ logo_url | e('html_attr') }}" class="flex h-8 w-full items-center justify-center">
+							<a
+								href="{{ logo_url | e( 'html_attr' ) }}"
+								class="flex h-8 w-full items-center justify-center"
+							>
 								{{-
 									include(
 										'components/image.html.twig',
@@ -30,8 +35,8 @@
 											image: logo,
 											classes: [
 												'h-8 w-auto max-w-full object-contain',
-												block.grayscale ? 'grayscale'
-											]
+												block.grayscale ? 'grayscale',
+											],
 										}
 									)
 								-}}
@@ -44,8 +49,8 @@
 										image: logo,
 										classes: [
 											'h-8 w-auto max-w-full object-contain',
-											block.grayscale ? 'grayscale'
-										]
+											block.grayscale ? 'grayscale',
+										],
 									}
 								)
 							-}}

@@ -8,12 +8,19 @@
  # @param {string} [size] Image size to use. Defaults to 'large' unless the image is a GIF, in which case 'large' is used. Optional.
  # @param {string} [alt] Alt text for the image. If not provided, the image's alt text will be used. Optional.
  #
+ # Renders nothing when the attachment no longer exists (media deleted from the library).
+ #
+ # The media library "Framing" field (focal_point) sets object-position, so blocks that crop
+ # with object-cover keep that part of the image.
+ #
  # Since the towebp filter doesn't work on srcset, we need to manually convert each URL to webp format.
  #
  # @package WPCinquanteEtUn
  #}
 
-{%- if image is mapping and image.placeholder -%}
+{%- set image = image.placeholder ? image : image ? get_image( image ) -%}
+
+{%- if image.placeholder -%}
 	<img
 		class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}"
 		loading="{{ loading | default( 'lazy' ) }}"
@@ -21,48 +28,98 @@
 		alt="{{ ( alt ?? image.alt ) | e }}"
 		width="{{ image.width | e }}"
 		height="{{ image.height | e }}"
-		{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : key ~ '="' ~ value ~ '"' ) | join( ' ' ) | raw }}
-	>
+		{{ html_attr( attributes ) }}
+	/>
 {%- elseif image -%}
-	{% set image = get_image( image ) %}
-	{% set size = 'image/gif' == image.post_mime_type ? 'full' : ( size | default( 'large' ) ) %}
-	{% set width = 'image/svg+xml' == image.post_mime_type ? image.width : ( image.sizes[size].width ? image.sizes[size].width : image.width ) -%}
-	{% set height = 'image/svg+xml' == image.post_mime_type ? image.height : ( image.sizes[size].height ? image.sizes[size].height : image.height ) -%}
+	{% set size = 'image/gif' == image.post_mime_type ? 'full' : size | default( 'large' ) %}
+	{% set width = 'image/svg+xml' == image.post_mime_type
+		? image.width
+		: image.sizes[ size ].width ? image.sizes[ size ].width : image.width
+	-%}
+	{% set height = 'image/svg+xml' == image.post_mime_type
+		? image.height
+		: image.sizes[ size ].height ? image.sizes[ size ].height : image.height
+	-%}
 
-	<picture{{ size ? ' data-size="' ~ size ~ '"' }} data-mime-type="{{ image.post_mime_type }}">
-
-		{%- if 'image/svg+xml' != image.post_mime_type and 'image/gif' != image.post_mime_type and image.srcset( size ) -%}
-			<source type="image/webp" srcset="{{
-				image.srcset( size )
-					| split(', ')
-					| map(url => url
-						| split(' ')
-						| map((part, i) => i == 0 ? part | towebp(82) : part)
-						| join(' ')
-					)
-					| join(', ')
-			}}" sizes="{{ sizes ? sizes : ( image.img_sizes ? image.img_sizes( size ) | e : image.srcset( size ) ? fn( 'wp_get_attachment_image_sizes', image.id, size ) | e : '100vw' ) }}">
-			<source type="{{ image.post_mime_type }}" srcset="{{ image.srcset( size ) }}" sizes="{{ sizes ? sizes : ( image.img_sizes ? image.img_sizes( size ) | e : image.srcset( size ) ? fn( 'wp_get_attachment_image_sizes', image.id, size ) | e : '100vw' ) }}">
+	<picture
+		{{ html_attr( size ? { 'data-size': size } ) }}
+		data-mime-type="{{ image.post_mime_type }}"
+	>
+		{%- if
+			'image/svg+xml' != image.post_mime_type
+				and 'image/gif' != image.post_mime_type
+				and image.srcset( size ) -%}
+			<source
+				type="image/webp"
+				srcset="{{
+					image.srcset( size )
+						| split( ', ' )
+						| map(
+							url => url
+								| split( ' ' )
+								| map( ( part, i ) => i == 0 ? part | towebp( 82 ) : part )
+								| join( ' ' )
+						)
+						| join( ', ' )
+				}}"
+				sizes="{{ sizes
+					? sizes
+					: image.img_sizes
+						? image.img_sizes( size ) | e
+						: image.srcset( size )
+							? fn( 'wp_get_attachment_image_sizes', image.id, size ) | e
+							: '100vw' }}"
+			/>
+			<source
+				type="{{ image.post_mime_type }}"
+				srcset="{{ image.srcset( size ) }}"
+				sizes="{{ sizes
+					? sizes
+					: image.img_sizes
+						? image.img_sizes( size ) | e
+						: image.srcset( size )
+							? fn( 'wp_get_attachment_image_sizes', image.id, size ) | e
+							: '100vw' }}"
+			/>
 		{%- endif -%}
 
 		{#- A cropped size with no same-ratio sibling has no srcset: still offer its WebP. -#}
-		{%- if 'image/svg+xml' != image.post_mime_type and 'image/gif' != image.post_mime_type and not image.srcset( size ) -%}
-			<source type="image/webp" srcset="{{ image.src( size ) | towebp(82) }}">
+		{%- if
+			'image/svg+xml' != image.post_mime_type
+				and 'image/gif' != image.post_mime_type
+				and not image.srcset( size ) -%}
+			<source type="image/webp" srcset="{{ image.src( size ) | towebp( 82 ) }}" />
 		{%- endif -%}
 
 		<img
 			class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}"
 			loading="{{ loading | default( 'lazy' ) }}"
 			src="{{ image.src( size ) | e }}"
-			alt="{{ ( alt ?? ( image.alt ? image.alt : image.title ) ) | e }}"
+			alt="{{ ( alt ?? image.alt ) | e }}"
 			width="{{ width | e }}"
 			height="{{ height | e }}"
-			{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : key ~ '="' ~ value ~ '"' ) | join( ' ' ) | raw }}
-			{% if 'image/svg+xml' != image.post_mime_type and image.srcset( size ) %}
-				srcset="{{ image.srcset( size ) | e }}"
-				sizes="{{ sizes ? sizes : ( image.img_sizes ? image.img_sizes( size ) | e : image.srcset( size ) ? fn( 'wp_get_attachment_image_sizes', image.id, size ) | e : '100vw' ) }}"
-			{% endif %}
-		>
+			{{ html_attr( attributes ) }}
+			{{
+				html_attr(
+					( image.meta( 'focal_point' ) | default( 'center' ) ) != 'center'
+						? { style: 'object-position: ' ~ image.meta( 'focal_point' ) }
+				)
+			}}
+			{{
+				html_attr(
+					'image/svg+xml' != image.post_mime_type and image.srcset( size )
+						? {
+							srcset: image.srcset( size ),
+							sizes: sizes
+								? sizes
+								: image.img_sizes
+									? image.img_sizes( size )
+									: image.srcset( size )
+										? fn( 'wp_get_attachment_image_sizes', image.id, size )
+										: '100vw',
+						}
+				)
+			}}
+		/>
 	</picture>
-
 {%- endif -%}

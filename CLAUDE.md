@@ -8,14 +8,15 @@ Quand l'utilisateur démarre un nouveau projet, applique la skill `init-nouveau-
 
 - **Templating** : Timber 2 + Twig. Routeurs racine : `index.php` (pages + fallback), `404.php`, et les points d’entrée natifs de la hiérarchie WP quand la vue existe (`home.php`, `category.php`, `single.php`, `archive-<cpt>.php`, `single-<cpt>.php`, …). Chaque fichier racine ne charge le contexte Timber et rend qu’un Twig, sans logique conditionnelle. `index.php` rend `index.html.twig` (blocs ACF). Le journal utilise `home.php` / `category.php` → `pages/archive-post.html.twig` ; le single article `single.php` → `pages/single-post.html.twig`. Pas de `page.php` ni `front-page.php` dans le starter (pages = blocs via `index.php`). Le seul template de page WP nommé du starter est **Styleguide**.
 - **Build** : Vite (`pnpm dev` / `pnpm build`), plugin `laravel-vite-plugin`. Entrées site : `src/stylesheets/styles.css` et `src/scripts/app.js`. Entrées catalogue (template Styleguide seulement) : `src/stylesheets/styleguide.css` et `src/scripts/styleguide.ts`. Sortie dans `dist/` (gitignored).
-- **CSS** : Tailwind CSS v4, configuré en CSS pur (pas de `tailwind.config.js`). Palette : `white`, `black`, `ink` (#2A343A), `gray-*`, `red-700`. Schémas de section : `default` / `inverse` (`data-color-scheme`, champ ACF `color_scheme`). Titres : `text-4xl font-semibold` (5xl/6xl en éditorial). Rayon 0. Conteneur : `px-5`, max-width 1440px (`--container-max-width`, 1760px en option). Mesure éditoriale : `max-w-prose` 720px. Police : stack système (`ui-sans-serif`, `system-ui`) via `--default-font-family` ; aucune police embarquée dans le starter. Tokens custom uniquement si besoin, dans `@theme` de `src/stylesheets/theme.css`.
-- **JS** : TypeScript. Composants dans `src/scripts/components/*.ts`, montés via `piecesjs`. L'objet global `cinq` (données du thème : `text_domain`, `ajax_url`, `nonce`, etc.) est injecté côté PHP dans `includes/Setup/Enqueue.php` et typé dans `src/scripts/.d.ts`. Libs courantes : GSAP, Splide, `@agencecinq/utils`, et les Web Components [agencecinq/ui](https://agencecinq.github.io/ui/) (drawer, modal, tabs, accordion, switch, …). Le catalogue les démontre sur le template **Styleguide**. Toujours suivre le markup de [la doc officielle](https://agencecinq.github.io/ui/), pas seulement le README npm.
+- **CSS** : Tailwind CSS v4, configuré en CSS pur (pas de `tailwind.config.js`). Couleurs : rôles Figma (`text-primary`, `bg-page`, `bg-surface`, `border-default`, `bg-button-primary`…), valeurs dans `includes/schemes.php` imprimées dans le `<head>`, noms seuls dans `@theme reference` (la palette Tailwind par défaut n'existe plus). Schémas de section : `''` (défaut), `surface`, `white`, `dark` (`data-scheme`, champ ACF `color_scheme`). Espacements de section : classes Tailwind choisies dans ACF (`spacing_top` / `spacing_bottom`). Titres : `text-4xl font-semibold` (5xl/6xl en éditorial). Rayon 0. Conteneur : `px-5`, max-width 1440px (`--container-max-width`, 1760px en option). Mesure éditoriale : `max-w-prose` 720px. Police : stack système (`ui-sans-serif`, `system-ui`) via `--default-font-family` ; aucune police embarquée dans le starter. Tokens custom uniquement si besoin, dans `@theme` de `src/stylesheets/theme.css`.
+- **JS** : TypeScript (`pnpm typecheck`). Composants dans `src/scripts/components/*.ts`, montés via `piecesjs`. Pas d'objet global : une donnée PHP utile à un composant passe par le filtre core `script_module_data_{$module_id}` et se lit dans le JSON `wp-script-module-data-{$module_id}`. Libs courantes : GSAP, Blossom (`@blossom-carousel/web`, carrousel en scroll natif), `@agencecinq/utils`, et les Web Components [agencecinq/ui](https://agencecinq.github.io/ui/) (drawer, modal, tabs, accordion, switch, …). Drawer et modal sont des `<dialog>` natifs ouverts par des boutons `commandfor` / `command` (invoker commands, polyfill chargé seulement si le navigateur ne les connaît pas). Le catalogue les démontre sur le template **Styleguide**. Toujours suivre le markup de [la doc officielle](https://agencecinq.github.io/ui/), pas seulement le README npm.
 - **PHP** : POO, PSR-4, standards WordPress (phpcs + wpcs, voir `phpcs.xml`). Le namespace racine est mappé sur `includes/`. Les classes sont rangées comme les fichiers du core WordPress (le hook `after_setup_theme` vit dans `includes/Setup/`, etc.).
 - **Champs** : ACF. Les groupes sont définis en PHP dans `includes/Plugins/ACF/IncludeFields/` (et leurs `Layouts/` pour les blocs flexibles), pas seulement en JSON. Options globales du thème : Réglages > Thème (`options-theme`). Contenu éditorial des archives : page d'options ACF sous le menu du type de contenu (Articles pour le journal, menu CPT pour un CPT), voir `archive-options`. Édition : **Classic Editor** (plugin requis) pour posts/pages ; le thème complète avec `use_widgets_block_editor` et `remove_theme_support` dans `WPSettings.php`. Pas de `theme.json` ni de blocs Gutenberg pour le contenu.
 - **CPT / taxonomies** : à créer dans `includes/Post/` et `includes/Taxonomy/` (le starter livre `Post/Page.php` ; les CPT et taxonomies spécifiques sont ajoutés par projet).
 - **i18n** : text domain unique, fichiers dans `languages/` (`.pot` nommé d'après le slug ; `.po`/`.mo` par locale, ex. `fr_FR.po`, sans préfixe de domaine).
+- **CI** : `.github/workflows/ci.yml` sur chaque PR et sur `main` : `composer phpcs`, `pnpm typecheck`, `pnpm format:check`, `pnpm build`.
 - **Déploiement** : `deploy.sh` (build prod + purge des fichiers de dev), déclenché par le workflow `.github/workflows/release.yml` sur tag `v*`. Le workflow aligne aussi `style.css` / `package.json` / `composer.json` sur la version du tag et commit le bump sur la branche par défaut.
-- **Prérequis** : PHP 8.4, Composer, pnpm, Node 22.
+- **Prérequis** : PHP 8.4, Composer, pnpm 12, Node 26 (`.nvmrc`).
 
 ## Arborescence clé
 
@@ -56,7 +57,7 @@ Référence d'accueil (ordre proposé, réordonnable dans ACF) : hero, logos, ca
 | `Testimonials` | Témoignages (repeater manuel ; un CPT peut remplacer sur le projet) |
 | `AccordionGroup` | FAQ / contenu repliable (`details`/`summary`, sans JS ; JSON-LD FAQPage optionnel) |
 | `Form` | Pitch + formulaire plugin (CF7 sur le projet ; max 1 par page) |
-| `Cta` | Appel à l'action (souvent `color_scheme` inverse) |
+| `Cta` | Appel à l'action (souvent `color_scheme` `dark`) |
 | `Columns` | Deux colonnes de texte |
 | `Gallery` | Galerie média |
 | `LatestPosts` | Boucle d'articles |
@@ -95,12 +96,12 @@ DO :
 - Suivre les WordPress Coding Standards et faire passer phpcs.
 - **Double-checker la doc WordPress** (https://developer.wordpress.org/reference/) avant d'implémenter une URL, une requête, un hook ou une intégration plugin : le core expose souvent déjà la bonne fonction (`get_search_link()`, `get_permalink()`, …).
 - Coder et commenter en anglais.
-- Déclarer les tokens de design dans `@theme` de `theme.css` (noms en anglais, sizes en rem, letter-spacing en em, voir `design-tokens`).
+- Peindre avec les rôles de couleur (`text-primary`, `bg-surface`, `border-default`…), valeurs dans `includes/schemes.php` ; déclarer les autres tokens dans `@theme` de `theme.css` (noms en anglais, sizes en rem, letter-spacing en em, voir `design-tokens`).
 - Utiliser les classes typo Tailwind (`text-sm`, `text-4xl font-semibold`, `font-medium`) plutôt que des tailles en dur ou des composites (`title-xl`, `eyebrow`). Le sur-titre est `.subtitle` (`uppercase`, 0.1em). Le corps d'article est `.prose-base` / `.prose-lg` (line-height 1.7), pas `text-base`.
 - Passer les chaînes utilisateur par les fonctions i18n.
 - Commits en anglais avec gitmoji (voir la skill `git-commits`).
 - Encapsuler les gardes d'affichage dans les composants Twig inclus (voir `twig-components`).
-- Espacer les filtres Twig via Prettier : `twigFollowOfficialCodingStandards: false` (voir `twig-wpcs`).
+- Formater les Twig avec le fork agence du plugin Prettier Twig, au style WPCS (`default( 'h2' )`, ` | `), voir `twig-wpcs`.
 - Styler header, footer, blocs et composants avec Tailwind directement dans les `.twig` (voir `tailwind-twig`).
 - Empiler des éléments frères avec `space-y-*` (ou `gap-*`) sur le parent, pas avec des `mt-*` / `mb-*` conditionnels (voir `tailwind-twig`).
 - Avec `before:*` / `after:*`, ne pas ajouter `content-['']` : Tailwind le pose déjà (voir `tailwind-twig`).
@@ -115,6 +116,7 @@ DO :
 - Extraits Timber 2 : `post.excerpt` (hash ou chaînage), jamais `post.preview` (voir `timber-twig`).
 - Requêtes Timber en Twig : `get_posts({ … })` / `get_post(…)` natifs, pas `function('Timber\\Timber::get_posts', …)` (voir `timber-twig`).
 - Charger les Web Components et libs utilisés seulement par certains blocs via `load('<tag>', () => import('…'))` dans `app.js`, pas en import statique (seul ce qui sert sur toutes les pages, comme le drawer du header, reste importé directement).
+- Placer chaque bloc flexible via `blocks/block.html.twig` : c'est le seul point d'inclusion, qui pose le marqueur `data-cinq-block` dans l'aperçu de CINQ WP Editor ; le conteneur de la pile porte `data-field="blocks"`.
 
 DONT :
 
@@ -125,7 +127,10 @@ DONT :
 - Pas de template de page Blocks : les pages de contenu passent par `index.php`.
 - Pas de valeurs de design en dur dans les classes utilitaires.
 - Pas de `rounded-*` dans le starter (rayon 0).
-- Pas de paddings de section hors de l'échelle ACF `spacing_top` / `spacing_bottom` (`none` `sm` `md` `lg` `xl`).
+- Pas de paddings de section hors de l'échelle ACF `spacing_top` / `spacing_bottom` (`cinq_acf_spacings_top()` / `_bottom()` : none, sm, md, lg, xl).
+- Pas de couleur de la palette Tailwind (`bg-white`, `text-gray-500`) ni de primitive (`--palette-*`) dans un template : un rôle (voir `design-tokens`).
+- Pas d'objet JS global : `script_module_data_{$module_id}`.
+- Pas de `<cinq-drawer-button>` / `<cinq-modal-button>` : un `<button commandfor command>` vise le `<dialog>`.
 - Pas de `{%- if items -%}` autour d'un `{% include %}` quand le composant peut tester ses props lui-même (voir `twig-components`).
 - Pas de `before:content-['']` / `after:content-['']` redondants (voir `tailwind-twig`).
 - Pas de tag HTML vide purement décoratif quand un `before:` / `after:` suffit (voir `tailwind-twig`).
@@ -170,11 +175,11 @@ Skills (`.claude/skills/`) :
 
 Règles (`.claude/rules/`) :
 
-- `design-tokens` : tokens `@theme` en anglais, sizes en rem, letter-spacing en em, couleurs Tailwind (`bg-white`, `text-black`, `text-gray-500`), rayon 0, pas de valeurs en dur ni de backgrounds preset dans le starter.
+- `design-tokens` : rôles de couleur Figma (`includes/schemes.php`, `@theme reference`), schémas `data-scheme`, tokens en anglais, sizes en rem, letter-spacing en em, rayon 0, pas de valeurs en dur ni de backgrounds preset dans le starter.
 - `twig-components` : gardes, nommage des params, et layout via `classes` (pas de sticky/placement hardcodé) dans les composants Twig.
-- `twig-wpcs` : espacement des filtres Twig compatible Prettier.
+- `twig-wpcs` : style WPCS des Twig, appliqué par le fork agence du plugin Prettier Twig.
 - `tailwind-twig` : styling en Tailwind dans les `.twig` ; feuilles `components/` autorisées uniquement pour boutons et WYSIWYG ; pseudos plutôt que tags vides ; pas de `content-['']` redondant sur `before:` / `after:`.
 - `schema-org` : microdata schema.org dans les Twig (nav en ul/li, articles, etc.).
 - `archive-options` : page d'options ACF pour le contenu éditorial des archives (posts sous Articles, CPT sous son menu).
-- `acf-shared-fields` : champs ACF partagés entre blocs flexibles via fonctions `cinq_acf_*` (layout, media, heading).
+- `acf-shared-fields` : champs ACF partagés entre blocs flexibles via fonctions `cinq_acf_*` (layout avec schéma et espacements en classes, media, heading).
 - `timber-twig` : Timber 2 en Twig (`get_posts` / `get_post` natifs ; `post.excerpt`, pas `post.preview`).

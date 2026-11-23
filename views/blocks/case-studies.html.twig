@@ -2,33 +2,34 @@
  # Blocks: Case Studies
  #}
 
-{%- set layout = block.layout | default({}) -%}
-{%- set overline = block.overline | default(block.content.overline | default('')) -%}
-{%- set title = block.title | default(block.content.title | default('')) -%}
-{%- set link = block.link | default(block.content.link | default({})) -%}
-{%- set items = block.items | default([]) -%}
-{%- set columns = block.columns | default(3) -%}
+{%- set layout = block.layout | default( {} ) -%}
+{%- set overline = block.overline | default( block.content.overline | default( '' ) ) -%}
+{%- set title = block.title | default( block.content.title | default( '' ) ) -%}
+{%- set link = block.link | default( block.content.link | default( {} ) ) -%}
+{%- set items = block.items | default( [] ) -%}
+{%- set columns = block.columns | default( 3 ) -%}
 {%- set hide_if_empty = block.hide_if_empty is defined ? block.hide_if_empty : true -%}
-{%- set grid_classes =
-	columns == 2
-		? 'grid-cols-1 gap-8 md:grid-cols-2'
-		: 'grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'
+{%- set grid_classes = columns == 2
+	? 'grid-cols-1 gap-8 md:grid-cols-2'
+	: 'grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'
 -%}
 
-{%- if items | length or not hide_if_empty -%}
+{%- if ( items | length ) or not hide_if_empty -%}
 	<section
-		{% if block.id %}id="{{ block.id }}"{% endif %}
-		class="{{ html_classes( layout.classes | default('') ) }}"
-		data-color-scheme="{{ layout.color_scheme | default('default') }}"
+		{{ html_attr( { id: block.id } ) }}
+		class="{{
+			html_classes( layout.spacing_top | default( '' ), layout.spacing_bottom | default( '' ) )
+		}}"
+		data-scheme="{{ layout.color_scheme | default( '' ) }}"
 	>
-		<div class="{{ html_classes( layout.container_classes | default('container'), 'space-y-10' ) }}">
+		<div class="{{ html_classes( 'container', 'space-y-10' ) }}">
 			{{-
 				include(
 					'components/section-header.html.twig',
 					{
 						overline: overline,
 						title: title,
-						link: link
+						link: link,
 					}
 				)
 			-}}
@@ -36,7 +37,13 @@
 			{%- if items | length -%}
 				<div class="grid {{ grid_classes }}">
 					{%- for item in items -%}
-						{{- include('components/tease-case-study.html.twig', { item: item }, with_context = false) -}}
+						{{-
+							include(
+								'components/tease-case-study.html.twig',
+								{ item: item },
+								with_context: false
+							)
+						-}}
 					{%- endfor -%}
 				</div>
 			{%- endif -%}

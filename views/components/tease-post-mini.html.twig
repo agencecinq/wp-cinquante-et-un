@@ -10,22 +10,20 @@
 	itemscope
 	itemtype="https://schema.org/BlogPosting"
 	class="{{
-	html_classes(
-		'flex min-h-50 overflow-hidden rounded-xl bg-white',
-		classes | default([]) | join(' ')
-	)
+		html_classes(
+			'flex min-h-50 overflow-hidden rounded-xl bg-page',
+			classes | default( [] ) | join( ' ' )
+		)
 	}}"
 >
-	<div class="w-29.75 max-w-full self-stretch bg-white/30">
+	<div class="w-29.75 max-w-full self-stretch bg-page/30">
 		{{-
 			include(
 				'components/image.html.twig',
 				{
 					image: post.thumbnail,
-					classes: ['size-full object-cover object-center'],
-					attributes: {
-						itemprop: 'image'
-					}
+					classes: [ 'size-full object-cover object-center' ],
+					attributes: { itemprop: 'image' },
 				}
 			)
 		-}}
@@ -33,18 +31,16 @@
 
 	<div class="flex min-h-0 flex-1 flex-col space-y-3">
 		<div class="my-auto flex h-full flex-col gap-y-1.5 px-5 py-4.25 text-lg">
-			{%- if (post.categories | length) > 0 -%}
+			{%- if ( post.categories | length ) > 0 -%}
 				<div class="flex flex-wrap gap-1">
-					{%- for category in post.categories | slice(0, 3) -%}
+					{%- for category in post.categories | slice( 0, 3 ) -%}
 						{{-
 							include(
 								'components/tag.html.twig',
 								{
 									title: category.name,
 									url: category.link,
-									attributes: {
-										itemprop: 'articleSection'
-									}
+									attributes: { itemprop: 'articleSection' },
 								}
 							)
 						-}}
@@ -55,32 +51,30 @@
 			<h2 itemprop="headline" class="font-bold">{{- post.title -}}</h2>
 
 			{%- set excerpt =
-				post.excerpt({
+				post.excerpt( {
 					chars: 67,
-					read_more: false
-				})
+					read_more: false,
+				} )
 			-%}
 			{%- if excerpt | trim -%}
-				<p itemprop="description" class="text-xs">
-					{{- excerpt -}}
-				</p>
+				<p itemprop="description" class="text-xs">{{- excerpt -}}</p>
 			{%- endif -%}
 
 			<a
 				href="{{ post.link }}"
 				itemprop="url"
 				class="mt-auto font-mono text-xs tracking-widest uppercase underline"
-				aria-label="{{ __('Discover: %s', 'wp-cinquante-et-un') | format(post.title) }}"
+				aria-label="{{ __( 'Discover: %s', 'wp-cinquante-et-un' ) | format( post.title ) }}"
 			>
-				{{- __('Discover', 'wp-cinquante-et-un') -}}
+				{{- __( 'Discover', 'wp-cinquante-et-un' ) -}}
 			</a>
 		</div>
 	</div>
 
-	<meta itemprop="datePublished" content="{{ post.date('c') }}" />
-	<meta itemprop="dateModified" content="{{ post.modified('c') }}" />
+	<meta itemprop="datePublished" content="{{ post.date( 'c' ) }}" />
+	<meta itemprop="dateModified" content="{{ post.modified( 'c' ) }}" />
 	<meta
 		itemprop="author"
-		content="{{ post.author.name | default('WPCinquanteEtUn') | e('html_attr') }}"
+		content="{{ post.author.name | default( 'WPCinquanteEtUn' ) | e( 'html_attr' ) }}"
 	/>
 </article>

@@ -10,19 +10,61 @@
  */
 
 /**
- * Shared spacing select choices (section top / bottom).
+ * Shared spacing select choices (section top).
  *
- * Values are semantic keys mapped to Tailwind utilities in Twig / FormatValue.
+ * Values are Tailwind utility classes applied on the block section.
  *
  * @return array<string, string>
  */
-function cinq_acf_spacings(): array {
+function cinq_acf_spacings_top(): array {
 	return array(
-		'none' => __( 'None', 'wp-cinquante-et-un' ),
-		'sm'   => __( 'Small', 'wp-cinquante-et-un' ),
-		'md'   => __( 'Medium', 'wp-cinquante-et-un' ),
-		'lg'   => __( 'Large', 'wp-cinquante-et-un' ),
-		'xl'   => __( 'Extra large', 'wp-cinquante-et-un' ),
+		'pt-0'           => __( 'None', 'wp-cinquante-et-un' ),
+		'pt-6 lg:pt-8'   => __( 'SM (24px / 32px)', 'wp-cinquante-et-un' ),
+		'pt-10 lg:pt-16' => __( 'MD (40px / 64px)', 'wp-cinquante-et-un' ),
+		'pt-14 lg:pt-24' => __( 'LG (56px / 96px)', 'wp-cinquante-et-un' ),
+		'pt-18 lg:pt-32' => __( 'XL (72px / 128px)', 'wp-cinquante-et-un' ),
+	);
+}
+
+/**
+ * Shared spacing select choices (section bottom).
+ *
+ * @return array<string, string>
+ */
+function cinq_acf_spacings_bottom(): array {
+	return array(
+		'pb-0'           => __( 'None', 'wp-cinquante-et-un' ),
+		'pb-6 lg:pb-8'   => __( 'SM (24px / 32px)', 'wp-cinquante-et-un' ),
+		'pb-10 lg:pb-16' => __( 'MD (40px / 64px)', 'wp-cinquante-et-un' ),
+		'pb-14 lg:pb-24' => __( 'LG (56px / 96px)', 'wp-cinquante-et-un' ),
+		'pb-18 lg:pb-32' => __( 'XL (72px / 128px)', 'wp-cinquante-et-un' ),
+	);
+}
+
+/**
+ * ACF button_group field for a color scheme.
+ *
+ * Choices come from `cinq_schemes()` (includes/schemes.php).
+ *
+ * @param string               $key  Field key prefix.
+ * @param array<string, mixed> $args Optional field overrides (choices, default_value, instructions, …).
+ * @return array<string, mixed>
+ */
+function cinq_acf_color_scheme_field( string $key, array $args = array() ): array {
+	return wp_parse_args(
+		$args,
+		array(
+			'key'           => 'field_' . $key . '_color_scheme',
+			'label'         => __( 'Color scheme', 'wp-cinquante-et-un' ),
+			'name'          => 'color_scheme',
+			'aria-label'    => __( 'Color scheme', 'wp-cinquante-et-un' ),
+			'type'          => 'button_group',
+			'instructions'  => __( 'Choose a section color scheme.', 'wp-cinquante-et-un' ),
+			'choices'       => wp_list_pluck( cinq_schemes(), 'label' ),
+			'default_value' => '',
+			'return_format' => 'value',
+			'layout'        => 'horizontal',
+		)
 	);
 }
 
@@ -36,75 +78,7 @@ function cinq_acf_spacings(): array {
  * @return array<int, array<string, mixed>>
  */
 function cinq_acf_settings_group( string $key, array $args = array() ): array {
-	$group_key  = 'settings_' . $key . '_layout';
-	$spacings   = cinq_acf_spacings();
-	$sub_fields = array(
-		array(
-			'key'           => 'field_' . $group_key . '_color_scheme',
-			'label'         => __( 'Color scheme', 'wp-cinquante-et-un' ),
-			'name'          => 'color_scheme',
-			'aria-label'    => __( 'Color scheme', 'wp-cinquante-et-un' ),
-			'type'          => 'select',
-			'instructions'  => __( 'Light (default) or inverse section colors.', 'wp-cinquante-et-un' ),
-			'choices'       => array(
-				'default' => __( 'Light', 'wp-cinquante-et-un' ),
-				'inverse' => __( 'Inverse', 'wp-cinquante-et-un' ),
-			),
-			'default_value' => 'default',
-			'return_format' => 'value',
-		),
-		array(
-			'key'           => 'field_' . $group_key . '_spacing_top',
-			'label'         => __( 'Spacing top', 'wp-cinquante-et-un' ),
-			'name'          => 'spacing_top',
-			'aria-label'    => __( 'Spacing top', 'wp-cinquante-et-un' ),
-			'type'          => 'select',
-			'instructions'  => __( 'Section spacing. Desktop / mobile: none 0/0, sm 32/24, md 64/40, lg 96/56, xl 128/72.', 'wp-cinquante-et-un' ),
-			'choices'       => $spacings,
-			'default_value' => 'md',
-			'return_format' => 'value',
-			'wrapper'       => array(
-				'width' => 6 * 100 / 12,
-			),
-		),
-		array(
-			'key'           => 'field_' . $group_key . '_spacing_bottom',
-			'label'         => __( 'Spacing bottom', 'wp-cinquante-et-un' ),
-			'name'          => 'spacing_bottom',
-			'aria-label'    => __( 'Spacing bottom', 'wp-cinquante-et-un' ),
-			'type'          => 'select',
-			'instructions'  => __( 'Section spacing. Desktop / mobile: none 0/0, sm 32/24, md 64/40, lg 96/56, xl 128/72.', 'wp-cinquante-et-un' ),
-			'choices'       => $spacings,
-			'default_value' => 'md',
-			'return_format' => 'value',
-			'wrapper'       => array(
-				'width' => 6 * 100 / 12,
-			),
-		),
-		array(
-			'key'          => 'field_' . $group_key . '_anchor',
-			'label'        => __( 'Anchor', 'wp-cinquante-et-un' ),
-			'name'         => 'anchor',
-			'aria-label'   => __( 'Anchor', 'wp-cinquante-et-un' ),
-			'type'         => 'text',
-			'instructions' => __( 'Optional section ID slug for in-page links (e.g. contact).', 'wp-cinquante-et-un' ) . ' <em>(' . __( 'Optional', 'wp-cinquante-et-un' ) . ')</em>.',
-		),
-		array(
-			'key'           => 'field_' . $group_key . '_container',
-			'label'         => __( 'Container', 'wp-cinquante-et-un' ),
-			'name'          => 'container',
-			'aria-label'    => __( 'Container', 'wp-cinquante-et-un' ),
-			'type'          => 'select',
-			'instructions'  => __( 'Default 1440px, wide 1760px, or full width without a container.', 'wp-cinquante-et-un' ),
-			'choices'       => array(
-				'default' => __( 'Default (1440px)', 'wp-cinquante-et-un' ),
-				'wide'    => __( 'Wide (1760px)', 'wp-cinquante-et-un' ),
-				'full'    => __( 'Full width', 'wp-cinquante-et-un' ),
-			),
-			'default_value' => 'default',
-			'return_format' => 'value',
-		),
-	);
+	$group_key = 'settings_' . $key . '_layout';
 
 	$field = wp_parse_args(
 		$args,
@@ -116,7 +90,45 @@ function cinq_acf_settings_group( string $key, array $args = array() ): array {
 			'type'         => 'group',
 			'instructions' => __( 'Layout settings for the block.', 'wp-cinquante-et-un' ),
 			'layout'       => 'block',
-			'sub_fields'   => $sub_fields,
+			'sub_fields'   => array(
+				cinq_acf_color_scheme_field( $group_key ),
+				array(
+					'key'           => 'field_' . $group_key . '_spacing_top',
+					'label'         => __( 'Spacing top', 'wp-cinquante-et-un' ),
+					'name'          => 'spacing_top',
+					'aria-label'    => __( 'Spacing top', 'wp-cinquante-et-un' ),
+					'type'          => 'select',
+					'instructions'  => __( 'Section padding (mobile / desktop).', 'wp-cinquante-et-un' ),
+					'choices'       => cinq_acf_spacings_top(),
+					'default_value' => 'pt-10 lg:pt-16',
+					'return_format' => 'value',
+					'wrapper'       => array(
+						'width' => 6 * 100 / 12,
+					),
+				),
+				array(
+					'key'           => 'field_' . $group_key . '_spacing_bottom',
+					'label'         => __( 'Spacing bottom', 'wp-cinquante-et-un' ),
+					'name'          => 'spacing_bottom',
+					'aria-label'    => __( 'Spacing bottom', 'wp-cinquante-et-un' ),
+					'type'          => 'select',
+					'instructions'  => __( 'Section padding (mobile / desktop).', 'wp-cinquante-et-un' ),
+					'choices'       => cinq_acf_spacings_bottom(),
+					'default_value' => 'pb-10 lg:pb-16',
+					'return_format' => 'value',
+					'wrapper'       => array(
+						'width' => 6 * 100 / 12,
+					),
+				),
+				array(
+					'key'          => 'field_' . $group_key . '_anchor',
+					'label'        => __( 'Anchor', 'wp-cinquante-et-un' ),
+					'name'         => 'anchor',
+					'aria-label'   => __( 'Anchor', 'wp-cinquante-et-un' ),
+					'type'         => 'text',
+					'instructions' => __( 'Optional section ID slug for in-page links (e.g. contact).', 'wp-cinquante-et-un' ) . ' <em>(' . __( 'Optional', 'wp-cinquante-et-un' ) . ')</em>.',
+				),
+			),
 		)
 	);
 

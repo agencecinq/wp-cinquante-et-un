@@ -10,197 +10,187 @@
 {%- block content -%}
 	<main id="content" role="main">
 		<article itemscope itemtype="https://schema.org/BlogPosting">
-		<header class="container space-y-5 pt-40 pb-section-md text-center">
-			{{- include('components/breadcrumb.html.twig') -}}
+			<header class="container space-y-5 pt-40 pb-10 text-center lg:pb-16">
+				{{- include( 'components/breadcrumb.html.twig' ) -}}
 
-			<div class="flex flex-wrap items-center justify-center gap-3">
-				{%- for category in post.categories | slice(0, 1) -%}
-					{{-
-						include(
-							'components/tag.html.twig',
-							{
-								title: category.name,
-								url: category.link,
-								attributes: {
-									itemprop: 'articleSection'
+				<div class="flex flex-wrap items-center justify-center gap-3">
+					{%- for category in post.categories | slice( 0, 1 ) -%}
+						{{-
+							include(
+								'components/tag.html.twig',
+								{
+									title: category.name,
+									url: category.link,
+									attributes: { itemprop: 'articleSection' },
 								}
-							}
-						)
-					-}}
-				{%- endfor -%}
+							)
+						-}}
+					{%- endfor -%}
 
-				<time class="text-xs text-gray-500" datetime="{{ post.date('c') }}" itemprop="datePublished">
-					{{- post.date -}}
-				</time>
+					<time
+						class="text-xs text-secondary"
+						datetime="{{ post.date( 'c' ) }}"
+						itemprop="datePublished"
+					>
+						{{- post.date -}}
+					</time>
 
-				{%- if post.reading_time -%}
-					<span class="text-xs text-gray-500" aria-hidden="true">·</span>
-					<span class="text-xs text-gray-500">
-						{{- __('%d min read', 'wp-cinquante-et-un') | format(post.reading_time) -}}
-					</span>
+					{%- if post.reading_time -%}
+						<span class="text-xs text-secondary" aria-hidden="true">·</span>
+						<span class="text-xs text-secondary">
+							{{- __( '%d min read', 'wp-cinquante-et-un' ) | format( post.reading_time ) -}}
+						</span>
+					{%- endif -%}
+				</div>
+
+				<h1 class="text-4xl font-semibold" itemprop="headline">{{- post.title -}}</h1>
+
+				{%- if post.excerpt( { read_more: false } ) | striptags | trim -%}
+					<p class="mx-auto max-w-prose prose-lg text-secondary" itemprop="description">
+						{{- post.excerpt( { read_more: false } ) -}}
+					</p>
 				{%- endif -%}
-			</div>
+			</header>
 
-			<h1 class="text-4xl font-semibold" itemprop="headline">
-				{{- post.title -}}
-			</h1>
-
-			{%- if post.excerpt({ read_more: false }) | striptags | trim -%}
-				<p class="prose-lg mx-auto max-w-prose text-gray-600" itemprop="description">
-					{{- post.excerpt({ read_more: false }) -}}
-				</p>
+			{%- if post.thumbnail -%}
+				<div class="container">
+					<div class="aspect-2/1 overflow-hidden border border-default bg-surface">
+						{{-
+							include(
+								'components/image.html.twig',
+								{
+									image: post.thumbnail,
+									classes: [ 'size-full object-cover object-center' ],
+									sizes: '(max-width: 90rem) 100vw, 87.5rem',
+									loading: 'eager',
+									attributes: {
+										itemprop: 'image',
+										fetchpriority: 'high',
+									},
+								}
+							)
+						-}}
+					</div>
+				</div>
 			{%- endif -%}
-		</header>
 
-		{%- if post.thumbnail -%}
-			<div class="container">
-				<div class="aspect-2/1 overflow-hidden border border-black bg-gray-100">
-					{{-
-						include(
-							'components/image.html.twig',
-							{
-								image: post.thumbnail,
-								classes: ['size-full object-cover object-center'],
-								sizes: '(max-width: 90rem) 100vw, 87.5rem',
-								loading: 'eager',
-								attributes: {
-									itemprop: 'image',
-									fetchpriority: 'high'
-								}
-							}
-						)
-					-}}
-				</div>
-			</div>
-		{%- endif -%}
+			<div class="container grid grid-cols-12 gap-8 pt-14 pb-14 lg:pt-24 lg:pb-24">
+				{{-
+					include(
+						'components/toc.html.twig',
+						{
+							items: post.table_of_contents,
+							title: __( 'Contents', 'wp-cinquante-et-un' ),
+							classes: [
+								'self-start',
+								'hidden',
+								'lg:sticky',
+								'lg:top-24',
+								'lg:col-span-3',
+								'lg:block',
+							],
+						}
+					)
+				-}}
+				<div class="hidden lg:col-span-1 lg:block" aria-hidden="true"></div>
 
-		<div class="container grid grid-cols-12 gap-8 pt-section-lg pb-section-lg">
-			{{-
-				include(
-					'components/toc.html.twig',
-					{
-						items: post.table_of_contents,
-						title: __('Contents', 'wp-cinquante-et-un'),
-						classes: [
-							'self-start',
-							'hidden',
-							'lg:sticky',
-							'lg:top-24',
-							'lg:col-span-3',
-							'lg:block'
-						]
-					}
-				)
-			-}}
-			<div class="hidden lg:col-span-1 lg:block" aria-hidden="true"></div>
-
-			<div
-				id="post-content"
-				class="col-span-full lg:col-span-8"
-				itemprop="articleBody"
-			>
-				<div class="space-y-10">
-					<div class="wysiwyg">
-						{{- post.content -}}
-					</div>
-
-					{%- if post.tags | length -%}
-						<ul class="flex flex-wrap gap-2">
-							{%- for tag in post.tags -%}
-								<li>
-									{{-
-										include(
-											'components/tag.html.twig',
-											{
-												title: tag.name,
-												url: tag.link
-											}
-										)
-									-}}
-								</li>
-							{%- endfor -%}
-						</ul>
-					{%- endif -%}
-
-					{%- if post.author.name or post.author.description -%}
-						<div class="flex gap-4 border border-black p-6">
-							{{-
-								include(
-									'components/image.html.twig',
-									{
-										image: {
-											src: function('get_theme_file_uri', 'public/placeholder.svg'),
-											alt: '',
-											width: 56,
-											height: 56,
-											placeholder: true
-										},
-										classes: [
-											'size-14 shrink-0 border border-black bg-gray-100 object-cover'
-										],
-										loading: 'eager',
-										attributes: {
-											itemprop: 'image'
-										}
-									}
-								)
-							-}}
-
-							<div class="space-y-1 text-sm">
-							{%- if post.author.name -%}
-								<p class="font-medium" itemprop="author" itemscope itemtype="https://schema.org/Person">
-									<span itemprop="name">{{- post.author.name -}}</span>
-								</p>
-							{%- endif -%}
-
-							{%- if post.author.description -%}
-								<p class="text-gray-600">
-									{{- post.author.description -}}
-								</p>
-							{%- endif -%}
-							</div>
+				<div id="post-content" class="col-span-full lg:col-span-8" itemprop="articleBody">
+					<div class="space-y-10">
+						<div class="wysiwyg">
+							{{- post.content -}}
 						</div>
-					{%- endif -%}
-				</div>
-			</div>
-		</div>
 
-		<meta itemprop="dateModified" content="{{ post.modified('c') }}" />
+						{%- if post.tags | length -%}
+							<ul class="flex flex-wrap gap-2">
+								{%- for tag in post.tags -%}
+									<li>
+										{{-
+											include(
+												'components/tag.html.twig',
+												{
+													title: tag.name,
+													url: tag.link,
+												}
+											)
+										-}}
+									</li>
+								{%- endfor -%}
+							</ul>
+						{%- endif -%}
 
-		{%- if post.related_posts() | length -%}
-			<section class="pb-section-lg pt-section-lg">
-				<div class="container space-y-10">
-					{{-
-						include(
-							'components/section-header.html.twig',
-							{
-								overline: __('Journal', 'wp-cinquante-et-un'),
-								title: __('What we write', 'wp-cinquante-et-un'),
-								link: {
-									title: __('View all posts', 'wp-cinquante-et-un'),
-									url: posts_url
-								}
-							}
-						)
-					-}}
+						{%- if post.author.name or post.author.description -%}
+							<div class="flex gap-4 border border-default p-6">
+								{{-
+									include(
+										'components/image.html.twig',
+										{
+											image: {
+												src: function( 'get_theme_file_uri', 'public/placeholder.svg' ),
+												alt: '',
+												width: 56,
+												height: 56,
+												placeholder: true,
+											},
+											classes: [ 'size-14 shrink-0 border border-default bg-surface object-cover' ],
+											loading: 'eager',
+											attributes: { itemprop: 'image' },
+										}
+									)
+								-}}
 
-					<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-						{%- for item in post.related_posts() -%}
-							{{- include('components/tease-post.html.twig', { post: item }, with_context = false) -}}
-						{%- endfor -%}
+								<div class="space-y-1 text-sm">
+									{%- if post.author.name -%}
+										<p
+											class="font-medium"
+											itemprop="author"
+											itemscope
+											itemtype="https://schema.org/Person"
+										>
+											<span itemprop="name">{{- post.author.name -}}</span>
+										</p>
+									{%- endif -%}
+
+									{%- if post.author.description -%}
+										<p class="text-secondary">{{- post.author.description -}}</p>
+									{%- endif -%}
+								</div>
+							</div>
+						{%- endif -%}
 					</div>
 				</div>
-			</section>
-		{%- endif -%}
+			</div>
+
+			<meta itemprop="dateModified" content="{{ post.modified( 'c' ) }}" />
+
+			{%- if post.related_posts() | length -%}
+				<section class="pt-14 pb-14 lg:pt-24 lg:pb-24">
+					<div class="container space-y-10">
+						{{-
+							include(
+								'components/section-header.html.twig',
+								{
+									overline: __( 'Journal', 'wp-cinquante-et-un' ),
+									title: __( 'What we write', 'wp-cinquante-et-un' ),
+									link: {
+										title: __( 'View all posts', 'wp-cinquante-et-un' ),
+										url: posts_url,
+									},
+								}
+							)
+						-}}
+
+						<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+							{%- for item in post.related_posts() -%}
+								{{-
+									include( 'components/tease-post.html.twig', { post: item }, with_context: false )
+								-}}
+							{%- endfor -%}
+						</div>
+					</div>
+				</section>
+			{%- endif -%}
 		</article>
 
-		{{-
-			include(
-				'blocks/blocks.html.twig',
-				{
-					blocks: post.blocks
-				}
-			)
-		-}}
+		{{- include( 'blocks/blocks.html.twig', { blocks: post.blocks } ) -}}
 	</main>
 {%- endblock -%}

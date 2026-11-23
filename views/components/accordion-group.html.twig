@@ -8,25 +8,38 @@
  #}
 
 {%- if items | length -%}
-	<div class="{{ html_classes( classes | default([]) | join(' ') ) }}">
+	<div class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}">
 		{%- for item in items -%}
-			<details
-				class="group border-t border-gray-200 last:border-b"
-				{{ loop.first ? 'open' }}
-			>
+			<details class="group border-t border-field last:border-b" {{ loop.first ? 'open' }}>
 				<summary
 					class="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-sm font-semibold [&::-webkit-details-marker]:hidden"
 				>
 					<span class="min-w-0 flex-1">{{- item.question -}}</span>
 					<span
-						class="relative flex size-8 shrink-0 items-center justify-center bg-gray-100"
+						class="relative flex size-8 shrink-0 items-center justify-center bg-surface"
 						aria-hidden="true"
 					>
 						<span class="group-open:hidden">
-							{{- include('svg/use.html.twig', { classes: ['size-3'], icon: 'plus' }) -}}
+							{{-
+								include(
+									'svg/use.html.twig',
+									{
+										classes: [ 'size-3' ],
+										icon: 'plus',
+									}
+								)
+							-}}
 						</span>
 						<span class="hidden group-open:block">
-							{{- include('svg/use.html.twig', { classes: ['size-3'], icon: 'minus' }) -}}
+							{{-
+								include(
+									'svg/use.html.twig',
+									{
+										classes: [ 'size-3' ],
+										icon: 'minus',
+									}
+								)
+							-}}
 						</span>
 					</span>
 				</summary>

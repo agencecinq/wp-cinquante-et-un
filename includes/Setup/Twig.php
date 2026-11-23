@@ -11,7 +11,7 @@ namespace WPCinquanteEtUn\Setup;
 
 use Twig\Extra\Html\{ HtmlExtension };
 use Twig\Extra\Intl\{ IntlExtension };
-use Twig\{ TwigFunction };
+use Twig\{ TwigFilter, TwigFunction };
 use WPCinquanteEtUn\{ Service, Vite };
 
 /**
@@ -26,6 +26,7 @@ class Twig implements Service {
 	 */
 	public function run(): void {
 		add_filter( 'timber/twig', array( $this, 'add_functions' ) );
+		add_filter( 'timber/twig', array( $this, 'add_filters' ) );
 		add_filter( 'timber/twig', array( $this, 'add_extensions' ) );
 		add_filter( 'timber/twig/environment/options', array( $this, 'set_environment_options' ), 10, 1 );
 	}
@@ -59,6 +60,58 @@ class Twig implements Service {
 	public function add_extensions( object $twig ): object {
 		$twig->addExtension( new HtmlExtension() );
 		$twig->addExtension( new IntlExtension() );
+
+		return $twig;
+	}
+
+
+	/**
+	 * Add filters
+	 *
+	 * The antispambot filter encodes an email address as a mix of HTML
+	 * entities and plain characters, so harvesters that match addresses in
+	 * the raw HTML miss it while browsers and screen readers read it as
+	 * usual. esc_attr() keeps those entities as they are, unlike Twig's
+	 * escaper, and makes the result safe in an attribute and in text.
+	 *
+	 * The mailto_href filter prints the whole href attribute of a mailto:
+	 * URL, its address encoded the same way, and nothing for any other URL:
+	 * html_attr() would escape the entities a second time.
+	 *
+	 * @param object $twig Twig environment.
+	 *
+	 * @access public
+	 *
+	 * @return object $twig
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/antispambot/
+	 */
+	public function add_filters( object $twig ): object {
+		$twig->addFilter(
+			new TwigFilter(
+				'antispambot',
+				function ( ?string $email ): string {
+					return esc_attr( antispambot( (string) $email ) );
+				},
+				array( 'is_safe' => array( 'html' ) )
+			)
+		);
+
+		$twig->addFilter(
+			new TwigFilter(
+				'mailto_href',
+				function ( ?string $url ): string {
+					if ( ! str_starts_with( (string) $url, 'mailto:' ) ) {
+						return '';
+					}
+
+					$email = substr( $url, strlen( 'mailto:' ) );
+
+					return 'href="mailto:' . esc_attr( antispambot( $email ) ) . '"';
+				},
+				array( 'is_safe' => array( 'html' ) )
+			)
+		);
 
 		return $twig;
 	}
@@ -149,6 +202,10 @@ class Twig implements Service {
 				}
 			)
 		);
+
+		$twig->addFunction( new TwigFunction( 'cinq_schemes', 'cinq_schemes' ) );
+		$twig->addFunction( new TwigFunction( 'cinq_palette', 'cinq_palette' ) );
+		$twig->addFunction( new TwigFunction( 'cinq_scheme_roles', 'cinq_scheme_roles' ) );
 
 		return $twig;
 	}

@@ -2,94 +2,226 @@
  # Styleguide catalog: colors, type, space, layout, radius, buttons, tag, icons, image, teasers, pagination, WYSIWYG, CINQ UI.
  #}
 
-{%- set primitives = [
-	{ name: 'white', class: 'bg-white', token: '--color-white' },
-	{ name: 'black', class: 'bg-black', token: '--color-black' },
-	{ name: 'ink', class: 'bg-ink', token: '--color-ink' },
-	{ name: 'gray-50', class: 'bg-gray-50', token: '--color-gray-50' },
-	{ name: 'gray-100', class: 'bg-gray-100', token: '--color-gray-100' },
-	{ name: 'gray-200', class: 'bg-gray-200', token: '--color-gray-200' },
-	{ name: 'gray-300', class: 'bg-gray-300', token: '--color-gray-300' },
-	{ name: 'gray-400', class: 'bg-gray-400', token: '--color-gray-400' },
-	{ name: 'gray-500', class: 'bg-gray-500', token: '--color-gray-500' },
-	{ name: 'gray-600', class: 'bg-gray-600', token: '--color-gray-600' },
-	{ name: 'gray-700', class: 'bg-gray-700', token: '--color-gray-700' },
-	{ name: 'gray-800', class: 'bg-gray-800', token: '--color-gray-800' },
-	{ name: 'gray-900', class: 'bg-gray-900', token: '--color-gray-900' },
-	{ name: 'red-700', class: 'bg-red-700', token: '--color-red-700' }
-] -%}
-
-{%- set scheme_roles = [
-	{ name: 'background', class: 'bg-background', hint: __('Section background', 'wp-cinquante-et-un') },
-	{ name: 'foreground', class: 'bg-foreground', hint: __('Text', 'wp-cinquante-et-un') },
-	{ name: 'button', class: 'bg-button', hint: __('Primary button', 'wp-cinquante-et-un') },
-	{ name: 'button-text', class: 'bg-button-text', hint: __('Button label', 'wp-cinquante-et-un') },
-	{ name: 'secondary-button', class: 'bg-secondary-button', hint: __('Secondary button', 'wp-cinquante-et-un') },
-	{ name: 'secondary-button-text', class: 'bg-secondary-button-text', hint: __('Secondary label', 'wp-cinquante-et-un') },
-	{ name: 'link', class: 'bg-link', hint: __('Editorial links', 'wp-cinquante-et-un') },
-	{ name: 'badge-background', class: 'bg-badge-background', hint: __('Tag background', 'wp-cinquante-et-un') },
-	{ name: 'badge-foreground', class: 'bg-badge-foreground', hint: __('Tag text', 'wp-cinquante-et-un') },
-	{ name: 'badge-border', class: 'bg-badge-border', hint: __('Tag border', 'wp-cinquante-et-un') }
-] -%}
-
-{%- set ui_tokens = [
-	{ name: 'surface', class: 'bg-white', token: '--color-white' },
-	{ name: 'surface-muted', class: 'bg-gray-100', token: '--color-gray-100' },
-	{ name: 'border-default', class: 'border-black', token: '--color-black' },
-	{ name: 'border-muted', class: 'border-gray-200', token: '--color-gray-200' },
-	{ name: 'text-default', class: 'text-black', token: '--color-black' },
-	{ name: 'text-muted', class: 'text-gray-500', token: '--color-gray-500' },
-	{ name: 'text-subtle', class: 'text-gray-600', token: '--color-gray-600' },
-	{ name: 'text-inverse', class: 'text-white bg-black', token: '--color-white' },
-	{ name: 'text-error', class: 'text-red-700', token: '--color-red-700' }
-] -%}
-
 {%- set type_scale = [
-	{ name: 'Display/6xl', class: 'text-6xl font-semibold', sample: __('Hero title', 'wp-cinquante-et-un'), note: __('Editorial', 'wp-cinquante-et-un') },
-	{ name: 'Display/5xl', class: 'text-5xl font-semibold', sample: __('Hero title', 'wp-cinquante-et-un'), note: __('Editorial', 'wp-cinquante-et-un') },
-	{ name: 'Display/4xl', class: 'text-4xl font-semibold', sample: __('Page title', 'wp-cinquante-et-un') },
-	{ name: 'Display/3xl', class: 'text-3xl font-semibold', sample: __('Page title', 'wp-cinquante-et-un') },
-	{ name: 'Heading/2xl', class: 'text-2xl font-semibold', sample: __('Block title', 'wp-cinquante-et-un') },
-	{ name: 'Heading/xl', class: 'text-xl font-semibold', sample: __('Subtitle', 'wp-cinquante-et-un') },
-	{ name: 'Heading/xl', class: 'text-xl font-medium', sample: __('Subtitle', 'wp-cinquante-et-un') },
-	{ name: 'Body/lg', class: 'text-lg', sample: __('Block lead', 'wp-cinquante-et-un') },
-	{ name: 'Body/base', class: 'text-base', sample: __('Interface text', 'wp-cinquante-et-un') },
-	{ name: 'Body/base', class: 'text-base font-medium', sample: __('Interface text', 'wp-cinquante-et-un') },
-	{ name: 'Body/sm', class: 'text-sm', sample: __('Secondary text', 'wp-cinquante-et-un') },
-	{ name: 'Body/sm', class: 'text-sm font-medium', sample: __('Secondary text', 'wp-cinquante-et-un') },
-	{ name: 'Body/sm', class: 'text-sm font-semibold', sample: __('Secondary text', 'wp-cinquante-et-un') },
-	{ name: 'Label/xs', class: 'text-xs', sample: __('Label', 'wp-cinquante-et-un') },
-	{ name: 'Label/xs', class: 'text-xs font-medium', sample: __('Label', 'wp-cinquante-et-un') },
-	{ name: 'Label/xs', class: 'text-xs font-semibold', sample: __('Label', 'wp-cinquante-et-un') },
-	{ name: 'Eyebrow', class: 'subtitle', sample: __('Block overline', 'wp-cinquante-et-un') },
-	{ name: 'Prose/lg', class: 'prose-lg', sample: __('Article lead', 'wp-cinquante-et-un'), note: __('Editorial, line-height 1.7', 'wp-cinquante-et-un') },
-	{ name: 'Prose/base', class: 'prose-base', sample: __('Article body', 'wp-cinquante-et-un'), note: __('Editorial, line-height 1.7', 'wp-cinquante-et-un') },
-	{ name: 'Prose/base', class: 'prose-base font-bold', sample: __('Highlighted passage', 'wp-cinquante-et-un'), note: __('Editorial, weight 700', 'wp-cinquante-et-un') }
+	{
+		name: 'Display/6xl',
+		class: 'text-6xl font-semibold',
+		sample: __( 'Hero title', 'wp-cinquante-et-un' ),
+		note: __( 'Editorial', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Display/5xl',
+		class: 'text-5xl font-semibold',
+		sample: __( 'Hero title', 'wp-cinquante-et-un' ),
+		note: __( 'Editorial', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Display/4xl',
+		class: 'text-4xl font-semibold',
+		sample: __( 'Page title', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Display/3xl',
+		class: 'text-3xl font-semibold',
+		sample: __( 'Page title', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Heading/2xl',
+		class: 'text-2xl font-semibold',
+		sample: __( 'Block title', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Heading/xl',
+		class: 'text-xl font-semibold',
+		sample: __( 'Subtitle', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Heading/xl',
+		class: 'text-xl font-medium',
+		sample: __( 'Subtitle', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Body/lg',
+		class: 'text-lg',
+		sample: __( 'Block lead', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Body/base',
+		class: 'text-base',
+		sample: __( 'Interface text', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Body/base',
+		class: 'text-base font-medium',
+		sample: __( 'Interface text', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Body/sm',
+		class: 'text-sm',
+		sample: __( 'Secondary text', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Body/sm',
+		class: 'text-sm font-medium',
+		sample: __( 'Secondary text', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Body/sm',
+		class: 'text-sm font-semibold',
+		sample: __( 'Secondary text', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Label/xs',
+		class: 'text-xs',
+		sample: __( 'Label', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Label/xs',
+		class: 'text-xs font-medium',
+		sample: __( 'Label', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Label/xs',
+		class: 'text-xs font-semibold',
+		sample: __( 'Label', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Eyebrow',
+		class: 'subtitle',
+		sample: __( 'Block overline', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Prose/lg',
+		class: 'prose-lg',
+		sample: __( 'Article lead', 'wp-cinquante-et-un' ),
+		note: __( 'Editorial, line-height 1.7', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Prose/base',
+		class: 'prose-base',
+		sample: __( 'Article body', 'wp-cinquante-et-un' ),
+		note: __( 'Editorial, line-height 1.7', 'wp-cinquante-et-un' ),
+	},
+	{
+		name: 'Prose/base',
+		class: 'prose-base font-bold',
+		sample: __( 'Highlighted passage', 'wp-cinquante-et-un' ),
+		note: __( 'Editorial, weight 700', 'wp-cinquante-et-un' ),
+	},
 ] -%}
 
 {%- set spacings = [
-	{ step: 1, class: 'w-1', px: 4 },
-	{ step: 2, class: 'w-2', px: 8 },
-	{ step: 3, class: 'w-3', px: 12 },
-	{ step: 4, class: 'w-4', px: 16 },
-	{ step: 5, class: 'w-5', px: 20 },
-	{ step: 6, class: 'w-6', px: 24 },
-	{ step: 8, class: 'w-8', px: 32 },
-	{ step: 10, class: 'w-10', px: 40 },
-	{ step: 12, class: 'w-12', px: 48 },
-	{ step: 16, class: 'w-16', px: 64 },
-	{ step: 20, class: 'w-20', px: 80 },
-	{ step: 24, class: 'w-24', px: 96, note: __('Editorial', 'wp-cinquante-et-un') },
-	{ step: 28, class: 'w-28', px: 112, note: __('Editorial', 'wp-cinquante-et-un') },
-	{ step: 32, class: 'w-32', px: 128, note: __('Editorial', 'wp-cinquante-et-un') }
+	{
+		step: 1,
+		class: 'w-1',
+		px: 4,
+	},
+	{
+		step: 2,
+		class: 'w-2',
+		px: 8,
+	},
+	{
+		step: 3,
+		class: 'w-3',
+		px: 12,
+	},
+	{
+		step: 4,
+		class: 'w-4',
+		px: 16,
+	},
+	{
+		step: 5,
+		class: 'w-5',
+		px: 20,
+	},
+	{
+		step: 6,
+		class: 'w-6',
+		px: 24,
+	},
+	{
+		step: 8,
+		class: 'w-8',
+		px: 32,
+	},
+	{
+		step: 10,
+		class: 'w-10',
+		px: 40,
+	},
+	{
+		step: 12,
+		class: 'w-12',
+		px: 48,
+	},
+	{
+		step: 16,
+		class: 'w-16',
+		px: 64,
+	},
+	{
+		step: 20,
+		class: 'w-20',
+		px: 80,
+	},
+	{
+		step: 24,
+		class: 'w-24',
+		px: 96,
+		note: __( 'Editorial', 'wp-cinquante-et-un' ),
+	},
+	{
+		step: 28,
+		class: 'w-28',
+		px: 112,
+		note: __( 'Editorial', 'wp-cinquante-et-un' ),
+	},
+	{
+		step: 32,
+		class: 'w-32',
+		px: 128,
+		note: __( 'Editorial', 'wp-cinquante-et-un' ),
+	},
 ] -%}
 
 {%- set section_spacings = [
-	{ name: 'none', desktop: 0, mobile: 0, desktop_class: 'w-px', mobile_class: 'w-px' },
-	{ name: 'sm', desktop: 32, mobile: 24, desktop_class: 'w-8', mobile_class: 'w-6' },
-	{ name: 'md', desktop: 64, mobile: 40, desktop_class: 'w-16', mobile_class: 'w-10' },
-	{ name: 'lg', desktop: 96, mobile: 56, desktop_class: 'w-24', mobile_class: 'w-14' },
-	{ name: 'xl', desktop: 128, mobile: 72, desktop_class: 'w-32', mobile_class: 'w-18' }
+	{
+		name: 'none',
+		desktop: 0,
+		mobile: 0,
+		desktop_class: 'w-px',
+		mobile_class: 'w-px',
+	},
+	{
+		name: 'sm',
+		desktop: 32,
+		mobile: 24,
+		desktop_class: 'w-8',
+		mobile_class: 'w-6',
+	},
+	{
+		name: 'md',
+		desktop: 64,
+		mobile: 40,
+		desktop_class: 'w-16',
+		mobile_class: 'w-10',
+	},
+	{
+		name: 'lg',
+		desktop: 96,
+		mobile: 56,
+		desktop_class: 'w-24',
+		mobile_class: 'w-14',
+	},
+	{
+		name: 'xl',
+		desktop: 128,
+		mobile: 72,
+		desktop_class: 'w-32',
+		mobile_class: 'w-18',
+	},
 ] -%}
 
 {%- set icons = [
@@ -113,1821 +245,1583 @@
 	'map-pin',
 	'linkedin',
 	'twitter',
-	'youtube'
+	'youtube',
 ] -%}
-{%- set extra_icons = [
-	'mark',
-	'vimeo',
-	'x'
-] -%}
+{%- set extra_icons = [ 'mark', 'vimeo', 'x' ] -%}
 
 <div class="space-y-20">
-<section class="space-y-8" aria-labelledby="styleguide-colors">
-	<header class="space-y-2">
-		<p class="subtitle">
-			{{- __('Foundations', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-colors" class="text-2xl font-semibold">
-			{{- __('Colour', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'Tailwind v4 primitives (plus ink). Never pick primitives in the editor. Blocks switch Light or Inverse via ACF color_scheme. UI components read the Tailwind layer below, not the schemes.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-	<div class="space-y-10">
-		<div class="space-y-4">
-			<p class="subtitle">
-				{{- __('Primitives', 'wp-cinquante-et-un') -}}
-			</p>
-			<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-7">
-				{%- for color in primitives -%}
-					<li class="space-y-2">
-						<div class="{{ color.class }} aspect-square border border-gray-200"></div>
-						<p class="text-xs font-medium">
-							{{ color.name }}
-						</p>
-						<p class="text-gray-500 text-xs">
-							.{{ color.class }}
-						</p>
-						<p class="text-gray-500 text-xs">
-							{{ color.token }}
-						</p>
-					</li>
-				{%- endfor -%}
-			</ul>
-		</div>
-		<div class="space-y-4">
-			<p class="subtitle">
-				{{- __('Color schemes', 'wp-cinquante-et-un') -}}
-			</p>
-			<p class="text-gray-500 max-w-prose text-sm">
+	<section class="space-y-8" aria-labelledby="styleguide-colors">
+		<header class="space-y-2">
+			<p class="subtitle">{{- __( 'Foundations', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-colors" class="text-2xl font-semibold">
+				{{- __( 'Colour', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
 				{{-
 					__(
-						'Declared in src/stylesheets/theme.css (@theme). Each block sets color_scheme to default or inverse.',
+						'Palette and roles from includes/schemes.php, mirroring the Figma variables. Templates paint with the roles (text-primary, bg-surface, border-default…), never with the primitives. Blocks pick a color scheme via ACF color_scheme.',
 						'wp-cinquante-et-un'
 					)
 				-}}
 			</p>
-			<div class="grid gap-6 lg:grid-cols-2">
-				<div class="space-y-5 border border-black p-7" data-color-scheme="default">
-					<p class="text-sm font-semibold">
-						{{- __('Scheme 1 · Light', 'wp-cinquante-et-un') -}}
-					</p>
-					<ul class="grid grid-cols-2 gap-4 sm:grid-cols-3">
-						{%- for color in scheme_roles -%}
-							<li class="space-y-2">
-								<div class="{{ color.class }} aspect-square border border-gray-200"></div>
-								<p class="text-xs font-medium">
-									{{ color.name }}
-								</p>
-								<p class="text-gray-500 text-xs">
-									{{ color.hint }}
-								</p>
-							</li>
-						{%- endfor -%}
-					</ul>
-				</div>
-				<div class="bg-background text-foreground space-y-5 border border-black p-7" data-color-scheme="inverse">
-					<p class="text-sm font-semibold">
-						{{- __('Scheme 2 · Inverse', 'wp-cinquante-et-un') -}}
-					</p>
-					<ul class="grid grid-cols-2 gap-4 sm:grid-cols-3">
-						{%- for color in scheme_roles -%}
-							<li class="space-y-2">
-								<div class="{{ color.class }} border-gray-200 aspect-square border"></div>
-								<p class="text-xs font-medium">
-									{{ color.name }}
-								</p>
-								<p class="text-xs opacity-70">
-									{{ color.hint }}
-								</p>
-							</li>
-						{%- endfor -%}
-					</ul>
+		</header>
+		<div class="space-y-10">
+			<div class="space-y-4">
+				<p class="subtitle">{{- __( 'Primitives', 'wp-cinquante-et-un' ) -}}</p>
+				<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-8">
+					{%- for slug, color in cinq_palette() -%}
+						<li class="space-y-2">
+							<div
+								class="aspect-square border border-field"
+								style="background-color: var(--palette-{{ slug }})"
+							></div>
+							<p class="text-xs font-medium">{{- color.label -}}</p>
+							<p class="text-xs text-secondary">--palette-{{ slug }} · {{ color.value }}</p>
+						</li>
+					{%- endfor -%}
+				</ul>
+			</div>
+			<div class="space-y-4">
+				<p class="subtitle">{{- __( 'Color schemes', 'wp-cinquante-et-un' ) -}}</p>
+				<p class="max-w-prose text-sm text-secondary">
+					{{-
+						__(
+							'Each block sets data-scheme from its ACF color_scheme: background and text follow, and every role takes the value of the scheme.',
+							'wp-cinquante-et-un'
+						)
+					-}}
+				</p>
+				<div class="grid gap-6 lg:grid-cols-2">
+					{%- for slug, scheme in cinq_schemes() -%}
+						<div class="space-y-5 border border-default p-7" data-scheme="{{ slug }}">
+							<p class="text-sm font-semibold">{{- scheme.label -}}</p>
+							<p class="text-xs opacity-70">data-scheme="{{ slug }}"</p>
+							<ul class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+								{%- for role, hint in cinq_scheme_roles() -%}
+									<li class="space-y-2">
+										<div
+											class="aspect-square border border-current/20"
+											style="background-color: var(--{{ role }})"
+										></div>
+										<p class="text-xs font-medium">{{- role -}}</p>
+										<p class="text-xs opacity-70">{{- hint -}}</p>
+									</li>
+								{%- endfor -%}
+							</ul>
+						</div>
+					{%- endfor -%}
 				</div>
 			</div>
 		</div>
-		<div class="space-y-4">
-			<p class="subtitle">
-				{{- __('UI', 'wp-cinquante-et-un') -}}
-			</p>
-			<p class="text-gray-500 max-w-prose text-sm">
+	</section>
+
+	<section class="space-y-8" aria-labelledby="styleguide-type">
+		<header class="space-y-2">
+			<p class="subtitle">{{- __( 'Foundations', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-type" class="text-2xl font-semibold">
+				{{- __( 'Type', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
 				{{-
 					__(
-						'Roles consumed by buttons and surfaces. They are Tailwind utilities, not extra tokens, and they do not follow a color scheme.',
+						'System sans-serif stack (ui-sans-serif, system-ui). Fifteen interface styles plus five editorial styles (5xl, 6xl, and Prose at line-height 1.7). Never use Prose in UI, nor Body in an article. .subtitle is uppercase with 0.1em tracking.',
 						'wp-cinquante-et-un'
 					)
 				-}}
 			</p>
-			<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
-				{%- for color in ui_tokens -%}
-					<li class="space-y-2">
-						<div class="{{ color.class }} aspect-square border border-gray-200"></div>
-						<p class="text-xs font-medium">
-							{{ color.name }}
+		</header>
+		<ul class="divide-y divide-field">
+			{%- for item in type_scale -%}
+				<li class="grid grid-cols-12 items-center gap-5 py-5">
+					<div class="col-span-full space-y-1 sm:col-span-4">
+						<p class="text-xs font-medium">{{ item.name }}</p>
+						<p class="text-xs text-secondary">
+							.{{ item.class }}
+							{%- if item.note -%}
+								{{ ' · ' }}{{ item.note }}
+							{%- endif -%}
 						</p>
-						<p class="text-gray-500 text-xs">
-							.{{ color.class }}
-						</p>
-						<p class="text-gray-500 text-xs">
-							{{ color.token }}
-						</p>
-					</li>
-				{%- endfor -%}
-			</ul>
-		</div>
-	</div>
-</section>
+					</div>
+					<p class="{{ item.class }} col-span-full sm:col-span-8">{{ item.sample }}</p>
+				</li>
+			{%- endfor -%}
+		</ul>
+	</section>
 
-<section class="space-y-8" aria-labelledby="styleguide-type">
-	<header class="space-y-2">
-		<p class="subtitle">
-			{{- __('Foundations', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-type" class="text-2xl font-semibold">
-			{{- __('Type', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'System sans-serif stack (ui-sans-serif, system-ui). Fifteen interface styles plus five editorial styles (5xl, 6xl, and Prose at line-height 1.7). Never use Prose in UI, nor Body in an article. .subtitle is uppercase with 0.1em tracking.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-	<ul class="divide-gray-100 divide-y">
-		{%- for item in type_scale -%}
-			<li class="grid grid-cols-12 items-center gap-5 py-5">
-				<div class="col-span-full space-y-1 sm:col-span-4">
-					<p class="text-xs font-medium">
-						{{ item.name }}
-					</p>
-					<p class="text-gray-500 text-xs">
-						.{{ item.class }}
+	<section class="space-y-8" aria-labelledby="styleguide-space">
+		<header class="space-y-2">
+			<p class="subtitle">{{- __( 'Foundations', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-space" class="text-2xl font-semibold">
+				{{- __( 'Space', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'Tailwind spacing scale (0.25rem) for gutters and component padding, never between sections. Section spacing is a separate ACF scale of five values.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+		</header>
+		<ul class="space-y-2">
+			{%- for item in spacings -%}
+				<li class="flex items-center gap-4 text-xs">
+					<p class="w-24 font-medium">spacing/{{ item.step }}</p>
+					<p class="w-16 text-secondary">{{ item.px }}</p>
+					<div class="h-4 bg-inverse {{ item.class }}"></div>
+					<p class="text-secondary">
+						gap-{{ item.step }} · p-{{ item.step }}
 						{%- if item.note -%}
 							{{ ' · ' }}{{ item.note }}
 						{%- endif -%}
 					</p>
-				</div>
-				<p class="{{ item.class }} col-span-full sm:col-span-8">
-					{{ item.sample }}
-				</p>
-			</li>
-		{%- endfor -%}
-	</ul>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-space">
-	<header class="space-y-2">
-		<p class="subtitle">
-			{{- __('Foundations', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-space" class="text-2xl font-semibold">
-			{{- __('Space', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'Tailwind spacing scale (0.25rem) for gutters and component padding, never between sections. Section spacing is a separate ACF scale of five values.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-	<ul class="space-y-2">
-		{%- for item in spacings -%}
-			<li class="flex items-center gap-4 text-xs">
-				<p class="w-24 font-medium">
-					spacing/{{ item.step }}
-				</p>
-				<p class="text-gray-500 w-16">
-					{{ item.px }}
-				</p>
-				<div class="bg-black h-4 {{ item.class }}"></div>
-				<p class="text-gray-500">
-					gap-{{ item.step }} · p-{{ item.step }}
-					{%- if item.note -%}
-						{{ ' · ' }}{{ item.note }}
-					{%- endif -%}
-				</p>
-			</li>
-		{%- endfor -%}
-	</ul>
-	<div class="space-y-4">
-		<p class="subtitle">
-			{{- __('Section spacing', 'wp-cinquante-et-un') -}}
-		</p>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'The only values for ACF spacing_top and spacing_bottom. Desktop then mobile.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-		<ul class="space-y-2.5">
-			{%- for item in section_spacings -%}
-				<li class="flex items-center gap-5 text-xs">
-					<p class="w-30 font-medium">
-						section/{{ item.name }}
-					</p>
-					<p class="text-gray-500 w-24">
-						{{ item.desktop }} / {{ item.mobile }}
-					</p>
-					<div class="bg-black h-4 {{ item.desktop_class }}"></div>
-					<div class="bg-gray-200 h-4 {{ item.mobile_class }}"></div>
-					<p class="text-gray-500">
-						{{- __('desktop · mobile', 'wp-cinquante-et-un') -}}
-					</p>
 				</li>
 			{%- endfor -%}
 		</ul>
-	</div>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-layout">
-	<header class="space-y-2">
-		<p class="subtitle">
-			{{- __('Foundations', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-layout" class="text-2xl font-semibold">
-			{{- __('Layout', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'12-column grid. Container max-width is 1440px by default (set --container-max-width to 110rem for 1760px). Article body never exceeds 720px.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-	<div class="bg-gray-100 grid grid-cols-12 gap-4 p-5">
-		{%- for i in 1..12 -%}
-			<div class="bg-gray-200 col-span-1 py-12"></div>
-		{%- endfor -%}
-	</div>
-	<div class="flex h-14 w-full max-w-prose items-center justify-center border border-black">
-		<p class="text-gray-600 text-xs">
-			{{- __('layout/prose-max-width: 720px, about 65 characters. The measure for long copy.', 'wp-cinquante-et-un') -}}
-		</p>
-	</div>
-	<ul class="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-4">
-		<li class="space-y-2 border border-black p-5">
-			<p class="text-gray-500 text-xs font-medium">
-				{{- __('Breakpoints', 'wp-cinquante-et-un') -}}
-			</p>
-			<p class="text-base font-semibold">
-				sm 640 · md 768 · lg 1024
-			</p>
-			<p class="text-gray-600 text-xs">
-				{{- __('md is used here: editorial grids often go to two columns before lg.', 'wp-cinquante-et-un') -}}
-			</p>
-		</li>
-		<li class="-ml-px space-y-2 border border-black p-5">
-			<p class="text-gray-500 text-xs font-medium">
-				{{- __('Container', 'wp-cinquante-et-un') -}}
-			</p>
-			<p class="text-base font-semibold">
-				1440 / 1760 px
-			</p>
-			<p class="text-gray-600 text-xs">
-				{{- __('Two modes. Override --container-max-width (90rem or 110rem) from the start.', 'wp-cinquante-et-un') -}}
-			</p>
-		</li>
-		<li class="-ml-px space-y-2 border border-black p-5">
-			<p class="text-gray-500 text-xs font-medium">
-				{{- __('Editorial measure', 'wp-cinquante-et-un') -}}
-			</p>
-			<p class="text-base font-semibold">
-				720 px
-			</p>
-			<p class="text-gray-600 text-xs">
-				{{- __('Article body never exceeds this width, whatever the container.', 'wp-cinquante-et-un') -}}
-			</p>
-		</li>
-		<li class="-ml-px space-y-2 border border-black p-5">
-			<p class="text-gray-500 text-xs font-medium">
-				{{- __('Radius', 'wp-cinquante-et-un') -}}
-			</p>
-			<p class="text-base font-semibold">
-				0
-			</p>
-			<p class="text-gray-600 text-xs">
-				{{- __('Sharp corners, 1px borders.', 'wp-cinquante-et-un') -}}
-			</p>
-		</li>
-	</ul>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-radius">
-	<header class="space-y-2">
-		<p class="subtitle">
-			{{- __('Foundations', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-radius" class="text-2xl font-semibold">
-			{{- __('Radius', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'Radius is 0. Do not add rounded-* utilities in the starter.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-	<div class="space-y-2">
-		<div class="bg-black size-20"></div>
-		<p class="text-xs font-medium">
-			.rounded-none
-		</p>
-	</div>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-buttons">
-	<header class="space-y-3">
-		<p class="subtitle">
-			{{- __('Components', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-buttons" class="text-2xl font-semibold">
-			{{- __('Buttons', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="font-mono text-xs text-gray-500">
-			components/button.html.twig · src/stylesheets/components/button.css
-		</p>
-	</header>
-
-	<div class="space-y-8">
 		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Primary', 'wp-cinquante-et-un') -}}
-			</p>
-			<div class="flex flex-wrap items-center gap-4">
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un')
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							icon: 'plus'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							disabled: true
-						}
-					)
-				-}}
-			</div>
-		</div>
-
-		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Secondary', 'wp-cinquante-et-un') -}}
-			</p>
-			<div class="flex flex-wrap items-center gap-4">
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'secondary'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'secondary',
-							icon: 'plus'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'secondary',
-							disabled: true
-						}
-					)
-				-}}
-			</div>
-		</div>
-
-		<div class="space-y-4">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Tertiary', 'wp-cinquante-et-un') -}}
-			</p>
-			<div class="flex flex-wrap items-center gap-4">
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'tertiary'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'tertiary',
-							icon: 'plus'
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/button.html.twig',
-						{
-							title: __('Button', 'wp-cinquante-et-un'),
-							variant: 'tertiary',
-							disabled: true
-						}
-					)
-				-}}
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-tag">
-	<header class="space-y-3">
-		<p class="subtitle">
-			{{- __('Components', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-tag" class="text-2xl font-semibold">
-			{{- __('Tag', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="max-w-prose text-sm text-gray-500">
-			{{-
-				__(
-					'Taxonomy label for article categories, case study sectors, or post tags. One visual style; labels come from get_the_terms(), never from a hand-typed ACF field.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-
-	<div class="space-y-8">
-		<div class="space-y-3">
-			<p class="font-mono text-xs tracking-widest">
-				components/tag.html.twig
-			</p>
-			<div class="flex flex-wrap items-center gap-2">
-				{{-
-					include(
-						'components/tag.html.twig',
-						{
-							title: __('Strategy', 'wp-cinquante-et-un')
-						}
-					)
-				-}}
-				{{-
-					include(
-						'components/tag.html.twig',
-						{
-							title: __('Method', 'wp-cinquante-et-un')
-						}
-					)
-				-}}
-			</div>
-		</div>
-
-		<div class="space-y-3">
-			<p class="font-mono text-xs tracking-widest">
-				{{- __('Linked tag', 'wp-cinquante-et-un') -}}
-			</p>
-			{{-
-				include(
-					'components/tag.html.twig',
-					{
-						title: __('Strategy', 'wp-cinquante-et-un'),
-						url: '#'
-					}
-				)
-			-}}
-		</div>
-	</div>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-icons">
-	<header class="space-y-2">
-		<p class="subtitle">
-			{{- __('Assets', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-icons" class="text-2xl font-semibold">
-			{{- __('Icons', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="max-w-prose text-sm text-gray-500">
-			{{-
-				__(
-					'Twenty-one icons on a 24 by 24 grid, recolorable with currentColor. Add a file to src/icons/, run pnpm build, then include svg/use.html.twig.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-	<ul class="grid grid-cols-4 gap-5 sm:grid-cols-6 lg:grid-cols-8">
-		{%- for icon in icons -%}
-			<li class="flex flex-col items-center gap-2">
-				{{-
-					include(
-						'svg/use.html.twig',
-						{
-							icon: icon,
-							classes: ['size-6']
-						},
-						with_context = false
-					)
-				-}}
-				<p class="text-center font-mono text-xs tracking-widest">
-					{{ icon }}
-				</p>
-			</li>
-		{%- endfor -%}
-	</ul>
-	<p class="subtitle">
-		{{- __('Extras', 'wp-cinquante-et-un') -}}
-	</p>
-	<ul class="grid grid-cols-4 gap-5 sm:grid-cols-6 lg:grid-cols-8">
-		{%- for icon in extra_icons -%}
-			<li class="flex flex-col items-center gap-2">
-				{{-
-					include(
-						'svg/use.html.twig',
-						{
-							icon: icon,
-							classes: ['size-6']
-						},
-						with_context = false
-					)
-				-}}
-				<p class="text-center font-mono text-xs tracking-widest">
-					{{ icon }}
-				</p>
-			</li>
-		{%- endfor -%}
-	</ul>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-image">
-	<header class="space-y-3">
-		<p class="subtitle">
-			{{- __('Assets', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-image" class="text-2xl font-semibold">
-			{{- __('Image', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'image.html.twig accepts a WordPress attachment or a placeholder array: src, alt, width, height, and placeholder true. The starter ships public/placeholder.svg so catalog blocks do not need a media library file.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-		<p class="font-mono text-xs text-gray-500">
-			components/image.html.twig
-		</p>
-	</header>
-	<ul class="grid gap-8 sm:grid-cols-2">
-		{%- for item in post.images -%}
-			<li class="space-y-3">
-				<div class="overflow-hidden border border-gray-200 bg-gray-100">
-					{{-
-						include(
-							'components/image.html.twig',
-							{
-								image: item.image,
-								classes: ['block w-full']
-							},
-							with_context = false
-						)
-					-}}
-				</div>
-				<p class="font-mono text-xs tracking-widest">
-					{{ item.label }}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					placeholder.svg · {{ item.image.width }} × {{ item.image.height }}
-				</p>
-			</li>
-		{%- endfor -%}
-	</ul>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-teasers">
-	<header class="space-y-3">
-		<p class="subtitle">
-			{{- __('Components', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-teasers" class="text-2xl font-semibold">
-			{{- __('Teasers', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'Post cards used on the archive and latest posts. Landscape 3:2 image, first category, date, title, excerpt, read-more link.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-	<div class="grid items-start gap-8 lg:grid-cols-2">
-		<div class="space-y-3">
-			<p class="font-mono text-xs text-gray-500">
-				components/tease-post.html.twig
-			</p>
-			<div class="border border-black p-6">
-				{{-
-					include(
-						'components/tease-post.html.twig',
-						{
-							post: post.posts[0]
-						},
-						with_context = false
-					)
-				-}}
-			</div>
-		</div>
-		<div class="space-y-3">
-			<p class="font-mono text-xs text-gray-500">
-				components/tease-post-mini.html.twig
-			</p>
-			<div class="border border-black p-6">
-				{{-
-					include(
-						'components/tease-post-mini.html.twig',
-						{
-							post: post.posts[1]
-						},
-						with_context = false
-					)
-				-}}
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-pagination">
-	<header class="space-y-3">
-		<p class="subtitle">
-			{{- __('Components', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-pagination" class="text-2xl font-semibold">
-			{{- __('Pagination', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{- __('Archive pagination. Dummy pages come from the page model.', 'wp-cinquante-et-un') -}}
-		</p>
-	</header>
-	<div class="space-y-3">
-		<p class="font-mono text-xs text-gray-500">
-			components/pagination.html.twig
-		</p>
-		<div class="border border-black p-6">
-			{{-
-				include(
-					'components/pagination.html.twig',
-					{
-						pagination: post.pagination
-					},
-					with_context = false
-				)
-			-}}
-		</div>
-	</div>
-</section>
-
-<section class="space-y-8" aria-labelledby="styleguide-wysiwyg">
-	<header class="space-y-3">
-		<p class="subtitle">
-			{{- __('Content', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-wysiwyg" class="text-2xl font-semibold">
-			{{- __('WYSIWYG', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'Editorial markup styled by wysiwyg.css. Used on posts and generic pages.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-		<p class="font-mono text-xs text-gray-500">
-			src/stylesheets/components/wysiwyg.css
-		</p>
-	</header>
-	<div class="wysiwyg max-w-prose border border-black p-6">
-		<h2>{{- __('A site that grows with you.', 'wp-cinquante-et-un') -}}</h2>
-		<p>
-			{{-
-				__('Your site is not an expense to write off every three years.', 'wp-cinquante-et-un')
-			-}}
-			{{ ' ' }}
-			<a href="#">{{- __('It is an asset you build to last', 'wp-cinquante-et-un') -}}</a>{{ ', ' }}
-			<strong>{{- __('dedicated theme', 'wp-cinquante-et-un') -}}</strong>{{ ', ' }}
-			<em>{{- __('D2C and B2B', 'wp-cinquante-et-un') -}}</em>{{ ', ' }}
-			<mark>{{- __('CRM connected', 'wp-cinquante-et-un') -}}</mark>
-			{{ ' ' }}
-			{{- __('from day one, in', 'wp-cinquante-et-un') -}}
-			{{ ' ' }}
-			<code>theme.css</code>.
-		</p>
-		<h3>{{- __('What we do', 'wp-cinquante-et-un') -}}</h3>
-		<ul>
-			<li>{{- __('WordPress brochure and editorial sites', 'wp-cinquante-et-un') -}}</li>
-			<li>{{- __('Timber and Tailwind', 'wp-cinquante-et-un') -}}</li>
-			<li>{{- __('Maintenance and evolutions', 'wp-cinquante-et-un') -}}</li>
-		</ul>
-		<ol>
-			<li>{{- __('Scope the build', 'wp-cinquante-et-un') -}}</li>
-			<li>{{- __('Ship the starter', 'wp-cinquante-et-un') -}}</li>
-			<li>{{- __('Evolve with the company', 'wp-cinquante-et-un') -}}</li>
-		</ol>
-		<blockquote>
-			<p>
-				{{- __('Five commitments. None negotiable.', 'wp-cinquante-et-un') -}}
-			</p>
-			<cite>CINQ</cite>
-		</blockquote>
-		<hr />
-		<h4>{{- __('Code sample', 'wp-cinquante-et-un') -}}</h4>
-		<pre>
-			<code>@theme { --color-ink: #2A343A; }</code>
-		</pre>
-		<table>
-			<thead>
-				<tr>
-					<th>{{- __('Stack', 'wp-cinquante-et-un') -}}</th>
-					<th>{{- __('Role', 'wp-cinquante-et-un') -}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>WordPress</td>
-					<td>{{- __('CMS', 'wp-cinquante-et-un') -}}</td>
-				</tr>
-				<tr>
-					<td>Timber</td>
-					<td>{{- __('Templates', 'wp-cinquante-et-un') -}}</td>
-				</tr>
-				<tr>
-					<td>Tailwind</td>
-					<td>{{- __('Styles', 'wp-cinquante-et-un') -}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</section>
-
-<section class="space-y-20" aria-labelledby="styleguide-shell">
-	<header class="space-y-3">
-		<p class="subtitle">
-			{{- __('Shell', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-shell" class="text-2xl font-semibold">
-			{{- __('Layout shell', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'Components used in the header, footer, archives, search, and editorial templates. Not ACF blocks.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-		</p>
-	</header>
-
-	<div class="space-y-16">
-		<div class="space-y-6" id="styleguide-shell-editorial">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Subtitle, section header, text link', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Editorial primitives reused inside blocks and archive headers.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-			</header>
-			<div class="space-y-8 border border-black p-6">
-				<div class="space-y-3">
-					<p class="font-mono text-xs tracking-widest">
-						components/subtitle.html.twig
-					</p>
-					{{-
-						include(
-							'components/subtitle.html.twig',
-							{
-								title: __('Journal', 'wp-cinquante-et-un')
-							},
-							with_context = false
-						)
-					-}}
-				</div>
-				<div class="space-y-3">
-					<p class="font-mono text-xs tracking-widest">
-						components/section-header.html.twig
-					</p>
-					{{-
-						include(
-							'components/section-header.html.twig',
-							{
-								overline: __('Work', 'wp-cinquante-et-un'),
-								title: __('Projects that last', 'wp-cinquante-et-un'),
-								link: {
-									title: __('All case studies', 'wp-cinquante-et-un'),
-									url: '#'
-								}
-							},
-							with_context = false
-						)
-					-}}
-				</div>
-				<div class="space-y-3">
-					<p class="font-mono text-xs tracking-widest">
-						components/text-link.html.twig
-					</p>
-					{{-
-						include(
-							'components/text-link.html.twig',
-							{
-								title: __('View all posts', 'wp-cinquante-et-un'),
-								url: '#'
-							},
-							with_context = false
-						)
-					-}}
-				</div>
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-search-form">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Search form', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Used in the header, the 404 page, and the search landing page via get_search_form().',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/search-form.html.twig
-				</p>
-			</header>
-			{{-
-				include(
-					'components/search-form.html.twig',
-					{
-						classes: ['max-w-105']
-					}
-				)
-			-}}
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-newsletter">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Newsletter form', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Static fallback when no Contact Form 7 form is selected in theme options.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/newsletter-form.html.twig
-				</p>
-			</header>
-			<div class="max-w-105">
-				{{-
-					include(
-						'components/newsletter-form.html.twig',
-						{},
-						with_context = false
-					)
-				-}}
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-breadcrumb">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Breadcrumb', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Yoast SEO wrapper. JSON-LD BreadcrumbList is output by the plugin.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/breadcrumb.html.twig
-				</p>
-			</header>
-			{%- if yoast_breadcrumb() -%}
-				{{-
-					include(
-						'components/breadcrumb.html.twig'
-					)
-				-}}
-			{%- else -%}
-				<nav
-					aria-label="{{ __('Breadcrumb', 'wp-cinquante-et-un') }}"
-					class="text-xs text-black opacity-60"
-				>
-					<span>
-						<a href="{{ home_url }}" class="hover:underline">
-							{{- __('Home', 'wp-cinquante-et-un') -}}
-						</a>
-					</span>
-					<span aria-hidden="true"> · </span>
-					<span>{{- __('Journal', 'wp-cinquante-et-un') -}}</span>
-				</nav>
-				<p class="text-gray-500 text-xs">
-					{{-
-						__(
-							'Static preview shown when Yoast SEO is inactive on this environment.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-			{%- endif -%}
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-filters">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Taxonomy filters', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Category links on the journal archive. Active term uses .is-active.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/taxonomy-filters.html.twig
-				</p>
-			</header>
-			{{-
-				include(
-					'components/taxonomy-filters.html.twig',
-					{
-						items: post.shell_filters
-					}
-				)
-			-}}
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-search-result">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Search result', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{- __('List item on the search results page.', 'wp-cinquante-et-un') -}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/tease-search-result.html.twig
-				</p>
-			</header>
-			<div class="max-w-prose">
-				{{-
-					include(
-						'components/tease-search-result.html.twig',
-						{
-							post: post.posts[0]
-						},
-						with_context = false
-					)
-				-}}
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-socials">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Social links', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Footer icon row. URLs come from Réglages > Socials.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/social-links.html.twig
-				</p>
-			</header>
-			{%- set catalog_socials = socials | default({}) -%}
-			{%- set socials = post.shell_socials -%}
-			{{-
-				include(
-					'components/social-links.html.twig'
-				)
-			-}}
-			{%- set socials = catalog_socials -%}
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-page-header">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Page header', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Rendered when the first flexible block is not a hero.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/page-header.html.twig
-				</p>
-			</header>
-			<div class="border border-black">
-				{{-
-					include(
-						'components/page-header.html.twig',
-						{
-							post: post.shell_page
-						}
-					)
-				-}}
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-toc">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Table of contents', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Built server-side from H2 headings in the article content. The single template hides the nav below lg; this demo keeps it visible. Grid layout is set on the parent include via classes.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/toc.html.twig · cinq-wp-table-of-contents
-				</p>
-			</header>
-			<div class="grid grid-cols-12 gap-8">
-				{{-
-					include(
-						'components/toc.html.twig',
-						{
-							items: post.shell_toc_items(),
-							classes: [
-								'self-start',
-								'col-span-full',
-								'lg:sticky',
-								'lg:top-24',
-								'lg:col-span-3'
-							]
-						}
-					)
-				-}}
-				<div class="hidden lg:col-span-1 lg:block" aria-hidden="true"></div>
-				<div
-					id="styleguide-shell-toc-source"
-					class="wysiwyg col-span-full lg:col-span-8"
-				>
-					<h2 id="why-acf-blocks">{{- __('Why ACF blocks', 'wp-cinquante-et-un') -}}</h2>
-					<p>
-						{{-
-							__(
-								'Each layout maps to a Twig file the team can version and review.',
-								'wp-cinquante-et-un'
-							)
-						-}}
-					</p>
-					<h2 id="performance-budgets">{{- __('Performance budgets', 'wp-cinquante-et-un') -}}</h2>
-					<p>
-						{{-
-							__(
-								'Core Web Vitals are checked before launch, not after.',
-								'wp-cinquante-et-un'
-							)
-						-}}
-					</p>
-					<h2 id="editor-experience">{{- __('Editor experience', 'wp-cinquante-et-un') -}}</h2>
-					<p>
-						{{-
-							__(
-								'Marketing teams compose pages without touching markup.',
-								'wp-cinquante-et-un'
-							)
-						-}}
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-shell-skip-links">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Skip links', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'First focusable element in the document. Visible on keyboard focus only.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					components/skip-links.html.twig
-				</p>
-			</header>
-			<p class="text-gray-500 text-sm">
+			<p class="subtitle">{{- __( 'Section spacing', 'wp-cinquante-et-un' ) -}}</p>
+			<p class="max-w-prose text-sm text-secondary">
 				{{-
 					__(
-						'Included once in the layout shell. Tab into the page to reveal the skip link.',
+						'The only values for ACF spacing_top and spacing_bottom. Desktop then mobile.',
 						'wp-cinquante-et-un'
 					)
 				-}}
 			</p>
-			{{-
-				include(
-					'components/skip-links.html.twig',
-					{},
-					with_context = false
-				)
-			-}}
+			<ul class="space-y-2.5">
+				{%- for item in section_spacings -%}
+					<li class="flex items-center gap-5 text-xs">
+						<p class="w-30 font-medium">section/{{ item.name }}</p>
+						<p class="w-24 text-secondary">{{ item.desktop }} / {{ item.mobile }}</p>
+						<div class="h-4 bg-inverse {{ item.desktop_class }}"></div>
+						<div class="h-4 bg-media {{ item.mobile_class }}"></div>
+						<p class="text-secondary">{{- __( 'desktop · mobile', 'wp-cinquante-et-un' ) -}}</p>
+					</li>
+				{%- endfor -%}
+			</ul>
 		</div>
-	</div>
-</section>
+	</section>
 
-<section class="space-y-20" aria-labelledby="styleguide-ui">
-	<header class="space-y-3">
-		<p class="subtitle">
-			{{- __('CINQ UI', 'wp-cinquante-et-un') -}}
-		</p>
-		<h2 id="styleguide-ui" class="text-2xl font-semibold">
-			{{- __('Web Components', 'wp-cinquante-et-un') -}}
-		</h2>
-		<p class="text-gray-500 max-w-prose text-sm">
-			{{-
-				__(
-					'Packages from agencecinq/ui. Import the package in app.js, then use the custom element with the required ARIA markup.',
-					'wp-cinquante-et-un'
-				)
-			-}}
-			<a
-				class="text-black underline hover:text-gray-600"
-				href="https://agencecinq.github.io/ui/"
-			>
-				{{- __('CINQ UI documentation', 'wp-cinquante-et-un') -}}
-			</a>
-		</p>
-	</header>
-
-	{%- set tab_classes = 'border border-black px-4 py-3 text-xs font-medium transition-colors hover:bg-black hover:text-white [&.is-active]:bg-black [&.is-active]:text-white' -%}
-	{%- set switch_classes = 'inline-flex cursor-pointer items-center gap-3 text-sm font-medium focus-visible:outline focus-visible:outline-offset-2 [&[aria-checked=true]_.thumb]:translate-x-4 [&[aria-checked=true]_.track]:border-black [&[aria-checked=true]_.track]:bg-black' -%}
-
-	<div class="space-y-16">
-		<div class="space-y-6" id="styleguide-ui-drawer">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Drawer', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
+	<section class="space-y-8" aria-labelledby="styleguide-layout">
+		<header class="space-y-2">
+			<p class="subtitle">{{- __( 'Foundations', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-layout" class="text-2xl font-semibold">
+				{{- __( 'Layout', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'12-column grid. Container max-width is 1440px by default (set --container-max-width to 110rem for 1760px). Article body never exceeds 720px.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+		</header>
+		<div class="grid grid-cols-12 gap-4 bg-surface p-5">
+			{%- for i in 1..12 -%}
+				<div class="col-span-1 bg-media py-12"></div>
+			{%- endfor -%}
+		</div>
+		<div class="flex h-14 w-full max-w-prose items-center justify-center border border-default">
+			<p class="text-xs text-secondary">
+				{{-
+					__(
+						'layout/prose-max-width: 720px, about 65 characters. The measure for long copy.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+		</div>
+		<ul class="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-4">
+			<li class="space-y-2 border border-default p-5">
+				<p class="text-xs font-medium text-secondary">
+					{{- __( 'Breakpoints', 'wp-cinquante-et-un' ) -}}
+				</p>
+				<p class="text-base font-semibold">sm 640 · md 768 · lg 1024</p>
+				<p class="text-xs text-secondary">
 					{{-
 						__(
-							'Off-canvas panel. Pair cinq-drawer with cinq-drawer-button.',
+							'md is used here: editorial grids often go to two columns before lg.',
 							'wp-cinquante-et-un'
 						)
 					-}}
 				</p>
-				<p class="font-mono text-xs text-gray-500">
-					@agencecinq/drawer · components/drawer.html.twig
+			</li>
+			<li class="-ml-px space-y-2 border border-default p-5">
+				<p class="text-xs font-medium text-secondary">
+					{{- __( 'Container', 'wp-cinquante-et-un' ) -}}
 				</p>
-			</header>
-			<div class="border border-black p-6">
-				<cinq-drawer-button class="inline-block">
-					{{-
-						include(
-							'components/button.html.twig',
-							{
-								title: __('Open drawer', 'wp-cinquante-et-un'),
-								attributes: {
-									'aria-controls': 'styleguide-drawer'
-								}
-							},
-							with_context = false
-						)
-					-}}
-				</cinq-drawer-button>
-				{% embed 'components/drawer.html.twig'
-					with {
-						id: 'styleguide-drawer',
-						direction: 'from-right',
-						aria_label: __('Styleguide drawer', 'wp-cinquante-et-un')
-					}
-				%}
-					{% block content %}
-						<div class="space-y-3 p-5">
-							<p class="text-xl font-semibold">
-								{{- __('Drawer', 'wp-cinquante-et-un') -}}
-							</p>
-							<p class="text-sm text-gray-600">
-								{{-
-									__(
-										'Slide-over navigation or filters. Close with Escape or the backdrop.',
-										'wp-cinquante-et-un'
-									)
-								-}}
-							</p>
-						</div>
-					{% endblock %}
-				{% endembed %}
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-ui-modal">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Modal', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__('Native dialog. Pair cinq-modal with cinq-modal-button.', 'wp-cinquante-et-un')
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					@agencecinq/modal · components/modal.html.twig
-				</p>
-			</header>
-			<div class="border border-black p-6">
-				<cinq-modal-button class="inline-block">
-					{{-
-						include(
-							'components/button.html.twig',
-							{
-								title: __('Open modal', 'wp-cinquante-et-un'),
-								attributes: {
-									'aria-controls': 'styleguide-modal',
-									'aria-pressed': 'false'
-								}
-							},
-							with_context = false
-						)
-					-}}
-				</cinq-modal-button>
-				{% embed 'components/modal.html.twig'
-					with {
-						id: 'styleguide-modal'
-					}
-				%}
-					{% block content %}
-						<div class="space-y-3">
-							<p class="text-xl font-semibold">
-								{{- __('Modal', 'wp-cinquante-et-un') -}}
-							</p>
-							<p class="text-sm text-gray-600">
-								{{-
-									__(
-										'Focus trap and backdrop dismiss. Use for confirmations or compact forms.',
-										'wp-cinquante-et-un'
-									)
-								-}}
-							</p>
-						</div>
-					{% endblock %}
-				{% endembed %}
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-ui-tabs">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Tabs', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
+				<p class="text-base font-semibold">1440 / 1760 px</p>
+				<p class="text-xs text-secondary">
 					{{-
 						__(
-							'Keyboard navigable tablist. Active tab mirrors the secondary button pattern.',
+							'Two modes. Override --container-max-width (90rem or 110rem) from the start.',
 							'wp-cinquante-et-un'
 						)
 					-}}
 				</p>
-				<p class="font-mono text-xs text-gray-500">
-					@agencecinq/tabs
+			</li>
+			<li class="-ml-px space-y-2 border border-default p-5">
+				<p class="text-xs font-medium text-secondary">
+					{{- __( 'Editorial measure', 'wp-cinquante-et-un' ) -}}
 				</p>
-			</header>
-			<div class="border border-black p-6">
-				<cinq-tabs class="block space-y-6" data-hash="false">
-					<div
-						class="flex flex-wrap gap-2"
-						role="tablist"
-						aria-label="{{ __('Styleguide tabs', 'wp-cinquante-et-un') }}"
-					>
-						<button
-							type="button"
-							class="is-active {{ tab_classes }}"
-							role="tab"
-							aria-selected="true"
-							aria-controls="styleguide-tab-one"
-							id="styleguide-tab-btn-one"
-						>
-							{{- __('One', 'wp-cinquante-et-un') -}}
-						</button>
-						<button
-							type="button"
-							class="{{ tab_classes }}"
-							role="tab"
-							aria-selected="false"
-							aria-controls="styleguide-tab-two"
-							id="styleguide-tab-btn-two"
-							tabindex="-1"
-						>
-							{{- __('Two', 'wp-cinquante-et-un') -}}
-						</button>
-						<button
-							type="button"
-							class="{{ tab_classes }}"
-							role="tab"
-							aria-selected="false"
-							aria-controls="styleguide-tab-three"
-							id="styleguide-tab-btn-three"
-							tabindex="-1"
-						>
-							{{- __('Three', 'wp-cinquante-et-un') -}}
-						</button>
+				<p class="text-base font-semibold">720 px</p>
+				<p class="text-xs text-secondary">
+					{{-
+						__(
+							'Article body never exceeds this width, whatever the container.',
+							'wp-cinquante-et-un'
+						)
+					-}}
+				</p>
+			</li>
+			<li class="-ml-px space-y-2 border border-default p-5">
+				<p class="text-xs font-medium text-secondary">
+					{{- __( 'Radius', 'wp-cinquante-et-un' ) -}}
+				</p>
+				<p class="text-base font-semibold">0</p>
+				<p class="text-xs text-secondary">
+					{{- __( 'Sharp corners, 1px borders.', 'wp-cinquante-et-un' ) -}}
+				</p>
+			</li>
+		</ul>
+	</section>
+
+	<section class="space-y-8" aria-labelledby="styleguide-radius">
+		<header class="space-y-2">
+			<p class="subtitle">{{- __( 'Foundations', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-radius" class="text-2xl font-semibold">
+				{{- __( 'Radius', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__( 'Radius is 0. Do not add rounded-* utilities in the starter.', 'wp-cinquante-et-un' )
+				-}}
+			</p>
+		</header>
+		<div class="space-y-2">
+			<div class="size-20 bg-inverse"></div>
+			<p class="text-xs font-medium">.rounded-none</p>
+		</div>
+	</section>
+
+	<section class="space-y-8" aria-labelledby="styleguide-buttons">
+		<header class="space-y-3">
+			<p class="subtitle">{{- __( 'Components', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-buttons" class="text-2xl font-semibold">
+				{{- __( 'Buttons', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="font-mono text-xs text-secondary">
+				components/button.html.twig · src/stylesheets/components/button.css
+			</p>
+		</header>
+
+		<div class="space-y-8">
+			<div class="space-y-4">
+				<p class="font-mono text-xs tracking-widest">
+					{{- __( 'Primary', 'wp-cinquante-et-un' ) -}}
+				</p>
+				<div class="flex flex-wrap items-center gap-4">
+					{{-
+						include(
+							'components/button.html.twig',
+							{ title: __( 'Button', 'wp-cinquante-et-un' ) }
+						)
+					-}}
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Button', 'wp-cinquante-et-un' ),
+								icon: 'plus',
+							}
+						)
+					-}}
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Button', 'wp-cinquante-et-un' ),
+								disabled: true,
+							}
+						)
+					-}}
+				</div>
+			</div>
+
+			<div class="space-y-4">
+				<p class="font-mono text-xs tracking-widest">
+					{{- __( 'Secondary', 'wp-cinquante-et-un' ) -}}
+				</p>
+				<div class="flex flex-wrap items-center gap-4">
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Button', 'wp-cinquante-et-un' ),
+								variant: 'secondary',
+							}
+						)
+					-}}
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Button', 'wp-cinquante-et-un' ),
+								variant: 'secondary',
+								icon: 'plus',
+							}
+						)
+					-}}
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Button', 'wp-cinquante-et-un' ),
+								variant: 'secondary',
+								disabled: true,
+							}
+						)
+					-}}
+				</div>
+			</div>
+
+			<div class="space-y-4">
+				<p class="font-mono text-xs tracking-widest">
+					{{- __( 'Tertiary', 'wp-cinquante-et-un' ) -}}
+				</p>
+				<div class="flex flex-wrap items-center gap-4">
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Button', 'wp-cinquante-et-un' ),
+								variant: 'tertiary',
+							}
+						)
+					-}}
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Button', 'wp-cinquante-et-un' ),
+								variant: 'tertiary',
+								icon: 'plus',
+							}
+						)
+					-}}
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Button', 'wp-cinquante-et-un' ),
+								variant: 'tertiary',
+								disabled: true,
+							}
+						)
+					-}}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="space-y-8" aria-labelledby="styleguide-tag">
+		<header class="space-y-3">
+			<p class="subtitle">{{- __( 'Components', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-tag" class="text-2xl font-semibold">
+				{{- __( 'Tag', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'Taxonomy label for article categories, case study sectors, or post tags. One visual style; labels come from get_the_terms(), never from a hand-typed ACF field.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+		</header>
+
+		<div class="space-y-8">
+			<div class="space-y-3">
+				<p class="font-mono text-xs tracking-widest">components/tag.html.twig</p>
+				<div class="flex flex-wrap items-center gap-2">
+					{{-
+						include( 'components/tag.html.twig', { title: __( 'Strategy', 'wp-cinquante-et-un' ) } )
+					-}}
+					{{-
+						include( 'components/tag.html.twig', { title: __( 'Method', 'wp-cinquante-et-un' ) } )
+					-}}
+				</div>
+			</div>
+
+			<div class="space-y-3">
+				<p class="font-mono text-xs tracking-widest">
+					{{- __( 'Linked tag', 'wp-cinquante-et-un' ) -}}
+				</p>
+				{{-
+					include(
+						'components/tag.html.twig',
+						{
+							title: __( 'Strategy', 'wp-cinquante-et-un' ),
+							url: '#',
+						}
+					)
+				-}}
+			</div>
+		</div>
+	</section>
+
+	<section class="space-y-8" aria-labelledby="styleguide-icons">
+		<header class="space-y-2">
+			<p class="subtitle">{{- __( 'Assets', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-icons" class="text-2xl font-semibold">
+				{{- __( 'Icons', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'Twenty-one icons on a 24 by 24 grid, recolorable with currentColor. Add a file to src/icons/, run pnpm build, then include svg/use.html.twig.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+		</header>
+		<ul class="grid grid-cols-4 gap-5 sm:grid-cols-6 lg:grid-cols-8">
+			{%- for icon in icons -%}
+				<li class="flex flex-col items-center gap-2">
+					{{-
+						include(
+							'svg/use.html.twig',
+							{
+								icon: icon,
+								classes: [ 'size-6' ],
+							},
+							with_context: false
+						)
+					-}}
+					<p class="text-center font-mono text-xs tracking-widest">{{ icon }}</p>
+				</li>
+			{%- endfor -%}
+		</ul>
+		<p class="subtitle">{{- __( 'Extras', 'wp-cinquante-et-un' ) -}}</p>
+		<ul class="grid grid-cols-4 gap-5 sm:grid-cols-6 lg:grid-cols-8">
+			{%- for icon in extra_icons -%}
+				<li class="flex flex-col items-center gap-2">
+					{{-
+						include(
+							'svg/use.html.twig',
+							{
+								icon: icon,
+								classes: [ 'size-6' ],
+							},
+							with_context: false
+						)
+					-}}
+					<p class="text-center font-mono text-xs tracking-widest">{{ icon }}</p>
+				</li>
+			{%- endfor -%}
+		</ul>
+	</section>
+
+	<section class="space-y-8" aria-labelledby="styleguide-image">
+		<header class="space-y-3">
+			<p class="subtitle">{{- __( 'Assets', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-image" class="text-2xl font-semibold">
+				{{- __( 'Image', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'image.html.twig accepts a WordPress attachment or a placeholder array: src, alt, width, height, and placeholder true. The starter ships public/placeholder.svg so catalog blocks do not need a media library file.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+			<p class="font-mono text-xs text-secondary">components/image.html.twig</p>
+		</header>
+		<ul class="grid gap-8 sm:grid-cols-2">
+			{%- for item in post.images -%}
+				<li class="space-y-3">
+					<div class="overflow-hidden border border-field bg-surface">
+						{{-
+							include(
+								'components/image.html.twig',
+								{
+									image: item.image,
+									classes: [ 'block w-full' ],
+								},
+								with_context: false
+							)
+						-}}
 					</div>
-					<section
-						class="is-active text-sm text-gray-600"
-						tabindex="0"
-						role="tabpanel"
-						aria-labelledby="styleguide-tab-btn-one"
-						id="styleguide-tab-one"
-					>
-						{{- __('First panel. Arrow keys move between tabs.', 'wp-cinquante-et-un') -}}
-					</section>
-					<section
-						class="text-sm text-gray-600"
-						tabindex="0"
-						role="tabpanel"
-						aria-labelledby="styleguide-tab-btn-two"
-						id="styleguide-tab-two"
-						hidden
-					>
-						{{- __('Second panel.', 'wp-cinquante-et-un') -}}
-					</section>
-					<section
-						class="text-sm text-gray-600"
-						tabindex="0"
-						role="tabpanel"
-						aria-labelledby="styleguide-tab-btn-three"
-						id="styleguide-tab-three"
-						hidden
-					>
-						{{- __('Third panel.', 'wp-cinquante-et-un') -}}
-					</section>
-				</cinq-tabs>
+					<p class="font-mono text-xs tracking-widest">{{ item.label }}</p>
+					<p class="font-mono text-xs text-secondary">
+						placeholder.svg · {{ item.image.width }} × {{ item.image.height }}
+					</p>
+				</li>
+			{%- endfor -%}
+		</ul>
+	</section>
+
+	<section class="space-y-8" aria-labelledby="styleguide-teasers">
+		<header class="space-y-3">
+			<p class="subtitle">{{- __( 'Components', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-teasers" class="text-2xl font-semibold">
+				{{- __( 'Teasers', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'Post cards used on the archive and latest posts. Landscape 3:2 image, first category, date, title, excerpt, read-more link.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+		</header>
+		<div class="grid items-start gap-8 lg:grid-cols-2">
+			<div class="space-y-3">
+				<p class="font-mono text-xs text-secondary">components/tease-post.html.twig</p>
+				<div class="border border-default p-6">
+					{{-
+						include(
+							'components/tease-post.html.twig',
+							{ post: post.posts[0] },
+							with_context: false
+						)
+					-}}
+				</div>
+			</div>
+			<div class="space-y-3">
+				<p class="font-mono text-xs text-secondary">components/tease-post-mini.html.twig</p>
+				<div class="border border-default p-6">
+					{{-
+						include(
+							'components/tease-post-mini.html.twig',
+							{ post: post.posts[1] },
+							with_context: false
+						)
+					-}}
+				</div>
 			</div>
 		</div>
+	</section>
 
-		<div class="space-y-6" id="styleguide-ui-accordion">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Accordion', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
+	<section class="space-y-8" aria-labelledby="styleguide-pagination">
+		<header class="space-y-3">
+			<p class="subtitle">{{- __( 'Components', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-pagination" class="text-2xl font-semibold">
+				{{- __( 'Pagination', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__( 'Archive pagination. Dummy pages come from the page model.', 'wp-cinquante-et-un' )
+				-}}
+			</p>
+		</header>
+		<div class="space-y-3">
+			<p class="font-mono text-xs text-secondary">components/pagination.html.twig</p>
+			<div class="border border-default p-6">
+				{{-
+					include(
+						'components/pagination.html.twig',
+						{ pagination: post.pagination },
+						with_context: false
+					)
+				-}}
+			</div>
+		</div>
+	</section>
+
+	<section class="space-y-8" aria-labelledby="styleguide-wysiwyg">
+		<header class="space-y-3">
+			<p class="subtitle">{{- __( 'Content', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-wysiwyg" class="text-2xl font-semibold">
+				{{- __( 'WYSIWYG', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'Editorial markup styled by wysiwyg.css. Used on posts and generic pages.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+			<p class="font-mono text-xs text-secondary">src/stylesheets/components/wysiwyg.css</p>
+		</header>
+		<div class="wysiwyg max-w-prose border border-default p-6">
+			<h2>{{- __( 'A site that grows with you.', 'wp-cinquante-et-un' ) -}}</h2>
+			<p>
+				{{-
+					__( 'Your site is not an expense to write off every three years.', 'wp-cinquante-et-un' )
+				-}}
+				{{ ' ' }}
+				<a href="#">{{- __( 'It is an asset you build to last', 'wp-cinquante-et-un' ) -}}</a>{{
+					', '
+				}}
+				<strong>{{- __( 'dedicated theme', 'wp-cinquante-et-un' ) -}}</strong>{{ ', ' }}
+				<em>{{- __( 'D2C and B2B', 'wp-cinquante-et-un' ) -}}</em>{{ ', ' }}
+				<mark>{{- __( 'CRM connected', 'wp-cinquante-et-un' ) -}}</mark>
+				{{ ' ' }}
+				{{- __( 'from day one, in', 'wp-cinquante-et-un' ) -}}
+				{{ ' ' }}
+				<code>theme.css</code>.
+			</p>
+			<h3>{{- __( 'What we do', 'wp-cinquante-et-un' ) -}}</h3>
+			<ul>
+				<li>{{- __( 'WordPress brochure and editorial sites', 'wp-cinquante-et-un' ) -}}</li>
+				<li>{{- __( 'Timber and Tailwind', 'wp-cinquante-et-un' ) -}}</li>
+				<li>{{- __( 'Maintenance and evolutions', 'wp-cinquante-et-un' ) -}}</li>
+			</ul>
+			<ol>
+				<li>{{- __( 'Scope the build', 'wp-cinquante-et-un' ) -}}</li>
+				<li>{{- __( 'Ship the starter', 'wp-cinquante-et-un' ) -}}</li>
+				<li>{{- __( 'Evolve with the company', 'wp-cinquante-et-un' ) -}}</li>
+			</ol>
+			<blockquote>
+				<p>{{- __( 'Five commitments. None negotiable.', 'wp-cinquante-et-un' ) -}}</p>
+				<cite>CINQ</cite>
+			</blockquote>
+			<hr />
+			<h4>{{- __( 'Code sample', 'wp-cinquante-et-un' ) -}}</h4>
+			<pre>
+			<code>@theme { --color-ink: #2A343A; }</code>
+		</pre>
+			<table>
+				<thead>
+					<tr>
+						<th>{{- __( 'Stack', 'wp-cinquante-et-un' ) -}}</th>
+						<th>{{- __( 'Role', 'wp-cinquante-et-un' ) -}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>WordPress</td>
+						<td>{{- __( 'CMS', 'wp-cinquante-et-un' ) -}}</td>
+					</tr>
+					<tr>
+						<td>Timber</td>
+						<td>{{- __( 'Templates', 'wp-cinquante-et-un' ) -}}</td>
+					</tr>
+					<tr>
+						<td>Tailwind</td>
+						<td>{{- __( 'Styles', 'wp-cinquante-et-un' ) -}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="space-y-20" aria-labelledby="styleguide-shell">
+		<header class="space-y-3">
+			<p class="subtitle">{{- __( 'Shell', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-shell" class="text-2xl font-semibold">
+				{{- __( 'Layout shell', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'Components used in the header, footer, archives, search, and editorial templates. Not ACF blocks.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+			</p>
+		</header>
+
+		<div class="space-y-16">
+			<div class="space-y-6" id="styleguide-shell-editorial">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">
+						{{- __( 'Subtitle, section header, text link', 'wp-cinquante-et-un' ) -}}
+					</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Editorial primitives reused inside blocks and archive headers.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+				</header>
+				<div class="space-y-8 border border-default p-6">
+					<div class="space-y-3">
+						<p class="font-mono text-xs tracking-widest">components/subtitle.html.twig</p>
+						{{-
+							include(
+								'components/subtitle.html.twig',
+								{ title: __( 'Journal', 'wp-cinquante-et-un' ) },
+								with_context: false
+							)
+						-}}
+					</div>
+					<div class="space-y-3">
+						<p class="font-mono text-xs tracking-widest">components/section-header.html.twig</p>
+						{{-
+							include(
+								'components/section-header.html.twig',
+								{
+									overline: __( 'Work', 'wp-cinquante-et-un' ),
+									title: __( 'Projects that last', 'wp-cinquante-et-un' ),
+									link: {
+										title: __( 'All case studies', 'wp-cinquante-et-un' ),
+										url: '#',
+									},
+								},
+								with_context: false
+							)
+						-}}
+					</div>
+					<div class="space-y-3">
+						<p class="font-mono text-xs tracking-widest">components/text-link.html.twig</p>
+						{{-
+							include(
+								'components/text-link.html.twig',
+								{
+									title: __( 'View all posts', 'wp-cinquante-et-un' ),
+									url: '#',
+								},
+								with_context: false
+							)
+						-}}
+					</div>
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-search-form">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Search form', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Used in the header, the 404 page, and the search landing page via get_search_form().',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">components/search-form.html.twig</p>
+				</header>
+				{{- include( 'components/search-form.html.twig', { classes: [ 'max-w-105' ] } ) -}}
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-newsletter">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">
+						{{- __( 'Newsletter form', 'wp-cinquante-et-un' ) -}}
+					</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Static fallback when no Contact Form 7 form is selected in theme options.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">components/newsletter-form.html.twig</p>
+				</header>
+				<div class="max-w-105">
+					{{- include( 'components/newsletter-form.html.twig', {}, with_context: false ) -}}
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-breadcrumb">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Breadcrumb', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Yoast SEO wrapper. JSON-LD BreadcrumbList is output by the plugin.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">components/breadcrumb.html.twig</p>
+				</header>
+				{%- if yoast_breadcrumb() -%}
+					{{- include( 'components/breadcrumb.html.twig' ) -}}
+				{%- else -%}
+					<nav
+						aria-label="{{ __( 'Breadcrumb', 'wp-cinquante-et-un' ) }}"
+						class="text-xs text-primary opacity-60"
+					>
+						<span>
+							<a href="{{ home_url }}" class="hover:underline">
+								{{- __( 'Home', 'wp-cinquante-et-un' ) -}}
+							</a>
+						</span>
+						<span aria-hidden="true"> · </span>
+						<span>{{- __( 'Journal', 'wp-cinquante-et-un' ) -}}</span>
+					</nav>
+					<p class="text-xs text-secondary">
+						{{-
+							__(
+								'Static preview shown when Yoast SEO is inactive on this environment.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+				{%- endif -%}
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-filters">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">
+						{{- __( 'Taxonomy filters', 'wp-cinquante-et-un' ) -}}
+					</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Category links on the journal archive. Active term uses .is-active.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">components/taxonomy-filters.html.twig</p>
+				</header>
+				{{- include( 'components/taxonomy-filters.html.twig', { items: post.shell_filters } ) -}}
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-search-result">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Search result', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{- __( 'List item on the search results page.', 'wp-cinquante-et-un' ) -}}
+					</p>
+					<p class="font-mono text-xs text-secondary">components/tease-search-result.html.twig</p>
+				</header>
+				<div class="max-w-prose">
+					{{-
+						include(
+							'components/tease-search-result.html.twig',
+							{ post: post.posts[0] },
+							with_context: false
+						)
+					-}}
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-socials">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Social links', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__( 'Footer icon row. URLs come from Réglages > Socials.', 'wp-cinquante-et-un' )
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">components/social-links.html.twig</p>
+				</header>
+				{%- set catalog_socials = socials | default( {} ) -%}
+				{%- set socials = post.shell_socials -%}
+				{{- include( 'components/social-links.html.twig' ) -}}
+				{%- set socials = catalog_socials -%}
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-page-header">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Page header', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__( 'Rendered when the first flexible block is not a hero.', 'wp-cinquante-et-un' )
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">components/page-header.html.twig</p>
+				</header>
+				<div class="border border-default">
+					{{- include( 'components/page-header.html.twig', { post: post.shell_page } ) -}}
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-toc">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">
+						{{- __( 'Table of contents', 'wp-cinquante-et-un' ) -}}
+					</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Built server-side from H2 headings in the article content. The single template hides the nav below lg; this demo keeps it visible. Grid layout is set on the parent include via classes.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">
+						components/toc.html.twig · cinq-wp-table-of-contents
+					</p>
+				</header>
+				<div class="grid grid-cols-12 gap-8">
+					{{-
+						include(
+							'components/toc.html.twig',
+							{
+								items: post.shell_toc_items(),
+								classes: [
+									'self-start',
+									'col-span-full',
+									'lg:sticky',
+									'lg:top-24',
+									'lg:col-span-3',
+								],
+							}
+						)
+					-}}
+					<div class="hidden lg:col-span-1 lg:block" aria-hidden="true"></div>
+					<div id="styleguide-shell-toc-source" class="wysiwyg col-span-full lg:col-span-8">
+						<h2 id="why-acf-blocks">{{- __( 'Why ACF blocks', 'wp-cinquante-et-un' ) -}}</h2>
+						<p>
+							{{-
+								__(
+									'Each layout maps to a Twig file the team can version and review.',
+									'wp-cinquante-et-un'
+								)
+							-}}
+						</p>
+						<h2 id="performance-budgets">
+							{{- __( 'Performance budgets', 'wp-cinquante-et-un' ) -}}
+						</h2>
+						<p>
+							{{-
+								__( 'Core Web Vitals are checked before launch, not after.', 'wp-cinquante-et-un' )
+							-}}
+						</p>
+						<h2 id="editor-experience">{{- __( 'Editor experience', 'wp-cinquante-et-un' ) -}}</h2>
+						<p>
+							{{-
+								__( 'Marketing teams compose pages without touching markup.', 'wp-cinquante-et-un' )
+							-}}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-shell-skip-links">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Skip links', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'First focusable element in the document. Visible on keyboard focus only.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">components/skip-links.html.twig</p>
+				</header>
+				<p class="text-sm text-secondary">
 					{{-
 						__(
-							'JS accordion from CINQ UI. Production FAQ blocks use the native details/summary component instead.',
+							'Included once in the layout shell. Tab into the page to reveal the skip link.',
 							'wp-cinquante-et-un'
 						)
 					-}}
 				</p>
-				<p class="font-mono text-xs text-gray-500">
-					@agencecinq/accordion · components/accordion-group.html.twig
-				</p>
-			</header>
-			<div class="max-w-prose border border-black p-6">
-				<cinq-accordion class="block border-t border-gray-200" data-hash="false">
-					<div
-						class="border-b border-gray-200 py-6 data-[open=true]:flex data-[open=true]:flex-col data-[open=true]:gap-4"
-						data-panel
-						data-open="true"
-						data-deselect="true"
-					>
-						<button
-							type="button"
-							class="flex w-full cursor-pointer items-center justify-between gap-4 text-left text-sm font-semibold"
-							data-header
-							id="styleguide-acc-1-header"
-							aria-expanded="true"
-							aria-controls="styleguide-acc-1-body"
-						>
-							<span class="min-w-0 flex-1">
-								{{- __('Why do you publish your prices?', 'wp-cinquante-et-un') -}}
-							</span>
-							<span
-								class="relative flex size-8 shrink-0 items-center justify-center bg-gray-100"
-								aria-hidden="true"
-							>
-								<span class="in-data-[open=true]:hidden">
+				{{- include( 'components/skip-links.html.twig', {}, with_context: false ) -}}
+			</div>
+		</div>
+	</section>
+
+	<section class="space-y-20" aria-labelledby="styleguide-ui">
+		<header class="space-y-3">
+			<p class="subtitle">{{- __( 'CINQ UI', 'wp-cinquante-et-un' ) -}}</p>
+			<h2 id="styleguide-ui" class="text-2xl font-semibold">
+				{{- __( 'Web Components', 'wp-cinquante-et-un' ) -}}
+			</h2>
+			<p class="max-w-prose text-sm text-secondary">
+				{{-
+					__(
+						'Packages from agencecinq/ui. Import the package in app.js, then use the custom element with the required ARIA markup.',
+						'wp-cinquante-et-un'
+					)
+				-}}
+				<a
+					class="text-primary underline hover:text-secondary"
+					href="https://agencecinq.github.io/ui/"
+				>
+					{{- __( 'CINQ UI documentation', 'wp-cinquante-et-un' ) -}}
+				</a>
+			</p>
+		</header>
+
+		{%- set tab_classes =
+			'border border-default px-4 py-3 text-xs font-medium transition-colors hover:bg-inverse hover:text-inverse [&.is-active]:bg-inverse [&.is-active]:text-inverse'
+		-%}
+		{%- set switch_classes =
+			'inline-flex cursor-pointer items-center gap-3 text-sm font-medium focus-visible:outline focus-visible:outline-offset-2 [&[aria-checked=true]_.thumb]:translate-x-4 [&[aria-checked=true]_.track]:border-default [&[aria-checked=true]_.track]:bg-inverse'
+		-%}
+
+		<div class="space-y-16">
+			<div class="space-y-6" id="styleguide-ui-drawer">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Drawer', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Off-canvas native dialog in cinq-drawer, opened by a commandfor button (invoker commands).',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">
+						@agencecinq/drawer · components/drawer.html.twig
+					</p>
+				</header>
+				<div class="border border-default p-6">
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Open drawer', 'wp-cinquante-et-un' ),
+								attributes: {
+									commandfor: 'styleguide-drawer',
+									command: 'show-modal',
+								},
+							},
+							with_context: false
+						)
+					-}}
+					{% embed 'components/drawer.html.twig'
+						with {
+							id: 'styleguide-drawer',
+							direction: 'from-right',
+							aria_label: __( 'Styleguide drawer', 'wp-cinquante-et-un' ),
+						}
+					%}
+						{% block content %}
+							<div class="space-y-3 p-5">
+								<p class="text-xl font-semibold">{{- __( 'Drawer', 'wp-cinquante-et-un' ) -}}</p>
+								<p class="text-sm text-secondary">
 									{{-
-										include(
-											'svg/use.html.twig',
-											{
-												classes: ['size-3'],
-												icon: 'plus'
-											},
-											with_context = false
+										__(
+											'Slide-over navigation or filters. Close with Escape, the backdrop or the button.',
+											'wp-cinquante-et-un'
 										)
 									-}}
-								</span>
-								<span class="hidden in-data-[open=true]:block">
-									{{-
-										include(
-											'svg/use.html.twig',
-											{
-												classes: ['size-3'],
-												icon: 'minus'
-											},
-											with_context = false
-										)
-									-}}
-								</span>
-							</span>
-						</button>
-						<div id="styleguide-acc-1-body" role="region" aria-labelledby="styleguide-acc-1-header">
-							<div class="text-sm text-gray-600" data-inner>
+								</p>
 								{{-
-									__(
-										'A web build has a scope and a cost. Hiding them until the third meeting only buys time to get attached. Our bases run from 12 900 to 36 900 euros. The full grid is public.',
-										'wp-cinquante-et-un'
+									include(
+										'components/button.html.twig',
+										{
+											title: __( 'Close', 'wp-cinquante-et-un' ),
+											variant: 'secondary',
+											attributes: {
+												commandfor: 'styleguide-drawer',
+												command: 'request-close',
+											},
+										},
+										with_context: false
 									)
 								-}}
 							</div>
-						</div>
-					</div>
-					<div
-						class="border-b border-gray-200 py-6 data-[open=true]:flex data-[open=true]:flex-col data-[open=true]:gap-4"
-						data-panel
-						data-open="false"
-						data-deselect="true"
-					>
-						<button
-							type="button"
-							class="flex w-full cursor-pointer items-center justify-between gap-4 text-left text-sm font-semibold"
-							data-header
-							id="styleguide-acc-2-header"
-							aria-expanded="false"
-							aria-controls="styleguide-acc-2-body"
-						>
-							<span class="min-w-0 flex-1">
-								{{- __('What happens if the scope moves mid-build?', 'wp-cinquante-et-un') -}}
-							</span>
-							<span
-								class="relative flex size-8 shrink-0 items-center justify-center bg-gray-100"
-								aria-hidden="true"
-							>
-								<span class="in-data-[open=true]:hidden">
+						{% endblock %}
+					{% endembed %}
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-ui-modal">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Modal', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Native dialog in cinq-modal, opened by a commandfor button (invoker commands).',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">
+						@agencecinq/modal · components/modal.html.twig
+					</p>
+				</header>
+				<div class="border border-default p-6">
+					{{-
+						include(
+							'components/button.html.twig',
+							{
+								title: __( 'Open modal', 'wp-cinquante-et-un' ),
+								attributes: {
+									commandfor: 'styleguide-modal',
+									command: 'show-modal',
+								},
+							},
+							with_context: false
+						)
+					-}}
+					{% embed 'components/modal.html.twig'
+						with {
+							id: 'styleguide-modal',
+							title: __( 'Modal', 'wp-cinquante-et-un' ),
+						}
+					%}
+						{% block content %}
+							<div class="space-y-3">
+								<p class="text-sm text-secondary">
 									{{-
-										include(
-											'svg/use.html.twig',
-											{
-												classes: ['size-3'],
-												icon: 'plus'
-											},
-											with_context = false
+										__(
+											'The page is inert while it is open, a backdrop click closes it. Use for confirmations or compact forms.',
+											'wp-cinquante-et-un'
 										)
 									-}}
-								</span>
-								<span class="hidden in-data-[open=true]:block">
-									{{-
-										include(
-											'svg/use.html.twig',
-											{
-												classes: ['size-3'],
-												icon: 'minus'
-											},
-											with_context = false
-										)
-									-}}
-								</span>
-							</span>
-						</button>
+								</p>
+							</div>
+						{% endblock %}
+					{% endembed %}
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-ui-tabs">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Tabs', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Keyboard navigable tablist. Active tab mirrors the secondary button pattern.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">@agencecinq/tabs</p>
+				</header>
+				<div class="border border-default p-6">
+					<cinq-tabs class="block space-y-6" data-hash="false">
 						<div
-							id="styleguide-acc-2-body"
-							role="region"
-							aria-labelledby="styleguide-acc-2-header"
+							class="flex flex-wrap gap-2"
+							role="tablist"
+							aria-label="{{ __( 'Styleguide tabs', 'wp-cinquante-et-un' ) }}"
+						>
+							<button
+								type="button"
+								class="is-active {{ tab_classes }}"
+								role="tab"
+								aria-selected="true"
+								aria-controls="styleguide-tab-one"
+								id="styleguide-tab-btn-one"
+							>
+								{{- __( 'One', 'wp-cinquante-et-un' ) -}}
+							</button>
+							<button
+								type="button"
+								class="{{ tab_classes }}"
+								role="tab"
+								aria-selected="false"
+								aria-controls="styleguide-tab-two"
+								id="styleguide-tab-btn-two"
+								tabindex="-1"
+							>
+								{{- __( 'Two', 'wp-cinquante-et-un' ) -}}
+							</button>
+							<button
+								type="button"
+								class="{{ tab_classes }}"
+								role="tab"
+								aria-selected="false"
+								aria-controls="styleguide-tab-three"
+								id="styleguide-tab-btn-three"
+								tabindex="-1"
+							>
+								{{- __( 'Three', 'wp-cinquante-et-un' ) -}}
+							</button>
+						</div>
+						<section
+							class="is-active text-sm text-secondary"
+							tabindex="0"
+							role="tabpanel"
+							aria-labelledby="styleguide-tab-btn-one"
+							id="styleguide-tab-one"
+						>
+							{{- __( 'First panel. Arrow keys move between tabs.', 'wp-cinquante-et-un' ) -}}
+						</section>
+						<section
+							class="text-sm text-secondary"
+							tabindex="0"
+							role="tabpanel"
+							aria-labelledby="styleguide-tab-btn-two"
+							id="styleguide-tab-two"
 							hidden
 						>
-							<div class="text-sm text-gray-600" data-inner>
-								{{-
-									__(
-										'We reopen the estimate, agree on the extra, then we build.',
-										'wp-cinquante-et-un'
-									)
-								-}}
+							{{- __( 'Second panel.', 'wp-cinquante-et-un' ) -}}
+						</section>
+						<section
+							class="text-sm text-secondary"
+							tabindex="0"
+							role="tabpanel"
+							aria-labelledby="styleguide-tab-btn-three"
+							id="styleguide-tab-three"
+							hidden
+						>
+							{{- __( 'Third panel.', 'wp-cinquante-et-un' ) -}}
+						</section>
+					</cinq-tabs>
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-ui-accordion">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Accordion', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'JS accordion from CINQ UI. Production FAQ blocks use the native details/summary component instead.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">
+						@agencecinq/accordion · components/accordion-group.html.twig
+					</p>
+				</header>
+				<div class="max-w-prose border border-default p-6">
+					<cinq-accordion class="block border-t border-field" data-hash="false">
+						<div
+							class="border-b border-field py-6 data-[open=true]:flex data-[open=true]:flex-col data-[open=true]:gap-4"
+							data-panel
+							data-open="true"
+							data-deselectable="true"
+						>
+							<button
+								type="button"
+								class="flex w-full cursor-pointer items-center justify-between gap-4 text-left text-sm font-semibold"
+								data-header
+								id="styleguide-acc-1-header"
+								aria-expanded="true"
+								aria-controls="styleguide-acc-1-body"
+							>
+								<span class="min-w-0 flex-1">
+									{{- __( 'Why do you publish your prices?', 'wp-cinquante-et-un' ) -}}
+								</span>
+								<span
+									class="relative flex size-8 shrink-0 items-center justify-center bg-surface"
+									aria-hidden="true"
+								>
+									<span class="in-data-[open=true]:hidden">
+										{{-
+											include(
+												'svg/use.html.twig',
+												{
+													classes: [ 'size-3' ],
+													icon: 'plus',
+												},
+												with_context: false
+											)
+										-}}
+									</span>
+									<span class="hidden in-data-[open=true]:block">
+										{{-
+											include(
+												'svg/use.html.twig',
+												{
+													classes: [ 'size-3' ],
+													icon: 'minus',
+												},
+												with_context: false
+											)
+										-}}
+									</span>
+								</span>
+							</button>
+							<div
+								id="styleguide-acc-1-body"
+								role="region"
+								aria-labelledby="styleguide-acc-1-header"
+							>
+								<div class="text-sm text-secondary" data-inner>
+									{{-
+										__(
+											'A web build has a scope and a cost. Hiding them until the third meeting only buys time to get attached. Our bases run from 12 900 to 36 900 euros. The full grid is public.',
+											'wp-cinquante-et-un'
+										)
+									-}}
+								</div>
 							</div>
 						</div>
+						<div
+							class="border-b border-field py-6 data-[open=true]:flex data-[open=true]:flex-col data-[open=true]:gap-4"
+							data-panel
+							data-open="false"
+							data-deselectable="true"
+						>
+							<button
+								type="button"
+								class="flex w-full cursor-pointer items-center justify-between gap-4 text-left text-sm font-semibold"
+								data-header
+								id="styleguide-acc-2-header"
+								aria-expanded="false"
+								aria-controls="styleguide-acc-2-body"
+							>
+								<span class="min-w-0 flex-1">
+									{{- __( 'What happens if the scope moves mid-build?', 'wp-cinquante-et-un' ) -}}
+								</span>
+								<span
+									class="relative flex size-8 shrink-0 items-center justify-center bg-surface"
+									aria-hidden="true"
+								>
+									<span class="in-data-[open=true]:hidden">
+										{{-
+											include(
+												'svg/use.html.twig',
+												{
+													classes: [ 'size-3' ],
+													icon: 'plus',
+												},
+												with_context: false
+											)
+										-}}
+									</span>
+									<span class="hidden in-data-[open=true]:block">
+										{{-
+											include(
+												'svg/use.html.twig',
+												{
+													classes: [ 'size-3' ],
+													icon: 'minus',
+												},
+												with_context: false
+											)
+										-}}
+									</span>
+								</span>
+							</button>
+							<div
+								id="styleguide-acc-2-body"
+								role="region"
+								aria-labelledby="styleguide-acc-2-header"
+								hidden
+							>
+								<div class="text-sm text-secondary" data-inner>
+									{{-
+										__(
+											'We reopen the estimate, agree on the extra, then we build.',
+											'wp-cinquante-et-un'
+										)
+									-}}
+								</div>
+							</div>
+						</div>
+					</cinq-accordion>
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-ui-disclosure">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Disclosure', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Toggle visibility of a single region. Wrap any button markup.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">@agencecinq/disclosure-button</p>
+				</header>
+				<div class="space-y-3 border border-default p-6">
+					<cinq-disclosure-button class="block">
+						{{-
+							include(
+								'components/button.html.twig',
+								{
+									title: __( 'Show more', 'wp-cinquante-et-un' ),
+									variant: 'tertiary',
+									attributes: {
+										'aria-expanded': 'false',
+										'aria-controls': 'styleguide-disclosure',
+									},
+								},
+								with_context: false
+							)
+						-}}
+					</cinq-disclosure-button>
+					<div class="text-sm text-secondary" id="styleguide-disclosure" hidden>
+						{{- __( 'Hidden until the disclosure button opens it.', 'wp-cinquante-et-un' ) -}}
 					</div>
-				</cinq-accordion>
+				</div>
 			</div>
-		</div>
 
-		<div class="space-y-6" id="styleguide-ui-disclosure">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Disclosure', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Toggle visibility of a single region. Wrap any button markup.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					@agencecinq/disclosure-button
-				</p>
-			</header>
-			<div class="space-y-3 border border-black p-6">
-				<cinq-disclosure-button class="block">
-					{{-
-						include(
-							'components/button.html.twig',
-							{
-								title: __('Show more', 'wp-cinquante-et-un'),
-								variant: 'tertiary',
-								attributes: {
-									'aria-expanded': 'false',
-									'aria-controls': 'styleguide-disclosure'
-								}
-							},
-							with_context = false
-						)
-					-}}
-				</cinq-disclosure-button>
-				<div class="text-sm text-gray-600" id="styleguide-disclosure" hidden>
-					{{- __('Hidden until the disclosure button opens it.', 'wp-cinquante-et-un') -}}
+			<div class="space-y-6" id="styleguide-ui-switch">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Switch', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Binary toggle with role="switch". Square track matches the starter radius.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">@agencecinq/switch</p>
+				</header>
+				<div class="border border-default p-6">
+					<div
+						class="flex flex-wrap items-center gap-8"
+						role="group"
+						aria-label="{{ __( 'Switches', 'wp-cinquante-et-un' ) }}"
+					>
+						<cinq-switch
+							class="{{ switch_classes }}"
+							name="notifications"
+							value="on"
+							role="switch"
+							aria-checked="false"
+							tabindex="0"
+						>
+							<span>{{- __( 'Notifications', 'wp-cinquante-et-un' ) -}}</span>
+							<span
+								class="track relative block h-6 w-10 border border-field bg-media"
+								aria-hidden="true"
+							>
+								<span
+									class="thumb absolute top-0 left-0 block size-5 border border-default bg-page transition-transform"
+								>
+								</span>
+							</span>
+						</cinq-switch>
+						<cinq-switch
+							class="{{ switch_classes }} opacity-40"
+							role="switch"
+							aria-checked="false"
+							disabled
+						>
+							<span>{{- __( 'Disabled', 'wp-cinquante-et-un' ) -}}</span>
+							<span
+								class="track relative block h-6 w-10 border border-field bg-media"
+								aria-hidden="true"
+							>
+								<span
+									class="thumb absolute top-0 left-0 block size-5 border border-default bg-page transition-transform"
+								>
+								</span>
+							</span>
+						</cinq-switch>
+					</div>
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-ui-spinbutton">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Spin button', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Increment and decrement a numeric value with keyboard support.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">@agencecinq/spinbutton</p>
+				</header>
+				<div class="border border-default p-6">
+					<cinq-spinbutton
+						class="inline-flex w-fit items-center gap-0 border border-default bg-surface p-1 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-focus-ring"
+					>
+						<button
+							class="grid size-8 place-items-center bg-page hover:bg-surface disabled:cursor-not-allowed disabled:opacity-40"
+							name="decrease"
+							type="button"
+							aria-label="{{ __( 'Decrease', 'wp-cinquante-et-un' ) }}"
+							tabindex="-1"
+						>
+							{{-
+								include(
+									'svg/use.html.twig',
+									{
+										icon: 'minus',
+										classes: [ 'size-4' ],
+									},
+									with_context: false
+								)
+							-}}
+						</button>
+						<input
+							class="w-14 bg-transparent text-center text-sm font-medium focus:outline-none"
+							type="number"
+							aria-label="{{ __( 'Quantity', 'wp-cinquante-et-un' ) }}"
+							aria-valuemin="0"
+							aria-valuemax="10"
+							aria-valuenow="1"
+							value="1"
+						/>
+						<button
+							class="grid size-8 place-items-center bg-page hover:bg-surface disabled:cursor-not-allowed disabled:opacity-40"
+							name="increase"
+							type="button"
+							aria-label="{{ __( 'Increase', 'wp-cinquante-et-un' ) }}"
+							tabindex="-1"
+						>
+							{{-
+								include(
+									'svg/use.html.twig',
+									{
+										icon: 'plus',
+										classes: [ 'size-4' ],
+									},
+									with_context: false
+								)
+							-}}
+						</button>
+					</cinq-spinbutton>
+				</div>
+			</div>
+
+			<div class="space-y-6" id="styleguide-ui-combobox">
+				<header class="space-y-2">
+					<h3 class="text-xl font-semibold">{{- __( 'Combobox', 'wp-cinquante-et-un' ) -}}</h3>
+					<p class="max-w-prose text-sm text-secondary">
+						{{-
+							__(
+								'Autocomplete listbox. Options are filled from JavaScript in styleguide.ts.',
+								'wp-cinquante-et-un'
+							)
+						-}}
+					</p>
+					<p class="font-mono text-xs text-secondary">
+						@agencecinq/combobox · src/scripts/styleguide.ts
+					</p>
+				</header>
+				<div class="max-w-xs border border-default p-6">
+					<label class="block subtitle" for="styleguide-city">
+						{{- __( 'City', 'wp-cinquante-et-un' ) -}}
+					</label>
+					<cinq-combobox
+						id="styleguide-city-combobox"
+						class="relative mt-3 flex"
+						data-open-on-empty="true"
+						data-autoselect="true"
+					>
+						<input
+							class="min-w-0 flex-1 border border-default px-3 py-2 text-sm font-medium"
+							id="styleguide-city"
+							type="text"
+							role="combobox"
+							aria-autocomplete="list"
+							aria-expanded="false"
+							aria-controls="styleguide-city-listbox"
+							autocomplete="off"
+						/>
+						<button
+							class="-ml-px flex size-10 shrink-0 items-center justify-center border border-default bg-page hover:bg-surface"
+							type="button"
+							tabindex="-1"
+							aria-label="{{ __( 'Cities', 'wp-cinquante-et-un' ) }}"
+							aria-controls="styleguide-city-listbox"
+							aria-expanded="false"
+						>
+							{{-
+								include(
+									'svg/use.html.twig',
+									{
+										icon: 'chevron-down',
+										classes: [ 'size-4' ],
+									},
+									with_context: false
+								)
+							-}}
+						</button>
+						<ul
+							class="z-2 border border-field bg-page **:[[role=option]]:cursor-pointer **:[[role=option]]:px-3 **:[[role=option]]:py-2 **:[[role=option][aria-selected=true]]:bg-inverse **:[[role=option][aria-selected=true]]:text-inverse"
+							id="styleguide-city-listbox"
+							role="listbox"
+							aria-label="{{ __( 'Cities', 'wp-cinquante-et-un' ) }}"
+							hidden
+						></ul>
+					</cinq-combobox>
 				</div>
 			</div>
 		</div>
-
-		<div class="space-y-6" id="styleguide-ui-switch">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Switch', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Binary toggle with role="switch". Square track matches the starter radius.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					@agencecinq/switch
-				</p>
-			</header>
-			<div class="border border-black p-6">
-				<div
-					class="flex flex-wrap items-center gap-8"
-					role="group"
-					aria-label="{{ __('Switches', 'wp-cinquante-et-un') }}"
-				>
-					<cinq-switch
-						class="{{ switch_classes }}"
-						role="switch"
-						aria-checked="false"
-						tabindex="0"
-					>
-						<span>{{- __('Notifications', 'wp-cinquante-et-un') -}}</span>
-						<span
-							class="track relative block h-6 w-10 border border-gray-300 bg-gray-200"
-							aria-hidden="true"
-						>
-							<span
-								class="thumb absolute top-0 left-0 block size-5 border border-black bg-white transition-transform"
-							>
-
-							</span>
-						</span>
-						<div hidden>
-							<input type="checkbox" tabindex="-1" aria-hidden="true" />
-						</div>
-					</cinq-switch>
-					<cinq-switch
-						class="{{ switch_classes }} opacity-40"
-						role="switch"
-						aria-checked="false"
-						disabled
-						aria-disabled="true"
-						tabindex="-1"
-					>
-						<span>{{- __('Disabled', 'wp-cinquante-et-un') -}}</span>
-						<span
-							class="track relative block h-6 w-10 border border-gray-300 bg-gray-200"
-							aria-hidden="true"
-						>
-							<span
-								class="thumb absolute top-0 left-0 block size-5 border border-black bg-white transition-transform"
-							>
-
-							</span>
-						</span>
-						<div hidden>
-							<input type="checkbox" tabindex="-1" aria-hidden="true" disabled />
-						</div>
-					</cinq-switch>
-				</div>
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-ui-spinbutton">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Spin button', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Increment and decrement a numeric value with keyboard support.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					@agencecinq/spinbutton
-				</p>
-			</header>
-			<div class="border border-black p-6">
-				<cinq-spinbutton
-					class="inline-flex w-fit items-center gap-0 border border-black bg-gray-50 p-1 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-black"
-				>
-					<button
-						class="grid size-8 place-items-center bg-white hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
-						name="decrease"
-						type="button"
-						aria-label="{{ __('Decrease', 'wp-cinquante-et-un') }}"
-						tabindex="-1"
-					>
-						{{-
-							include(
-								'svg/use.html.twig',
-								{
-									icon: 'minus',
-									classes: ['size-4']
-								},
-								with_context = false
-							)
-						-}}
-					</button>
-					<input
-						class="w-14 bg-transparent text-center text-sm font-medium focus:outline-none"
-						type="number"
-						aria-label="{{ __('Quantity', 'wp-cinquante-et-un') }}"
-						aria-valuemin="0"
-						aria-valuemax="10"
-						aria-valuenow="1"
-						value="1"
-					/>
-					<button
-						class="grid size-8 place-items-center bg-white hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
-						name="increase"
-						type="button"
-						aria-label="{{ __('Increase', 'wp-cinquante-et-un') }}"
-						tabindex="-1"
-					>
-						{{-
-							include(
-								'svg/use.html.twig',
-								{
-									icon: 'plus',
-									classes: ['size-4']
-								},
-								with_context = false
-							)
-						-}}
-					</button>
-				</cinq-spinbutton>
-			</div>
-		</div>
-
-		<div class="space-y-6" id="styleguide-ui-combobox">
-			<header class="space-y-2">
-				<h3 class="text-xl font-semibold">
-					{{- __('Combobox', 'wp-cinquante-et-un') -}}
-				</h3>
-				<p class="text-gray-500 max-w-prose text-sm">
-					{{-
-						__(
-							'Autocomplete listbox. Options are filled from JavaScript in styleguide.ts.',
-							'wp-cinquante-et-un'
-						)
-					-}}
-				</p>
-				<p class="font-mono text-xs text-gray-500">
-					@agencecinq/combobox · src/scripts/styleguide.ts
-				</p>
-			</header>
-			<div class="max-w-xs border border-black p-6">
-				<label class="subtitle block" for="styleguide-city">
-					{{- __('City', 'wp-cinquante-et-un') -}}
-				</label>
-				<cinq-combobox
-					id="styleguide-city-combobox"
-					class="relative mt-3 flex"
-					data-open-on-empty="true"
-					data-autoselect="true"
-				>
-					<input
-						class="min-w-0 flex-1 border border-black px-3 py-2 text-sm font-medium"
-						id="styleguide-city"
-						type="text"
-						role="combobox"
-						aria-autocomplete="list"
-						aria-expanded="false"
-						aria-controls="styleguide-city-listbox"
-						autocomplete="off"
-					/>
-					<button
-						class="-ml-px flex size-10 shrink-0 items-center justify-center border border-black bg-white hover:bg-gray-100"
-						type="button"
-						tabindex="-1"
-						aria-label="{{ __('Cities', 'wp-cinquante-et-un') }}"
-						aria-controls="styleguide-city-listbox"
-						aria-expanded="false"
-					>
-						{{-
-							include(
-								'svg/use.html.twig',
-								{
-									icon: 'chevron-down',
-									classes: ['size-4']
-								},
-								with_context = false
-							)
-						-}}
-					</button>
-					<ul
-						class="z-2 border border-gray-200 bg-white **:[[role=option]]:cursor-pointer **:[[role=option]]:px-3 **:[[role=option]]:py-2 **:[[role=option][aria-selected=true]]:bg-black **:[[role=option][aria-selected=true]]:text-white"
-						id="styleguide-city-listbox"
-						role="listbox"
-						aria-label="{{ __('Cities', 'wp-cinquante-et-un') }}"
-						hidden
-					></ul>
-				</cinq-combobox>
-			</div>
-		</div>
-	</div>
-</section>
+	</section>
 </div>

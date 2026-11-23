@@ -1,7 +1,35 @@
+/*
+ * Keep anchor targets clear of the fixed header (body pt-22).
+ * Unlayered: WordPress admin-bar.css sets `html { scroll-padding-top: 32px }` outside any layer,
+ * which beats layered rules; `:root` outranks `html` whatever the load order.
+ */
+:root {
+	scroll-padding-top: --spacing(24);
+
+	/* In-page links (e.g. a hero button to the form below) glide instead of jumping. */
+	@variant motion-safe {
+		scroll-behavior: smooth;
+	}
+}
+
 @layer base {
 	/* Change cursor to pointer for all buttons and elements with role="button" */
 	button:not(:disabled),
 	[role="button"]:not(:disabled) {
 		cursor: pointer;
 	}
+
+	/* WordPress core class, in core markup (pagination, comment and search forms…). */
+	.screen-reader-text {
+		@apply sr-only;
+	}
+}
+
+/*
+ * The drawer and modal do not lock the page scroll: an open modal dialog or
+ * popover drawer does, keeping the scrollbar gutter so the page does not shift.
+ */
+html:has(dialog:is(:modal, :popover-open)) {
+	overflow: hidden;
+	scrollbar-gutter: stable;
 }

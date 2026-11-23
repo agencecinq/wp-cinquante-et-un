@@ -155,15 +155,4 @@ class Vite implements Service {
 	private static function build_path(): string {
 		return implode( '/', array( get_stylesheet_directory(), static::$build_path ) );
 	}
-
-	/**
-	 * Return URI path to an image under src/img/.
-	 *
-	 * @param string $img Image path relative to src/img/.
-	 * @return string
-	 * @throws Exception When the asset is missing from the Vite build.
-	 */
-	public static function img( string $img ): string {
-		return static::asset( 'src/img/' . ltrim( $img, '/' ) );
-	}
 }

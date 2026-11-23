@@ -11,8 +11,8 @@
 
 {%- if items | length -%}
 	<nav
-		aria-label="{{ label | default(__('Filters', 'wp-cinquante-et-un')) }}"
-		class="{{ html_classes(classes | default([]) | join(' ')) }}"
+		aria-label="{{ label | default( __( 'Filters', 'wp-cinquante-et-un' ) ) }}"
+		class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}"
 	>
 		<ul class="flex flex-wrap items-center gap-x-12 gap-y-2.5 text-xs uppercase">
 			{%- for item in items -%}
@@ -20,12 +20,7 @@
 					<a
 						href="{{ item.url }}"
 						itemprop="url"
-						class="{{
-						html_classes(
-							'hover:underline',
-							item.active ? 'is-active underline'
-						)
-						}}"
+						class="{{ html_classes( 'hover:underline', item.active ? 'is-active underline' ) }}"
 						{{ item.active ? 'aria-current="page"' : '' }}
 					>
 						<span itemprop="name">{{- item.title -}}</span>
