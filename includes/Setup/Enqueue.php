@@ -100,6 +100,7 @@ class Enqueue implements Service {
 	public function enqueue_styles(): void {
 		$filename = Vite::asset( 'src/stylesheets/styles.css' );
 
+		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Vite hashes the filename.
 		wp_enqueue_style( get_theme_text_domain() . '-main', $filename, array(), null );
 
 		if ( is_page_template( 'page-templates/styleguide-page.php' ) ) {
@@ -107,7 +108,7 @@ class Enqueue implements Service {
 				get_theme_text_domain() . '-styleguide',
 				Vite::asset( 'src/stylesheets/styleguide.css' ),
 				array( get_theme_text_domain() . '-main' ),
-				null
+				null // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Vite hashes the filename.
 			);
 		}
 	}
@@ -152,7 +153,8 @@ class Enqueue implements Service {
 		);
 
 		// Empty handle for the global `cinq` object (wp_enqueue_script_module has no inline data API yet).
-		wp_register_script( get_theme_text_domain() . '-feature', false );
+		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Inline only.
+		wp_register_script( get_theme_text_domain() . '-feature', false, array(), null, false );
 
 		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 		$current_url = is_singular() ? get_permalink() : ( $request_uri ? esc_url_raw( home_url( $request_uri ) ) : home_url() );

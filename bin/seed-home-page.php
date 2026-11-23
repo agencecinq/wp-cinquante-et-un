@@ -65,10 +65,10 @@ function cinq_seed_home_blocks(
 		array(
 			'acf_fc_layout' => 'cards_grid',
 			'layout'        => $layout,
-			'columns'  => 3,
-			'overline' => 'Nos expertises',
-			'title'    => 'Ce que nous faisons',
-			'cards'    => array(
+			'columns'       => 3,
+			'overline'      => 'Nos expertises',
+			'title'         => 'Ce que nous faisons',
+			'cards'         => array(
 				array(
 					'icon'  => null,
 					'title' => 'Création de site',

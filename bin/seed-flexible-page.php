@@ -66,10 +66,10 @@ HTML;
 		array(
 			'acf_fc_layout' => 'cards_grid',
 			'layout'        => $layout,
-			'columns'  => 3,
-			'overline' => 'Nos expertises',
-			'title'    => 'Ce que nous faisons',
-			'cards'    => array(
+			'columns'       => 3,
+			'overline'      => 'Nos expertises',
+			'title'         => 'Ce que nous faisons',
+			'cards'         => array(
 				array(
 					'icon'  => null,
 					'title' => 'Création de site',
@@ -126,7 +126,7 @@ HTML;
 			'overline'      => 'Contact',
 			'title'         => 'Parlons de votre projet',
 			'text'          => '<p>Décrivez votre besoin en quelques lignes. Nous répondons sous 48 h ouvrées, et le premier échange est toujours gratuit.</p>',
-			'form_id'       => $form_id ?: null,
+			'form_id'       => $form_id > 0 ? $form_id : null,
 		),
 		array(
 			'acf_fc_layout' => 'cta',

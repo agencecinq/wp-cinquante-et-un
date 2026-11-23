@@ -30,6 +30,8 @@ function cinq_seed_link( string $title, string $url = '#' ): array {
  * @param string $spacing_top    Spacing top token.
  * @param string $spacing_bottom Spacing bottom token.
  * @param string $color_scheme   Color scheme token.
+ * @param string $anchor         Section ID slug for in-page links.
+ * @param string $container      Container token: default, wide or full.
  * @return array<string, string>
  */
 function cinq_seed_layout(
@@ -116,7 +118,7 @@ function cinq_seed_import_remote_image( string $url, string $title ): int {
 
 	$attachment_id = cinq_seed_import_image( $tmp, $title );
 
-	@unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	wp_delete_file( $tmp );
 
 	return $attachment_id;
 }

@@ -2,17 +2,26 @@
 <ruleset name="CINQ-Standards">
     <description>Agency coding standards for WordPress.</description>
 
+    <file>.</file>
+    <arg name="extensions" value="php" />
+    <arg name="colors" />
+    <arg value="sp" />
+
     <rule ref="WordPress" />
 
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="wp-cinquante-et-un" />
+            <property name="text_domain" type="array">
+                <element value="wp-cinquante-et-un" />
+            </property>
         </properties>
     </rule>
 
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/dist/*</exclude-pattern>
+    <!-- Build tool run with the PHP CLI, outside WordPress (exec, fwrite). -->
+    <exclude-pattern>*/bin/make-pot.php</exclude-pattern>
 
     <rule ref="WordPress.Files.FileName">
         <properties>
