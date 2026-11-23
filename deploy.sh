@@ -90,6 +90,8 @@ FILES_TO_REMOVE=(
     ".gitignore"
     ".editorconfig"
     ".prettierrc.json"
+    ".prettierignore"
+    "bin"
     "tsconfig.json"
     "vite.config.js"
     "package.json"
@@ -102,6 +104,10 @@ FILES_TO_REMOVE=(
     "deploy.sh"
     ".DS_Store"
     ".env.sample"
+    ".nvmrc"
+    ".vscode"
+    ".claude"
+    "CLAUDE.md"
 )
 
 for file in "${FILES_TO_REMOVE[@]}"; do
