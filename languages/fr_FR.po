@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP CINQ 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wp-cinquante-et-un\n"
-"POT-Creation-Date: 2026-11-23T13:39:22+00:00\n"
+"POT-Creation-Date: 2026-11-23T14:24:53+00:00\n"
 "PO-Revision-Date: 2026-09-03T08:15:58+00:00\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: French\n"
@@ -18,17 +18,17 @@ msgstr ""
 msgid "%, s, +, yrs… Rendered in Heading/2xl gray next to the value."
 msgstr "%, s, +, ans… Rendu en Heading/2xl gris à côté de la valeur."
 
-#: views/pages/search.html.twig:28
+#: views/pages/search.html.twig:24
 msgid "%1$s result for “%2$s”"
 msgid_plural "%1$s results for “%2$s”"
 msgstr[0] "%1$s résultat pour « %2$s »"
 msgstr[1] "%1$s résultats pour « %2$s »"
 
-#: views/pages/single-post.html.twig:39
+#: views/pages/single-post.html.twig:41
 msgid "%d min read"
 msgstr "%d min de lecture"
 
-#: views/components/styleguide.html.twig:364
+#: views/components/styleguide.html.twig:413
 msgid "12-column grid. Container max-width is 1440px by default (set --container-max-width to 110rem for 1760px). Article body never exceeds 720px."
 msgstr "Grille 12 colonnes. Largeur max. du conteneur : 1440 px par défaut (définir --container-max-width à 110rem pour 1760 px). Le corps d'article ne dépasse jamais 720 px."
 
@@ -89,7 +89,7 @@ msgstr "Un site qui évolue avec vous."
 msgid "A starter WordPress theme by CINQ."
 msgstr "Un thème WordPress de démarrage par CINQ."
 
-#: views/components/styleguide.html.twig:1609
+#: views/components/styleguide.html.twig:1525
 msgid "A web build has a scope and a cost. Hiding them until the third meeting only buys time to get attached. Our bases run from 12 900 to 36 900 euros. The full grid is public."
 msgstr "Un site web a un périmètre et un coût. Les cacher jusqu'à la troisième réunion ne fait que gagner du temps pour s'attacher au projet. Nos bases vont de 12 900 à 36 900 euros. La grille complète est publique."
 
@@ -97,7 +97,7 @@ msgstr "Un site web a un périmètre et un coût. Les cacher jusqu'à la troisi�
 msgid "ACF is the only plugin in the kernel. Project adapters (forms, SEO, CRM) are wired per site, not baked into the starter."
 msgstr "ACF est le seul plugin du noyau. Les adaptateurs projet (formulaires, SEO, CRM) se branchent site par site, pas dans le starter."
 
-#: views/components/styleguide.html.twig:1543
+#: views/components/styleguide.html.twig:1456
 msgid "Accordion"
 msgstr "Accordéon"
 
@@ -189,7 +189,7 @@ msgstr "Tous"
 msgid "All case studies"
 msgstr "Tous les cas clients"
 
-#: includes/Plugins/ACF/helpers.php:86 includes/Plugins/ACF/helpers.php:88
+#: includes/Plugins/ACF/helpers.php:125 includes/Plugins/ACF/helpers.php:127
 msgid "Anchor"
 msgstr "Ancre"
 
@@ -201,31 +201,31 @@ msgstr "Réponse"
 msgid "Applies filter: grayscale(1). Does not fix a poorly prepared color logo."
 msgstr "Applique filter: grayscale(1). Ne compense pas un logo couleur mal préparé."
 
-#: includes/Plugins/ACF/Init.php:58
+#: includes/Plugins/ACF/Init.php:59
 msgid "Archive"
 msgstr "Archive"
 
-#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:53 includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:55 includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:120 includes/Plugins/ACF/Init.php:57
+#: includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:53 includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:55 includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:120 includes/Plugins/ACF/Init.php:58
 msgid "Archive Posts"
 msgstr "Archive des articles"
 
-#: views/components/styleguide.html.twig:806
+#: views/components/styleguide.html.twig:817
 msgid "Archive pagination. Dummy pages come from the page model."
 msgstr "Pagination d'archive. Les pages factices proviennent du modèle de page."
 
-#: views/components/styleguide.html.twig:66
+#: views/components/styleguide.html.twig:102
 msgid "Article body"
 msgstr "Corps d'article"
 
-#: views/components/styleguide.html.twig:412
+#: views/components/styleguide.html.twig:471
 msgid "Article body never exceeds this width, whatever the container."
 msgstr "Le corps d'article ne dépasse jamais cette largeur, quel que soit le conteneur."
 
-#: views/components/styleguide.html.twig:65
+#: views/components/styleguide.html.twig:96
 msgid "Article lead"
 msgstr "Chapô d'article"
 
-#: views/components/styleguide.html.twig:641 views/components/styleguide.html.twig:701
+#: views/components/styleguide.html.twig:676 views/components/styleguide.html.twig:728
 msgid "Assets"
 msgstr "Assets"
 
@@ -233,7 +233,7 @@ msgstr "Assets"
 msgid "Author"
 msgstr "Auteur"
 
-#: views/components/styleguide.html.twig:1872
+#: views/components/styleguide.html.twig:1766
 msgid "Autocomplete listbox. Options are filled from JavaScript in styleguide.ts."
 msgstr "Listbox avec autocomplétion. Les options sont remplies depuis JavaScript dans styleguide.ts."
 
@@ -253,19 +253,19 @@ msgstr "Interroge le CPT case_study. Manuel permet une sélection précise."
 msgid "Avatar"
 msgstr "Avatar"
 
-#: views/components/mobile-menu.html.twig:106
+#: views/components/mobile-menu.html.twig:101
 msgid "Back"
 msgstr "Retour"
 
-#: views/pages/404.html.twig:41
+#: views/pages/404.html.twig:35
 msgid "Back to home"
 msgstr "Retour à l'accueil"
 
-#: views/components/mobile-menu.html.twig:94
+#: views/components/mobile-menu.html.twig:89
 msgid "Back to menu"
 msgstr "Retour au menu"
 
-#: views/components/styleguide.html.twig:1731
+#: views/components/styleguide.html.twig:1641
 msgid "Binary toggle with role=\"switch\". Square track matches the starter radius."
 msgstr "Interrupteur binaire avec role=\"switch\". La piste carrée correspond au rayon du starter."
 
@@ -273,11 +273,11 @@ msgstr "Interrupteur binaire avec role=\"switch\". La piste carrée correspond a
 msgid "Black gradient from 0% at the top to 45% at the bottom, for text legibility."
 msgstr "Dégradé noir de 0 % en haut à 45 % en bas, pour la lisibilité du texte."
 
-#: views/components/styleguide.html.twig:55
+#: views/components/styleguide.html.twig:46
 msgid "Block lead"
 msgstr "Chapô du bloc"
 
-#: views/components/styleguide.html.twig:64
+#: views/components/styleguide.html.twig:91
 msgid "Block overline"
 msgstr "Sur-titre du bloc"
 
@@ -285,7 +285,7 @@ msgstr "Sur-titre du bloc"
 msgid "Block subtitle. Subtitle component."
 msgstr "Sur-titre du bloc. Composant Subtitle."
 
-#: views/components/styleguide.html.twig:52
+#: views/components/styleguide.html.twig:31
 msgid "Block title"
 msgstr "Titre du bloc"
 
@@ -313,29 +313,37 @@ msgstr "Body/lg, opacité 80 %."
 msgid "Book a call"
 msgstr "Prendre rendez-vous"
 
+#: includes/Plugins/ACF/IncludeFields/AttachmentFields.php:61
+msgid "Bottom"
+msgstr "Bas"
+
+#: includes/Plugins/ACF/IncludeFields/AttachmentFields.php:66
+msgid "Bottom left"
+msgstr "En bas à gauche"
+
+#: includes/Plugins/ACF/IncludeFields/AttachmentFields.php:67
+msgid "Bottom right"
+msgstr "En bas à droite"
+
 #: includes/Models/StyleguidePage.php:123
 msgid "Breadcrumb"
 msgstr "Fil d'Ariane"
 
-#: views/components/styleguide.html.twig:384
+#: views/components/styleguide.html.twig:438
 msgid "Breakpoints"
 msgstr "Breakpoints"
 
-#: includes/helpers.php:665 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:161
+#: includes/helpers.php:551 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:161
 msgid "Brochure site rebuild"
 msgstr "Refonte de site vitrine"
 
-#: views/components/styleguide.html.twig:1212
+#: views/components/styleguide.html.twig:1139
 msgid "Built server-side from H2 headings in the article content. The single template hides the nav below lg; this demo keeps it visible. Grid layout is set on the parent include via classes."
 msgstr "Construit côté serveur à partir des titres H2 du contenu de l'article. Le template single masque la navigation en dessous de lg ; cette démo la garde visible. La grille est définie sur l'include parent via des classes."
 
-#: views/components/styleguide.html.twig:477 views/components/styleguide.html.twig:485 views/components/styleguide.html.twig:494 views/components/styleguide.html.twig:511 views/components/styleguide.html.twig:520 views/components/styleguide.html.twig:530 views/components/styleguide.html.twig:548 views/components/styleguide.html.twig:557 views/components/styleguide.html.twig:567
+#: views/components/styleguide.html.twig:528 views/components/styleguide.html.twig:535 views/components/styleguide.html.twig:544 views/components/styleguide.html.twig:561 views/components/styleguide.html.twig:570 views/components/styleguide.html.twig:580 views/components/styleguide.html.twig:598 views/components/styleguide.html.twig:607 views/components/styleguide.html.twig:617
 msgid "Button"
 msgstr "Bouton"
-
-#: views/components/styleguide.html.twig:26
-msgid "Button label"
-msgstr "Libellé du bouton"
 
 #: includes/Plugins/ACF/IncludeFields/ThemeFields.php:274
 msgid "Button or link label."
@@ -350,15 +358,15 @@ msgstr "Boutons"
 msgid "CINQ"
 msgstr "CINQ"
 
-#: views/components/styleguide.html.twig:1313
+#: views/components/styleguide.html.twig:1222
 msgid "CINQ UI"
 msgstr "CINQ UI"
 
-#: views/components/styleguide.html.twig:1329
+#: views/components/styleguide.html.twig:1237
 msgid "CINQ UI documentation"
 msgstr "Documentation CINQ UI"
 
-#: views/components/styleguide.html.twig:895
+#: views/components/styleguide.html.twig:899
 msgid "CMS"
 msgstr "CMS"
 
@@ -366,7 +374,7 @@ msgstr "CMS"
 msgid "CPT"
 msgstr "CPT"
 
-#: views/components/styleguide.html.twig:857
+#: views/components/styleguide.html.twig:863
 msgid "CRM connected"
 msgstr "CRM connecté"
 
@@ -402,11 +410,11 @@ msgstr "Catégories"
 msgid "Category"
 msgstr "Catégorie"
 
-#: views/components/styleguide.html.twig:1104
+#: views/components/styleguide.html.twig:1071
 msgid "Category links on the journal archive. Active term uses .is-active."
 msgstr "Liens de catégories sur l'archive du journal. Le terme actif utilise .is-active."
 
-#: includes/Plugins/ACF/helpers.php:283 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:58 includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:92
+#: includes/Plugins/ACF/helpers.php:295 includes/Plugins/ACF/IncludeFields/AttachmentFields.php:59 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:58 includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:92
 msgid "Center"
 msgstr "Centre"
 
@@ -414,19 +422,23 @@ msgstr "Centre"
 msgid "Centered (720 px)"
 msgstr "Centré (720 px)"
 
-#: includes/Plugins/ACF/helpers.php:256
+#: includes/Plugins/ACF/helpers.php:62
+msgid "Choose a section color scheme."
+msgstr "Choisissez le schéma de couleur de la section."
+
+#: includes/Plugins/ACF/helpers.php:268
 msgid "Choose the heading level for the title of the block. It is important to use heading levels in a hierarchical way for accessibility and SEO reasons."
 msgstr "Choisissez le niveau de titre pour le titre du bloc. Il est important d'utiliser les niveaux de titres de manière hiérarchique pour l'accessibilité et le SEO."
 
-#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:104
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:68
 msgid "Choose the menu from which to list items."
 msgstr "Choisissez le menu à partir duquel lister les éléments."
 
-#: includes/Plugins/ACF/helpers.php:280
+#: includes/Plugins/ACF/helpers.php:292
 msgid "Choose the text alignment for the block."
 msgstr "Choisissez l'alignement du texte pour le bloc."
 
-#: views/components/styleguide.html.twig:1906 views/components/styleguide.html.twig:1925
+#: views/components/styleguide.html.twig:1800 views/components/styleguide.html.twig:1819
 msgid "Cities"
 msgstr "Villes"
 
@@ -434,7 +446,7 @@ msgstr "Villes"
 msgid "Cities or locations shown in the footer contact column."
 msgstr "Villes ou localisations affichées dans la colonne contact du pied de page."
 
-#: views/components/styleguide.html.twig:1884
+#: views/components/styleguide.html.twig:1778
 msgid "City"
 msgstr "Ville"
 
@@ -442,15 +454,19 @@ msgstr "Ville"
 msgid "Client feedback"
 msgstr "Retour client"
 
-#: views/components/styleguide.html.twig:881
+#: views/components/modal.html.twig:41 views/components/styleguide.html.twig:1301
+msgid "Close"
+msgstr "Fermer"
+
+#: views/components/styleguide.html.twig:885
 msgid "Code sample"
 msgstr "Exemple de code"
 
-#: includes/Plugins/ACF/helpers.php:44 includes/Plugins/ACF/helpers.php:46
+#: includes/Plugins/ACF/helpers.php:58 includes/Plugins/ACF/helpers.php:60
 msgid "Color scheme"
 msgstr "Schéma de couleurs"
 
-#: views/components/styleguide.html.twig:166
+#: views/components/styleguide.html.twig:285
 msgid "Color schemes"
 msgstr "Schémas de couleurs"
 
@@ -466,7 +482,7 @@ msgstr "Position de la colonne dans la grille, pas l'alignement du texte."
 msgid "Columns"
 msgstr "Colonnes"
 
-#: views/components/styleguide.html.twig:1868
+#: views/components/styleguide.html.twig:1763
 msgid "Combobox"
 msgstr "Combobox"
 
@@ -486,11 +502,11 @@ msgstr "Entreprise"
 msgid "Company name."
 msgstr "Nom de l'entreprise."
 
-#: views/components/styleguide.html.twig:457 views/components/styleguide.html.twig:581 views/components/styleguide.html.twig:747 views/components/styleguide.html.twig:800
+#: views/components/styleguide.html.twig:510 views/components/styleguide.html.twig:630 views/components/styleguide.html.twig:768 views/components/styleguide.html.twig:811
 msgid "Components"
 msgstr "Composants"
 
-#: views/components/styleguide.html.twig:920
+#: views/components/styleguide.html.twig:922
 msgid "Components used in the header, footer, archives, search, and editorial templates. Not ACF blocks."
 msgstr "Composants utilisés dans l'en-tête, le pied de page, les archives, la recherche et les templates éditoriaux. Pas des blocs ACF."
 
@@ -502,7 +518,7 @@ msgstr "Contact"
 msgid "Contact Form 7 form displayed in the footer. Wire another plugin on the project if needed."
 msgstr "Formulaire Contact Form 7 affiché dans le pied de page. Branchez un autre plugin sur le projet si besoin."
 
-#: includes/Plugins/ACF/helpers.php:94 includes/Plugins/ACF/helpers.php:96
+#: views/components/styleguide.html.twig:452
 msgid "Container"
 msgstr "Conteneur"
 
@@ -514,7 +530,7 @@ msgstr "Contenu"
 msgid "Content alignment inside the hero."
 msgstr "Alignement du contenu dans le hero."
 
-#: views/components/toc.html.twig:23 views/pages/single-post.html.twig:83
+#: views/components/toc.html.twig:22 views/pages/single-post.html.twig:83
 msgid "Contents"
 msgstr "Sommaire"
 
@@ -522,7 +538,7 @@ msgstr "Sommaire"
 msgid "Controls the two fields below. Choose at kickoff, not mid-project."
 msgstr "Contrôle les deux champs ci-dessous. À choisir au lancement, pas en cours de projet."
 
-#: views/components/styleguide.html.twig:1255
+#: views/components/styleguide.html.twig:1181
 msgid "Core Web Vitals are checked before launch, not after."
 msgstr "Les Core Web Vitals sont vérifiés avant le lancement, pas après."
 
@@ -530,7 +546,7 @@ msgstr "Les Core Web Vitals sont vérifiés avant le lancement, pas après."
 msgid "Core Web Vitals in the green, from day one"
 msgstr "Core Web Vitals au vert, dès le premier jour"
 
-#: includes/helpers.php:647 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:143
+#: includes/helpers.php:533 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:143
 msgid "Corporate site and configurator rebuild"
 msgstr "Refonte site corporate et configurateur"
 
@@ -550,23 +566,23 @@ msgstr "Thème Timber sur mesure, blocs ACF adaptés. Dans votre dépôt Git dè
 msgid "Custom theme, ACF blocks, no page builder. You edit the content; we step in when the code has to move."
 msgstr "Thème sur mesure, blocs ACF, sans page builder. Vous éditez le contenu ; nous intervenons quand le code doit évoluer."
 
-#: views/components/styleguide.html.twig:856
+#: views/components/styleguide.html.twig:862
 msgid "D2C and B2B"
 msgstr "D2C et B2B"
 
-#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:294
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:294 includes/schemes.php:159
 msgid "Dark"
 msgstr "Sombre"
+
+#: includes/schemes.php:33
+msgid "Dark gray"
+msgstr "Gris foncé"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:84 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:86
 msgid "Days"
 msgstr "Jours"
 
-#: views/components/styleguide.html.twig:170
-msgid "Declared in src/stylesheets/theme.css (@theme). Each block sets color_scheme to default or inverse."
-msgstr "Déclaré dans src/stylesheets/theme.css (@theme). Chaque bloc définit color_scheme sur default ou inverse."
-
-#: views/components/styleguide.html.twig:1820
+#: views/components/styleguide.html.twig:1716
 msgid "Decrease"
 msgstr "Diminuer"
 
@@ -574,39 +590,35 @@ msgstr "Diminuer"
 msgid "Dedicated theme, D2C and B2B, CRM connected from day one."
 msgstr "Thème dédié, D2C et B2B, CRM connecté dès le premier jour."
 
-#: includes/Plugins/ACF/helpers.php:100
-msgid "Default (1440px)"
-msgstr "Par défaut (1440 px)"
-
-#: includes/Plugins/ACF/helpers.php:98
-msgid "Default 1440px, wide 1760px, or full width without a container."
-msgstr "1440 px par défaut, 1760 px en large, ou pleine largeur sans conteneur."
+#: includes/schemes.php:147
+msgid "Default"
+msgstr "Défaut"
 
 #: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:307
 msgid "Describe your need in a few lines. We reply within two business days, and the first call is always free."
 msgstr "Décrivez votre besoin en quelques lignes. Nous répondons sous deux jours ouvrés, et le premier appel est toujours gratuit."
 
-#: includes/Plugins/ACF/helpers.php:217 includes/Plugins/ACF/helpers.php:219
+#: includes/Plugins/ACF/helpers.php:229 includes/Plugins/ACF/helpers.php:231
 msgid "Desktop"
 msgstr "Bureau"
 
-#: includes/Plugins/ACF/helpers.php:221
+#: includes/Plugins/ACF/helpers.php:233
 msgid "Desktop image for the block."
 msgstr "Image bureau pour le bloc."
 
-#: views/components/styleguide.html.twig:1776
+#: views/components/styleguide.html.twig:1680
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: views/components/styleguide.html.twig:1687
+#: views/components/styleguide.html.twig:1602
 msgid "Disclosure"
 msgstr "Disclosure"
 
-#: views/components/tease-post-mini.html.twig:75
+#: views/components/tease-post-mini.html.twig:69
 msgid "Discover"
 msgstr "Découvrir"
 
-#: views/components/tease-post-mini.html.twig:73
+#: views/components/tease-post-mini.html.twig:67
 msgid "Discover: %s"
 msgstr "Découvrir : %s"
 
@@ -642,7 +654,7 @@ msgstr "Le code nous appartient-il vraiment ?"
 msgid "Do you work with third-party plugins?"
 msgstr "Travaillez-vous avec des plugins tiers ?"
 
-#: views/components/styleguide.html.twig:1341 views/components/styleguide.html.twig:1380
+#: views/components/styleguide.html.twig:1252 views/components/styleguide.html.twig:1288
 msgid "Drawer"
 msgstr "Drawer"
 
@@ -650,7 +662,11 @@ msgstr "Drawer"
 msgid "Drives the layout variant. Ignored below the md breakpoint (media stacks first)."
 msgstr "Pilote la variante. Ignoré sous md (le média reste au-dessus du texte)."
 
-#: views/components/styleguide.html.twig:1246
+#: views/components/styleguide.html.twig:288
+msgid "Each block sets data-scheme from its ACF color_scheme: background and text follow, and every role takes the value of the scheme."
+msgstr "Chaque bloc pose data-scheme depuis son champ ACF color_scheme : le fond et le texte suivent, et chaque rôle prend la valeur du schéma."
+
+#: views/components/styleguide.html.twig:1170
 msgid "Each layout maps to a Twig file the team can version and review."
 msgstr "Chaque layout correspond à un fichier Twig que l'équipe peut versionner et relire."
 
@@ -658,19 +674,15 @@ msgstr "Chaque layout correspond à un fichier Twig que l'équipe peut versionne
 msgid "Editor experience"
 msgstr "Expérience éditoriale"
 
-#: views/components/styleguide.html.twig:48 views/components/styleguide.html.twig:49 views/components/styleguide.html.twig:82 views/components/styleguide.html.twig:83 views/components/styleguide.html.twig:84
+#: views/components/styleguide.html.twig:10 views/components/styleguide.html.twig:16 views/components/styleguide.html.twig:173 views/components/styleguide.html.twig:179 views/components/styleguide.html.twig:185
 msgid "Editorial"
 msgstr "Éditorial"
 
-#: views/components/styleguide.html.twig:29
-msgid "Editorial links"
-msgstr "Liens éditoriaux"
-
-#: views/components/styleguide.html.twig:837
+#: views/components/styleguide.html.twig:843
 msgid "Editorial markup styled by wysiwyg.css. Used on posts and generic pages."
 msgstr "Markup éditorial stylé par wysiwyg.css. Utilisé sur les articles et les pages génériques."
 
-#: views/components/styleguide.html.twig:406
+#: views/components/styleguide.html.twig:466
 msgid "Editorial measure"
 msgstr "Mesure éditoriale"
 
@@ -678,11 +690,11 @@ msgstr "Mesure éditoriale"
 msgid "Editorial measure: 720 px, 960 px, or the full container width."
 msgstr "Mesure éditoriale : 720 px, 960 px, ou pleine largeur du conteneur."
 
-#: includes/helpers.php:656 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:152
+#: includes/helpers.php:542 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:152
 msgid "Editorial platform and dealer space"
 msgstr "Plateforme éditoriale et espace revendeurs"
 
-#: views/components/styleguide.html.twig:936
+#: views/components/styleguide.html.twig:938
 msgid "Editorial primitives reused inside blocks and archive headers."
 msgstr "Primitives éditoriales réutilisées dans les blocs et les en-têtes d'archive."
 
@@ -690,11 +702,11 @@ msgstr "Primitives éditoriales réutilisées dans les blocs et les en-têtes d'
 msgid "Editorial shell"
 msgstr "Shell éditorial"
 
-#: views/components/styleguide.html.twig:65 views/components/styleguide.html.twig:66
+#: views/components/styleguide.html.twig:103 views/components/styleguide.html.twig:97
 msgid "Editorial, line-height 1.7"
 msgstr "Éditorial, interlignage 1.7"
 
-#: views/components/styleguide.html.twig:67
+#: views/components/styleguide.html.twig:109
 msgid "Editorial, weight 700"
 msgstr "Éditorial, graisse 700"
 
@@ -706,7 +718,7 @@ msgstr "Huit à douze semaines pour un site vitrine d'environ trente pages, cadr
 msgid "Email"
 msgstr "E-mail"
 
-#: views/components/newsletter-form.html.twig:27
+#: views/components/newsletter-form.html.twig:22
 msgid "Email address"
 msgstr "Adresse e-mail"
 
@@ -770,7 +782,7 @@ msgstr "Saisissez le titre du bloc"
 msgid "Enter the title of the hero"
 msgstr "Saisissez le titre du hero"
 
-#: views/components/styleguide.html.twig:872
+#: views/components/styleguide.html.twig:878
 msgid "Evolve with the company"
 msgstr "Évoluer avec l'entreprise"
 
@@ -778,11 +790,7 @@ msgstr "Évoluer avec l'entreprise"
 msgid "Expertise"
 msgstr "Expertise"
 
-#: includes/Plugins/ACF/helpers.php:25
-msgid "Extra large"
-msgstr "Très grand"
-
-#: views/components/styleguide.html.twig:675
+#: views/components/styleguide.html.twig:706
 msgid "Extras"
 msgstr "Extras"
 
@@ -806,7 +814,7 @@ msgstr "Sites vitrine et éditoriaux WordPress rapides et maintenables."
 msgid "Figures"
 msgstr "Chiffres"
 
-#: includes/Plugins/ACF/helpers.php:170 includes/Plugins/ACF/helpers.php:172
+#: includes/Plugins/ACF/helpers.php:182 includes/Plugins/ACF/helpers.php:184
 msgid "File"
 msgstr "Fichier"
 
@@ -818,11 +826,11 @@ msgstr "Filtres"
 msgid "Find us"
 msgstr "Nous trouver"
 
-#: views/components/styleguide.html.twig:1281
+#: views/components/styleguide.html.twig:1199
 msgid "First focusable element in the document. Visible on keyboard focus only."
 msgstr "Premier élément focusable du document. Visible uniquement au focus clavier."
 
-#: views/components/styleguide.html.twig:1514
+#: views/components/styleguide.html.twig:1428
 msgid "First panel. Arrow keys move between tabs."
 msgstr "Premier panneau. Les flèches permettent de naviguer entre les onglets."
 
@@ -833,10 +841,6 @@ msgstr "Cinq engagements. Aucun n'est négociable."
 #: includes/Models/StyleguidePage.php:256
 msgid "Flexible page"
 msgstr "Page flexible"
-
-#: views/components/styleguide.html.twig:1438
-msgid "Focus trap and backdrop dismiss. Use for confirmations or compact forms."
-msgstr "Focus trap et fermeture au clic sur le fond. À utiliser pour des confirmations ou des formulaires compacts."
 
 #: includes/Plugins/ACF/IncludeFields/ThemeFields.php:114 includes/Plugins/ACF/IncludeFields/ThemeFields.php:116 includes/Plugins/ACF/IncludeFields/ThemeFields.php:121 includes/Plugins/ACF/IncludeFields/ThemeFields.php:123
 msgid "Footer"
@@ -858,11 +862,11 @@ msgstr "Colonne pied de page 3"
 msgid "Footer Menu"
 msgstr "Menu pied de page"
 
-#: views/components/styleguide.html.twig:1156
+#: views/components/styleguide.html.twig:1106
 msgid "Footer icon row. URLs come from Réglages > Socials."
 msgstr "Rangée d'icônes du pied de page. Les URL proviennent de Réglages > Socials."
 
-#: views/footer.html.twig:93
+#: views/footer.html.twig:90
 msgid "Footer navigation"
 msgstr "Navigation pied de page"
 
@@ -870,9 +874,13 @@ msgstr "Navigation pied de page"
 msgid "Form"
 msgstr "Formulaire"
 
-#: views/components/styleguide.html.twig:128 views/components/styleguide.html.twig:250 views/components/styleguide.html.twig:289 views/components/styleguide.html.twig:357 views/components/styleguide.html.twig:432 views/pages/styleguide-page.html.twig:17
+#: views/components/styleguide.html.twig:255 views/components/styleguide.html.twig:320 views/components/styleguide.html.twig:353 views/components/styleguide.html.twig:407 views/components/styleguide.html.twig:492 views/pages/styleguide-page.html.twig:16
 msgid "Foundations"
 msgstr "Fondations"
+
+#: includes/Plugins/ACF/IncludeFields/AttachmentFields.php:54 includes/Plugins/ACF/IncludeFields/AttachmentFields.php:56
+msgid "Framing"
+msgstr "Cadrage"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:109
 msgid "Full name. An anonymous testimonial has no proof value."
@@ -882,7 +890,7 @@ msgstr "Nom complet. Un témoignage anonyme n'a aucune valeur de preuve."
 msgid "Full viewport"
 msgstr "Plein écran"
 
-#: includes/Models/Styleguide/Catalogs/RichTextCatalog.php:56 includes/Plugins/ACF/helpers.php:102 includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:77
+#: includes/Models/Styleguide/Catalogs/RichTextCatalog.php:56 includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:77
 msgid "Full width"
 msgstr "Pleine largeur"
 
@@ -890,19 +898,23 @@ msgstr "Pleine largeur"
 msgid "Gallery"
 msgstr "Galerie"
 
+#: includes/schemes.php:37
+msgid "Gray"
+msgstr "Gris"
+
 #: includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:59 includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:61
 msgid "Grayscale"
 msgstr "Niveaux de gris"
 
-#: includes/Plugins/ACF/helpers.php:258
+#: includes/Plugins/ACF/helpers.php:270
 msgid "H1"
 msgstr "H1"
 
-#: includes/Plugins/ACF/helpers.php:259
+#: includes/Plugins/ACF/helpers.php:271
 msgid "H2"
 msgstr "H2"
 
-#: includes/Plugins/ACF/helpers.php:260
+#: includes/Plugins/ACF/helpers.php:272
 msgid "H3"
 msgstr "H3"
 
@@ -914,7 +926,7 @@ msgstr "En-tête"
 msgid "Header CTA (label and URL)."
 msgstr "CTA d'en-tête (libellé et URL)."
 
-#: includes/Plugins/ACF/helpers.php:252 includes/Plugins/ACF/helpers.php:254
+#: includes/Plugins/ACF/helpers.php:264 includes/Plugins/ACF/helpers.php:266
 msgid "Heading"
 msgstr "Titre"
 
@@ -954,7 +966,7 @@ msgstr "Hero"
 msgid "Hero image 2880×1280. Required as the mobile fallback when a video is added (video plays from the lg breakpoint up). Provide alt text: this is content, not decoration."
 msgstr "Image hero 2880×1280. Obligatoire comme fallback mobile lorsqu'une vidéo est ajoutée (la vidéo joue à partir du breakpoint lg). Renseignez un texte alternatif : il s'agit de contenu, pas de décoration."
 
-#: views/components/styleguide.html.twig:48 views/components/styleguide.html.twig:49
+#: views/components/styleguide.html.twig:15 views/components/styleguide.html.twig:9
 msgid "Hero title"
 msgstr "Titre du hero"
 
@@ -962,7 +974,7 @@ msgstr "Titre du hero"
 msgid "Hero, rich text, latest posts, and accordion. No cart, no products."
 msgstr "Hero, texte enrichi, derniers articles et accordéon. Pas de panier, pas de produits."
 
-#: views/components/styleguide.html.twig:1719
+#: views/components/styleguide.html.twig:1631
 msgid "Hidden until the disclosure button opens it."
 msgstr "Masqué jusqu'à l'ouverture via le bouton disclosure."
 
@@ -978,11 +990,11 @@ msgstr "Masque tout le bloc lorsqu'aucun cas client n'est trouvé."
 msgid "Hides the entire block when no posts are found."
 msgstr "Masque tout le bloc lorsqu'aucun article n'est trouvé."
 
-#: views/components/styleguide.html.twig:67
+#: views/components/styleguide.html.twig:108
 msgid "Highlighted passage"
 msgstr "Passage mis en avant"
 
-#: views/components/styleguide.html.twig:1080
+#: views/components/styleguide.html.twig:1047
 msgid "Home"
 msgstr "Accueil"
 
@@ -1002,11 +1014,11 @@ msgstr "Icône"
 msgid "Icons"
 msgstr "Icônes"
 
-#: includes/Plugins/ACF/helpers.php:198
+#: includes/Plugins/ACF/helpers.php:210
 msgid "If only one image is provided, it will be used for both desktop and mobile whatever the screen size. If both desktop and mobile images are provided, the desktop image will be used for screens larger than 1024px and the mobile image for screens smaller than 1024px."
 msgstr "Si une seule image est fournie, elle sera utilisée pour le bureau et le mobile, quelle que soit la taille d'écran. Si les deux images sont fournies, l'image bureau sera utilisée au-dessus de 1024 px et l'image mobile en dessous."
 
-#: includes/Models/StyleguidePage.php:79 includes/Plugins/ACF/helpers.php:194 includes/Plugins/ACF/helpers.php:196 includes/Plugins/ACF/IncludeFields/ThemeFields.php:320
+#: includes/Models/StyleguidePage.php:79 includes/Plugins/ACF/helpers.php:206 includes/Plugins/ACF/helpers.php:208 includes/Plugins/ACF/IncludeFields/AttachmentFields.php:79 includes/Plugins/ACF/IncludeFields/ThemeFields.php:320
 msgid "Image"
 msgstr "Image"
 
@@ -1014,27 +1026,31 @@ msgstr "Image"
 msgid "Images per row"
 msgstr "Images par ligne"
 
-#: views/components/styleguide.html.twig:1293
+#: views/components/styleguide.html.twig:1209
 msgid "Included once in the layout shell. Tab into the page to reveal the skip link."
 msgstr "Inclus une fois dans le shell de layout. Tabulez dans la page pour afficher le lien d'évitement."
 
-#: views/components/styleguide.html.twig:1847
+#: views/components/styleguide.html.twig:1743
 msgid "Increase"
 msgstr "Augmenter"
 
-#: views/components/styleguide.html.twig:1802
+#: views/components/styleguide.html.twig:1700
 msgid "Increment and decrement a numeric value with keyboard support."
 msgstr "Incrémenter et décrémenter une valeur numérique avec le clavier."
 
-#: includes/helpers.php:645 includes/helpers.php:654 includes/helpers.php:663 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:141 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:150 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:159
+#: includes/helpers.php:531 includes/helpers.php:540 includes/helpers.php:549 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:141 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:150 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:159
 msgid "Industry"
 msgstr "Secteur"
+
+#: includes/schemes.php:29
+msgid "Ink"
+msgstr "Encre"
 
 #: includes/Models/StyleguidePage.php:234 includes/socials.php:23
 msgid "Instagram"
 msgstr "Instagram"
 
-#: views/components/styleguide.html.twig:56 views/components/styleguide.html.twig:57
+#: views/components/styleguide.html.twig:51 views/components/styleguide.html.twig:56
 msgid "Interface text"
 msgstr "Texte d'interface"
 
@@ -1054,11 +1070,7 @@ msgstr "Texte d'introduction sous le titre de l'archive."
 msgid "Introductory text below the page title. Shown in the page header when the first block is not a hero."
 msgstr "Texte d'introduction sous le titre de la page. Affiché dans l'en-tête de page lorsque le premier bloc n'est pas un hero."
 
-#: includes/Plugins/ACF/helpers.php:51
-msgid "Inverse"
-msgstr "Inversé"
-
-#: views/components/styleguide.html.twig:854
+#: views/components/styleguide.html.twig:858
 msgid "It is an asset you build to last"
 msgstr "C'est un actif que l'on construit pour durer"
 
@@ -1070,7 +1082,7 @@ msgstr "C'est un actif que l'on construit pour durer, et que l'on fait évoluer 
 msgid "Items"
 msgstr "Éléments"
 
-#: views/components/styleguide.html.twig:1547
+#: views/components/styleguide.html.twig:1459
 msgid "JS accordion from CINQ UI. Production FAQ blocks use the native details/summary component instead."
 msgstr "Accordéon JS de CINQ UI. Les blocs FAQ en production utilisent plutôt le composant natif details/summary."
 
@@ -1082,11 +1094,11 @@ msgstr "Poste."
 msgid "Journal"
 msgstr "Journal"
 
-#: views/pages/styleguide-page.html.twig:68
+#: views/pages/styleguide-page.html.twig:65
 msgid "Kernel ACF layouts rendered with the same Twig as production. Blocks with variants expose a switcher; dummy data lives in includes/Models/Styleguide/."
 msgstr "Layouts ACF du noyau rendus avec les mêmes Twig qu'en production. Les blocs avec variantes exposent un sélecteur ; les données de démo vivent dans includes/Models/Styleguide/."
 
-#: views/pages/styleguide-page.html.twig:64
+#: views/pages/styleguide-page.html.twig:61
 msgid "Kernel layouts"
 msgstr "Layouts du noyau"
 
@@ -1094,21 +1106,21 @@ msgstr "Layouts du noyau"
 msgid "Key Figures"
 msgstr "Chiffres clés"
 
-#: views/components/styleguide.html.twig:1457
+#: views/components/styleguide.html.twig:1373
 msgid "Keyboard navigable tablist. Active tab mirrors the secondary button pattern."
 msgstr "Tablist navigable au clavier. L'onglet actif reprend le pattern du bouton secondaire."
 
-#: includes/helpers.php:659 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:155
+#: includes/helpers.php:545 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:155
 msgid "LCP on mobile"
 msgstr "LCP sur mobile"
+
+#: includes/Plugins/ACF/helpers.php:24 includes/Plugins/ACF/helpers.php:39
+msgid "LG (56px / 96px)"
+msgstr "LG (56px / 96px)"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:93 includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:95
 msgid "Label"
 msgstr "Libellé"
-
-#: includes/Plugins/ACF/helpers.php:24
-msgid "Large"
-msgstr "Grand"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:28
 msgid "Latest Posts"
@@ -1118,15 +1130,15 @@ msgstr "Derniers articles"
 msgid "Latest posts"
 msgstr "Derniers articles"
 
-#: includes/Models/StyleguidePage.php:59 includes/Plugins/ACF/helpers.php:113 includes/Plugins/ACF/helpers.php:115 includes/Plugins/ACF/IncludeFields/Layouts/Form.php:70 includes/Plugins/ACF/IncludeFields/Layouts/Form.php:72
+#: includes/Models/StyleguidePage.php:59 includes/Plugins/ACF/helpers.php:87 includes/Plugins/ACF/helpers.php:89 includes/Plugins/ACF/IncludeFields/Layouts/Form.php:70 includes/Plugins/ACF/IncludeFields/Layouts/Form.php:72
 msgid "Layout"
 msgstr "Layout"
 
-#: includes/Plugins/ACF/helpers.php:117
+#: includes/Plugins/ACF/helpers.php:91
 msgid "Layout settings for the block."
 msgstr "Réglages de layout pour le bloc."
 
-#: views/components/styleguide.html.twig:916
+#: views/components/styleguide.html.twig:918
 msgid "Layout shell"
 msgstr "Shell de layout"
 
@@ -1142,7 +1154,7 @@ msgstr "Lead développeur"
 msgid "Lead paragraph for pages whose first block is not a hero."
 msgstr "Chapô pour les pages dont le premier bloc n'est pas un hero."
 
-#: includes/Plugins/ACF/helpers.php:282 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:57 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:56
+#: includes/Plugins/ACF/helpers.php:294 includes/Plugins/ACF/IncludeFields/AttachmentFields.php:62 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:57 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:56
 msgid "Left"
 msgstr "Gauche"
 
@@ -1158,13 +1170,17 @@ msgstr "Menu mentions légales"
 msgid "Let's talk about your project"
 msgstr "Parlons de votre projet"
 
-#: includes/Plugins/ACF/helpers.php:50 includes/Plugins/ACF/IncludeFields/ThemeFields.php:295
+#: includes/Plugins/ACF/IncludeFields/ThemeFields.php:295
 msgid "Light"
 msgstr "Clair"
 
-#: includes/Plugins/ACF/helpers.php:48
-msgid "Light (default) or inverse section colors."
-msgstr "Couleurs de section clair (par défaut) ou inversé."
+#: includes/schemes.php:41
+msgid "Light gray"
+msgstr "Gris clair"
+
+#: includes/schemes.php:45
+msgid "Lighter gray"
+msgstr "Gris très clair"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:115 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:117 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:153 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:155 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:153 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:155 includes/Plugins/ACF/IncludeFields/ThemeFields.php:187 includes/Plugins/ACF/IncludeFields/ThemeFields.php:189 includes/Plugins/ACF/IncludeFields/ThemeFields.php:328
 msgid "Link"
@@ -1178,7 +1194,7 @@ msgstr "Titre du lien"
 msgid "Link logos"
 msgstr "Lier les logos"
 
-#: views/components/styleguide.html.twig:623
+#: views/components/styleguide.html.twig:659
 msgid "Linked tag"
 msgstr "Étiquette liée"
 
@@ -1186,11 +1202,11 @@ msgstr "Étiquette liée"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: views/blocks/team.html.twig:67
+#: views/blocks/team.html.twig:72
 msgid "LinkedIn profile"
 msgstr "Profil LinkedIn"
 
-#: views/components/styleguide.html.twig:1130
+#: views/components/styleguide.html.twig:1086
 msgid "List item on the search results page."
 msgstr "Élément de liste sur la page de résultats de recherche."
 
@@ -1210,6 +1226,10 @@ msgstr "Logo"
 msgid "Logos"
 msgstr "Logos"
 
+#: includes/Plugins/ACF/helpers.php:23 includes/Plugins/ACF/helpers.php:38
+msgid "MD (40px / 64px)"
+msgstr "MD (40px / 64px)"
+
 #: includes/Plugins/ACF/IncludeFields/ThemeFields.php:242 includes/WPSettings.php:50
 msgid "Main Menu"
 msgstr "Menu principal"
@@ -1218,7 +1238,7 @@ msgstr "Menu principal"
 msgid "Main heading for the posts archive hero."
 msgstr "Titre principal du hero de l'archive des articles."
 
-#: views/header.html.twig:44
+#: views/header.html.twig:39
 msgid "Main navigation"
 msgstr "Navigation principale"
 
@@ -1250,11 +1270,11 @@ msgstr "Lien vers la carte"
 msgid "Marketing lead"
 msgstr "Responsable marketing"
 
-#: views/components/styleguide.html.twig:1264
+#: views/components/styleguide.html.twig:1187
 msgid "Marketing teams compose pages without touching markup."
 msgstr "Les équipes marketing composent des pages sans toucher au markup."
 
-#: includes/Plugins/ACF/helpers.php:150 includes/Plugins/ACF/helpers.php:152 includes/Plugins/ACF/helpers.php:235 includes/Plugins/ACF/helpers.php:236 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:32 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:33 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:38 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:40
+#: includes/Plugins/ACF/helpers.php:162 includes/Plugins/ACF/helpers.php:164 includes/Plugins/ACF/helpers.php:247 includes/Plugins/ACF/helpers.php:248 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:32 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:33 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:38 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:40
 msgid "Media"
 msgstr "Média"
 
@@ -1286,15 +1306,11 @@ msgstr "Ratio média"
 msgid "Media right"
 msgstr "Média à droite"
 
-#: includes/Plugins/ACF/helpers.php:23
-msgid "Medium"
-msgstr "Moyen"
-
 #: includes/Plugins/ACF/IncludeFields/Layouts/Team.php:56 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:58
 msgid "Members"
 msgstr "Membres"
 
-#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:103 includes/Plugins/ACF/IncludeFields/ThemeFields.php:227 includes/Plugins/ACF/IncludeFields/ThemeFields.php:229
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:67 includes/Plugins/ACF/IncludeFields/ThemeFields.php:227 includes/Plugins/ACF/IncludeFields/ThemeFields.php:229
 msgid "Menu"
 msgstr "Menu"
 
@@ -1302,11 +1318,11 @@ msgstr "Menu"
 msgid "Menu Item"
 msgstr "Élément de menu"
 
-#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:121
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:85
 msgid "Menu Item Object"
 msgstr "Objet élément de menu"
 
-#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:36
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:38
 msgid "Menu Item Select"
 msgstr "Sélection d'élément de menu"
 
@@ -1314,7 +1330,7 @@ msgstr "Sélection d'élément de menu"
 msgid "Menus"
 msgstr "Menus"
 
-#: views/components/styleguide.html.twig:614
+#: views/components/styleguide.html.twig:652
 msgid "Method"
 msgstr "Méthode"
 
@@ -1330,11 +1346,11 @@ msgstr "Min 2, max 4."
 msgid "Min 3, max 12. Native details/summary; first item open by default."
 msgstr "Min 3, max 12. details/summary natif ; le premier élément est ouvert par défaut."
 
-#: includes/Plugins/ACF/helpers.php:206 includes/Plugins/ACF/helpers.php:208
+#: includes/Plugins/ACF/helpers.php:218 includes/Plugins/ACF/helpers.php:220
 msgid "Mobile"
 msgstr "Mobile"
 
-#: includes/Plugins/ACF/helpers.php:210
+#: includes/Plugins/ACF/helpers.php:222
 msgid "Mobile image for the block."
 msgstr "Image mobile pour le bloc."
 
@@ -1342,7 +1358,7 @@ msgstr "Image mobile pour le bloc."
 msgid "Mobile navigation"
 msgstr "Navigation mobile"
 
-#: views/components/styleguide.html.twig:1399 views/components/styleguide.html.twig:1434
+#: views/components/styleguide.html.twig:1319 views/components/styleguide.html.twig:1349
 msgid "Modal"
 msgstr "Modal"
 
@@ -1358,13 +1374,13 @@ msgstr "Du lundi au vendredi"
 msgid "Monochrome SVG required. Rendered height 32 px, auto width."
 msgstr "SVG monochromes exigés. Hauteur rendue 32 px, largeur auto."
 
-#: views/pages/search.html.twig:85
+#: views/pages/search.html.twig:76
 msgid "Most visited pages"
 msgstr "Pages les plus visitées"
 
-#: views/components/styleguide.html.twig:1403
-msgid "Native dialog. Pair cinq-modal with cinq-modal-button."
-msgstr "Dialogue natif. Associez cinq-modal avec cinq-modal-button."
+#: views/components/styleguide.html.twig:1322
+msgid "Native dialog in cinq-modal, opened by a commandfor button (invoker commands)."
+msgstr "Dialog natif dans cinq-modal, ouvert par un bouton commandfor (invoker commands)."
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:144
 msgid "Never add a secondary link without a primary link."
@@ -1378,7 +1394,7 @@ msgstr "Newsletter"
 msgid "Newsletter form"
 msgstr "Formulaire newsletter"
 
-#: views/components/pagination.html.twig:81
+#: views/components/pagination.html.twig:86
 msgid "Next"
 msgstr "Suivant"
 
@@ -1390,15 +1406,15 @@ msgstr "Aucun manifest Vite. Le serveur hot devrait-il être lancé ?"
 msgid "No catch-up six months later. Performance budgets are set at kickoff and checked every sprint: image weight, font loading, deferred JavaScript."
 msgstr "Pas de rattrapage six mois plus tard. Les budgets performance sont fixés au kick-off et vérifiés à chaque sprint : poids des images, chargement des polices, JavaScript différé."
 
-#: views/pages/archive-post.html.twig:61
+#: views/pages/archive-post.html.twig:69
 msgid "No posts found."
 msgstr "Aucun article trouvé."
 
-#: views/pages/search.html.twig:39
+#: views/pages/search.html.twig:34
 msgid "No results for “%s”"
 msgstr "Aucun résultat pour « %s »"
 
-#: includes/Plugins/ACF/helpers.php:21
+#: includes/Plugins/ACF/helpers.php:21 includes/Plugins/ACF/helpers.php:36
 msgid "None"
 msgstr "Aucun"
 
@@ -1406,7 +1422,7 @@ msgstr "Aucun"
 msgid "Not a number field: « +68 », « 2.4 M », « ×3 » must be allowed."
 msgstr "PAS un number : « +68 », « 2,4 M », « ×3 » doivent passer."
 
-#: views/components/styleguide.html.twig:1753
+#: views/components/styleguide.html.twig:1663
 msgid "Notifications"
 msgstr "Notifications"
 
@@ -1414,11 +1430,11 @@ msgstr "Notifications"
 msgid "Number of images per row on desktop."
 msgstr "Nombre d'images par ligne sur bureau."
 
-#: views/components/styleguide.html.twig:1345
-msgid "Off-canvas panel. Pair cinq-drawer with cinq-drawer-button."
-msgstr "Panneau off-canvas. Associez cinq-drawer avec cinq-drawer-button."
+#: views/components/styleguide.html.twig:1255
+msgid "Off-canvas native dialog in cinq-drawer, opened by a commandfor button (invoker commands)."
+msgstr "Dialog natif hors-canevas dans cinq-drawer, ouvert par un bouton commandfor (invoker commands)."
 
-#: views/components/styleguide.html.twig:1482
+#: views/components/styleguide.html.twig:1396
 msgid "One"
 msgstr "Un"
 
@@ -1430,7 +1446,7 @@ msgstr "Un article par mois sur le web, la performance et le design. Pas de prom
 msgid "One short line. Body/sm style."
 msgstr "Une ligne courte. Style Body/sm."
 
-#: views/components/styleguide.html.twig:1361
+#: views/components/styleguide.html.twig:1270
 msgid "Open drawer"
 msgstr "Ouvrir le drawer"
 
@@ -1438,15 +1454,15 @@ msgstr "Ouvrir le drawer"
 msgid "Open in Maps link."
 msgstr "Lien « ouvrir dans Maps »."
 
-#: views/components/styleguide.html.twig:1416
+#: views/components/styleguide.html.twig:1337
 msgid "Open modal"
 msgstr "Ouvrir la modal"
 
-#: includes/Plugins/ACF/helpers.php:90 includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:91 includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:43 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:59 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:68 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:92 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:111 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:119 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:45 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:104 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:157 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:54 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:62 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:70 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:80 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:108 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:116 includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:54 includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:71 includes/Plugins/ACF/IncludeFields/Layouts/Form.php:44 includes/Plugins/ACF/IncludeFields/Layouts/Form.php:66 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:100 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:124 includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:43 includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:52 includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:86 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:45 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:54 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:103 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:157 includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:43 includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:65 includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:75 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:90 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:121 includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:43 includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:52 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:43 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:52 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:63 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:88 includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:45 includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:54 includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:146 includes/Plugins/ACF/IncludeFields/PageFields.php:65 includes/Plugins/ACF/IncludeFields/ThemeFields.php:91 includes/Plugins/ACF/IncludeFields/ThemeFields.php:110 includes/Plugins/ACF/IncludeFields/ThemeFields.php:142 includes/Plugins/ACF/IncludeFields/ThemeFields.php:153 includes/Plugins/ACF/IncludeFields/ThemeFields.php:164 includes/Plugins/ACF/IncludeFields/ThemeFields.php:192 includes/Plugins/ACF/IncludeFields/ThemeFields.php:201 includes/Plugins/ACF/IncludeFields/ThemeFields.php:210 includes/Plugins/ACF/IncludeFields/ThemeFields.php:219 includes/Plugins/ACF/IncludeFields/ThemeFields.php:265 includes/Plugins/ACF/IncludeFields/ThemeFields.php:274 includes/Plugins/ACF/IncludeFields/ThemeFields.php:284 includes/Plugins/ACF/IncludeFields/ThemeFields.php:300
+#: includes/Plugins/ACF/helpers.php:129 includes/Plugins/ACF/IncludeFields/ArchivePostsFields.php:91 includes/Plugins/ACF/IncludeFields/Layouts/AccordionGroup.php:43 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:59 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:68 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:92 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:111 includes/Plugins/ACF/IncludeFields/Layouts/CardsGrid.php:119 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:45 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:104 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:157 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:54 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:62 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:70 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:80 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:108 includes/Plugins/ACF/IncludeFields/Layouts/Contact.php:116 includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:54 includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:71 includes/Plugins/ACF/IncludeFields/Layouts/Form.php:44 includes/Plugins/ACF/IncludeFields/Layouts/Form.php:66 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:100 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:124 includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:43 includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:52 includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:86 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:45 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:54 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:103 includes/Plugins/ACF/IncludeFields/Layouts/LatestPosts.php:157 includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:43 includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:65 includes/Plugins/ACF/IncludeFields/Layouts/Logos.php:75 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:90 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:121 includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:43 includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:52 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:43 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:52 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:63 includes/Plugins/ACF/IncludeFields/Layouts/Team.php:88 includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:45 includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:54 includes/Plugins/ACF/IncludeFields/Layouts/Testimonials.php:146 includes/Plugins/ACF/IncludeFields/PageFields.php:65 includes/Plugins/ACF/IncludeFields/ThemeFields.php:91 includes/Plugins/ACF/IncludeFields/ThemeFields.php:110 includes/Plugins/ACF/IncludeFields/ThemeFields.php:142 includes/Plugins/ACF/IncludeFields/ThemeFields.php:153 includes/Plugins/ACF/IncludeFields/ThemeFields.php:164 includes/Plugins/ACF/IncludeFields/ThemeFields.php:192 includes/Plugins/ACF/IncludeFields/ThemeFields.php:201 includes/Plugins/ACF/IncludeFields/ThemeFields.php:210 includes/Plugins/ACF/IncludeFields/ThemeFields.php:219 includes/Plugins/ACF/IncludeFields/ThemeFields.php:265 includes/Plugins/ACF/IncludeFields/ThemeFields.php:274 includes/Plugins/ACF/IncludeFields/ThemeFields.php:284 includes/Plugins/ACF/IncludeFields/ThemeFields.php:300
 msgid "Optional"
 msgstr "Optionnel"
 
-#: includes/Plugins/ACF/helpers.php:90
+#: includes/Plugins/ACF/helpers.php:129
 msgid "Optional section ID slug for in-page links (e.g. contact)."
 msgstr "Slug d'ID de section optionnel pour les liens internes (ex. contact)."
 
@@ -1478,7 +1494,7 @@ msgstr "Génère le JSON-LD LocalBusiness à partir des champs ci-dessus. Active
 msgid "Overline"
 msgstr "Sur-titre"
 
-#: views/components/styleguide.html.twig:1320
+#: views/components/styleguide.html.twig:1228
 msgid "Packages from agencecinq/ui. Import the package in app.js, then use the custom element with the required ARIA markup."
 msgstr "Packages de agencecinq/ui. Importez le package dans app.js, puis utilisez le custom element avec le markup ARIA requis."
 
@@ -1498,7 +1514,7 @@ msgstr "En-tête de page"
 msgid "Page lead"
 msgstr "Chapô de page"
 
-#: views/components/styleguide.html.twig:50 views/components/styleguide.html.twig:51
+#: views/components/styleguide.html.twig:21 views/components/styleguide.html.twig:26
 msgid "Page title"
 msgstr "Titre de page"
 
@@ -1514,9 +1530,17 @@ msgstr "Score PageSpeed sur mobile"
 msgid "Pagination"
 msgstr "Pagination"
 
+#: views/components/styleguide.html.twig:261
+msgid "Palette and roles from includes/schemes.php, mirroring the Figma variables. Templates paint with the roles (text-primary, bg-surface, border-default…), never with the primitives. Blocks pick a color scheme via ACF color_scheme."
+msgstr "Palette et rôles de includes/schemes.php, reflets des variables Figma. Les templates peignent avec les rôles (text-primary, bg-surface, border-default…), jamais avec les primitives. Les blocs choisissent un schéma de couleurs via le champ ACF color_scheme."
+
 #: includes/Plugins/ACF/IncludeFields/ThemeFields.php:218
 msgid "Paris · Tours · Marseille"
 msgstr "Paris · Tours · Marseille"
+
+#: includes/Plugins/ACF/IncludeFields/AttachmentFields.php:71
+msgid "Part of the image kept visible when a block crops it to its frame."
+msgstr "Partie de l’image gardée visible quand un bloc la recadre à son format."
 
 #: includes/Models/Styleguide/StyleguideContext.php:187 includes/Models/StyleguidePage.php:186
 msgid "Performance"
@@ -1542,7 +1566,7 @@ msgstr "Alimenté dynamiquement via acf/load_field depuis les formulaires du plu
 msgid "Post"
 msgstr "Article"
 
-#: views/components/styleguide.html.twig:754
+#: views/components/styleguide.html.twig:774
 msgid "Post cards used on the archive and latest posts. Landscape 3:2 image, first category, date, title, excerpt, read-more link."
 msgstr "Cartes d'article utilisées sur l'archive et les derniers articles. Image paysage 3:2, première catégorie, date, titre, extrait, lien lire la suite."
 
@@ -1550,25 +1574,25 @@ msgstr "Cartes d'article utilisées sur l'archive et les derniers articles. Imag
 msgid "Post type member. When empty, all published members are shown ordered by menu_order."
 msgstr "Type de contenu member. Vide, tous les membres publiés s'affichent, triés par menu_order."
 
-#: includes/Plugins/ACF/helpers.php:181 includes/Plugins/ACF/helpers.php:183
+#: includes/Plugins/ACF/helpers.php:193 includes/Plugins/ACF/helpers.php:195
 msgid "Poster"
 msgstr "Affiche"
 
-#: includes/Plugins/ACF/helpers.php:185
+#: includes/Plugins/ACF/helpers.php:197
 msgid "Poster image for the video."
 msgstr "Image d'affiche pour la vidéo."
 
-#: views/components/pagination.html.twig:20
+#: views/components/collection-posts.html.twig:52
+msgid "Posts"
+msgstr "Articles"
+
+#: views/components/pagination.html.twig:25
 msgid "Previous"
 msgstr "Précédent"
 
-#: views/components/styleguide.html.twig:470
+#: views/components/styleguide.html.twig:522
 msgid "Primary"
 msgstr "Principal"
-
-#: views/components/styleguide.html.twig:25
-msgid "Primary button"
-msgstr "Bouton principal"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:63
 msgid "Primary button."
@@ -1578,7 +1602,7 @@ msgstr "Bouton principal."
 msgid "Primary link"
 msgstr "Lien principal"
 
-#: views/components/styleguide.html.twig:145
+#: views/components/styleguide.html.twig:270
 msgid "Primitives"
 msgstr "Primitives"
 
@@ -1610,7 +1634,7 @@ msgstr "Prose · Début"
 msgid "Pushes"
 msgstr "Mises en avant"
 
-#: views/components/styleguide.html.twig:1837
+#: views/components/styleguide.html.twig:1733
 msgid "Quantity"
 msgstr "Quantité"
 
@@ -1626,7 +1650,7 @@ msgstr "Citation"
 msgid "Radius"
 msgstr "Rayon"
 
-#: views/components/styleguide.html.twig:439
+#: views/components/styleguide.html.twig:498
 msgid "Radius is 0. Do not add rounded-* utilities in the starter."
 msgstr "Le rayon est 0. N'ajoutez pas d'utilitaires rounded-* dans le starter."
 
@@ -1638,13 +1662,17 @@ msgstr "Ratio 1:1"
 msgid "Read"
 msgstr "Lire"
 
-#: views/components/tease-post.html.twig:85
+#: views/components/tease-post.html.twig:83
 msgid "Read more"
 msgstr "Lire la suite"
 
 #: views/components/tease-post.html.twig:29
 msgid "Read: %s"
 msgstr "Lire : %s"
+
+#: includes/schemes.php:53
+msgid "Red"
+msgstr "Rouge"
 
 #: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:69
 msgid "Redesign"
@@ -1666,7 +1694,7 @@ msgstr "Rendu en lien tel: — les espaces sont retirés dans le href."
 msgid "Rendered in an address element. Line breaks preserved."
 msgstr "Rendu dans une balise address. Sauts de ligne préservés."
 
-#: views/components/styleguide.html.twig:1183
+#: views/components/styleguide.html.twig:1122
 msgid "Rendered when the first flexible block is not a hero."
 msgstr "Affiché lorsque le premier bloc flexible n'est pas un hero."
 
@@ -1698,7 +1726,7 @@ msgstr "Texte enrichi"
 msgid "Rich text"
 msgstr "Texte enrichi"
 
-#: includes/Plugins/ACF/helpers.php:284 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:57
+#: includes/Plugins/ACF/helpers.php:296 includes/Plugins/ACF/IncludeFields/AttachmentFields.php:63 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:57
 msgid "Right"
 msgstr "Droite"
 
@@ -1710,27 +1738,19 @@ msgstr "Colonne droite"
 msgid "Role"
 msgstr "Rôle"
 
-#: views/components/styleguide.html.twig:221
-msgid "Roles consumed by buttons and surfaces. They are Tailwind utilities, not extra tokens, and they do not follow a color scheme."
-msgstr "Rôles consommés par les boutons et surfaces. Ce sont des utilitaires Tailwind, pas des tokens supplémentaires, et ils ne suivent pas un schéma de couleurs."
-
 #: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:251
 msgid "SEO consultant"
 msgstr "Consultant SEO"
+
+#: includes/Plugins/ACF/helpers.php:22 includes/Plugins/ACF/helpers.php:37
+msgid "SM (24px / 32px)"
+msgstr "SM (24px / 32px)"
 
 #: includes/Admin/Menu.php:62
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 
-#: views/components/styleguide.html.twig:179
-msgid "Scheme 1 · Light"
-msgstr "Schéma 1 · Clair"
-
-#: views/components/styleguide.html.twig:197
-msgid "Scheme 2 · Inverse"
-msgstr "Schéma 2 · Inversé"
-
-#: views/components/styleguide.html.twig:870
+#: views/components/styleguide.html.twig:876
 msgid "Scope the build"
 msgstr "Cadrer le projet"
 
@@ -1755,15 +1775,15 @@ msgstr "Page de recherche"
 msgid "Search result"
 msgstr "Résultat de recherche"
 
-#: views/components/search-form.html.twig:28
+#: views/components/search-form.html.twig:26
 msgid "Search the site…"
 msgstr "Rechercher sur le site…"
 
-#: views/components/styleguide.html.twig:1524
+#: views/components/styleguide.html.twig:1438
 msgid "Second panel."
 msgstr "Deuxième panneau."
 
-#: views/components/styleguide.html.twig:504
+#: views/components/styleguide.html.twig:554
 msgid "Secondary"
 msgstr "Secondaire"
 
@@ -1771,37 +1791,25 @@ msgstr "Secondaire"
 msgid "Secondary Menu"
 msgstr "Menu secondaire"
 
-#: views/components/styleguide.html.twig:27
-msgid "Secondary button"
-msgstr "Bouton secondaire"
-
 #: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:71 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:121
 msgid "Secondary button."
 msgstr "Bouton secondaire."
-
-#: views/components/styleguide.html.twig:28
-msgid "Secondary label"
-msgstr "Libellé secondaire"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:67 includes/Plugins/ACF/IncludeFields/Layouts/Cta.php:69 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:139 includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:141
 msgid "Secondary link"
 msgstr "Lien secondaire"
 
-#: views/components/styleguide.html.twig:58 views/components/styleguide.html.twig:59 views/components/styleguide.html.twig:60
+#: views/components/styleguide.html.twig:61 views/components/styleguide.html.twig:66 views/components/styleguide.html.twig:71
 msgid "Secondary text"
 msgstr "Texte secondaire"
 
-#: views/components/styleguide.html.twig:23
-msgid "Section background"
-msgstr "Fond de section"
+#: includes/Plugins/ACF/helpers.php:101 includes/Plugins/ACF/helpers.php:115
+msgid "Section padding (mobile / desktop)."
+msgstr "Marges de section (mobile / desktop)."
 
-#: views/components/styleguide.html.twig:324
+#: views/components/styleguide.html.twig:382
 msgid "Section spacing"
 msgstr "Espacement de section"
-
-#: includes/Plugins/ACF/helpers.php:62 includes/Plugins/ACF/helpers.php:76
-msgid "Section spacing. Desktop / mobile: none 0/0, sm 32/24, md 64/40, lg 96/56, xl 128/72."
-msgstr "Espacement de section. Bureau / mobile : none 0/0, sm 32/24, md 64/40, lg 96/56, xl 128/72."
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:96 includes/Plugins/ACF/IncludeFields/Layouts/CaseStudies.php:98
 msgid "Sector"
@@ -1811,7 +1819,7 @@ msgstr "Secteur"
 msgid "See our work"
 msgstr "Voir nos réalisations"
 
-#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:94
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:58
 msgid "Select a menu"
 msgstr "Sélectionner un menu"
 
@@ -1819,7 +1827,7 @@ msgstr "Sélectionner un menu"
 msgid "Select a menu to attach to this submenu"
 msgstr "Sélectionner un menu à associer à ce sous-menu"
 
-#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:38
+#: includes/Plugins/ACF/FieldTypes/MenuItemSelect.php:40
 msgid "Select a single entry from a WordPress navigation menu."
 msgstr "Sélectionner une entrée d'un menu de navigation WordPress."
 
@@ -1835,7 +1843,7 @@ msgstr "Sélectionner le mode de la mise en avant."
 msgid "Selection"
 msgstr "Sélection"
 
-#: includes/Plugins/ACF/helpers.php:126 includes/Plugins/ACF/helpers.php:127
+#: includes/Plugins/ACF/helpers.php:138 includes/Plugins/ACF/helpers.php:139
 msgid "Settings"
 msgstr "Réglages"
 
@@ -1851,7 +1859,7 @@ msgstr "Partager sur LinkedIn"
 msgid "Share on X"
 msgstr "Partager sur X"
 
-#: views/components/styleguide.html.twig:423
+#: views/components/styleguide.html.twig:484
 msgid "Sharp corners, 1px borders."
 msgstr "Angles vifs, bordures 1 px."
 
@@ -1859,7 +1867,7 @@ msgstr "Angles vifs, bordures 1 px."
 msgid "Shell"
 msgstr "Shell"
 
-#: views/components/styleguide.html.twig:871
+#: views/components/styleguide.html.twig:877
 msgid "Ship the starter"
 msgstr "Livrer le starter"
 
@@ -1871,7 +1879,7 @@ msgstr "Argumentaire court. Barre d'outils restreinte."
 msgid "Show bio"
 msgstr "Afficher la bio"
 
-#: views/components/styleguide.html.twig:1707
+#: views/components/styleguide.html.twig:1619
 msgid "Show more"
 msgstr "Afficher plus"
 
@@ -1887,17 +1895,13 @@ msgstr "Des sites que votre équipe peut vraiment administrer"
 msgid "Skip links"
 msgstr "Liens d'évitement"
 
-#: views/components/skip-links.html.twig:9
+#: views/components/skip-links.html.twig:10
 msgid "Skip to content"
 msgstr "Aller au contenu"
 
-#: views/components/styleguide.html.twig:1384
-msgid "Slide-over navigation or filters. Close with Escape or the backdrop."
-msgstr "Navigation ou filtres en slide-over. Fermer avec Échap ou le fond."
-
-#: includes/Plugins/ACF/helpers.php:22
-msgid "Small"
-msgstr "Petit"
+#: views/components/styleguide.html.twig:1291
+msgid "Slide-over navigation or filters. Close with Escape, the backdrop or the button."
+msgstr "Navigation ou filtres en panneau latéral. Se ferme avec Échap, l'arrière-plan ou le bouton."
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/Hero.php:100 includes/Plugins/ACF/IncludeFields/Layouts/MediaText.php:90
 msgid "Small label above the title."
@@ -1923,15 +1927,15 @@ msgstr "Source"
 msgid "Space"
 msgstr "Espace"
 
-#: includes/Plugins/ACF/helpers.php:72 includes/Plugins/ACF/helpers.php:74
+#: includes/Plugins/ACF/helpers.php:111 includes/Plugins/ACF/helpers.php:113
 msgid "Spacing bottom"
 msgstr "Espacement bas"
 
-#: includes/Plugins/ACF/helpers.php:58 includes/Plugins/ACF/helpers.php:60
+#: includes/Plugins/ACF/helpers.php:97 includes/Plugins/ACF/helpers.php:99
 msgid "Spacing top"
 msgstr "Espacement haut"
 
-#: views/components/styleguide.html.twig:1798
+#: views/components/styleguide.html.twig:1697
 msgid "Spin button"
 msgstr "Bouton numérique"
 
@@ -1943,7 +1947,7 @@ msgstr "Split (deux colonnes)"
 msgid "Split: pitch on 5 cols, form on 6. Centered: single 720 px column."
 msgstr "Split : pitch sur 5 cols, formulaire sur 6. Centré : colonne unique 720 px."
 
-#: views/components/styleguide.html.twig:888
+#: views/components/styleguide.html.twig:892
 msgid "Stack"
 msgstr "Empilement"
 
@@ -1959,7 +1963,7 @@ msgstr "Début"
 msgid "Starting point"
 msgstr "Point de départ"
 
-#: views/components/styleguide.html.twig:1029
+#: views/components/styleguide.html.twig:1012
 msgid "Static fallback when no Contact Form 7 form is selected in theme options."
 msgstr "Repli statique lorsqu'aucun formulaire Contact Form 7 n'est sélectionné dans les options du thème."
 
@@ -1967,7 +1971,7 @@ msgstr "Repli statique lorsqu'aucun formulaire Contact Form 7 n'est sélectionn�
 msgid "Static map capture. Preferred over an iframe: no third-party cookie, no API key."
 msgstr "Capture statique de la carte. Préférée à l'iframe : pas de cookie tiers, pas de clé API."
 
-#: views/components/styleguide.html.twig:1088
+#: views/components/styleguide.html.twig:1055
 msgid "Static preview shown when Yoast SEO is inactive on this environment."
 msgstr "Aperçu statique affiché lorsque Yoast SEO est inactif sur cet environnement."
 
@@ -1980,15 +1984,15 @@ msgstr "Stratégie"
 msgid "Styleguide"
 msgstr "Styleguide"
 
-#: views/components/styleguide.html.twig:1374
+#: views/components/styleguide.html.twig:1283
 msgid "Styleguide drawer"
 msgstr "Drawer du styleguide"
 
-#: views/components/styleguide.html.twig:1472
+#: views/components/styleguide.html.twig:1386
 msgid "Styleguide tabs"
 msgstr "Onglets du styleguide"
 
-#: views/components/styleguide.html.twig:903
+#: views/components/styleguide.html.twig:907
 msgid "Styles"
 msgstr "Styles"
 
@@ -2004,19 +2008,23 @@ msgstr "Sous-menu"
 msgid "Subscribe"
 msgstr "S'abonner"
 
-#: views/components/styleguide.html.twig:53 views/components/styleguide.html.twig:54
+#: views/components/styleguide.html.twig:36 views/components/styleguide.html.twig:41
 msgid "Subtitle"
 msgstr "Sous-titre"
 
-#: views/components/styleguide.html.twig:932
+#: views/components/styleguide.html.twig:934
 msgid "Subtitle, section header, text link"
 msgstr "Sous-titre, en-tête de section, lien texte"
+
+#: includes/schemes.php:57
+msgid "Success"
+msgstr "Succès"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:81 includes/Plugins/ACF/IncludeFields/Layouts/KeyFigures.php:83
 msgid "Suffix"
 msgstr "Suffixe"
 
-#: includes/Plugins/ACF/helpers.php:174
+#: includes/Plugins/ACF/helpers.php:186
 msgid "Supported formats: mp4, mpeg, avi, ogv, webm, and 3gp."
 msgstr "Formats pris en charge : mp4, mpeg, avi, ogv, webm et 3gp."
 
@@ -2024,15 +2032,19 @@ msgstr "Formats pris en charge : mp4, mpeg, avi, ogv, webm et 3gp."
 msgid "Supporting text below the heading."
 msgstr "Texte d'accompagnement sous le titre."
 
-#: views/components/styleguide.html.twig:1727
+#: includes/schemes.php:151
+msgid "Surface"
+msgstr "Surface"
+
+#: views/components/styleguide.html.twig:1638
 msgid "Switch"
 msgstr "Switch"
 
-#: views/components/styleguide.html.twig:1745
+#: views/components/styleguide.html.twig:1653
 msgid "Switches"
 msgstr "Switches"
 
-#: views/components/styleguide.html.twig:257
+#: views/components/styleguide.html.twig:326
 msgid "System sans-serif stack (ui-sans-serif, system-ui). Fifteen interface styles plus five editorial styles (5xl, 6xl, and Prose at line-height 1.7). Never use Prose in UI, nor Body in an article. .subtitle is uppercase with 0.1em tracking."
 msgstr "Stack sans-serif système (ui-sans-serif, system-ui). Quinze styles d'interface plus cinq styles éditoriaux (5xl, 6xl et Prose en interlignage 1.7). N'utilisez jamais Prose en UI, ni Body dans un article. .subtitle est en majuscules avec un tracking de 0.1em."
 
@@ -2040,7 +2052,7 @@ msgstr "Stack sans-serif système (ui-sans-serif, system-ui). Quinze styles d'in
 msgid "Table of contents"
 msgstr "Table des matières"
 
-#: views/components/styleguide.html.twig:1453
+#: views/components/styleguide.html.twig:1370
 msgid "Tabs"
 msgstr "Onglets"
 
@@ -2048,31 +2060,15 @@ msgstr "Onglets"
 msgid "Tag"
 msgstr "Étiquette"
 
-#: views/components/styleguide.html.twig:30
-msgid "Tag background"
-msgstr "Fond d'étiquette"
-
-#: views/components/styleguide.html.twig:32
-msgid "Tag border"
-msgstr "Bordure d'étiquette"
-
-#: views/components/styleguide.html.twig:31
-msgid "Tag text"
-msgstr "Texte d'étiquette"
-
-#: views/components/styleguide.html.twig:296
+#: views/components/styleguide.html.twig:359
 msgid "Tailwind spacing scale (0.25rem) for gutters and component padding, never between sections. Section spacing is a separate ACF scale of five values."
 msgstr "Échelle d'espacement Tailwind (0.25rem) pour les gouttières et le padding des composants, jamais entre les sections. L'espacement de section est une échelle ACF séparée de cinq valeurs."
-
-#: views/components/styleguide.html.twig:135
-msgid "Tailwind v4 primitives (plus ink). Never pick primitives in the editor. Blocks switch Light or Inverse via ACF color_scheme. UI components read the Tailwind layer below, not the schemes."
-msgstr "Primitives Tailwind v4 (plus ink). Ne choisissez jamais les primitives dans l'éditeur. Les blocs basculent Clair ou Inversé via ACF color_scheme. Les composants UI lisent la couche Tailwind ci-dessous, pas les schémas."
 
 #: includes/Models/StyleguidePage.php:127
 msgid "Taxonomy filters"
 msgstr "Filtres taxonomiques"
 
-#: views/components/styleguide.html.twig:588
+#: views/components/styleguide.html.twig:636
 msgid "Taxonomy label for article categories, case study sectors, or post tags. One visual style; labels come from get_the_terms(), never from a hand-typed ACF field."
 msgstr "Libellé taxonomique pour les catégories d'articles, secteurs de cas clients ou étiquettes. Un seul style visuel ; les libellés viennent de get_the_terms(), jamais d'un champ ACF saisi à la main."
 
@@ -2084,11 +2080,11 @@ msgstr "Équipe"
 msgid "Teasers"
 msgstr "Teasers"
 
-#: views/components/styleguide.html.twig:899
+#: views/components/styleguide.html.twig:903
 msgid "Templates"
 msgstr "Templates"
 
-#: views/components/styleguide.html.twig:541
+#: views/components/styleguide.html.twig:591
 msgid "Tertiary"
 msgstr "Tertiaire"
 
@@ -2100,7 +2096,7 @@ msgstr "Témoignages"
 msgid "Text"
 msgstr "Texte"
 
-#: includes/Plugins/ACF/helpers.php:276 includes/Plugins/ACF/helpers.php:278
+#: includes/Plugins/ACF/helpers.php:288 includes/Plugins/ACF/helpers.php:290
 msgid "Text Alignment"
 msgstr "Alignement du texte"
 
@@ -2112,13 +2108,17 @@ msgstr "La newsletter CINQ"
 msgid "The agency"
 msgstr "L'agence"
 
-#: views/pages/404.html.twig:24
+#: views/pages/404.html.twig:22
 msgid "The link may be outdated, or the address contains an error. You can search, or go back to the homepage."
 msgstr "Le lien est peut-être obsolète, ou l'adresse contient une erreur. Vous pouvez rechercher, ou revenir à l'accueil."
 
-#: views/components/styleguide.html.twig:328
+#: views/components/styleguide.html.twig:385
 msgid "The only values for ACF spacing_top and spacing_bottom. Desktop then mobile."
 msgstr "Les seules valeurs pour ACF spacing_top et spacing_bottom. Bureau puis mobile."
+
+#: views/components/styleguide.html.twig:1356
+msgid "The page is inert while it is open, a backdrop click closes it. Use for confirmations or compact forms."
+msgstr "La page est inerte tant qu'il est ouvert, un clic sur l'arrière-plan le ferme. Pour les confirmations ou les formulaires courts."
 
 #: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:217
 msgid "The people behind the projects"
@@ -2128,7 +2128,7 @@ msgstr "Les personnes derrière les projets"
 msgid "The site went from 4.2 s to 1.4 s load time. Quote requests followed, without touching the ad budget."
 msgstr "Le site est passé de 4,2 s à 1,4 s de temps de chargement. Les demandes de devis ont suivi, sans toucher au budget pub."
 
-#: includes/Plugins/ACF/helpers.php:154
+#: includes/Plugins/ACF/helpers.php:166
 msgid "The video will take precedence over the image if both are filled."
 msgstr "La vidéo aura la priorité sur l'image si les deux sont renseignées."
 
@@ -2148,7 +2148,7 @@ msgstr "Ils ont refusé la solution facile et pris le temps de comprendre notre 
 msgid "They trust us"
 msgstr "Ils nous font confiance"
 
-#: views/components/styleguide.html.twig:1534
+#: views/components/styleguide.html.twig:1448
 msgid "Third panel."
 msgstr "Troisième panneau."
 
@@ -2156,7 +2156,7 @@ msgstr "Troisième panneau."
 msgid "Thirty minutes is enough to know if we are the right partner. No commitment, and no sales pitch."
 msgstr "Trente minutes suffisent pour savoir si nous sommes le bon partenaire. Sans engagement, et sans discours commercial."
 
-#: views/pages/404.html.twig:19
+#: views/pages/404.html.twig:17
 msgid "This page does not exist"
 msgstr "Cette page n'existe pas"
 
@@ -2168,7 +2168,7 @@ msgstr "Ce thème est volontairement minimal. Remplacez les textes, branchez vos
 msgid "This theme requires the Advanced Custom Fields plugin. Install and activate it to edit theme options and page blocks."
 msgstr "Ce thème nécessite le plugin Advanced Custom Fields. Installez-le et activez-le pour éditer les options du thème et les blocs de page."
 
-#: views/components/styleguide.html.twig:1504
+#: views/components/styleguide.html.twig:1418
 msgid "Three"
 msgstr "Trois"
 
@@ -2180,7 +2180,7 @@ msgstr "Trois lignes maximum en pratique."
 msgid "Three years after launch, we still edit everything ourselves. No lock-in, no surprise invoices."
 msgstr "Trois ans après le lancement, nous éditons encore tout nous-mêmes. Pas de verrouillage, pas de factures surprises."
 
-#: views/components/styleguide.html.twig:866
+#: views/components/styleguide.html.twig:872
 msgid "Timber and Tailwind"
 msgstr "Timber et Tailwind"
 
@@ -2188,19 +2188,31 @@ msgstr "Timber et Tailwind"
 msgid "Title"
 msgstr "Titre"
 
-#: views/components/styleguide.html.twig:1691
+#: views/components/styleguide.html.twig:1605
 msgid "Toggle visibility of a single region. Wrap any button markup."
 msgstr "Basculer la visibilité d'une région. Enveloppez n'importe quel markup de bouton."
 
-#: views/pages/styleguide-page.html.twig:24
+#: views/pages/styleguide-page.html.twig:22
 msgid "Tokens, UI components, and kernel blocks shipped with the starter. Assign this page template; the catalog is rendered from Twig, not from ACF."
 msgstr "Tokens, composants UI et blocs du noyau livrés avec le starter. Assignez ce template de page ; le catalogue est rendu depuis Twig, pas depuis ACF."
 
-#: views/pages/search.html.twig:44
+#: includes/Plugins/ACF/IncludeFields/AttachmentFields.php:60
+msgid "Top"
+msgstr "Haut"
+
+#: includes/Plugins/ACF/IncludeFields/AttachmentFields.php:64
+msgid "Top left"
+msgstr "En haut à gauche"
+
+#: includes/Plugins/ACF/IncludeFields/AttachmentFields.php:65
+msgid "Top right"
+msgstr "En haut à droite"
+
+#: views/pages/search.html.twig:38
 msgid "Try fewer words, or browse the most visited pages below."
 msgstr "Essayez moins de mots, ou parcourez les pages les plus visitées ci-dessous."
 
-#: views/components/styleguide.html.twig:648
+#: views/components/styleguide.html.twig:682
 msgid "Twenty-one icons on a 24 by 24 grid, recolorable with currentColor. Add a file to src/icons/, run pnpm build, then include svg/use.html.twig."
 msgstr "Vingt et une icônes sur une grille 24 par 24, recolorables avec currentColor. Ajoutez un fichier dans src/icons/, lancez pnpm build, puis incluez svg/use.html.twig."
 
@@ -2210,21 +2222,17 @@ msgstr "Vingt et une icônes sur une grille 24 par 24, recolorables avec current
 msgid "Twig templates are cached because %1$s is false (WordPress default on a fresh install). Set %2$s in wp-config.php while developing, or delete %3$s after editing a Twig file."
 msgstr "Les templates Twig sont mis en cache car %1$s est false (valeur par défaut WordPress sur une installation fraîche). Définissez %2$s dans wp-config.php en développement, ou supprimez %3$s après avoir modifié un fichier Twig."
 
-#: views/components/styleguide.html.twig:1493
+#: views/components/styleguide.html.twig:1407
 msgid "Two"
 msgstr "Deux"
 
-#: views/components/styleguide.html.twig:401
+#: views/components/styleguide.html.twig:457
 msgid "Two modes. Override --container-max-width (90rem or 110rem) from the start."
 msgstr "Deux modes. Surchargez --container-max-width (90rem ou 110rem) dès le départ."
 
 #: includes/Models/StyleguidePage.php:51
 msgid "Type"
 msgstr "Type"
-
-#: views/components/styleguide.html.twig:217
-msgid "UI"
-msgstr "UI"
 
 #. translators: %s: asset path
 #: includes/Vite.php:135
@@ -2240,7 +2248,7 @@ msgstr "Jusqu'à trois articles. Laisser vide pour afficher les derniers article
 msgid "Updates, backups, monitoring, and retainers. Corrective hotfixes follow the SLA."
 msgstr "Mises à jour, sauvegardes, monitoring et forfaits. Les correctifs suivent le SLA."
 
-#: views/components/styleguide.html.twig:1002
+#: views/components/styleguide.html.twig:994
 msgid "Used in the header, the 404 page, and the search landing page via get_search_form()."
 msgstr "Utilisé dans l'en-tête, la page 404 et la page de recherche via get_search_form()."
 
@@ -2248,11 +2256,11 @@ msgstr "Utilisé dans l'en-tête, la page 404 et la page de recherche via get_se
 msgid "Value"
 msgstr "Valeur"
 
-#: views/components/styleguide-layout-block.html.twig:21
+#: views/components/styleguide-layout-block.html.twig:17
 msgid "Variant"
 msgstr "Variante"
 
-#: includes/Plugins/ACF/helpers.php:159 includes/Plugins/ACF/helpers.php:161
+#: includes/Plugins/ACF/helpers.php:171 includes/Plugins/ACF/helpers.php:173
 msgid "Video"
 msgstr "Vidéo"
 
@@ -2273,7 +2281,7 @@ msgstr "WP CINQ"
 msgid "WYSIWYG"
 msgstr "WYSIWYG"
 
-#: views/components/styleguide.html.twig:1672
+#: views/components/styleguide.html.twig:1588
 msgid "We reopen the estimate, agree on the extra, then we build."
 msgstr "Nous rouvrons le devis, nous nous accordons sur le supplément, puis nous construisons."
 
@@ -2285,7 +2293,7 @@ msgstr "Web Components"
 msgid "What happens after launch?"
 msgstr "Que se passe-t-il après le lancement ?"
 
-#: views/components/styleguide.html.twig:1632
+#: views/components/styleguide.html.twig:1548
 msgid "What happens if the scope moves mid-build?"
 msgstr "Que se passe-t-il si le périmètre évolue en cours de route ?"
 
@@ -2305,7 +2313,7 @@ msgstr "Ce que nous faisons"
 msgid "What we get asked most"
 msgstr "Ce qu'on nous demande le plus"
 
-#: views/pages/single-post.html.twig:178
+#: views/pages/single-post.html.twig:173
 msgid "What we write"
 msgstr "Ce que nous écrivons"
 
@@ -2345,17 +2353,17 @@ msgstr "Quand la source est CPT. Type de contenu testimonial, 6 maximum."
 msgid "When source is manual. Min 1, max 6."
 msgstr "Quand la source est manuelle. 1 minimum, 6 maximum."
 
+#: includes/schemes.php:49 includes/schemes.php:155
+msgid "White"
+msgstr "Blanc"
+
 #: includes/Models/StyleguidePage.php:206
 msgid "Why ACF blocks"
 msgstr "Pourquoi des blocs ACF"
 
-#: views/components/styleguide.html.twig:1574
+#: views/components/styleguide.html.twig:1486
 msgid "Why do you publish your prices?"
 msgstr "Pourquoi publiez-vous vos tarifs ?"
-
-#: includes/Plugins/ACF/helpers.php:101
-msgid "Wide (1760px)"
-msgstr "Large (1760 px)"
 
 #: includes/Plugins/ACF/IncludeFields/Layouts/RichText.php:76
 msgid "Wide (960px)"
@@ -2377,7 +2385,7 @@ msgstr "WordPress"
 msgid "WordPress agency"
 msgstr "Agence WordPress"
 
-#: views/components/styleguide.html.twig:865
+#: views/components/styleguide.html.twig:871
 msgid "WordPress brochure and editorial sites"
 msgstr "Sites vitrine et éditoriaux WordPress"
 
@@ -2385,13 +2393,17 @@ msgstr "Sites vitrine et éditoriaux WordPress"
 msgid "Work"
 msgstr "Réalisations"
 
-#: views/footer.html.twig:111
+#: views/footer.html.twig:105
 msgid "Write to us"
 msgstr "Nous écrire"
 
 #: includes/Models/StyleguidePage.php:244 includes/socials.php:48
 msgid "X (Twitter)"
 msgstr "X (Twitter)"
+
+#: includes/Plugins/ACF/helpers.php:25 includes/Plugins/ACF/helpers.php:40
+msgid "XL (72px / 128px)"
+msgstr "XL (72px / 128px)"
 
 #: includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:292
 msgid "Yes. The theme lives in your Git repository from the first commit. No page builder, no proprietary lock-in."
@@ -2401,7 +2413,7 @@ msgstr "Oui. Le thème vit dans votre dépôt Git dès le premier commit. Pas de
 msgid "Yes. We audit the theme, plugins, and content, then rebuild what cannot be maintained. URLs and SEO are mapped before anything goes live."
 msgstr "Oui. Nous auditons le thème, les plugins et le contenu, puis reconstruisons ce qui ne peut pas être maintenu. Les URL et le SEO sont cartographiés avant toute mise en ligne."
 
-#: views/components/styleguide.html.twig:1057
+#: views/components/styleguide.html.twig:1030
 msgid "Yoast SEO wrapper. JSON-LD BreadcrumbList is output by the plugin."
 msgstr "Wrapper Yoast SEO. Le JSON-LD BreadcrumbList est généré par le plugin."
 
@@ -2421,19 +2433,19 @@ msgstr "Votre site n'est pas une dépense à amortir tous les trois ans."
 msgid "contact@example.com"
 msgstr "contact@example.com"
 
-#: includes/helpers.php:668 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:164
+#: includes/helpers.php:554 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:164
 msgid "conversion rate"
 msgstr "taux de conversion"
 
-#: views/components/styleguide.html.twig:855
+#: views/components/styleguide.html.twig:861
 msgid "dedicated theme"
 msgstr "thème dédié"
 
-#: views/components/styleguide.html.twig:346
+#: views/components/styleguide.html.twig:398
 msgid "desktop · mobile"
 msgstr "bureau · mobile"
 
-#: views/components/styleguide.html.twig:859
+#: views/components/styleguide.html.twig:865
 msgid "from day one, in"
 msgstr "dès le premier jour, en"
 
@@ -2447,15 +2459,15 @@ msgstr "https://agencecinq.com/"
 msgid "https://github.com/agencecinq/wp-cinquante-et-un/"
 msgstr "https://github.com/agencecinq/wp-cinquante-et-un/"
 
-#: views/components/styleguide.html.twig:708
+#: views/components/styleguide.html.twig:734
 msgid "image.html.twig accepts a WordPress attachment or a placeholder array: src, alt, width, height, and placeholder true. The starter ships public/placeholder.svg so catalog blocks do not need a media library file."
 msgstr "image.html.twig accepte une pièce jointe WordPress ou un tableau placeholder : src, alt, width, height et placeholder true. Le starter inclut public/placeholder.svg pour que les blocs du catalogue n'aient pas besoin d'un fichier de la médiathèque."
 
-#: views/components/styleguide.html.twig:378
+#: views/components/styleguide.html.twig:428
 msgid "layout/prose-max-width: 720px, about 65 characters. The measure for long copy."
 msgstr "layout/prose-max-width : 720 px, environ 65 caractères. La mesure pour les textes longs."
 
-#: views/components/styleguide.html.twig:390
+#: views/components/styleguide.html.twig:443
 msgid "md is used here: editorial grids often go to two columns before lg."
 msgstr "md est utilisé ici : les grilles éditoriales passent souvent à deux colonnes avant lg."
 
@@ -2471,7 +2483,7 @@ msgstr "demandes de devis en plus en six mois"
 msgid "page builder plugins"
 msgstr "plugins page builder"
 
-#: includes/helpers.php:650 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:146
+#: includes/helpers.php:536 includes/Models/Styleguide/Catalogs/StandardBlocksCatalog.php:146
 msgid "quote requests"
 msgstr "demandes de devis"
 
@@ -2479,15 +2491,99 @@ msgstr "demandes de devis"
 msgid "you@company.com"
 msgstr "you@company.com"
 
-#: views/footer.html.twig:169
+#: views/footer.html.twig:151
 msgid "© %1$s %2$s. All rights reserved."
 msgstr "© %1$s %2$s. Tous droits réservés."
 
+#~ msgid "Button label"
+#~ msgstr "Libellé du bouton"
+
+#~ msgid "Declared in src/stylesheets/theme.css (@theme). Each block sets color_scheme to default or inverse."
+#~ msgstr "Déclaré dans src/stylesheets/theme.css (@theme). Chaque bloc définit color_scheme sur default ou inverse."
+
+#~ msgid "Default (1440px)"
+#~ msgstr "Par défaut (1440 px)"
+
+#~ msgid "Default 1440px, wide 1760px, or full width without a container."
+#~ msgstr "1440 px par défaut, 1760 px en large, ou pleine largeur sans conteneur."
+
+#~ msgid "Editorial links"
+#~ msgstr "Liens éditoriaux"
+
+#~ msgid "Extra large"
+#~ msgstr "Très grand"
+
+#~ msgid "Focus trap and backdrop dismiss. Use for confirmations or compact forms."
+#~ msgstr "Focus trap et fermeture au clic sur le fond. À utiliser pour des confirmations ou des formulaires compacts."
+
+#~ msgid "Inverse"
+#~ msgstr "Inversé"
+
+#~ msgid "Large"
+#~ msgstr "Grand"
+
+#~ msgid "Light (default) or inverse section colors."
+#~ msgstr "Couleurs de section clair (par défaut) ou inversé."
+
+#~ msgid "Medium"
+#~ msgstr "Moyen"
+
+#~ msgid "Native dialog. Pair cinq-modal with cinq-modal-button."
+#~ msgstr "Dialogue natif. Associez cinq-modal avec cinq-modal-button."
+
+#~ msgid "Off-canvas panel. Pair cinq-drawer with cinq-drawer-button."
+#~ msgstr "Panneau off-canvas. Associez cinq-drawer avec cinq-drawer-button."
+
+#~ msgid "Primary button"
+#~ msgstr "Bouton principal"
+
+#~ msgid "Roles consumed by buttons and surfaces. They are Tailwind utilities, not extra tokens, and they do not follow a color scheme."
+#~ msgstr "Rôles consommés par les boutons et surfaces. Ce sont des utilitaires Tailwind, pas des tokens supplémentaires, et ils ne suivent pas un schéma de couleurs."
+
+#~ msgid "Scheme 1 · Light"
+#~ msgstr "Schéma 1 · Clair"
+
+#~ msgid "Scheme 2 · Inverse"
+#~ msgstr "Schéma 2 · Inversé"
+
+#~ msgid "Secondary button"
+#~ msgstr "Bouton secondaire"
+
+#~ msgid "Secondary label"
+#~ msgstr "Libellé secondaire"
+
+#~ msgid "Section background"
+#~ msgstr "Fond de section"
+
+#~ msgid "Section spacing. Desktop / mobile: none 0/0, sm 32/24, md 64/40, lg 96/56, xl 128/72."
+#~ msgstr "Espacement de section. Bureau / mobile : none 0/0, sm 32/24, md 64/40, lg 96/56, xl 128/72."
+
+#~ msgid "Slide-over navigation or filters. Close with Escape or the backdrop."
+#~ msgstr "Navigation ou filtres en slide-over. Fermer avec Échap ou le fond."
+
+#~ msgid "Small"
+#~ msgstr "Petit"
+
+#~ msgid "Tag background"
+#~ msgstr "Fond d'étiquette"
+
+#~ msgid "Tag border"
+#~ msgstr "Bordure d'étiquette"
+
+#~ msgid "Tag text"
+#~ msgstr "Texte d'étiquette"
+
+#~ msgid "Tailwind v4 primitives (plus ink). Never pick primitives in the editor. Blocks switch Light or Inverse via ACF color_scheme. UI components read the Tailwind layer below, not the schemes."
+#~ msgstr "Primitives Tailwind v4 (plus ink). Ne choisissez jamais les primitives dans l'éditeur. Les blocs basculent Clair ou Inversé via ACF color_scheme. Les composants UI lisent la couche Tailwind ci-dessous, pas les schémas."
+
+#~ msgid "UI"
+#~ msgstr "UI"
+
+#~ msgid "Wide (1760px)"
+#~ msgstr "Large (1760 px)"
+
 #~ msgid "Border Radius"
 #~ msgstr "Rayon de bordure"
-
-#~ msgid "Bottom"
-#~ msgstr "Bas"
 
 #~ msgid "Clones Fields"
 #~ msgstr "Champs Clones"
@@ -2497,9 +2593,6 @@ msgstr "© %1$s %2$s. Tous droits réservés."
 
 #~ msgid "Reading time"
 #~ msgstr "Temps de lecture"
-
-#~ msgid "Top"
-#~ msgstr "Haut"
 
 #~ msgid "Top and Bottom"
 #~ msgstr "Haut et bas"
